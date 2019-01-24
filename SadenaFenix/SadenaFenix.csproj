@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,15 +140,46 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\Nacimientos\Archivos\CargaBLL.cs" />
+    <Compile Include="Business\Nacimientos\Reportes\ReportesBLL.cs" />
+    <Compile Include="Business\Usuarios\UsuarioBLL.cs" />
+    <Compile Include="Commons\Utilerias\Bitacora.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Daos\Nacimientos\Archivos\CargaDAO.cs" />
     <Compile Include="Daos\Nacimientos\Reportes\ReporteDAO.cs" />
     <Compile Include="Daos\Usuarios\UsuarioDAO.cs" />
+    <Compile Include="Excepcions\BusinessException.cs" />
+    <Compile Include="Excepcions\DAOException.cs" />
+    <Compile Include="Excepcions\EmptyDataException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Catalogos\Geografia\Localidad.cs" />
+    <Compile Include="Models\Catalogos\Geografia\Municipio.cs" />
+    <Compile Include="Models\Catalogos\Socioeconomica\EdoCivil.cs" />
+    <Compile Include="Models\Catalogos\Socioeconomica\Escolaridad.cs" />
+    <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
+    <Compile Include="Models\Constantes\Constantes.cs" />
+    <Compile Include="Models\Nacimientos\Archivos\Archivo.cs" />
+    <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\Reporte.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\ReporteMunicipio.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\Subregistro.cs" />
+    <Compile Include="Models\Usuarios\Rol.cs" />
+    <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Servicio.cs" />
+    <Compile Include="Transport\Catalogos\CatalogosCargasRespuesta.cs" />
+    <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
+    <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\CabeceroPeticion.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\CabeceroRespuesta.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\SesionPeticion.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\SesionRespuesta.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -188,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

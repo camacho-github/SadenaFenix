@@ -1,8 +1,13 @@
-﻿using Sadena.Models.Nacimientos.Consultas;
-using Sadena.Persistencia;
-using Sadena.Transporte.Nacimientos.Reportes;
+﻿using SadenaFenix.Commons.Utilerias;
+using SadenaFenix.Excepcions;
+using SadenaFenix.Models.Nacimientos.Consultas;
+using SadenaFenix.Models.Nacimientos.Reportes;
+using SadenaFenix.Persistence;
+using SadenaFenix.Transport.Nacimientos.Reportes;
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 
 namespace Sadena.Daos.Nacimientos.Reportes

@@ -1,9 +1,17 @@
-﻿using System;
+﻿using SadenaFenix.Commons.Utilerias;
+using SadenaFenix.Excepcions;
+using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Persistence;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sadena.Daos
+namespace SadenaFenix.Daos
 {
     public class UsuarioDAO : DataContext
     {
