@@ -1,13 +1,9 @@
 ﻿using SadenaFenix.Commons.Utilerias;
-using SadenaFenix.Daos;
+using SadenaFenix.Daos.Usuarios;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Transport.Usuarios.Acceso;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SadenaFenix.Business
+namespace SadenaFenix.Business.Usuarios
 {
     public class UsuarioBLL
     {

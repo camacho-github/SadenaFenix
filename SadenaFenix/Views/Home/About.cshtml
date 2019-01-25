@@ -1,7 +1,37 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿<!-- Scope -->
+@{
+    ViewData["Title"] = "Acerca de";
+    ViewData["ApplicationName"] = "SADENA";
+    ViewData["ApplicationDescription"] = "Sistema Analizador de Nacimientos";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<!-- Page content -->
+<div class="page-content">
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- About -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Panel -->
+                    <div class="panel panel-default mt-30">
+                        <div class="panel-body">
+                            <h3 class="text-warning">@ViewData["ApplicationName"]</h3>
+                            <p><b>@ViewData["ApplicationDescription"]</b></p>
+                            <p>Programa para realizar la comparación de nacimientos con los ya registrados, identificando los registrados, subregistrados y los no registrados.</p>
+                            <p><small>Herramienta de Cálculo del Subregistro</small></p>
+                        </div>
+                    </div>
+                    <!-- ./panel -->
+                </div>
+            </div>
+        </section>
+        <!-- ./about -->
+
+    </div>
+    <!-- ./container -->
+
+</div>
+<!-- /.page content -->

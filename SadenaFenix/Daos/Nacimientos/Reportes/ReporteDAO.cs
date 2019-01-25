@@ -10,7 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 
-namespace Sadena.Daos.Nacimientos.Reportes
+namespace SadenaFenix.Daos.Nacimientos.Reportes
 {
     public class ReporteDAO : DataContext
     {

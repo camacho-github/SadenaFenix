@@ -1,17 +1,60 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿<!-- Scope -->
+@{
+    ViewData["Title"] = "Contacto";
+    ViewData["Message"] = "Para información acerca de esta herramienta";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<!-- Page content -->
+<div class="page-content">
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Contact -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Panel -->
+                    <div class="panel panel-default mt-30">
+                        <div class="panel-body">
+                            <h3 class="text-warning">@ViewData["Message"]</h3>
+                            <div class="address-container col-sm-12">
+                                <!-- Address -->
+                                <span class="simple-icon mr-3" title="Ubicación">
+                                    <i class="fa fa-map-marker"></i>
+                                </span>
+                                <address>
+                                    Periférico Luis Echeverría Álvarez 1250<br />
+                                    Colonia Lourdes, CP 25090<br />
+                                    Saltillo, Coahuila<br />
+                                </address><br />
+                                <span class="simple-icon mr-3" title="Teléfonos">
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                <address>
+                                    01 (844) 414 87 98<br />
+                                    01 (844) 414 85 46<br />
+                                </address><br />
+                                <!-- Page -->
+                                <span class="simple-icon mr-3" title="Página Web">
+                                    <i class="fa fa-globe"></i>
+                                </span><a href="http://www.registrocivilcoahuila.gob.mx" target="_blank">www.registrocivilcoahuila.gob.mx</a>
+                                <br />
+                                <!-- Mail -->
+                                <span class="simple-icon mr-3" title="Correo Electrónico">
+                                    <i class="fa fa-envelope"></i>
+                                </span><strong>Soporte: </strong><a href="mailto:soporte@sadena.gob.mx">soporte@sadena.gob.mx</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./panel -->
+                </div>
+            </div>
+        </section>
+        <!-- ./contact -->
+
+    </div>
+    <!-- ./container -->
+
+</div>
+<!-- ./page content -->

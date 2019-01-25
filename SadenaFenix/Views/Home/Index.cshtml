@@ -1,31 +1,64 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewData["Title"] = "Inicio";
+    ViewData["ApplicationName"] = "SADENA";
+    ViewData["ApplicationDescription"] = "Sistema Analizador de Nacimientos";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- Page content -->
+<div class="page-content">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Container -->
+    <div class="container">
+
+        <!--Intro -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Welcome information -->
+                    <div class="jumbotron mt-30">
+                        <h1>SADENA</h1>
+                        <p>Sistema Analizador de Nacimientos</p>
+                        <form action="/Acceso/Ingresar#Usuarios" method="post">
+                            <p><button class="btn btn-primary" style="width:150px;" type="submit">Ingresar</button></p>
+                        </form>
+                        <div class="col-sm-8"></div>
+                        <div class="col-sm-4">
+                            <img width="300" style="margin-top:-300px;" title="Coahuila de Zaragoza"  alt="Mapa de Coahuila de Zaragoza" src="/images/coahuila-map.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Logos -->
+                    <div class="image-block-container">
+                        <div class="col-sm-3 image-container">
+                            <img alt="Logo del Gobierno de Coahuila de Zaragoza" src="~/images/cohauila-gob-logo.png"
+                                 title="Gobierno de Coahuila de Zaragoza">
+                        </div>
+                        <div class="col-sm-3 image-container">
+                            <img alt="Logo del BID" src="~/images/bid-logo.png"
+                                 title="Banco Interamericano de Desarrollo">
+                        </div>
+                        <div class="col-sm-3 image-container">
+                            <img alt="Logo del Gobierno de Canada" src="~/images/canada-logo.png"
+                                 title="Gobierno de Canadá">
+                        </div>
+                        <div class="col-sm-3 image-container">
+                            <img alt="Logo del Registro Civil de la Secretaría de Gobernación" src="~/images/regcivil-gob-logo.png"
+                                 title="Dirección del Registro Civil">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <!-- /.container -->
+
 </div>
+<!-- ./page content -->

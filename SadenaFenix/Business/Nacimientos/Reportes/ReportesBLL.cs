@@ -1,4 +1,4 @@
-﻿using Sadena.Daos.Nacimientos.Reportes;
+﻿using SadenaFenix.Daos.Nacimientos.Reportes;
 using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
