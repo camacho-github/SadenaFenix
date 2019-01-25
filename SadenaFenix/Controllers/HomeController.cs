@@ -1,54 +1,42 @@
 ﻿using Newtonsoft.Json;
 using Sadena.Services;
 using SadenaFenix.Transport.Usuarios.Acceso;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SadenaFenix.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult About()
+        public ActionResult About()
         {
             return View();
         }
 
-        public IActionResult Contact()
+        public ActionResult Contact()
         {
             return View();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Privacy()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        /*
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+    */
+
+        public ActionResult Contact2()
         {
             SesionRespuesta resultadoIniciarSesion = IniciarSesion();
             ViewBag.Message = "Resultados de servicio de iniciar Sesión " + JsonConvert.SerializeObject(resultadoIniciarSesion);

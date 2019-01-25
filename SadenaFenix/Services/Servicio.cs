@@ -1,6 +1,6 @@
-﻿using SadenaFenix.Business;
-using SadenaFenix.Business.Nacimientos.Archivos;
+﻿using SadenaFenix.Business.Nacimientos.Archivos;
 using SadenaFenix.Business.Nacimientos.Reportes;
+using SadenaFenix.Business.Usuarios;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Nacimientos.Archivos;
 using SadenaFenix.Transport.Catalogos;
@@ -9,8 +9,6 @@ using SadenaFenix.Transport.Nacimientos.Reportes;
 using SadenaFenix.Transport.Usuarios.Acceso;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sadena.Services
 {

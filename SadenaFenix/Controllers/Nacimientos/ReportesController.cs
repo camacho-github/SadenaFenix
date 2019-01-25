@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Sadena.Controllers.Nacimientos.Reportes
+namespace Sadena.Controllers.Nacimientos
 {
     public class ReportesController : Controller
     {
@@ -35,7 +30,7 @@ namespace Sadena.Controllers.Nacimientos.Reportes
         // POST: Reportes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
@@ -58,7 +53,7 @@ namespace Sadena.Controllers.Nacimientos.Reportes
         // POST: Reportes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
@@ -81,7 +76,7 @@ namespace Sadena.Controllers.Nacimientos.Reportes
         // POST: Reportes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

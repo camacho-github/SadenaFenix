@@ -1,6 +1,6 @@
-﻿using Sadena.Transporte.Nacimientos.Consultas.Comboxes;
+﻿using Sadena.Transport.Nacimientos.Consultas.Comboxes;
 
-namespace Sadena.Transporte.Nacimientos.Consultas
+namespace Sadena.Transport.Nacimientos.Consultas
 {
     public class ConsultasViewModel
     {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
-namespace Sadena.Transporte.Nacimientos.Consultas
+namespace Sadena.Transport.Nacimientos.Consultas.Comboxes
 {
     public class MesViewModelIEnumerable
     {

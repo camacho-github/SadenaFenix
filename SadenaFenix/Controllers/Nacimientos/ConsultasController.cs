@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Sadena.Transporte.Nacimientos.Consultas;
-using Sadena.Facade.Catalogos.Geografia;
+﻿using System.Web.Mvc;
+using Sadena.Sevices.Catalogos.Geografia;
+using Sadena.Transport.Nacimientos.Consultas;
+using Sadena.Transport.Nacimientos.Consultas.Comboxes;
 
-namespace Sadena.Controllers.Nacimientos.Consultas
+namespace SadenaFenix.Controllers.Nacimientos
 {
 
     public class ConsultasController : Controller
@@ -15,13 +16,13 @@ namespace Sadena.Controllers.Nacimientos.Consultas
             ConsultasViewModel model = new ConsultasViewModel();
             model.ComboMunicipios.Municipios.AddRange(CatMunicipioFacade.ObtenerTodosLosMuncipios());
             model.ComboMeses = new MesViewModelIEnumerable();
-            model.ComboAnios.Anios.AddRange();
+            model.ComboAnios.Anios.AddRange(null);
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(MesViewModelIEnumerable model)
+        public ActionResult Index(MesViewModelIEnumerable model)
         {
             if (ModelState.IsValid)
             {

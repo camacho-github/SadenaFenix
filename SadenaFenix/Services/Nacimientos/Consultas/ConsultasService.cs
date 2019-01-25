@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Sadena.Models.Catalogos.Geografia;
-using System.Collections.Generic;
-using Sadena.Business.Nacimientos.Consultas;
+﻿using System.Collections.Generic;
 using System;
+using Sadena.Business.Nacimientos.Consultas;
+using System.Web.Mvc;
 
-namespace Sadena.Facade.Nacimientos.Consultas
+namespace Sadena.Services.Nacimientos.Consultas
 {
     public class ConsultasFacade
     {
-        private readonly ConsultasBusiness ConsultasBusiness;
+        private readonly ConsultasBLL ConsultasBLL;
 
         public IList<SelectListItem> ObtenerAniosParaConsulta()
         {
             IList<SelectListItem> items = new List<SelectListItem>();
-            IList<String> anios = ConsultasBusiness.ObtenerAniosParaConsulta();
+            IList<String> anios = ConsultasBLL.ObtenerAniosParaConsulta();
             foreach (String anio in anios)
             {
                 items.Add(new SelectListItem { Value = anio, Text = anio });

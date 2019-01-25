@@ -11,7 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SadenaFenix.Daos
+namespace SadenaFenix.Daos.Usuarios
 {
     public class UsuarioDAO : DataContext
     {

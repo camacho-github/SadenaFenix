@@ -142,6 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\Catalogos\Geografia\CatMunicipioBusiness.cs" />
     <Compile Include="Business\Nacimientos\Archivos\CargaBLL.cs" />
+    <Compile Include="Business\Nacimientos\Consultas\ConsultasBLL.cs" />
     <Compile Include="Business\Nacimientos\Reportes\ReportesBLL.cs" />
     <Compile Include="Business\Usuarios\UsuarioBLL.cs" />
     <Compile Include="Commons\Utilerias\Bitacora.cs" />
@@ -178,9 +179,8 @@
     <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Catalogos\Geografia\CatMunicipioFacade.cs" />
-    <Compile Include="Services\ConsultasBusiness.cs" />
-    <Compile Include="Services\Nacimientos\Consultas\ConsultasFacade.cs" />
+    <Compile Include="Services\Catalogos\Geografia\CatMunicipioService.cs" />
+    <Compile Include="Services\Nacimientos\Consultas\ConsultasService.cs" />
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
     <Compile Include="Transport\Consultas\Comboxes\MesViewModelIEnumerable.cs" />

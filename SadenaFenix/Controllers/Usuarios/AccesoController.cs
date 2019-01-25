@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Sadena.Models.Usuarios;
+﻿using SadenaFenix.Models.Usuarios;
+using System.Web.Mvc;
 
-namespace Sadena.Controllers.Usuarios
+namespace SadenaFenix.Controllers.Usuarios
 {
     public class AccesoController : Controller
     {
@@ -21,7 +20,7 @@ namespace Sadena.Controllers.Usuarios
         // POST: Acceso/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind("CorreoE, Contrasenia")] Usuario usuario)
+        public ActionResult Login(Usuario usuario)
         {
 
             return View("Views/Nacimientos/Consultas/Consultar.cshtml");
@@ -42,7 +41,7 @@ namespace Sadena.Controllers.Usuarios
         // POST: Acceso/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
@@ -65,7 +64,7 @@ namespace Sadena.Controllers.Usuarios
         // POST: Acceso/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
@@ -88,7 +87,7 @@ namespace Sadena.Controllers.Usuarios
         // POST: Acceso/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

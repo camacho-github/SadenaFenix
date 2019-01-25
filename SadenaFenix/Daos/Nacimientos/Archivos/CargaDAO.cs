@@ -12,7 +12,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sadena.Daos.Nacimientos.Archivos
+namespace SadenaFenix.Daos.Nacimientos.Archivos
 {
     public class CargaDAO : DataContext
     {

@@ -7,6 +7,11 @@ namespace SadenaFenix.Models.Catalogos.Geografia
     [DataContract]
     public class Municipio
     {
+        public Municipio()
+        {
+
+        }
+
         public Municipio(int mpioId, string mpioDesc)
         {
             MpioId = mpioId;

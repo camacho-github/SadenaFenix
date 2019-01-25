@@ -1,4 +1,4 @@
-﻿using Sadena.Daos.Nacimientos.Archivos;
+﻿using SadenaFenix.Daos.Nacimientos.Archivos;
 using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Constantes;
