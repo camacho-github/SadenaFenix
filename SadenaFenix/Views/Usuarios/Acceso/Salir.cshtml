@@ -1,0 +1,34 @@
+﻿<!-- Scope -->
+@{
+    ViewData["Title"] = "Cierre de Sesión";
+    ViewData["Message"] = "¡Sesión finalizada!";
+}
+
+<!-- Page content -->
+<div class="page-content">
+
+    <!-- Content -->
+    <div class="container">
+
+        <!-- Exit -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12 mt-30">
+                    <div class="alert alert-success">
+                        <h4>Mensaje</h4>
+                        <hr />
+                        <div class="text-center">
+                            <h3><span class="simple-icon">
+                                <i class="fa fa-coffee"></i> @ViewData["Message"]</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ./exit -->
+
+    </div>
+    <!-- ./content -->
+
+</div>
+<!-- ./page content -->

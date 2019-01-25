@@ -24,7 +24,7 @@ namespace SadenaFenix.Models.Usuarios
         [XmlAttribute("CorreoE")]
         public string CorreoE { get; set; }
 
-        [DisplayName("Contrasenia")]
+        [DisplayName("Contraseña")]
         [DataMember(Name = "Contrasenia", IsRequired = true)]
         public string Contrasenia { get; set; }
 

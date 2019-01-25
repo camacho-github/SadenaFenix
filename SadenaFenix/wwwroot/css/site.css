@@ -1,0 +1,307 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+   for details on configuring this project to bundle and minify static web assets. */
+
+/* Table */
+table thead tr th{
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+table tbody tr td {
+    font-size: 11px;
+}
+
+.dataTables_scrollBody, .dataTables_scrollHead {
+    border: 1px solid #dddddd;
+}
+
+.navbar-default {
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* Site classes */
+p.note-feet {
+    font-size: 11px;
+}
+
+.image-block-container {
+    padding-left: 5%;
+}
+
+.image-container {
+    height: 100px;
+    position: relative;
+    text-align: center;
+}
+
+.image-container img {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.page-content {
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+
+.panel-title {
+    font-size: 20px;
+}
+
+.description-block {
+    text-align: center;
+}
+
+.badge-default {
+    background-color: #474949;
+}
+
+.badge-primary {
+    background-color: #d9230f;
+}
+
+.badge-success {
+    background-color: #469408;
+}
+
+.badge-warning {
+    background-color: #9b479f;
+}
+
+.badge-danger {
+    background-color: #d9831f;
+}
+
+.badge-info {
+    background-color: #029acf;
+}
+
+.panel-default .panel-heading {
+    color: #ffffff;
+    background-color: #474949;
+}
+
+.fa-danger {
+    color: #d9831f;
+}
+
+input[type='file'] {
+    height: 30px;
+    width: 100%;
+    padding-right: 3px;
+}
+
+fieldset {
+    padding: 20px 20px 0px 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.nav-tabs > li > a {
+    border-radius: 0px;
+    /* font-weight: bold; */
+}
+
+.login-panel-container {
+    padding: 10% 20% 30% 20%;
+}
+
+.loading-well {
+    padding-bottom: 50px;
+}
+
+.simple-icon:hover {
+    cursor: default;
+}
+
+.mr-3 {
+    margin-right: 3px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.report {
+
+}
+
+.report-title {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.report-period {
+    padding-top: 20px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+.report-header {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.report-tables-container {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.report-options .list-group-item {
+    display: inline-block;
+    cursor: pointer;
+    min-width: 300px;
+    text-align: center;
+}
+
+:first-child.list-group-item {
+    border-radius: 0px;
+}
+
+:last-child.list-group-item {
+    border-radius: 0px;
+}
+
+.report-map {
+    width: 680px;
+    height: 550px;
+    overflow: hidden;
+}
+
+.map-container {
+    margin-top: 40px;
+    /* position: absolute; 
+    top: 0px;
+    left: 0px; 
+    background-color: rgb(229, 227, 223); */
+}
+
+.customised-card {
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.customised-card-header {
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+
+.customised-card-body {
+    padding-top: 8px;
+}
+
+.customised-card-subtitle {
+    font-size: 14px;
+}
+
+.customised-card-header-divider {
+    border-bottom: 1px solid #dddddd;
+}
+
+.jumbotron {
+    border: 1px solid #dddddd;
+}
+
+.address-container span {
+    vertical-align: top;
+}
+
+.address-container address {
+    display: inline-block;
+}
+
+.right {
+    float: right;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer-container {
+    padding-bottom: 40px;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+    right: 15px;
+}
+
+.footer-container footer {
+    position: relative;
+}
+
+@media screen and (max-height: 800px) {
+
+    .login-panel-container {
+        padding: 10% 20% 20% 20%;
+    }
+
+}
+
+/* Hide/rearrange for smaller screens, On screens that are 1024px or less */
+@media screen and (max-width: 1024px) {
+    /* Hide captions */
+    .image-block-container {
+        flex: 80%;
+        max-width: 80%;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    /* Hide captions */
+
+    .image-block-container {
+        flex: 50%;
+        max-width: 50%;
+        text-align: center;
+    }
+
+    .image-block-container img {
+        width: auto;
+    }
+
+
+}
+
+@media screen and (max-width: 680px) {
+    /* Hide captions */
+
+    .image-block-container {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .image-block-container img {
+        width: auto;
+    }
+
+
+}
