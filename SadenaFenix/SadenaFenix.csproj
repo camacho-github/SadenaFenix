@@ -140,11 +140,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\Catalogos\CatalogosBLL.cs" />
     <Compile Include="Business\Nacimientos\Archivos\CargaBLL.cs" />
     <Compile Include="Business\Nacimientos\Reportes\ReportesBLL.cs" />
     <Compile Include="Business\Usuarios\UsuarioBLL.cs" />
     <Compile Include="Commons\Utilerias\Bitacora.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Daos\Catalogos\CatalogosDAO.cs" />
     <Compile Include="Daos\Nacimientos\Archivos\CargaDAO.cs" />
     <Compile Include="Daos\Nacimientos\Reportes\ReporteDAO.cs" />
     <Compile Include="Daos\Usuarios\UsuarioDAO.cs" />
@@ -158,7 +160,9 @@
     <Compile Include="Models\Catalogos\Geografia\Municipio.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\EdoCivil.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\Escolaridad.cs" />
+    <Compile Include="Models\Catalogos\Socioeconomica\EstatusRegistro.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
+    <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
     <Compile Include="Models\Nacimientos\Archivos\Archivo.cs" />
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
@@ -172,6 +176,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogosCargasRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaPeticion.cs" />
+    <Compile Include="Transport\Catalogos\CatalogosGeografiaRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\ConsultaMesesPeticion.cs" />
+    <Compile Include="Transport\Catalogos\ConsultaMesesRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
