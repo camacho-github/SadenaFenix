@@ -230,6 +230,49 @@ namespace Sadena.Services
             return respuesta;
         }
 
+        public CatalogoMunicipioRespuesta ConsultarCatalogoMunicipioGeografia(CabeceroPeticion peticion)
+        {
+            CatalogoMunicipioRespuesta respuesta = new CatalogoMunicipioRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultarCatalogoMunicipio();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public CatalogoLocalidadRespuesta ConsultarCatalogoLocalidadGeografia(CabeceroPeticion peticion)
+        {
+            CatalogoLocalidadRespuesta respuesta = new CatalogoLocalidadRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultarCatalogoLocalidad();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
 
         #endregion
 
