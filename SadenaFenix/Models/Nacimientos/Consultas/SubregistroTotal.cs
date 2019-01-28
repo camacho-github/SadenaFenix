@@ -8,6 +8,10 @@ namespace SadenaFenix.Models.Nacimientos.Consultas
     [DataContract]
     public class SubregistroTotal
     {
+        [DataMember(Name = "IdGrupo", IsRequired = true)]
+        [XmlAttribute("IdGrupo")]
+        public int IdGrupo { get; set; }
+
         [DataMember(Name = "NombreGrupo", IsRequired = true)]
         [XmlAttribute("NombreGrupo")]
         public String NombreGrupo { get; set; }
@@ -15,6 +19,10 @@ namespace SadenaFenix.Models.Nacimientos.Consultas
         [DataMember(Name = "Total", IsRequired = true)]
         [XmlAttribute("Total")]
         public int Total { get; set; }
+
+        [DataMember(Name = "TotalPorcentaje", IsRequired = true)]
+        [XmlAttribute("TotalPorcentaje")]
+        public decimal TotalPorcentaje { get; set; }
 
     }
 }

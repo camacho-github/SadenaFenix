@@ -141,6 +141,27 @@ namespace Sadena.Services
             return response;
         }
 
+        public TotalesSubregistroNacimientosRespuesta ConsultaTotalesSubregistroNacimientos(SubregistroPeticion Request)
+        {
+            TotalesSubregistroNacimientosRespuesta response = new TotalesSubregistroNacimientosRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+
+                response = reportesBLL.ConsultaTotalesSubregistroNacimientos(Request.ColAnos, Request.ColMeses, Request.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", response.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, response.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, response.Cabecero);
+            }
+            return response;
+        }
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(SubregistroPeticion Request)
         {
