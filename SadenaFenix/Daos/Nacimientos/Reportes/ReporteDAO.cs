@@ -16,9 +16,58 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
     {
         #region Variables de instancia        
         private const string PRN_CONSULTA_SUBREGISTRO_NACIMIENTOS = "SDB.PRSSubregistroNacimientos";
+        private const string PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS = "PRSTotalesSubregistroNacimientos";
         #endregion
 
         #region Métodos Públicos
+        public TotalesSubregistroNacimientosRespuesta ConsultaTotalesSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            TotalesSubregistroNacimientosRespuesta totalesSubregistroNacimientosRespuesta = new TotalesSubregistroNacimientosRespuesta();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        totalesSubregistroNacimientosRespuesta.ColTotales = new Collection<SubregistroTotal>();
+                        
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+                            SubregistroTotal sub = new SubregistroTotal
+                            {
+                                IdGrupo = r.Field<int>("IdGrupo"),
+                                NombreGrupo = r.Field<string>("NombreGrupo"),
+                                Total = r.Field<int>("Total")
+                            };
+
+                            totalesSubregistroNacimientosRespuesta.ColTotales.Add(sub);
+                        }
+
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return totalesSubregistroNacimientosRespuesta;
+        }
+
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
         {
             SubregistroNacimientosRespuesta SubregistroNacimientosRespuesta = new SubregistroNacimientosRespuesta();
@@ -43,6 +92,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                             {
                                 SubregistroTotal sub = new SubregistroTotal
                                 {
+                                    IdGrupo = r.Field<int>("IdGrupo"),
                                     NombreGrupo = r.Field<string>("NombreGrupo"),
                                     Total = r.Field<int>("Total")
                                 };

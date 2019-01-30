@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -162,7 +165,10 @@
     <Compile Include="Excepcions\BusinessException.cs" />
     <Compile Include="Excepcions\DAOException.cs" />
     <Compile Include="Excepcions\EmptyDataException.cs" />
-    <Compile Include="Global.asax.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Catalogos\Geografia\Geopunto.cs" />
     <Compile Include="Models\Catalogos\Geografia\Localidad.cs" />
     <Compile Include="Models\Catalogos\Geografia\Municipio.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\EdoCivil.cs" />
@@ -184,6 +190,9 @@
     <Compile Include="Services\Catalogos\Geografia\CatMunicipioService.cs" />
     <Compile Include="Services\Nacimientos\Consultas\ConsultasService.cs" />
     <Compile Include="Services\Servicio.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
     <Compile Include="Transport\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
     <Compile Include="Transport\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
     <Compile Include="Transport\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
@@ -199,6 +208,7 @@
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroRespuesta.cs" />
     <Compile Include="Transport\Usuarios\Acceso\SesionPeticion.cs" />
@@ -502,7 +512,22 @@
     <Content Include="Scripts\lib\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.start.js" />
-    <Content Include="Web.config" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

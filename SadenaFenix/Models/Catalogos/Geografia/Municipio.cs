@@ -26,5 +26,17 @@ namespace SadenaFenix.Models.Catalogos.Geografia
         [XmlAttribute("MpioDesc")]
         public String MpioDesc { get; set; }
 
+        [DataMember(Name = "Latitud", IsRequired = true)]
+        [XmlAttribute("Latitud")]
+        public String Latitud { get; set; }
+
+        [DataMember(Name = "Longitud", IsRequired = true)]
+        [XmlAttribute("Longitud")]
+        public String Longitud { get; set; }
+
+        [DataMember(Name = "JsonPoligono", IsRequired = true)]
+        [XmlAttribute("JsonPoligono")]
+        public String JsonPoligono { get; set; }
+
     }
 }

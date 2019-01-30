@@ -141,6 +141,27 @@ namespace SadenaFenix.Services
             return response;
         }
 
+        public TotalesSubregistroNacimientosRespuesta ConsultaTotalesSubregistroNacimientos(SubregistroPeticion Request)
+        {
+            TotalesSubregistroNacimientosRespuesta response = new TotalesSubregistroNacimientosRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+
+                response = reportesBLL.ConsultaTotalesSubregistroNacimientos(Request.ColAnos, Request.ColMeses, Request.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", response.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, response.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, response.Cabecero);
+            }
+            return response;
+        }
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(SubregistroPeticion Request)
         {
@@ -230,6 +251,49 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        public CatalogoMunicipioRespuesta ConsultarCatalogoMunicipioGeografia(CabeceroPeticion peticion)
+        {
+            CatalogoMunicipioRespuesta respuesta = new CatalogoMunicipioRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultarCatalogoMunicipio();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public CatalogoLocalidadRespuesta ConsultarCatalogoLocalidadGeografia(CabeceroPeticion peticion)
+        {
+            CatalogoLocalidadRespuesta respuesta = new CatalogoLocalidadRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultarCatalogoLocalidad();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
 
         #endregion
 

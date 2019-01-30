@@ -47,6 +47,24 @@ namespace SadenaFenix.Business.Catalogos
             return response;
         }
 
+        public CatalogoMunicipioRespuesta ConsultarCatalogoMunicipio()
+        {
+            CatalogoMunicipioRespuesta respuesta = new CatalogoMunicipioRespuesta
+            {
+                ColMunicipio = dao.ConsultaCatPoligonoMunicipio()
+            };
+            return respuesta;
+        }
+
+        public CatalogoLocalidadRespuesta ConsultarCatalogoLocalidad()
+        {
+            CatalogoLocalidadRespuesta respuesta = new CatalogoLocalidadRespuesta
+            {
+                ColLocalidad = dao.ConsultaCatLocalidad()
+            };
+            return respuesta;
+        }
+                
         public ConsultaMesesRespuesta ConsultarMesesXAnio(string anio)
         {
             ConsultaMesesRespuesta consultaMesesRespuesta = new ConsultaMesesRespuesta();

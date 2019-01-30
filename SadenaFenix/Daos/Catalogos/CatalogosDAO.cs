@@ -1,4 +1,6 @@
-﻿using SadenaFenix.Commons.Utilerias;
+﻿using Microsoft.SqlServer.Types;
+using Newtonsoft.Json;
+using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Catalogos.Socieconomica;
@@ -293,6 +295,76 @@ namespace SadenaFenix.Daos.Catalogos
                                 MpioId = r.Field<int>("MpioId"),
                                 MpioDesc = r.Field<string>("MpioDesc")
                             };
+                            colMunicipio.Add(mpio);
+                        }
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return colMunicipio;
+        }
+
+        public Collection<Municipio> ConsultaCatPoligonoMunicipio()
+        {
+
+            Collection<Municipio> colMunicipio = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosCatMunicipio = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosCatMunicipio);
+
+                    EjecutaProcedimiento(PRS_CT_MUNICIPIO, parametrosCatMunicipio, dataSet);
+
+                    if (this.Codigo == 0 && validaDataSet(dataSet))
+                    {
+                        colMunicipio = new Collection<Municipio>();
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+
+                            Collection<Geopunto> geopuntos = new Collection<Geopunto>();
+                            string poligono = r.Field<string>("Poligono");
+
+                            SqlGeography geoPoligono = SqlGeography.Parse(poligono);
+
+                            for (int i = 1; i <= geoPoligono.STNumPoints(); i++)
+                            {
+                                SqlGeography point = geoPoligono.STPointN(i);
+                                Geopunto geopunto = new Geopunto
+                                {
+                                    Latitud = (double)point.Lat,
+                                    Longitud = (double)point.Long
+                                };
+                                geopuntos.Add(geopunto);
+                                //poligono += point.Long + "," + point.Lat + " ";
+                            }
+
+                            Municipio mpio = new Municipio
+                            {
+                                MpioId = r.Field<int>("MpioId"),
+                                MpioDesc = r.Field<string>("MpioDesc"),
+                                Longitud = r.Field<string>("Longitud"),
+                                Latitud = r.Field<string>("Latitud"),
+                                JsonPoligono = JsonConvert.SerializeObject(geopuntos)
+                            };
+
                             colMunicipio.Add(mpio);
                         }
                     }
