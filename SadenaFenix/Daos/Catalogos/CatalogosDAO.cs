@@ -1,5 +1,4 @@
-﻿using Microsoft.SqlServer.Types;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
@@ -342,19 +341,19 @@ namespace SadenaFenix.Daos.Catalogos
                             Collection<Geopunto> geopuntos = new Collection<Geopunto>();
                             string poligono = r.Field<string>("Poligono");
 
-                            SqlGeography geoPoligono = SqlGeography.Parse(poligono);
+                            //SqlGeography geoPoligono = SqlGeography.Parse(poligono);
 
-                            for (int i = 1; i <= geoPoligono.STNumPoints(); i++)
-                            {
-                                SqlGeography point = geoPoligono.STPointN(i);
-                                Geopunto geopunto = new Geopunto
-                                {
-                                    Latitud = (double)point.Lat,
-                                    Longitud = (double)point.Long
-                                };
-                                geopuntos.Add(geopunto);
-                                //poligono += point.Long + "," + point.Lat + " ";
-                            }
+                            //for (int i = 1; i <= geoPoligono.STNumPoints(); i++)
+                            //{
+                            //    SqlGeography point = geoPoligono.STPointN(i);
+                            //    Geopunto geopunto = new Geopunto
+                            //    {
+                            //        Latitud = (double)point.Lat,
+                            //        Longitud = (double)point.Long
+                            //    };
+                            //    geopuntos.Add(geopunto);
+                            //    //poligono += point.Long + "," + point.Lat + " ";
+                            //}
 
                             Municipio mpio = new Municipio
                             {
@@ -362,7 +361,7 @@ namespace SadenaFenix.Daos.Catalogos
                                 MpioDesc = r.Field<string>("MpioDesc"),
                                 Longitud = r.Field<string>("Longitud"),
                                 Latitud = r.Field<string>("Latitud"),
-                                JsonPoligono = JsonConvert.SerializeObject(geopuntos)
+                                //JsonPoligono = JsonConvert.SerializeObject(geopuntos)
                             };
 
                             colMunicipio.Add(mpio);
