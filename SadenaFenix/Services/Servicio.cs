@@ -12,7 +12,7 @@ using SadenaFenix.Transport.Usuarios.Acceso;
 using System;
 using System.Collections.Generic;
 
-namespace Sadena.Services
+namespace SadenaFenix.Services
 {
     public class Servicio
     {

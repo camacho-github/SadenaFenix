@@ -1,7 +1,7 @@
 ﻿<!-- Scope -->
 @{
     ViewData["Title"] = "Cierre de Sesión";
-    ViewData["Message"] = "¡Sesión finalizada!";
+    ViewData["Message"] = "¡Su sesión ha finalizado correctamente!";
 }
 
 <!-- Page content -->
@@ -10,22 +10,22 @@
     <!-- Content -->
     <div class="container">
 
-        <!-- Exit -->
+        <!-- Logout -->
         <section>
             <div class="row">
                 <div class="col-sm-12 mt-30">
-                    <div class="alert alert-success">
-                        <h4>Mensaje</h4>
-                        <hr />
-                        <div class="text-center">
-                            <h3><span class="simple-icon">
-                                <i class="fa fa-coffee"></i> @ViewData["Message"]</span></h3>
+                    <div class="alert alert-success text-center">
+                        <div class="alert-header">
+                            <h4>Mensaje</h4>
+                        </div><hr />
+                        <div class="alert-message">
+                            <h3>@ViewData["Message"]</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ./exit -->
+        <!-- ./logout -->
 
     </div>
     <!-- ./content -->

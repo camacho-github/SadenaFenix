@@ -162,9 +162,7 @@
     <Compile Include="Excepcions\BusinessException.cs" />
     <Compile Include="Excepcions\DAOException.cs" />
     <Compile Include="Excepcions\EmptyDataException.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="Global.asax.cs" />
     <Compile Include="Models\Catalogos\Geografia\Localidad.cs" />
     <Compile Include="Models\Catalogos\Geografia\Municipio.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\EdoCivil.cs" />
@@ -196,6 +194,7 @@
     <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaRespuesta.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesPeticion.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesRespuesta.cs" />
+    <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
@@ -221,6 +220,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="SadenaFenix.csproj.user" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
     <Content Include="Scripts\js\nacimientos\consultas\importar.js" />
@@ -318,16 +318,23 @@
     <Content Include="Scripts\lib\font-awesome\HELP-US-OUT.txt" />
     <Content Include="Scripts\lib\jquery-jvectormap\jquery-jvectormap-2.0.3.css" />
     <Content Include="Scripts\lib\jquery-jvectormap\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Scripts\lib\jquery-validation-additional-methods\additional-methods.js" />
+    <Content Include="Scripts\lib\jquery-validation-additional-methods\additional-methods.min.js" />
     <Content Include="Scripts\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib\jquery-validation-unobtrusive\LICENSE.txt" />
     <Content Include="Scripts\lib\jquery-validation\dist\additional-methods.js" />
     <Content Include="Scripts\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="Scripts\lib\jquery-validation\dist\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\lib\jquery-validation\dist\jquery.validate.js" />
     <Content Include="Scripts\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="Scripts\lib\jquery.intellisense\jquery.intellisense.js" />
     <Content Include="Scripts\lib\jquery\dist\jquery.js" />
     <Content Include="Scripts\lib\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\lib\jquery\dist\jquery.slim.js" />
+    <Content Include="Scripts\lib\jquery\dist\jquery.slim.min.js" />
     <Content Include="Scripts\lib\jquery\LICENSE.txt" />
+    <Content Include="Scripts\lib\modernizr\modernizr.js" />
     <Content Include="Scripts\lib\select2\dist\css\select2.css" />
     <Content Include="Scripts\lib\select2\dist\css\select2.min.css" />
     <Content Include="Scripts\lib\select2\dist\js\i18n\af.js" />
@@ -514,7 +521,6 @@
     <Content Include="Views\Nacimientos\Reportes\Reportes.cshtml" />
     <Content Include="Views\Usuarios\Acceso\Ingresar.cshtml" />
     <Content Include="Views\Usuarios\Acceso\Salir.cshtml" />
-    <Content Include="Views\_ViewImports.cshtml" />
     <Content Include="Scripts\lib\admin-lte\bower.json" />
     <Content Include="Scripts\lib\admin-lte\dist\css\adminlte.css.map" />
     <Content Include="Scripts\lib\admin-lte\dist\css\adminlte.min.css.map" />
@@ -606,7 +612,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Scripts\lib\jquery\dist\jquery.slim.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

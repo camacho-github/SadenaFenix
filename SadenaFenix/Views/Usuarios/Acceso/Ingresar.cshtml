@@ -1,5 +1,5 @@
 ﻿<!-- Imports -->
-@model Sadena.Models.Usuarios.Usuario
+@model SadenaFenix.Models.Usuarios.Usuario
 
 <!-- Scope -->
 @{
@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <!-- Form -->
-                                        <form class="form-horizontal" asp-area="" asp-fragment="Usuarios" asp-controller="Acceso" asp-action="Login">
+                                        <form class="form-horizontal" asp-fragment="Usuarios" asp-controller="Acceso" asp-action="IniciarSesion">
                                             <fieldset>
                                                 <legend>Credenciales</legend>
                                                 <div class="form-group">
@@ -44,8 +44,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-10 col-sm-offset-2">
-                                                        <a class="btn btn-default" asp-area="" asp-controller="Home" asp-action="Index">Regresar</a>
-                                                        <button type="submit" class="btn btn-primary">Entrar</button>
+                                                        <a class="btn btn-default btn-width-md" asp-controller="Home" asp-action="Index">Regresar</a>
+                                                        <button type="submit" class="btn btn-primary btn-width-md">Entrar</button>
                                                     </div>
                                                 </div>
                                             </fieldset>

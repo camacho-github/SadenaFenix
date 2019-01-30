@@ -1,104 +1,64 @@
 ﻿using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Services;
 using System.Web.Mvc;
+
 
 namespace SadenaFenix.Controllers.Usuarios
 {
+
     public class AccesoController : Controller
     {
-        // GET: Acceso
-        public ActionResult Ingresar()
+        /* Properties. */
+        private Servicio Servicio;
+
+        // Default constructor
+        public AccesoController()
         {
-            return View("Views/Usuarios/Acceso/Ingresar.cshtml");
+            Servicio = new Servicio();
         }
 
-        // GET: Acceso
         public ActionResult Salir()
         {
-            return View("Views/Usuarios/Acceso/Salir.cshtml");
+            return View("~/Views/Usuarios/Acceso/Salir.cshtml");
         }
 
-        // POST: Acceso/Login
+        // GET: Acceso/Ingresar
+        public ActionResult Ingresar()
+        {
+            return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
+        }
+
+        // POST: Acceso/IniciarSesion
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Usuario usuario)
-        {
-
-            return View("Views/Nacimientos/Consultas/Consultar.cshtml");
-        }
-
-        // GET: Acceso/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Acceso/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Acceso/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult IniciarSesion(Usuario usuario)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Ingresar));
+                //Servicio.IniciarSesion();
+                return RedirectToAction("~/Views/Nacimientos/Consultas/Consultar.cshtml");
             }
             catch
             {
-                return View();
+                return View(nameof(Ingresar));
             }
         }
 
-        // GET: Acceso/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Acceso/Edit/5
+        // GET: Acceso/FinalizarSesion
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult FinalizarSesion(Usuario usuario)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Ingresar));
+                //Servicio.FinalizarSesion();
+                return RedirectToAction("~/Views/Usuarios/Acceso/Salir.cshtml");
             }
             catch
             {
-                return View();
+                return View(nameof(Ingresar));
             }
         }
 
-        // GET: Acceso/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Acceso/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Ingresar));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

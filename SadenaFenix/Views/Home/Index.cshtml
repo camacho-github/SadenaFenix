@@ -18,13 +18,9 @@
                     <div class="jumbotron mt-30">
                         <h1>SADENA</h1>
                         <p>Sistema Analizador de Nacimientos</p>
-                        <form action="/Acceso/Ingresar#Usuarios" method="post">
-                            <p><button class="btn btn-primary" style="width:150px;" type="submit">Ingresar</button></p>
+                        <form asp-fragment="Usuarios" asp-controller="Acceso" asp-action="Ingresar">
+                            <p><button class="btn btn-lg btn-primary" type="submit">Ingresar</button></p>
                         </form>
-                        <div class="col-sm-8"></div>
-                        <div class="col-sm-4">
-                            <img width="300" style="margin-top:-300px;" title="Coahuila de Zaragoza"  alt="Mapa de Coahuila de Zaragoza" src="/images/coahuila-map.svg">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -37,19 +33,19 @@
                     <!-- Logos -->
                     <div class="image-block-container">
                         <div class="col-sm-3 image-container">
-                            <img alt="Logo del Gobierno de Coahuila de Zaragoza" src="~/images/cohauila-gob-logo.png"
+                            <img alt="Logo del Gobierno de Coahuila de Zaragoza" src="~/Content/images/cohauila-gob-logo.png"
                                  title="Gobierno de Coahuila de Zaragoza">
                         </div>
                         <div class="col-sm-3 image-container">
-                            <img alt="Logo del BID" src="~/images/bid-logo.png"
+                            <img alt="Logo del BID" src="~/Content/images/bid-logo.png"
                                  title="Banco Interamericano de Desarrollo">
                         </div>
                         <div class="col-sm-3 image-container">
-                            <img alt="Logo del Gobierno de Canada" src="~/images/canada-logo.png"
+                            <img alt="Logo del Gobierno de Canada" src="~/Content/images/canada-logo.png"
                                  title="Gobierno de Canadá">
                         </div>
                         <div class="col-sm-3 image-container">
-                            <img alt="Logo del Registro Civil de la Secretaría de Gobernación" src="~/images/regcivil-gob-logo.png"
+                            <img alt="Logo del Registro Civil de la Secretaría de Gobernación" src="~/Content/images/regcivil-gob-logo.png"
                                  title="Dirección del Registro Civil">
                         </div>
                     </div>

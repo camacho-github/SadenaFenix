@@ -1,5 +1,6 @@
 ﻿<!-- Imports -->
-@model Sadena.Models.Usuarios.Usuario
+@model SadenaFenix.Models.Usuarios.Usuario
+
 <!-- Scope -->
 @{
     ViewData["Root"] = "Sadena";
@@ -14,35 +15,17 @@
     <title>@ViewData["Title"] - @ViewData["Root"]</title>
 
     <!-- Styles -->
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="~/lib/datatables.net-bs/css/dataTables.bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/select2/dist/css/select2.css" />
-        <link rel="stylesheet" href="~/lib/bootswatch/3/simplex/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" /> />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
 
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-              asp-fallback-href="~/lib/font-awesome/css/font-awesome.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"
-              asp-fallback-href="~/lib/datatables.net-bs/css/dataTables.bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.1/css/select2.min.css"
-              asp-fallback-href="~/lib/select2/dist/css/select2.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://bootswatch.com/3/simplex/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootswatch/3/simplex/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+        <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.css" />
+        <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.css" />
+        <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.css" />
+        <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
+        <link rel="stylesheet" href="~/Content/css/site.css" />
+
+
+
 
 </head>
 <body>
@@ -163,55 +146,21 @@
     </div>
     <!-- ./modal -->
 
-    <partial name="_CookieConsentPartial" />
+    <partial name="_CookieConsentPartial"></partial>
 
     <!-- Scripts -->
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/datatables.net/js/jquery.dataTables.js"></script>
-        <script src="~/lib/select2/dist/js/select2.full.js"></script>
-        <script src="~/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="~/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/nacimientos/reportes/reportes.js" asp-append-version="true"></script>
 
-    </environment>
+        <script src="~/Scripts/lib/jquery/dist/jquery.js"></script>
+        <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/Scripts/lib/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="~/Scripts/lib/select2/dist/js/select2.full.js"></script>
+        <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+        <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
+        <script src="~/Scripts/js/site.js" asp-append-version="true"></script>
+        <script src="~/Scripts/js/nacimientos/reportes/reportes.js" asp-append-version="true"></script>
 
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
-                asp-fallback-src="~/lib/datatables.net/js/jquery.dataTables.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"
-                asp-fallback-src="~/lib/datatables.net-bs/js/dataTables.bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.1/js/select2.full.min.js"
-                asp-fallback-src="~/lib/select2/dist/js/select2.full.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous">
-        </script>
-        <script src="~/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="~/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/js/nacimientos/reportes/reportes.min.js" asp-append-version="true"></script>
 
-    </environment>
+
 
     @RenderSection("Scripts", required: false)
 
