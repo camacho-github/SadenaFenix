@@ -178,6 +178,8 @@
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
     <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Reporte.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\ReporteCelda.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\ReporteFila.cs" />
     <Compile Include="Models\Nacimientos\Reportes\ReporteMunicipio.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Subregistro.cs" />
     <Compile Include="Models\Usuarios\Rol.cs" />
@@ -202,6 +204,8 @@
     <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteSubregistroRespuesta.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
