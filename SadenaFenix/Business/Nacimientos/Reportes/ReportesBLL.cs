@@ -145,6 +145,7 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
             }
         }
+
         public ReporteSubregistroRespuesta ConsultarReporteTotalesSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
             ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
@@ -186,6 +187,223 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
             }
         }
+
+        public ReporteSubregistroRespuesta ConsultarReporteSexoSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteSexoSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+
+        public ReporteSubregistroRespuesta ConsultarReporteEscolaridadSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEscolaridadSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteEdoCivilSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEdoCivilSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+        internal ReporteSubregistroRespuesta ConsultarReporteSexoSubregistro(object colAnos, object colMeses, object colMunicipios)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteEdadSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEdadSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteNumNacSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteNumNacSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
         #endregion
         #region Métodos Privados
         public Collection<ReporteFila> ObtenerFilas(Collection<string> cabeceros, XmlDocument xmlDoc)
