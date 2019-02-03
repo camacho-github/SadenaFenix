@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <!-- Form -->
-                                        <form class="form-horizontal" asp-fragment="Usuarios" asp-controller="Acceso" asp-action="IniciarSesion">
+                                        <form class="form-horizontal" action="/Acceso/IniciarSesion" method="get">
                                             <fieldset>
                                                 <legend>Credenciales</legend>
                                                 <div class="form-group">
@@ -44,8 +44,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-10 col-sm-offset-2">
-                                                        <a class="btn btn-default btn-width-md" asp-controller="Home" asp-action="Index">Regresar</a>
-                                                        <button type="submit" class="btn btn-primary btn-width-md">Entrar</button>
+                                                        <a class="btn btn-default btn-width-80" action="/Home/Index" method="get">Regresar</a>
+                                                        <button type="submit" class="btn btn-primary btn-width-80">Entrar</button>
                                                     </div>
                                                 </div>
                                             </fieldset>

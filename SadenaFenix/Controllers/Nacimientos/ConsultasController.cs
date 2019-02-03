@@ -1,27 +1,23 @@
-﻿using System.Web.Mvc;
-using Sadena.Sevices.Catalogos.Geografia;
-using Sadena.Transport.Nacimientos.Consultas;
-using Sadena.Transport.Nacimientos.Consultas.Comboxes;
+﻿using SadenaFenix.Facade.Nacimientos.Consultas;
+using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
+using System.Web.Mvc;
 
 namespace SadenaFenix.Controllers.Nacimientos
 {
 
     public class ConsultasController : Controller
     {
-        private readonly CatMunicipioFacade CatMunicipioFacade;
 
-        // GET: Consultas
-        public ActionResult Consultas()
+        // GET: Consultas/Consultar
+        [HttpGet]
+        public ActionResult Consultar()
         {
-            ConsultasViewModel model = new ConsultasViewModel();
-            model.ComboMunicipios.Municipios.AddRange(CatMunicipioFacade.ObtenerTodosLosMuncipios());
-            model.ComboMeses = new MesViewModelIEnumerable();
-            model.ComboAnios.Anios.AddRange(null);
-            return View();
+            ConsultaFacade ConsultaFacade = new ConsultaFacade();
+            return View(ConsultaFacade.ObtenerTodosLosMuncipios());
         }
 
+        // POST: Consultas/Index
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Index(MesViewModelIEnumerable model)
         {
             if (ModelState.IsValid)

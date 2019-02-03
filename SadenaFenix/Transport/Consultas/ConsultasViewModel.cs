@@ -1,9 +1,10 @@
-﻿using Sadena.Transport.Nacimientos.Consultas.Comboxes;
+﻿using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
 
-namespace Sadena.Transport.Nacimientos.Consultas
+namespace SadenaFenix.Transport.Nacimientos.Consultas
 {
     public class ConsultasViewModel
     {
+
         public MesViewModelIEnumerable ComboMeses { get; set; }
 
         public AnioViewModelIEnumerable ComboAnios { get; set; }

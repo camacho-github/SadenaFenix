@@ -24,7 +24,7 @@ table tbody tr td {
 
 /* Site classes */
 p.note-feet {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .image-block-container {
@@ -42,7 +42,7 @@ p.note-feet {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 70%;
 }
 
 .page-content {
@@ -131,7 +131,7 @@ fieldset {
 }
 
 
-.btn-width-md {
+.btn-width-80 {
     width: 80px;
 }
 
@@ -247,7 +247,7 @@ body {
 }
 
 .footer-container {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     position: absolute;
     bottom: 0px;
     left: 15px;

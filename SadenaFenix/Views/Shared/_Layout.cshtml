@@ -15,17 +15,13 @@
     <title>@ViewData["Title"] - @ViewData["Root"]</title>
 
     <!-- Styles -->
-
-        <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.css" />
-        <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.css" />
-        <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.css" />
-        <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
-        <link rel="stylesheet" href="~/Content/css/site.css" />
-
-
-
+    <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.css" />
+    <link rel="stylesheet" href="~/Content/css/site.css" />
 
 </head>
 <body>
@@ -41,7 +37,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Brand -->
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@ViewData["Root"]</a>
+                <a class="navbar-brand" href="/Home/Index">@ViewData["Root"]</a>
             </div>
             <!-- Menu-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -52,11 +48,11 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li style="display:block;">
-                                <a asp-area="" asp-fragment="Nacimientos" asp-controller="Archivos" asp-action="Importar">Importar archivos</a>
+                                <a href="/Archivos/Importar">Importar archivos</a>
                             </li>
                             <li class="divider" style="display:block;"></li>
-                            <li><a asp-area="" asp-fragment="Nacimientos" asp-controller="Consultas" asp-action="Consultas">Consultar</a></li>
-                            <li><a asp-area="" asp-fragment="Nacimientos" asp-controller="Reportes" asp-action="Reportes">Reportes</a></li>
+                            <li><a href="/Consultas/Consultar">Consultar</a></li>
+                            <li><a href="/Reportes/Reportes">Reportes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown" style="display:block;">
@@ -65,16 +61,17 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li style="display:block;">
-                                <a asp-area="" asp-fragment="Georeferenciacion" asp-controller="Oficialias" asp-action="Inicio">Oficialías</a></li>
-                            <li><a asp-area="" asp-fragment="Georeferenciacion" asp-controller="Hospitales" asp-action="Inicio">Hospitales</a></li>
-                            <li><a asp-area="" asp-fragment="Georeferenciacion" asp-controller="Modulos" asp-action="Inicio">Módulos Hospitalarios</a></li>
+                                <a href="/Oficialias/Oficialias">Oficialías</a>
+                            </li>
+                            <li><a href="/Hospitales/Hospitales">Hospitales</a></li>
+                            <li><a href="/ModulosHospitalarios/ModulosHospitalarios">Módulos Hospitalarios</a></li>
                         </ul>
                     </li>
                 </ul>
                 <!-- Right menu -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Acerca de</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a></li>
+                    <li><a href="/Home/About">Acerca de</a></li>
+                    <li><a href="/Home/Contact">Contacto</a></li>
                     <li class="dropdown" style="display:block;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span><i class="fa fa-user-circle-o"></i></span>
@@ -91,7 +88,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a asp-area="" asp-fragment="Usuarios" asp-controller="Acceso" asp-action="Salir">
+                                <a href="/Acceso/Salir">
                                     <span><i class="fa fa-sign-out mr-3"></i>Salir</span>
                                 </a>
                             </li>
@@ -117,7 +114,7 @@
                 <!-- Default -->
                 <strong>
                     Copyright &copy; @ViewData["Year"] -
-                    <a asp-area="" asp-controller="Home" asp-action="Index">@ViewData["Root"]</a>.
+                    <a href="/Home/Index">@ViewData["Root"]</a>.
                 </strong> Todos los derechos reservados.
             </footer>
         </div>
@@ -149,18 +146,16 @@
     <partial name="_CookieConsentPartial"></partial>
 
     <!-- Scripts -->
-
-        <script src="~/Scripts/lib/jquery/dist/jquery.js"></script>
-        <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/Scripts/lib/datatables.net/js/jquery.dataTables.js"></script>
-        <script src="~/Scripts/lib/select2/dist/js/select2.full.js"></script>
-        <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
-        <script src="~/Scripts/js/site.js" asp-append-version="true"></script>
-        <script src="~/Scripts/js/nacimientos/reportes/reportes.js" asp-append-version="true"></script>
-
-
-
+    <script src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/lib/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
+    <script src="~/Scripts/js/site.js"></script>
+    <script src="~/Scripts/js/nacimientos/reportes/reportes.js"></script>
+    <script src="~/Scripts/js/nacimientos/consultas/consultar.js"></script>
+    <script src="~/Scripts/js/nacimientos/consultas/importar.js"></script>
 
     @RenderSection("Scripts", required: false)
 

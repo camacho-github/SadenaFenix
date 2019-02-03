@@ -70,8 +70,6 @@ $(function () {
         $('#searchingResult').show();
     });
 
-
-
     $('#loadBtn').click(function () {
         $('#infoModal').show();
     });

@@ -18,6 +18,13 @@ namespace SadenaFenix
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Usuarios",
+                url: "Usuarios/{controller}/{action}/{id}",
+                defaults: new { controller = "Acceso", action = "Ingresar", id = UrlParameter.Optional }
+            );
+
         }
     }
 }

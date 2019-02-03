@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Sadena.Transport.Nacimientos.Consultas.Comboxes
+namespace SadenaFenix.Transport.Nacimientos.Consultas.Comboxes
 {
     public class MunicipioViewModelIEnumerable
     {

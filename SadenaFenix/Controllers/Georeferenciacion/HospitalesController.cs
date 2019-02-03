@@ -1,17 +1,13 @@
-﻿
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace SadenaFenix.Controllers.Georeferenciacion
 {
     public class HospitalesController : Controller
     {
-        // GET: /<controller>/
-        public ActionResult Index()
+        // GET: /Hospitales/Hospitales
+        public ActionResult Hospitales()
         {
-            return View();
+            return View("~/Views/Georeferenciacion/Hospitales.cshtml");
         }
     }
 }

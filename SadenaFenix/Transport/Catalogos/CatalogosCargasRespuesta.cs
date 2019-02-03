@@ -29,5 +29,6 @@ namespace SadenaFenix.Transport.Catalogos
         [DataMember(Name = "ColMunicipios", IsRequired = true)]
         [XmlAttribute("ColMunicipios")]
         public Collection<Municipio> ColMunicipios { get; set; }
+
     }
 }

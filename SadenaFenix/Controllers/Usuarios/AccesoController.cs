@@ -29,14 +29,13 @@ namespace SadenaFenix.Controllers.Usuarios
         }
 
         // POST: Acceso/IniciarSesion
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult IniciarSesion(Usuario usuario)
         {
             try
             {
                 //Servicio.IniciarSesion();
-                return RedirectToAction("~/Views/Nacimientos/Consultas/Consultar.cshtml");
+                return RedirectToAction("Consultar", "Consultas");
             }
             catch
             {
