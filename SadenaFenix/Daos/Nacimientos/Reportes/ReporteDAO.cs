@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Xml;
 
 namespace SadenaFenix.Daos.Nacimientos.Reportes
 {
@@ -17,6 +18,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
         #region Variables de instancia        
         private const string PRN_CONSULTA_SUBREGISTRO_NACIMIENTOS = "SDB.PRSSubregistroNacimientos";
         private const string PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS = "PRSTotalesSubregistroNacimientos";
+        private const string PRN_CONSULTA_REPORTE_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteSubregistroMunicipios";
         #endregion
 
         #region Métodos Públicos
@@ -211,9 +213,57 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return SubregistroNacimientosRespuesta;
         }
 
+        public XmlDocument ConsultarReporteTotalesSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+
+        }
+
         #endregion
 
         #region Métodos Privados
+        public static XmlDocument GetXml(DataSet src)
+        {
+            string xmlDataSet = src.GetXml();
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlDataSet);
+
+            XmlDocument xmlTable = new XmlDocument();
+            xmlTable.LoadXml(xmlDoc.InnerText);
+
+            return xmlTable;
+        }
 
         private static Boolean ValidaDataSet(DataSet dataSet)
         {

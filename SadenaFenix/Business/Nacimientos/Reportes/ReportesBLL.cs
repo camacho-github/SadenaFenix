@@ -10,6 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using SadenaFenix.Models.Nacimientos.Consultas;
 using SadenaFenix.Models.Constantes;
+using System.Xml;
+using Newtonsoft.Json;
+using SadenaFenix.Models.Nacimientos.Reportes;
 
 namespace SadenaFenix.Business.Nacimientos.Reportes
 {
@@ -141,6 +144,79 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
 
             }
+        }
+        public ReporteSubregistroRespuesta ConsultarReporteTotalesSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteTotalesSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
+
+                Collection<string> cabeceros = new Collection<string>();
+                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
+                reporte.ColCabeceros = cabeceros;
+                return reporte;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+        #endregion
+        #region Métodos Privados
+        public Collection<ReporteFila> ObtenerFilas(Collection<string> cabeceros, XmlDocument xmlDoc)
+        {
+            Collection<ReporteFila> ColFilas = new Collection<ReporteFila>();
+
+            XmlNodeList nodes = xmlDoc.GetElementsByTagName("Fila");
+
+
+            XmlNode xmlCabecero = nodes.Item(0);
+            foreach (XmlNode childNode in xmlCabecero.ChildNodes)
+            {
+                cabeceros.Add(childNode.Name.ToString().Replace("A0", " "));
+            }
+
+
+            foreach (XmlNode node in nodes)
+            {
+                ReporteFila fila = new ReporteFila();
+                fila.ColCeldas = new Collection<ReporteCelda>();
+
+                foreach (XmlNode childNode in node.ChildNodes)
+                {
+                    ReporteCelda celda = new ReporteCelda();
+                    celda.NombreCelda = childNode.Name.ToString().Replace("A0", " ");
+                    celda.Valor = childNode.InnerText.ToString();
+                    fila.ColCeldas.Add(celda);
+                }
+                ColFilas.Add(fila);
+            }
+            return ColFilas;
         }
         #endregion
     }

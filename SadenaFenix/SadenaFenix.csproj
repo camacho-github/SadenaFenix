@@ -46,9 +46,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -182,6 +179,8 @@
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
     <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Reporte.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\ReporteCelda.cs" />
+    <Compile Include="Models\Nacimientos\Reportes\ReporteFila.cs" />
     <Compile Include="Models\Nacimientos\Reportes\ReporteMunicipio.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Subregistro.cs" />
     <Compile Include="Models\Usuarios\Rol.cs" />
@@ -189,7 +188,6 @@
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Servicio.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
     <Compile Include="Transport\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
@@ -205,6 +203,8 @@
     <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteSubregistroRespuesta.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
@@ -509,7 +509,10 @@
     <Content Include="Scripts\lib\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.start.js" />
+<<<<<<< HEAD
     <Content Include="SqlServerTypes\readme.htm" />
+=======
+>>>>>>> a21ccdbb909004f3fab543b8208b84359603086e
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
