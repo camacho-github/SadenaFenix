@@ -509,10 +509,7 @@
     <Content Include="Scripts\lib\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.start.js" />
-<<<<<<< HEAD
     <Content Include="SqlServerTypes\readme.htm" />
-=======
->>>>>>> a21ccdbb909004f3fab543b8208b84359603086e
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
