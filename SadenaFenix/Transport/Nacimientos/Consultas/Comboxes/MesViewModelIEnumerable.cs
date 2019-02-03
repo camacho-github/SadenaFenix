@@ -8,5 +8,6 @@ namespace SadenaFenix.Transport.Nacimientos.Consultas.Comboxes
         public IEnumerable<string> MesesSeleccionados { get; set; }
 
         public List<SelectListItem> Meses { get; } = new List<SelectListItem>();
+
     }
 }

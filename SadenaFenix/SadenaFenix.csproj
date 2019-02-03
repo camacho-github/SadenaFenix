@@ -190,10 +190,10 @@
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
-    <Compile Include="Transport\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
-    <Compile Include="Transport\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
-    <Compile Include="Transport\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
-    <Compile Include="Transport\Consultas\ConsultasViewModel.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\ConsultasViewModel.cs" />
     <Compile Include="Transport\Catalogos\CatalogosCargasRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaPeticion.cs" />
     <Compile Include="Transport\Catalogos\CatalogosGeografiaRespuesta.cs" />
@@ -509,15 +509,12 @@
     <Content Include="Scripts\lib\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\lib\select2\src\js\wrapper.start.js" />
-<<<<<<< HEAD
-    <Content Include="SqlServerTypes\readme.htm" />
-=======
->>>>>>> a21ccdbb909004f3fab543b8208b84359603086e
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>

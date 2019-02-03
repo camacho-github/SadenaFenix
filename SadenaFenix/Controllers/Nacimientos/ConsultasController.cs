@@ -12,8 +12,8 @@ namespace SadenaFenix.Controllers.Nacimientos
         [HttpGet]
         public ActionResult Consultar()
         {
-            ConsultaFacade ConsultaFacade = new ConsultaFacade();
-            return View(ConsultaFacade.ObtenerTodosLosMuncipios());
+            ConsultaFacade consultaFacade = new ConsultaFacade();
+            return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", consultaFacade.ObtenerTodosLosMuncipios());
         }
 
         // POST: Consultas/Index

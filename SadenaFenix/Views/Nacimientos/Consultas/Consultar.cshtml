@@ -1,4 +1,4 @@
-﻿@model  SadenaFenix.Transport.Nacimientos.Consultas.ConsultasViewModel
+﻿@model SadenaFenix.Transport.Nacimientos.Consultas.ConsultasViewModel
 
 <!-- Scope -->
 @{
@@ -33,7 +33,7 @@
                                 <legend>Opciones de búsqueda</legend>
                                 <div class="form-group">
                                     <label for="mesesCombo">Mes</label>
-                                    @Html.DropDownListFor(model => model.ComboMeses, new SelectList(null, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", id = "MesesSeleccionados", multiple=""})
+                                    @Html.DropDownListFor(model => model.ComboMeses.MesesSeleccionados, new SelectList(Model.ComboMeses.Meses), htmlAttributes: new { @class = "form-control select2", multiple = "" })
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">

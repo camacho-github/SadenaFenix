@@ -46,6 +46,9 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
             ComboMeses.Meses.AddRange(mesesItems);
             ComboAnios.Anios.AddRange(aniosItems);
             ComboMunicipios.Municipios.AddRange(municipiosItems);
+            model.ComboMeses = ComboMeses;
+            model.ComboAnios = ComboAnios;
+            model.ComboMunicipios = ComboMunicipios;
             return model;
         }
 
