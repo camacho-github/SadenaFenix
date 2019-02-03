@@ -203,6 +203,11 @@
     <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
     <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteEdadSubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteEdoCivilSubregistroPeticion .cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteEscolaridadSubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteNumNacSubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\ReporteSexoSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteSubregistroRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />

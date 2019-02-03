@@ -17,8 +17,13 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
     {
         #region Variables de instancia        
         private const string PRN_CONSULTA_SUBREGISTRO_NACIMIENTOS = "SDB.PRSSubregistroNacimientos";
-        private const string PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS = "PRSTotalesSubregistroNacimientos";
+        private const string PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS = "SDB.PRSTotalesSubregistroNacimientos";
         private const string PRN_CONSULTA_REPORTE_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_SEXO_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteSexoSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_ESCOLARIDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEscolaridadSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdoCivilSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdadSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteNumNacSubregistroMunicipios";
         #endregion
 
         #region Métodos Públicos
@@ -249,12 +254,197 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
         }
 
+        public XmlDocument ConsultarReporteSexoSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_SEXO_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+
+        }
+
+
+        public XmlDocument ConsultarReporteEdoCivilSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+
+        }
+
+        public XmlDocument ConsultarReporteEdadSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+        }
+
+        public XmlDocument ConsultarReporteEscolaridadSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_ESCOLARIDAD_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+
+        }
+
+        public XmlDocument ConsultarReporteNumNacSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            XmlDocument xmlDocument = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        xmlDocument = GetXml(dataSet);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return xmlDocument;
+
+        }
+
         #endregion
 
         #region Métodos Privados
-        public static XmlDocument GetXml(DataSet src)
+        public static XmlDocument GetXml(DataSet src, params string[] filterString)
         {
             string xmlDataSet = src.GetXml();
+
+            foreach (var filter in filterString)
+            {
+                xmlDataSet = xmlDataSet.Replace(filter, "");
+            }
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlDataSet);

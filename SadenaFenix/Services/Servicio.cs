@@ -316,6 +316,108 @@ namespace SadenaFenix.Services
 
         }
 
+        public ReporteSubregistroRespuesta ConsultarReporteSexoSubregistro(ReporteSexoSubregistroPeticion peticion)
+        {
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteSexoSubregistro(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteEdoCivilSubregistro(ReporteEdoCivilSubregistroPeticion peticion)
+        {
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteEdoCivilSubregistro(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteEdadSubregistro(ReporteEdadSubregistroPeticion peticion)
+        {
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteEdadSubregistro(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteEscolaridadSubregistro(ReporteEscolaridadSubregistroPeticion peticion)
+        {
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteEscolaridadSubregistro(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ReporteSubregistroRespuesta ConsultarReporteNumNacSubregistro(ReporteNumNacSubregistroPeticion peticion)
+        {
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteNumNacSubregistro(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         #endregion
 
         #region Metódos Privados
