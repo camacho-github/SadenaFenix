@@ -1,1 +1,5 @@
-﻿/* Script for: Importar */
+﻿/* Script for: Importar
+ */
+$(function () {
+
+});

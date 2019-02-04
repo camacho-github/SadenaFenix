@@ -10,9 +10,9 @@ namespace Sadena.Controllers.Nacimientos
             return View();
         }
 
-        public ActionResult Reportes()
+        public ActionResult VerReportes()
         {
-            return View("Views/Nacimientos/Reportes/Reportes.cshtml");
+            return View("~/Views/Nacimientos/Reportes/VerReportes.cshtml");
         }
 
         // GET: Reportes/Details/5

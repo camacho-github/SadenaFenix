@@ -7,7 +7,7 @@ namespace SadenaFenix.Controllers.Nacimientos
         // GET: Archivos
         public ActionResult Importar()
         {
-            return View("Views/Nacimientos/Archivos/Importar.cshtml");
+            return View("~/Views/Nacimientos/Archivos/Importar.cshtml");
         }
 
         public ActionResult Index()

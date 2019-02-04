@@ -1,5 +1,5 @@
-﻿/* Script for: Reportes */
-
+﻿/* Script for: Reportes
+ */
 $(function () {
 
     $('#coahuilaMap').vectorMap({
