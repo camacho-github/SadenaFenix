@@ -15,9 +15,22 @@ $(function () {
         normalizeFunction: 'linear',
         scaleColors: ['#b6d6ff', '#005ace'],
         selectedColor: '#c9dfaf',
-        selectedRegion: null,
-        showTooltip: true
+        selectedRegion: true,
+        showTooltip: true,
+        regionsSelectable: true,
+        regionStyle: {
+            initial: {
+                fill: '#B8E186'
+            },
+            selected: {
+                fill: '#F4A582'
+            }
+        }, onRegionSelected: function (event, code) {
+            alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
+        },
     });
+
+   
 
     /* Unregistered table */
     $('#unregisteredTable').DataTable({
