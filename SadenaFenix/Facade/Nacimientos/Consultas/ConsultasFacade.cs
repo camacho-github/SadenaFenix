@@ -6,6 +6,7 @@ using SadenaFenix.Transport.Catalogos;
 using System.Collections.ObjectModel;
 using SadenaFenix.Transport.Nacimientos.Consultas;
 using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
+using SadenaFenix.Transport.Nacimientos.Reportes;
 
 namespace SadenaFenix.Facade.Nacimientos.Consultas
 {
@@ -15,10 +16,10 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
         /*private readonly ConsultasBLL ConsultasBLL;*/
         public ConsultasViewModel ObtenerCalatogosParaConsulta()
         {
-            Servicio Servicio = new Servicio();
+            Servicio servicio = new Servicio();
             ConsultasViewModel model = new ConsultasViewModel();
             /* Get catalogos. */
-            CatalogosCargasRespuesta catalogosCargasRespuesta = Servicio.ObtenerCatalogosCargas(null);
+            CatalogosCargasRespuesta catalogosCargasRespuesta = servicio.ObtenerCatalogosCargas(null);
             Collection<string> anios = catalogosCargasRespuesta.ColAnos;
             Collection<string> meses = catalogosCargasRespuesta.ColMeses;
             Collection<Municipio> municipios = catalogosCargasRespuesta.ColMunicipios;
@@ -52,10 +53,24 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
             return model;
         }
 
-        public 
+        public TotalesSubregistroNacimientosRespuesta ConsultaSubregistroNacimientosTotales()
+        {
+            Servicio servicio = new Servicio();
+            SubregistroPeticion solicitudDeConsulta = new SubregistroPeticion();
+            /* Obtenener totales de la información procesada. */
+            TotalesSubregistroNacimientosRespuesta respuestaDeConsultaTotales = servicio.ConsultaTotalesSubregistroNacimientos(solicitudDeConsulta);
+            return respuestaDeConsultaTotales;
+        }
 
+        public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos()
+        {
+            Servicio servicio = new Servicio();
+            SubregistroPeticion solicitudDeConsulta = new SubregistroPeticion();
+            /* Obtiene resultados de la consulta. */
+            SubregistroNacimientosRespuesta respuestaDeConsulta = servicio.ConsultaSubregistroNacimientos(solicitudDeConsulta);
+            return respuestaDeConsulta;
+        }
 
-        SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(SubregistroPeticion Request)
 
     }
 
