@@ -32,24 +32,24 @@
                             <fieldset>
                                 <legend>Opciones de búsqueda</legend>
                                 <div class="form-group">
-                                    <label for="mesesCombo">Mes</label>
-                                    @Html.DropDownListFor(model => model.ComboMeses.MesesSeleccionados, new SelectList(Model.ComboMeses.Meses), htmlAttributes: new { @class = "form-control select2", multiple = "" })
+                                    <label for="MesesSeleccionados">Mes</label>
+                                    @Html.DropDownListFor(model => model.ComboMeses.MesesSeleccionados, new SelectList(Model.ComboMeses.Meses, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "", title = "Meses seleccionados" })
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
-                                    <label for="aniosCombo">Año</label>
-                                    <select id="aniosCombo" class="form-control select2" multiple></select>
+                                    <label for="AniosSeleccionados">Año</label>
+                                    @Html.DropDownListFor(model => model.ComboAnios.AniosSeleccionados, new SelectList(Model.ComboAnios.Anios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Años seleccionados" })
                                 </div>
-                                <!-- /.form-group -->
+                                <!-- /.form-group -->  
                                 <div class="form-group">
-                                    <label for="municipiosCombo">Municipios</label>
-                                    <select id="municipiosCombo" class="form-control select2" multiple></select>
+                                    <label for="MunicipiosSeleccionados">Municipios</label>
+                                     @Html.DropDownListFor(model => model.ComboMunicipios.MunicipiosSeleccionados, new SelectList(Model.ComboMunicipios.Municipios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Municipios seleccionados" })
                                 </div>
                                 <!-- /.form-group -->
                                 <br />
                                 <div class="form-group" style="padding-bottom:10px;">
                                     <div class="btn-group">
-                                        <button id="consultarBtn" type="button" class="btn btn-success">Buscar <i class="fa fa-search"></i></button>
+                                        <button id="consultarDatosProcesadosBtn" type="button" class="btn btn-success" title="Buscar información procesada">Buscar <i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -143,7 +143,7 @@
                                             <strong>Nacimientos sin registro</strong>
                                         </p>
                                         <div class="table-container">
-                                            <table id="unregisteredTable" class="table table-striped table-hover">
+                                            <table id="noRegistradoTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>FOLIO</th>
@@ -205,7 +205,7 @@
                                             <strong>Nacimientos con registro</strong>
                                         </p>
                                         <div class="table-container">
-                                            <table id="registeredTable" class="table table-striped table-hover">
+                                            <table id="registradosTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th style="border-top: 2px solid #dddddd;">FOLIO</th>
@@ -263,7 +263,7 @@
                                             <strong>Nacimientos con subregistro</strong>
                                         </p>
                                         <div class="table-container">
-                                            <table id="subregisteredTable" class="table table-striped table-hover">
+                                            <table id="extemporaneosTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th style="border-top: 2px solid #dddddd;">FOLIO</th>
@@ -321,7 +321,7 @@
                                             <strong>Resumen por municipio</strong>
                                         </p>
                                         <div class="table-container">
-                                            <table id="summaryTable" class="table table-striped table-hover">
+                                            <table id="resumenTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th style="border-top: 2px solid #dddddd;">ID Municipio</th>

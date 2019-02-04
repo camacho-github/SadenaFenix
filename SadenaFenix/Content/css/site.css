@@ -14,6 +14,10 @@ table tbody tr td {
     font-size: 11px;
 }
 
+.text-underline {
+    text-decoration: underline;
+}
+
 .dataTables_scrollBody, .dataTables_scrollHead {
     border: 1px solid #dddddd;
 }

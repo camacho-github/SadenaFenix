@@ -13,7 +13,7 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
     {
         /*private readonly CatMunicipioBusiness CatMunicipioBusiness;*/
         /*private readonly ConsultasBLL ConsultasBLL;*/
-        public ConsultasViewModel ObtenerTodosLosMuncipios()
+        public ConsultasViewModel ObtenerCalatogosParaConsulta()
         {
             Servicio Servicio = new Servicio();
             ConsultasViewModel model = new ConsultasViewModel();
@@ -51,6 +51,11 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
             model.ComboMunicipios = ComboMunicipios;
             return model;
         }
+
+        public 
+
+
+        SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(SubregistroPeticion Request)
 
     }
 

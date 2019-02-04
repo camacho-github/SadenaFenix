@@ -121,3 +121,6 @@
   </Target>
   -->
 </Project>
+
+                                        <strong>Adminstrador @Html.DisplayFor(model => model.Rol.RolDesc)</strong>
+                                        <br /><small>admin@sadena.gob.mx @Html.DisplayFor(model => model.CorreoE)</small>

@@ -1,7 +1,4 @@
-﻿<!-- Imports -->
-@model SadenaFenix.Models.Usuarios.Usuario
-
-<!-- Scope -->
+﻿<!-- Scope -->
 @{
     ViewData["Root"] = "Sadena";
     ViewData["Version"] = "1.0.0";
@@ -20,7 +17,7 @@
     <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
     <link rel="stylesheet" href="~/Content/css/site.css" />
 
 </head>
@@ -82,8 +79,8 @@
                                 <!-- Session's info -->
                                 <div class="col-sm-12">
                                     <h5>
-                                        <strong>Adminstrador @Html.DisplayFor(model => model.Rol.RolDesc)</strong>
-                                        <br /><small>admin@sadena.gob.mx @Html.DisplayFor(model => model.CorreoE)</small>
+                                        <strong>Adminstrador</strong>
+                                        <br /><small>admin@sadena.gob.mx</small>
                                     </h5>
                                 </div>
                             </li>

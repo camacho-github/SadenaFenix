@@ -6,7 +6,7 @@
 $(function () {
 
     /* Unregistered table */
-    $('#unregisteredTable').DataTable({
+    $('#noRegistradosTable').DataTable({
         'scrollX': true,
         'searching': true,
         'ordering': true,
@@ -17,7 +17,7 @@ $(function () {
     });
 
     /* Registered table */
-    $('#registeredTable').DataTable({
+    $('#registradosTable').DataTable({
         'scrollX': true,
         'searching': true,
         'ordering': true,
@@ -28,7 +28,7 @@ $(function () {
     });
 
     /* Subregistered table */
-    $('#subregisteredTable').DataTable({
+    $('#extemporaneosTable').DataTable({
         'scrollX': true,
         'searching': true,
         'ordering': true,
@@ -46,7 +46,7 @@ $(function () {
         ['011', 'General Cepeda', '9', '18', '35'],
         ['012', 'Guerrero', '22', '16', '3']
     ];
-    $('#summaryTable').DataTable({
+    $('#resumenTable').DataTable({
         'data': summaryData,
         'scrollX': true,
         'searching': false,

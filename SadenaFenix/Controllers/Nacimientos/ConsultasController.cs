@@ -1,4 +1,5 @@
 ﻿using SadenaFenix.Facade.Nacimientos.Consultas;
+using SadenaFenix.Transport.Nacimientos.Consultas;
 using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
 using System.Web.Mvc;
 
@@ -13,7 +14,8 @@ namespace SadenaFenix.Controllers.Nacimientos
         public ActionResult Consultar()
         {
             ConsultaFacade consultaFacade = new ConsultaFacade();
-            return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", consultaFacade.ObtenerTodosLosMuncipios());
+            ConsultasViewModel model = consultaFacade.ObtenerCalatogosParaConsulta();
+            return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", model);
         }
 
         // POST: Consultas/Index

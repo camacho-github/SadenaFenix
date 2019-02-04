@@ -30,7 +30,7 @@ namespace SadenaFenix.Controllers.Usuarios
 
         // POST: Acceso/IniciarSesion
         [HttpGet]
-        public ActionResult IniciarSesion(Usuario usuario)
+        public ActionResult IniciarSesion()
         {
             try
             {
