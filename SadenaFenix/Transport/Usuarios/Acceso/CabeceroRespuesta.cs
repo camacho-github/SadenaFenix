@@ -19,5 +19,10 @@ namespace SadenaFenix.Transport.Usuarios.Acceso
         [DataMember(Name = "MensajeRespuesta", IsRequired = true)]
         [XmlAttribute("MensajeRespuesta")]
         public string MensajeRespuesta { get; set; }
+
+        public bool EsRespuestaExistosa()
+        {
+            return this.CodigoRespuesta == 0;
+        }
     }
 }

@@ -11,6 +11,8 @@
 <!-- Page content -->
 <div class="page-content">
 
+    @Html.HiddenFor(model => model.usuario.Json, new { id = "objUsuario" })
+
     <!-- Content -->
     <div class="container">
 
@@ -40,10 +42,10 @@
                                     <label for="AniosSeleccionados">Año</label>
                                     @Html.DropDownListFor(model => model.ComboAnios.AniosSeleccionados, new SelectList(Model.ComboAnios.Anios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Años seleccionados" })
                                 </div>
-                                <!-- /.form-group -->  
+                                <!-- /.form-group -->
                                 <div class="form-group">
                                     <label for="MunicipiosSeleccionados">Municipios</label>
-                                     @Html.DropDownListFor(model => model.ComboMunicipios.MunicipiosSeleccionados, new SelectList(Model.ComboMunicipios.Municipios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Municipios seleccionados" })
+                                    @Html.DropDownListFor(model => model.ComboMunicipios.MunicipiosSeleccionados, new SelectList(Model.ComboMunicipios.Municipios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Municipios seleccionados" })
                                 </div>
                                 <!-- /.form-group -->
                                 <br />

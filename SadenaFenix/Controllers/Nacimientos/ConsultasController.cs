@@ -1,4 +1,5 @@
 ﻿using SadenaFenix.Facade.Nacimientos.Consultas;
+using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Transport.Nacimientos.Consultas;
 using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
 using System.Web.Mvc;
@@ -11,10 +12,11 @@ namespace SadenaFenix.Controllers.Nacimientos
 
         // GET: Consultas/Consultar
         [HttpGet]
-        public ActionResult Consultar()
+        public ActionResult Consultar(Usuario usuario)
         {
             ConsultaFacade consultaFacade = new ConsultaFacade();
             ConsultasViewModel model = consultaFacade.ObtenerCalatogosParaConsulta();
+            model.usuario = usuario;
             return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", model);
         }
 

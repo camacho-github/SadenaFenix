@@ -1,7 +1,24 @@
 ﻿/* Script for: Consultar
  */
+var objUsuario;
+var CONST_ROL_ANALISTA = 3;
+
 $(function () {
 
+    if ($("#objUsuario").val() != undefined && $("#objUsuario").val().length > 0) {
+        objUsuario = JSON.parse($("#objUsuario").val());
+        $("#etiquetaSesionUsuarioDesc").text(objUsuario.UsuarioDesc);
+        $("#etiquetaSesionCorreoE").text(objUsuario.CorreoE);
+
+        if (objUsuario.Rol.RolId == CONST_ROL_ANALISTA) {
+            $("#opcionImportarArchivos").hide();
+            $("#estiloDivisionMenu").hide();
+        }
+    } else {
+        $("#botonCirculoSesion").hide();
+        $("#menuGeneral").hide();        
+    }
+    
     //Initialize Select2 Elements
     $('.select2').select2({
         tags: "true",

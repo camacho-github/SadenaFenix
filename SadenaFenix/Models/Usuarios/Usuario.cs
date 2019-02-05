@@ -25,12 +25,16 @@ namespace SadenaFenix.Models.Usuarios
         public string CorreoE { get; set; }
 
         [DisplayName("Contraseña")]
+        [XmlAttribute("Contrasenia")]
         [DataMember(Name = "Contrasenia", IsRequired = true)]
         public string Contrasenia { get; set; }
 
-        [DataMember(Name = "RolId", IsRequired = true)]
-        [XmlAttribute("RolId")]
+        [DataMember(Name = "Rol", IsRequired = true)]
+        [XmlAttribute("Rol")]
         public Rol Rol { get; set; }
 
+        [DataMember(Name = "Json", IsRequired = true)]
+        [XmlAttribute("Json")]
+        public string Json { get; set; }
     }
 }
