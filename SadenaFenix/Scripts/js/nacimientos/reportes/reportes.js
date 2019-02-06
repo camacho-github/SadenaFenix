@@ -5,9 +5,9 @@ $(function () {
     $('#coahuilaMap').vectorMap({
         map: 'CoahuilaDeZaragozaMap',
         backgroundColor: '#a5bfdd',
-        borderColor: '#818181',
-        borderOpacity: 0.25,
-        borderWidth: 1,
+        borderColor: 'black',
+        //borderOpacity: 0.5,
+        borderWidth: 2,
         color: '#f4f3f0',
         enableZoom: true,
         hoverColor: '#c9dfaf',
@@ -18,6 +18,14 @@ $(function () {
         selectedRegion: true,
         showTooltip: true,
         regionsSelectable: true,
+        markerStyle: {
+            initial: {
+                fill: '#4DAC26'
+            },
+            selected: {
+                fill: '#CA0020'
+            }
+        },
         regionStyle: {
             initial: {
                 fill: '#B8E186'
@@ -29,7 +37,6 @@ $(function () {
             alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
         },
     });
-
    
 
     /* Unregistered table */

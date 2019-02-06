@@ -12,12 +12,11 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
 {
     public class ConsultaFacade
     {
-        /*private readonly CatMunicipioBusiness CatMunicipioBusiness;*/
-        /*private readonly ConsultasBLL ConsultasBLL;*/
+        /** Pre-consulta: cargar catálogos para combos. */
         public ConsultasViewModel ObtenerCalatogosParaConsulta()
         {
             Servicio servicio = new Servicio();
-            ConsultasViewModel model = new ConsultasViewModel();
+            ConsultasViewModel modelView = new ConsultasViewModel();
             /* Get catalogos. */
             CatalogosCargasRespuesta catalogosCargasRespuesta = servicio.ObtenerCatalogosCargas(null);
             Collection<string> anios = catalogosCargasRespuesta.ColAnos;
@@ -47,30 +46,65 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
             ComboMeses.Meses.AddRange(mesesItems);
             ComboAnios.Anios.AddRange(aniosItems);
             ComboMunicipios.Municipios.AddRange(municipiosItems);
-            model.ComboMeses = ComboMeses;
-            model.ComboAnios = ComboAnios;
-            model.ComboMunicipios = ComboMunicipios;
-            return model;
+            modelView.ComboMeses = ComboMeses;
+            modelView.ComboAnios = ComboAnios;
+            modelView.ComboMunicipios = ComboMunicipios;
+            return modelView;
         }
 
-        public TotalesSubregistroNacimientosRespuesta ConsultaSubregistroNacimientosTotales()
+        /* Consulta información procesada de las tres categorias: subregistro, registrados y extemporáneos. */
+        public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(ConsultarViewModel consultarViewModel)
         {
             Servicio servicio = new Servicio();
+            ConsultasViewModel modelView = new ConsultasViewModel();
             SubregistroPeticion solicitudDeConsulta = new SubregistroPeticion();
-            /* Obtenener totales de la información procesada. */
-            TotalesSubregistroNacimientosRespuesta respuestaDeConsultaTotales = servicio.ConsultaTotalesSubregistroNacimientos(solicitudDeConsulta);
-            return respuestaDeConsultaTotales;
-        }
+            /* Tomando datos de web. */
+            Collection<string> ColAnos = new Collection<string>();
+            Collection<string> ColMeses = new Collection<string>();
+            Collection<Municipio> ColMunicipios = new Collection<Municipio>();
+            /* Pasando valores. */
+            foreach (string anio in consultarViewModel.AniosSeleccionados)
+            {
+                ColAnos.Add(anio);
+            }
 
-        public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos()
-        {
-            Servicio servicio = new Servicio();
-            SubregistroPeticion solicitudDeConsulta = new SubregistroPeticion();
+            foreach (string mes in consultarViewModel.MesesSeleccionados)
+            {
+                ColMeses.Add(mes);
+            }
+
+            foreach (string municipioId in consultarViewModel.MunicipiosSeleccionados)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = int.Parse(municipioId);
+                ColMunicipios.Add(municipio);
+            }
+            solicitudDeConsulta.ColAnos = ColAnos;
+            solicitudDeConsulta.ColMeses = ColMeses;
+            solicitudDeConsulta.ColMunicipios = ColMunicipios;
             /* Obtiene resultados de la consulta. */
             SubregistroNacimientosRespuesta respuestaDeConsulta = servicio.ConsultaSubregistroNacimientos(solicitudDeConsulta);
             return respuestaDeConsulta;
         }
 
+        /* Consulta los totales con porcentaje de la información procesada de las tres categorias: subregistro, registrados y extemporáneos. */
+        public TotalesSubregistroNacimientosRespuesta ConsultaTotalesSubregistroNacimientos()
+        {
+            Servicio servicio = new Servicio();
+            ConsultasViewModel modelView = new ConsultasViewModel();
+            SubregistroPeticion solicitudDeConsulta = new SubregistroPeticion();
+            /* Tomando datos de web. */
+            Collection<string> ColAnos = new Collection<string>();
+            Collection<string> ColMeses = new Collection<string>();
+            Collection<Municipio> ColMunicipios = new Collection<Municipio>();
+            /* Pasando valores. */
+            solicitudDeConsulta.ColAnos = ColAnos;
+            solicitudDeConsulta.ColMeses = ColMeses;
+            solicitudDeConsulta.ColMunicipios = ColMunicipios;
+            /* Obtenener totales de la información procesada. */
+            TotalesSubregistroNacimientosRespuesta respuestaTotalesDelSubregistro = servicio.ConsultaTotalesSubregistroNacimientos(solicitudDeConsulta);
+            return respuestaTotalesDelSubregistro;
+        }
 
     }
 
