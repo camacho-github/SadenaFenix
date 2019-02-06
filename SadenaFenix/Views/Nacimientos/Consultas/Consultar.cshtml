@@ -11,7 +11,7 @@
 <!-- Page content -->
 <div class="page-content">
 
-    @Html.HiddenFor(model => model.usuario.Json, new { id = "objUsuario" })
+    @Html.HiddenFor(model => model.Usuario.Json, new { id = "objUsuario" })
 
     <!-- Content -->
     <div class="container">
@@ -40,12 +40,12 @@
                                 <!-- /.form-group -->
                                 <div id="#inputListaSeleccionAnios" class="form-group">
                                     <label for="AniosSeleccionados">Año</label>
-                                    @Html.DropDownListFor(model => model.ComboAnios.AniosSeleccionados, new SelectList(Model.ComboAnios.Anios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Años seleccionados" })
+                                    @Html.DropDownListFor(model => model.ComboAnios.AniosSeleccionados, new SelectList(Model.ComboAnios.Anios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "", title="Años seleccionados" })
                                 </div>
                                 <!-- /.form-group -->
                                 <div id="#inputListaSeleccionMunicipios" class="form-group">
                                     <label for="MunicipiosSeleccionados">Municipios</label>
-                                    @Html.DropDownListFor(model => model.ComboMunicipios.MunicipiosSeleccionados, new SelectList(Model.ComboMunicipios.Municipios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "Municipios seleccionados" })
+                                    @Html.DropDownListFor(model => model.ComboMunicipios.MunicipiosSeleccionados, new SelectList(Model.ComboMunicipios.Municipios, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", multiple = "", title="Municipios seleccionados" })
                                 </div>
                                 <!-- /.form-group -->
                                 <br />
@@ -68,57 +68,57 @@
         </section>
         <!-- ./search -->
         <!-- Result -->
-        <section id="searchingResult" style="display:none;">
+        <section id="cantidadesResumen" style="display:none;">
             <div class="row">
                 <div class="col-sm-12">
+                    <!-- Panel -->
                     <div class="panel panel-default">
+                        <!-- Heading -->
                         <div class="panel-heading">
                             <span class="panel-title">Resultados de la comparación</span>
                         </div>
                         <!-- ./heading -->
+                        <!-- Body -->
                         <div class="panel-body">
                             <div class="row">
-                                <a id="subregistradosTab" href="#subregistradosTab" data-toggle="tab" aria-expanded="true">
-                                    <div class="col-sm-3 badge badge-primary">
-                                        <div class="description-block">
-                                            <span id="PorcentajeSubregistro" class="badge badge-primary">3%</span>
-                                            <h5 id="TotalSubregistro">10,390</h5>
+                                <div class="col-sm-3">
+                                    <div class="description-block">
+                                        <span id="PorcentajeSubregistro" class="badge badge-primary"></span>
+                                        <h5 id="TotalSubregistro"></h5>
+                                        <a href="#subregistradosTab" class="consultaDetalleSubRegistro" data-toggle="tab" aria-expanded="true">
                                             <span>Subregistro</span>
-                                        </div>
+                                        </a>
                                     </div>
-                                </a>
-
-                                <a id="registradosTab" href="#registradosTab" data-toggle="tab" aria-expanded="true">
-                                    <div class="col-sm-3 badge badge-success">
-                                        <div class="description-block">
-                                            <span id="PorcentajeRegistroOportuno" class="badge badge-success">3%</span>
-                                            <h5 id="TotalRegistroOportuno">10,390</h5>
-                                            <span>Registro Oportuno</span>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a id="extemporaneosTab" href="#extemporaneosTab" data-toggle="tab" aria-expanded="true">
-                                    <div class="col-sm-3 badge badge-warning">
-                                        <div class="description-block">
-                                            <span id="PorcentajeRegistroExtemporaneo" class="badge badge-warning">20%</span>
-                                            <h5 id="TotalRegistroExtemporaneo">24,813</h5>
-                                            <span>Registro Extemporaneo</span>
-                                        </div>
-                                    </div>
-                                </a>
-
+                                </div>
                                 <!-- /.col -->
-                                @*<div class="col-sm-3">
-                                        <div class="description-block">
-                                            <br />
-                                            <span><i class="fa fa-danger fa-line-chart"></i></span>
-                                            <br />
-                                            <a href="#resumenTotalesTab" data-toggle="tab" aria-expanded="true">
-                                                <span>Resumen por municipio</span>
-                                            </a>
-                                        </div>
-                                    </div>*@
+                                <div class="col-sm-3">
+                                    <div class="description-block">
+                                        <span id="PorcentajeRegistroOportuno" class="badge badge-success"></span>
+                                        <h5 id="TotalRegistroOportuno"></h5>
+                                        <a href="#registradosTab" class="consultaDetalleSubRegistro" data-toggle="tab" aria-expanded="true">
+                                            <span>Registro Oportuno</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="description-block">
+                                        <span id="PorcentajeRegistroExtemporaneo" class="badge badge-warning">20%</span>
+                                        <h5 id="TotalRegistroExtemporaneo"></h5>
+                                        <a href="#extemporaneosTab" class="consultaDetalleSubRegistro" data-toggle="tab" aria-expanded="true">
+                                            <span>Registro Extemporáneo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3">
+                                    <div class="description-block">
+                                        <br /><span><i class="fa fa-danger fa-line-chart"></i></span>
+                                        <br /><a id="ResumenTotales"
+                                               href="#resumenTotalesTab" data-toggle="tab" aria-expanded="true">
+                                            <span>Resumen por municipio</span>
+                                        </a>
+                                    </div>
+                                </div>
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
@@ -127,13 +127,12 @@
                         <div class="panel-footer">
                             <div class="tab-content">
                                 <!-- Results -->
-                                <div id="unregisteredTab" class="row tab-pane fade">
-                                    <div class="col-sm-12 table-responsive">
+                                <div id="subregistradosTab" class="row tab-pane fade">
+                                    <div class="col-sm-12">
                                         <p class="text-center">
-                                            <strong>Nacimientos sin registro</strong>
-                                        </p>
+                                            <strong>Nacimientos con subregistro</strong></p>
                                         <div class="table-container">
-                                            <table id="noRegistradoTable" class="table table-striped table-hover">
+                                            <table id="subregistradosTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>FOLIO</th>
@@ -168,20 +167,6 @@
                                                 </thead>
                                                 <tbody>
                                                     <!-- Records are fulling by AJAX -->
-                                                    <tr><td>022065044</td><td>19</td><td>15</td><td>UNIÓN LIBRE</td><td>JAVIER MINA</td><td>S/N</td><td>00</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>01/02/2018</td><td>18:30</td><td>1</td><td>HOMBRE</td></tr>
-                                                    <tr><td>022065381</td><td>18</td><td>15</td><td>UNIÓN LIBRE</td><td>ABASOLO</td><td>44</td><td>00</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>1</td><td>07</td><td>BACHILLERATO O PREPARATORIA COMPLETA</td><td>AMA DE CASA</td><td>15/02/2018</td><td>01:55</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022065416</td><td>18</td><td>15</td><td>UNIÓN LIBRE</td><td>DOMICILIO CONOCIDO</td><td>S/N</td><td>00</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>24/02/2018</td><td>11:50</td><td>1</td><td>HOMBRE</td></tr>
-                                                    <tr><td>022065775</td><td>27</td><td>11</td><td>CASADA</td><td>ZARAGOZA</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0008</td><td>OBAYOS</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>08/03/2018</td><td>17:35</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022068169</td><td>20</td><td>15</td><td>UNIÓN LIBRE</td><td>SIN NOMBRE</td><td>9999999999</td><td>NA</td><td>10</td><td>DURANGO</td><td>008</td><td>GUADALUPE VICTORIA</td><td>0001</td><td>CIUDAD GUADALUPE VICTORIA</td><td>1</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>04/04/2018</td><td>17:29</td><td>1</td><td>HOMBRE</td></tr>
-                                                    <tr><td>022072199</td><td>26</td><td>11</td><td>CASADA</td><td>PRIMERO DE MAYO</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0009</td><td>PRIMERO DE MAYO</td><td>2</td><td>07</td><td>BACHILLERATO O PREPARATORIA COMPLETA</td><td>AMA DE CASA</td><td>13/04/2018</td><td>12:15</td><td>1</td><td>HOMBRE</td></tr>
-                                                    <tr><td>022072371</td><td>28</td><td>11</td><td>CASADA</td><td>57</td><td>S/N</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>04/04/2018</td><td>15:15</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022072741</td><td>37</td><td>15</td><td>UNIÓN LIBRE</td><td>SAN ANTONIO DE LA FUENTE</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>28/04/2018</td><td>10:48</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022072747</td><td>17</td><td>15</td><td>UNIÓN LIBRE</td><td>DOMICILIO CONOCIDO</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>01/05/2018</td><td>06:46</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022078279</td><td>25</td><td>15</td><td>UNIÓN LIBRE</td><td>FLORENCIO SANTA ANA</td><td>S/N</td><td>00</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>17/06/2018</td><td>05:07</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022078374</td><td>21</td><td>15</td><td>UNIÓN LIBRE</td><td>ABASOLO</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>OPERARIA</td><td>14/06/2018</td><td>17:08</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022078468</td><td>33</td><td>11</td><td>CASADA</td><td>ANAHUAC</td><td>SN</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>26/06/2018</td><td>11:48</td><td>2</td><td>MUJER</td></tr>
-                                                    <tr><td>022078521</td><td>19</td><td>11</td><td>CASADA</td><td>ANAHUAC</td><td>S/N</td><td>00</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>1</td><td>07</td><td>BACHILLERATO O PREPARATORIA COMPLETA</td><td>AMA DE CASA</td><td>29/06/2018</td><td>16:21</td><td>1</td><td>HOMBRE</td></tr>
-                                                    <tr><td>02734E00014363</td><td>20</td><td>11</td><td>CASADA</td><td>NO APLICA</td><td>9999999999</td><td>99999</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>008</td><td>ESCOBEDO</td><td>0001</td><td>ESCOBEDO</td><td>1</td><td>07</td><td>BACHILLERATO O PREPARATORIA COMPLETA</td><td>HOGAR</td><td>28/04/2018</td><td>16:00</td><td>1</td><td>HOMBRE</td></tr>
                                                 </tbody>
                                             </table>
                                             <!-- ./table -->
@@ -189,11 +174,10 @@
                                     </div>
                                     <!-- ./col -->
                                 </div>
-                                <div id="registeredTab" class="row tab-pane fade">
+                                <div id="registradosTab" class="row tab-pane fade">
                                     <div class="col-sm-12">
                                         <p class="text-center">
-                                            <strong>Nacimientos con registro</strong>
-                                        </p>
+                                            <strong>Nacimientos con registro</strong></p>
                                         <div class="table-container">
                                             <table id="registradosTable" class="table table-striped table-hover">
                                                 <thead>
@@ -233,13 +217,6 @@
                                                 </thead>
                                                 <tbody>
                                                     <!-- Records are fulling by AJAX -->
-                                                    <tr><td>022041684</td><td>25</td><td>15</td><td>UNIÓN LIBRE</td><td>CARRANZA</td><td>85</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>2</td><td>03</td><td>PRIMARIA COMPLETA</td><td>COMERCIANTE</td><td>04/01/2018</td><td>18:43</td><td>1</td><td>HOMBRE</td><td>11/01/18</td><td>11/01/18</td><td>7</td></tr>
-                                                    <tr><td>022041685</td><td>27</td><td>11</td><td>CASADA</td><td>MEJIA</td><td>512</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>1</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>05/01/2018</td><td>17:38</td><td>1</td><td>HOMBRE</td><td>31/01/18</td><td>31/01/18</td><td>26</td></tr>
-                                                    <tr><td>022041693</td><td>0</td><td>11</td><td>CASADA</td><td>AV 3 DE MAYO COL JOSE SANTOS VALDEZ</td><td>000</td><td>000</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>3</td><td>08</td><td>PROFESIONAL</td><td>DOCENTE</td><td>01/01/2018</td><td>12:49</td><td>2</td><td>MUJER</td><td>08/01/18</td><td>08/01/18</td><td>7</td></tr>
-                                                    <tr><td>022036911</td><td>18</td><td>11</td><td>CASADA</td><td>SIN INFORMACION</td><td>S/N</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0024</td><td>GUADALUPE VICTORIA</td><td>1</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>02/01/2018</td><td>00:08</td><td>1</td><td>HOMBRE</td><td>06/01/18</td><td>06/01/18</td><td>4</td></tr>
-                                                    <tr><td>022036915</td><td>21</td><td>11</td><td>CASADA</td><td>SIN INFORMACION</td><td>S/N</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0027</td><td>LA LUZ</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>04/01/2018</td><td>05:55</td><td>1</td><td>HOMBRE</td><td>25/01/18</td><td>25/01/18</td><td>21</td></tr>
-                                                    <tr><td>022036950</td><td>24</td><td>15</td><td>UNIÓN LIBRE</td><td>EJIDO SANTA ANA DEL PILAR</td><td>SN</td><td>SN</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0045</td><td>SANTA ANA DEL PILAR</td><td>4</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>30/01/2018</td><td>12:20</td><td>2</td><td>MUJER</td><td>19/02/18</td><td>02/02/18</td><td>20</td></tr>
-                                                    <tr><td>022036951</td><td>25</td><td>11</td><td>CASADA</td><td>EJIDO GUADALUPE VICTORIA</td><td>SN</td><td>SN</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0024</td><td>GUADALUPE VICTORIA</td><td>3</td><td>06</td><td>BACHILLERATO O PREPARATORIA INCOMPLETA</td><td>AMA DE CASA</td><td>30/01/2018</td><td>16:55</td><td>2</td><td>MUJER</td><td></td><td>02/02/18</td><td>3</td></tr>
                                                 </tbody>
                                             </table>
                                             <!-- ./table -->
@@ -247,11 +224,10 @@
                                     </div>
                                     <!-- ./col -->
                                 </div>
-                                <div id="subregisteredTab" class="row tab-pane fade">
+                                <div id="extemporaneosTab" class="row tab-pane fade">
                                     <div class="col-sm-12">
                                         <p class="text-center">
-                                            <strong>Nacimientos con subregistro</strong>
-                                        </p>
+                                            <strong>Nacimientos con registro extemporáneo</strong></p>
                                         <div class="table-container">
                                             <table id="extemporaneosTable" class="table table-striped table-hover">
                                                 <thead>
@@ -291,13 +267,6 @@
                                                 </thead>
                                                 <tbody>
                                                     <!-- Records are fulling by AJAX -->
-                                                    <tr><td>022058340</td><td>22</td><td>15</td><td>UNIÓN LIBRE</td><td>TERCERA</td><td>962</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>1</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>28/02/2018</td><td>17:46</td><td>1</td><td>HOMBRE</td><td>30/04/18</td><td></td><td>61</td></tr>
-                                                    <tr><td>022062087</td><td>32</td><td>11</td><td>CASADA</td><td>EL REFUGIO DE LOS RANCH0S</td><td>SN</td><td>NA</td><td>19</td><td>NUEVO LEON</td><td>017</td><td>GALEANA</td><td>0153</td><td>SAN RAFAEL</td><td>3</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>12/02/2018</td><td>04:26</td><td>1</td><td>HOMBRE</td><td>17/05/18</td><td></td><td>94</td></tr>
-                                                    <tr><td>022064104</td><td>17</td><td>12</td><td>SOLTERA</td><td>JUAN DE LA CRUZ BORREGO</td><td>545</td><td>99999</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>1</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>16/03/2018</td><td>07:32</td><td>2</td><td>MUJER</td><td>05/07/18</td><td></td><td>111</td></tr>
-                                                    <tr><td>022064380</td><td>29</td><td>11</td><td>CASADA</td><td>LAZARO CARDENAS</td><td>910</td><td>NA</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE  CASA</td><td>07/03/2018</td><td>02:46</td><td>1</td><td>HOMBRE</td><td>11/05/18</td><td></td><td>65</td></tr>
-                                                    <tr><td>022064940</td><td>17</td><td>15</td><td>UNIÓN LIBRE</td><td>LAGUNA</td><td>542</td><td>99999</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>1</td><td>06</td><td>BACHILLERATO O PREPARATORIA INCOMPLETA</td><td>ESTUDIANTE</td><td>08/03/2018</td><td>02:37</td><td>1</td><td>HOMBRE</td><td>11/05/18</td><td></td><td>64</td></tr>
-                                                    <tr><td>022064958</td><td>31</td><td>12</td><td>SOLTERA</td><td>GONZALEZ</td><td>978</td><td>99999</td><td>05</td><td>COAHUILA DE ZARAGOZA</td><td>017</td><td>MATAMOROS</td><td>0001</td><td>MATAMOROS</td><td>2</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>AMA DE CASA</td><td>16/03/2018</td><td>16:54</td><td>1</td><td>HOMBRE</td><td>13/06/18</td><td></td><td>89</td></tr>
-                                                    <tr><td>02734E00014131</td><td>30</td><td>11</td><td>CASADA</td><td>DESCONOCE</td><td>SN</td><td>99999</td><td>19</td><td>NUEVO LEON</td><td>017</td><td>GALEANA</td><td>0002</td><td>LOS ADOBES</td><td>4</td><td>05</td><td>SECUNDARIA COMPLETA</td><td>HOGAR</td><td>12/04/2018</td><td>15:50</td><td>2</td><td>MUJER</td><td>18/06/18</td><td></td><td>67</td></tr>
                                                 </tbody>
                                             </table>
                                             <!-- ./table -->
@@ -305,13 +274,13 @@
                                     </div>
                                     <!-- ./col -->
                                 </div>
-                                <div id="summaryTab" class="row tab-pane fade">
+                                <div id="resumenTotalesTab" class="row tab-pane fade">
                                     <div class="col-sm-12">
                                         <p class="text-center">
                                             <strong>Resumen por municipio</strong>
                                         </p>
                                         <div class="table-container">
-                                            <table id="resumenTable" class="table table-striped table-hover">
+                                            <table id="resumenTotalesTable" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th style="border-top: 2px solid #dddddd;">ID Municipio</th>
@@ -331,7 +300,6 @@
                                     <!-- ./col -->
                                 </div>
                             </div>
-
                         </div>
                         <!-- ./footer -->
                     </div>

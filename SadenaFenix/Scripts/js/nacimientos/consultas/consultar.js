@@ -111,7 +111,7 @@ $(function () {
                 alert(request);
             }
         });
-        $('#searchingResult').show();
+        $('#cantidadesResumen').show();
     });
 
 

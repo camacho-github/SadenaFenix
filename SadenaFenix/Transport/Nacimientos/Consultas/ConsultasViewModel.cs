@@ -12,6 +12,6 @@ namespace SadenaFenix.Transport.Nacimientos.Consultas
 
         public MunicipioViewModelIEnumerable ComboMunicipios { get; set; }
 
-        public Usuario usuario { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
