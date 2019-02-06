@@ -11,16 +11,10 @@ namespace Sadena.Controllers.Nacimientos
             return View();
         }
 
-<<<<<<< HEAD
-        public ActionResult Reportes()
-        {
-            return View("~/Views/Nacimientos/Reportes/Reportes.cshtml");
-=======
         public ActionResult VerReportes(string userJson)
         {
             Usuario usuario = new Usuario { Json = userJson };
             return View("~/Views/Nacimientos/Reportes/VerReportes.cshtml",usuario);
->>>>>>> 311ffc61be34c1dc2679b1e186561d35cd8ca43b
         }
 
         // GET: Reportes/Details/5
