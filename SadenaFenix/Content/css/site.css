@@ -1,16 +1,18 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
    for details on configuring this project to bundle and minify static web assets. */
 
+/*
 #subregistradosTab .badge, #registradosTab .badge, #extemporaneosTab .badge{
     margin-left: 20px;
-    width: 23%;
+    width: 30%;
     font-size: 15px;
-}
+}*/
 
+/*
 #subregistradosTab h5, #registradosTab h5, #extemporaneosTab h5 {
     font-size: 16px;
     font-weight: bold;
-}
+} */
 
 #resumenTotalesTable {
     width: 40% !important;
@@ -93,6 +95,24 @@ p.note-feet {
 
 .description-block {
     text-align: center;
+    padding:10px;
+}
+
+.description-block a:link,
+.description-block a:visited,
+.description-block a:hover,
+.description-block a:active,
+.description-block a:focus {
+    text-decoration: none;
+    color: #444444;
+}
+
+.description-block:hover {
+    cursor:pointer;
+    /*background-color: rgba(247, 247, 247, 1);*/
+    background-image: linear-gradient(white, #f4f4f4);
+    border-radius: 5px;
+
 }
 
 .badge-default {
