@@ -4,6 +4,7 @@ var objUsuario;
 var objRegistroExtemporaneo;
 var objRegistroOportuno;
 var objSubRegistro;
+var objResumenMunicipios;
 var CONST_ROL_ANALISTA = 3;
 
 $(function () {
@@ -145,6 +146,35 @@ $(function () {
 
         }
     });
+
+
+    $('#ResumenTotalesTab').click(function () {
+        //provisionalmente para evitar que se consulte varias veces
+        if (objResumenMunicipios == undefined) {
+
+            $.ajax({
+                type: "POST",
+                url: "ConsultarReporteTotalesSubregistro",
+                data: JSON.stringify(objUsuario),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status) {
+                    if (objResumenMunicipios == undefined) {
+                        objResumenMunicipios = {
+                            cabeceros: data.ColCabeceros,
+                            filas: data.ColFilas
+                        };
+                    }                    
+                },
+                error: function (request, status, error) {
+                    alert(request);
+                }
+            });
+
+        }
+    });
+
+    
 
 
     $("#callImportarArchivo").click(function () {

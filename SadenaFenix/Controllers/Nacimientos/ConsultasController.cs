@@ -98,6 +98,35 @@ namespace SadenaFenix.Controllers.Nacimientos
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
+        [WebMethod]
+        public ActionResult ConsultarReporteTotalesSubregistro()
+        {
+            Servicio servicio = new Servicio();
+            ReporteTotalesSubregistroPeticion peticion = new ReporteTotalesSubregistroPeticion();
+            Collection<string> ColAnos = new Collection<string>();
+            ColAnos.Add("2017");
+            ColAnos.Add("2018");
+
+            Collection<string> ColMeses = new Collection<string>();
+            ColMeses.Add("1");
+            ColMeses.Add("2");
+            ColMeses.Add("3");
+
+            Collection<Municipio> ColMunicipio = new Collection<Municipio>();
+            
+            peticion.ColAnos = ColAnos;
+            peticion.ColMeses = ColMeses;
+            peticion.ColMunicipios = ColMunicipio;
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteTotalesSubregistro(peticion);
+
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+
+        
+
         // POST: Consultas/Index
         [HttpPost]
         public ActionResult Index(MesViewModelIEnumerable model)
