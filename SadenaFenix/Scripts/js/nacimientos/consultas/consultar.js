@@ -5,6 +5,7 @@ var objRegistroExtemporaneo;
 var objRegistroOportuno;
 var objSubRegistro;
 var objResumenMunicipios;
+var objReporteEdadSubregistro;
 var CONST_ROL_ANALISTA = 3;
 
 $(function () {
@@ -193,6 +194,32 @@ $(function () {
         window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     }); 
 
+
+    $('#ConsultarReporteEdadSubregistro').click(function () {
+        //provisionalmente para evitar que se consulte varias veces
+        if (objReporteEdadSubregistro == undefined) {
+
+            $.ajax({
+                type: "POST",
+                url: "ConsultarReporteEdadSubregistro",
+                data: JSON.stringify(objUsuario),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status) {
+                    if (objReporteEdadSubregistro == undefined) {
+                        objReporteEdadSubregistro = {
+                            cabeceros: data.ColCabeceros,
+                            filas: data.ColFilas
+                        };
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request);
+                }
+            });
+
+        }
+    });
     
 
 });
