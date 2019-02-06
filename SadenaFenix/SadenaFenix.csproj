@@ -212,7 +212,6 @@
     <Compile Include="Transport\Nacimientos\Reportes\ReporteSexoSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteSubregistroRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
-    <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosJson.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
