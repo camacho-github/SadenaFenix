@@ -189,6 +189,25 @@ $(function () {
         window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     }); 
 
+    $("#callAcercaDe").click(function () {
+        window.location.href = "/Home/About?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    $("#callContacto").click(function () {
+        window.location.href = "/Home/Contact?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    $("#botonCargarArchivos").click(function () {
+        function explode() {
+            $("#defaultModal").show();
+        }
+        setTimeout(explode, 2000);       
+    }); 
+
+    $("#botonConsultar").click(function () {
+        window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
     
 
 });

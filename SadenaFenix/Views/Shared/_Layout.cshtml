@@ -67,8 +67,8 @@
                 </ul>
                 <!-- Right menu -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Home/About">Acerca de</a></li>
-                    <li><a href="/Home/Contact">Contacto</a></li>
+                    <li><a id="callAcercaDe" href="#">Acerca de</a></li>
+                    <li><a id="callContacto" href="#">Contacto</a></li>
                     <li id="botonCirculoSesion" class="dropdown" style="display:block;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span><i class="fa fa-user-circle-o"></i></span>
@@ -128,12 +128,10 @@
                     <h4 class="modal-title">Mensaje</h4>
                 </div>
                 <div class="modal-body">
-                    <p id="defaultModalMessage"></p>
+                    <p id="defaultModalMessage">Los archivos han sido importados correctamente, los datos pueden ser ahora consultados</p>
                 </div>
-                <div class="modal-footer">
-                    <form action="/Nacimientos/Comparar">
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Continuar</button>
-                    </form>
+                <div class="modal-footer">                    
+                   <button id="botonConsultar" class="btn btn-default" data-dismiss="modal">Continuar</button>                    
                 </div>
             </div>
         </div>
