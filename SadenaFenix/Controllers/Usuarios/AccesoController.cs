@@ -63,7 +63,7 @@ namespace SadenaFenix.Controllers.Usuarios
                 }
                 else
                 {
-                    return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
+                   return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
                 }
                 
             }

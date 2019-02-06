@@ -22,7 +22,7 @@ namespace SadenaFenix.Controllers.Nacimientos
             ConsultaFacade consultaFacade = new ConsultaFacade();
             Usuario usuario = new Usuario { Json = userJson };
             ConsultasViewModel model = consultaFacade.ObtenerCalatogosParaConsulta();
-            model.Usuario = usuario;
+            model.usuario = usuario;
             return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", model);
         }
 
@@ -32,7 +32,7 @@ namespace SadenaFenix.Controllers.Nacimientos
             ConsultaFacade consultaFacade = new ConsultaFacade();
             Usuario modelUsuario = new Usuario { Json = usuario.Json };
             ConsultasViewModel model = consultaFacade.ObtenerCalatogosParaConsulta();
-            model.Usuario = usuario;
+            model.usuario = usuario;
             return View("~/Views/Nacimientos/Consultas/Consultar.cshtml", model);
         }
 

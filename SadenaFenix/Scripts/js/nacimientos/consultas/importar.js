@@ -2,4 +2,8 @@
  */
 $(function () {
 
+    $('#loadFilesBtn').click(function () {
+        $('#defaultModal').show();
+    });
+
 });
