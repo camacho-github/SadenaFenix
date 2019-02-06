@@ -1,7 +1,24 @@
 ﻿/* Script for: Consultar
  */
+var objUsuario;
+var CONST_ROL_ANALISTA = 3;
+
 $(function () {
 
+    if ($("#objUsuario").val() != undefined && $("#objUsuario").val().length > 0) {
+        objUsuario = JSON.parse($("#objUsuario").val());
+        $("#etiquetaSesionUsuarioDesc").text(objUsuario.UsuarioDesc);
+        $("#etiquetaSesionCorreoE").text(objUsuario.CorreoE);
+
+        if (objUsuario.Rol.RolId == CONST_ROL_ANALISTA) {
+            $("#opcionImportarArchivos").hide();
+            $("#estiloDivisionMenu").hide();
+        }
+    } else {
+        $("#botonCirculoSesion").hide();
+        $("#menuGeneral").hide();        
+    }
+       
     //Initialize Select2 Elements
     $('.select2').select2({
         tags: "true",
@@ -75,7 +92,41 @@ $(function () {
     });
 
     $('#consultarDatosProcesadosBtn').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "ConsultarTotales",
+            data: JSON.stringify(objUsuario),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, status) {
+                $("#TotalSubregistro").text(data.TotalSubregistro);
+                $("#TotalRegistroOportuno").text(data.TotalRegistroOportuno);
+                $("#TotalRegistroExtemporaneo").text(data.TotalRegistroExtemporaneo);
+                
+                $("#PorcentajeRegistroOportuno").text(data.PorcentajeRegistroOportuno + "%");
+                $("#PorcentajeRegistroExtemporaneo").text(data.PorcentajeRegistroExtemporaneo + "%");
+                $("#PorcentajeSubregistro").text(data.PorcentajeSubregistro + "%");
+            },
+            error: function (request, status, error) {
+                alert(request);
+            }
+        });
         $('#searchingResult').show();
     });
+
+
+    $("#callImportarArchivo").click(function () {
+        window.location.href = "/Archivos/Importar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    $("#callVerReportes").click(function () {
+        window.location.href = "/Reportes/VerReportes?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    $("#callConsultar").click(function () {
+        window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    
 
 });

@@ -1,4 +1,5 @@
-﻿using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
+﻿using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
 
 namespace SadenaFenix.Transport.Nacimientos.Consultas
 {
@@ -10,5 +11,7 @@ namespace SadenaFenix.Transport.Nacimientos.Consultas
         public AnioViewModelIEnumerable ComboAnios { get; set; }
 
         public MunicipioViewModelIEnumerable ComboMunicipios { get; set; }
+
+        public Usuario usuario { get; set; }
     }
 }

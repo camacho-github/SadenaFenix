@@ -1,8 +1,19 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
    for details on configuring this project to bundle and minify static web assets. */
 
+#subregistradosTab .badge, #registradosTab .badge, #extemporaneosTab .badge{
+    margin-left: 20px;
+    width: 30%;
+    font-size: 15px;
+}
+
+#subregistradosTab h5, #registradosTab h5, #extemporaneosTab h5 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 /* Table */
-table thead tr th{
+table thead tr th {
     font-size: 12px;
     font-weight: bold;
     text-align: center;

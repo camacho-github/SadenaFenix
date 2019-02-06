@@ -38,11 +38,12 @@
             </div>
             <!-- Menu-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                <ul class="nav navbar-nav">
+                <ul id="menuGeneral" class="nav navbar-nav">
                     <li class="dropdown" style="display:block;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span>Nacimientos <span class="caret"></span></span>
                         </a>
+<<<<<<< HEAD
                         <ul class="dropdown-menu" role="menu">
                             <li style="display:block;">
                                 <a href="/Archivos/Importar">Importar archivos</a>
@@ -50,6 +51,15 @@
                             <li class="divider" style="display:block;"></li>
                             <li><a href="/Consultas/Consultar">Consultar</a></li>
                             <li><a href="/Reportes/Reportes">Reportes</a></li>
+=======
+                        <ul class="dropdown-menu" role="menu">                            
+                            <li id="opcionImportarArchivos" style="display:block;">
+                                <a id="callImportarArchivo" href="#">Importar archivos</a>
+                            </li>                                                        
+                            <li id="estiloDivisionMenu" class="divider" style="display:block;"></li>
+                            <li><a id="callConsultar" href="#">Consultar</a></li>
+                            <li><a id="callVerReportes"  href="#">Reportes por municipios</a></li>
+>>>>>>> 311ffc61be34c1dc2679b1e186561d35cd8ca43b
                         </ul>
                     </li>
                     <li class="dropdown" style="display:block;">
@@ -69,7 +79,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Home/About">Acerca de</a></li>
                     <li><a href="/Home/Contact">Contacto</a></li>
-                    <li class="dropdown" style="display:block;">
+                    <li id="botonCirculoSesion" class="dropdown" style="display:block;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span><i class="fa fa-user-circle-o"></i></span>
                         </a>
@@ -79,15 +89,15 @@
                                 <!-- Session's info -->
                                 <div class="col-sm-12">
                                     <h5>
-                                        <strong>Adminstrador</strong>
-                                        <br /><small>admin@sadena.gob.mx</small>
+                                        <strong id="etiquetaSesionUsuarioDesc"></strong>
+                                        <br/><small id="etiquetaSesionCorreoE"></small>
                                     </h5>
                                 </div>
                             </li>
                             <li>
                                 <a href="/Acceso/Salir">
                                     <span><i class="fa fa-sign-out mr-3"></i>Salir</span>
-                                </a>fas
+                                </a>
                             </li>
                         </ul>
                     </li>

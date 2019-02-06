@@ -1,6 +1,8 @@
-﻿using SadenaFenix.Commons.Utilerias;
+﻿using Newtonsoft.Json;
+using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Daos.Usuarios;
 using SadenaFenix.Excepcions;
+using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Transport.Usuarios.Acceso;
 
 namespace SadenaFenix.Business.Usuarios
@@ -21,10 +23,13 @@ namespace SadenaFenix.Business.Usuarios
         #region Métodos Públicos
 
         public SesionRespuesta IniciarSesion(string identificador, string contrasena, string ip)
-        {
+        {            
+            Usuario usuario = usuarioDAO.IniciarSesion(identificador, contrasena, ip);
+            usuario.Json =  JsonConvert.SerializeObject(usuario);
+
             SesionRespuesta response = new SesionRespuesta
             {
-                Usuario = usuarioDAO.IniciarSesion(identificador, contrasena, ip)
+                Usuario = usuario
             };
 
             return response;

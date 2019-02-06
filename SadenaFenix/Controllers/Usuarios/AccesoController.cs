@@ -1,5 +1,6 @@
 ﻿using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
+using SadenaFenix.Transport.Usuarios.Acceso;
 using System.Web.Mvc;
 
 
@@ -17,29 +18,58 @@ namespace SadenaFenix.Controllers.Usuarios
             Servicio = new Servicio();
         }
 
-        public ActionResult Salir()
+        public ActionResult Salir(Usuario usuario)
         {
-            return View("~/Views/Usuarios/Acceso/Salir.cshtml");
+            try
+            {
+                SesionPeticion peticion = new SesionPeticion();
+                peticion.Cabecero.SesionId = usuario.SesionId;
+                
+                Servicio servicio = new Servicio();
+                SesionRespuesta respuesta = servicio.FinalizarSesion(peticion);
+                return View("~/Views/Usuarios/Acceso/Salir.cshtml");
+            }
+            catch
+            {
+                return View("~/Views/Usuarios/Acceso/Salir.cshtml");
+            }
+           
         }
 
         // GET: Acceso/Ingresar
+        [HttpGet]
         public ActionResult Ingresar()
         {
             return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
         }
 
         // POST: Acceso/IniciarSesion
-        [HttpGet]
-        public ActionResult IniciarSesion()
+        //[HttpPost]
+        public ActionResult IniciarSesion(Usuario usuario)
         {
             try
             {
-                //Servicio.IniciarSesion();
-                return RedirectToAction("Consultar", "Consultas");
+                SesionPeticion peticion = new SesionPeticion();
+                peticion.Identificador = usuario.CorreoE;
+                peticion.Contrasena = usuario.Contrasenia;
+                peticion.IP = "127.0.0.1";
+
+                Servicio servicio = new Servicio();
+                SesionRespuesta respuesta = servicio.IniciarSesion(peticion);
+
+                if(respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)
+                {
+                   return RedirectToAction("LoginConsultar", "Consultas", respuesta.Usuario);
+                }
+                else
+                {
+                    return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
+                }
+                
             }
             catch
             {
-                return View(nameof(Ingresar));
+                return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
             }
         }
 
