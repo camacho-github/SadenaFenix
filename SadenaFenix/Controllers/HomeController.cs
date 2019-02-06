@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Usuarios.Acceso;
 using System.Web.Mvc;
@@ -13,14 +14,17 @@ namespace SadenaFenix.Controllers
             return View("~/Views/Home/Index.cshtml");
         }
 
-        public ActionResult About()
+        public ActionResult About(string userJson)
         {
-            return View();
-        }
+            Usuario usuario = new Usuario { Json = userJson };
 
-        public ActionResult Contact()
+            return View("~/Views/Home/About.cshtml", usuario);
+        }
+       
+        public ActionResult Contact(string userJson)
         {
-            return View();
+            Usuario usuario = new Usuario { Json = userJson };
+            return View("~/Views/Home/Contact.cshtml", usuario);
         }
 
 

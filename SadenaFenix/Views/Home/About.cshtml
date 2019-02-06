@@ -1,4 +1,5 @@
-﻿<!-- Scope -->
+﻿@model SadenaFenix.Models.Usuarios.Usuario
+<!-- Scope -->
 @{
     ViewData["Title"] = "Acerca de";
     ViewData["ApplicationName"] = "SADENA";
@@ -7,6 +8,8 @@
 
 <!-- Page content -->
 <div class="page-content">
+
+    @Html.HiddenFor(model => model.Json, new { id = "objUsuario" })
 
     <!-- Container -->
     <div class="container">
