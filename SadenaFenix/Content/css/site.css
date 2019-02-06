@@ -12,6 +12,28 @@
     font-weight: bold;
 }
 
+#resumenTotalesTable {
+    width: 40% !important;
+    margin: 0 !important;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+    /*
+   * Header and footer styles
+   */
+    /*
+   * Body styles
+   */
+}
+
+#resumenTotalesTable_wrapper .dataTables_scrollBody {
+    width: 48% !important;
+}
+
+
+
+
+
 /* Table */
 table thead tr th {
     font-size: 12px;
