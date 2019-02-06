@@ -89,24 +89,24 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     if (this.Codigo == 0)
                     {
-                        if (dataSet != null && dataSet.Tables.Count > 0
-                            && dataSet.Tables[0].Rows.Count > 0)
-                        {
+                        //if (dataSet != null && dataSet.Tables.Count > 0
+                        //    && dataSet.Tables[0].Rows.Count > 0)
+                        //{
 
-                            SubregistroNacimientosRespuesta.ColTotales = new Collection<SubregistroTotal>();
+                        //    SubregistroNacimientosRespuesta.ColTotales = new Collection<SubregistroTotal>();
 
-                            foreach (DataRow r in dataSet.Tables[0].Rows)
-                            {
-                                SubregistroTotal sub = new SubregistroTotal
-                                {
-                                    IdGrupo = r.Field<int>("IdGrupo"),
-                                    NombreGrupo = r.Field<string>("NombreGrupo"),
-                                    Total = r.Field<int>("Total")
-                                };
+                        //    foreach (DataRow r in dataSet.Tables[0].Rows)
+                        //    {
+                        //        SubregistroTotal sub = new SubregistroTotal
+                        //        {
+                        //            IdGrupo = r.Field<int>("IdGrupo"),
+                        //            NombreGrupo = r.Field<string>("NombreGrupo"),
+                        //            Total = r.Field<int>("Total")
+                        //        };
 
-                                SubregistroNacimientosRespuesta.ColTotales.Add(sub);
-                            }
-                        }
+                        //        SubregistroNacimientosRespuesta.ColTotales.Add(sub);
+                        //    }
+                        //}
 
                         if (dataSet != null && dataSet.Tables.Count > 0
                             && dataSet.Tables[1].Rows.Count > 0)
