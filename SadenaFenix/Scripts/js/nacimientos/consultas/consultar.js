@@ -1,6 +1,9 @@
 ﻿/* Script for: Consultar
  */
 var objUsuario;
+var objRegistroExtemporaneo;
+var objRegistroOportuno;
+var objSubRegistro;
 var CONST_ROL_ANALISTA = 3;
 
 $(function () {
@@ -112,6 +115,24 @@ $(function () {
             }
         });
         $('#searchingResult').show();
+    });
+
+    $('.consultaDetalleSubRegistro').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "ConsultarSubRegistroNacimientos",
+            data: JSON.stringify(objUsuario), 
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, status) {
+                objRegistroExtemporaneo = data.ColExtemporaneos;
+                objRegistroOportuno = data.ColOportunos;
+                objSubRegistro = data.ColSubregistros;
+            },
+            error: function (request, status, error) {
+                alert(request);
+            }
+        });       
     });
 
 
