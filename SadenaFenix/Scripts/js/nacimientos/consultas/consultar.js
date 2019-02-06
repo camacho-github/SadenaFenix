@@ -115,7 +115,7 @@ $(function () {
                 alert(request);
             }
         });
-        $('#searchingResult').show();
+        $('#cantidadesResumen').show();
     });
 
     $('.consultaDetalleSubRegistro').click(function () {

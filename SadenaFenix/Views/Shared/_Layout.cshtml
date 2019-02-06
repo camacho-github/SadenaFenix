@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/datatables.net-dt/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/buttons-dt/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/buttons-bs/css/buttons.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/responsive-bs/css/responsive.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/responsive-dt/css/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
@@ -43,13 +48,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span>Nacimientos <span class="caret"></span></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu">                            
+                        <ul class="dropdown-menu" role="menu">
                             <li id="opcionImportarArchivos" style="display:block;">
                                 <a id="callImportarArchivo" href="#">Importar archivos</a>
-                            </li>                                                        
+                            </li>
                             <li id="estiloDivisionMenu" class="divider" style="display:block;"></li>
                             <li><a id="callConsultar" href="#">Consultar</a></li>
-                            <li><a id="callVerReportes"  href="#">Reportes por municipios</a></li>
+                            <li><a id="callVerReportes" href="#">Reportes por municipios</a></li>
                         </ul>
                     </li>
                     <li class="dropdown" style="display:block;">
@@ -80,7 +85,7 @@
                                 <div class="col-sm-12">
                                     <h5>
                                         <strong id="etiquetaSesionUsuarioDesc"></strong>
-                                        <br/><small id="etiquetaSesionCorreoE"></small>
+                                        <br /><small id="etiquetaSesionCorreoE"></small>
                                     </h5>
                                 </div>
                             </li>
@@ -141,9 +146,21 @@
     <partial name="_CookieConsentPartial"></partial>
 
     <!-- Scripts -->
-    <script src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons-dt/js/buttons.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jszip/dist/jszip.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/pdfmake.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/vfs_fonts.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/responsive-bs/js/responsive.bootstrap.min.js"></script>
     <script src="~/Scripts/lib/select2/dist/js/select2.full.min.js"></script>
     <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
