@@ -193,6 +193,8 @@
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\ConsultarViewModel.cs" />
+    <Compile Include="Transport\Nacimientos\Consultas\ResultadosConsultaViewModel.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\ConsultasViewModel.cs" />
     <Compile Include="Transport\Catalogos\CatalogosCargasRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaPeticion.cs" />
@@ -534,7 +536,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Nacimientos\Archivos\Importar.cshtml" />
     <Content Include="Views\Nacimientos\Consultas\Consultar.cshtml" />
-    <Content Include="Views\Nacimientos\Reportes\VerReportes.cshtml" />
+    <Content Include="Views\Nacimientos\Reportes\Reportes.cshtml" />
     <Content Include="Views\Usuarios\Acceso\Ingresar.cshtml" />
     <Content Include="Views\Usuarios\Acceso\Salir.cshtml" />
     <Content Include="Scripts\lib\admin-lte\bower.json" />

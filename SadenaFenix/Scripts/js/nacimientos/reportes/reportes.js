@@ -18,6 +18,14 @@ $(function () {
         selectedRegion: true,
         showTooltip: true,
         regionsSelectable: true,
+        markerStyle: {
+            initial: {
+                fill: '#4DAC26'
+            },
+            selected: {
+                fill: '#CA0020'
+            }
+        },
         regionStyle: {
             initial: {
                 fill: '#92B5B1',
@@ -33,7 +41,6 @@ $(function () {
             alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
         },
     });
-
    
 
     /* Unregistered table */
