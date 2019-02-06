@@ -1,13 +1,19 @@
 ﻿using System.Web.Mvc;
+using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Services;
+using SadenaFenix.Transport.Nacimientos.Consultas;
+using SadenaFenix.Transport.Usuarios.Acceso;
 
 namespace SadenaFenix.Controllers.Nacimientos
 {
     public class ArchivosController : Controller
     {
         // GET: Archivos
-        public ActionResult Importar()
+        public ActionResult Importar(string userJson)
         {
-            return View("~/Views/Nacimientos/Archivos/Importar.cshtml");
+            Usuario usuario = new Usuario { Json = userJson };
+            
+            return View("~/Views/Nacimientos/Archivos/Importar.cshtml", usuario);
         }
 
         public ActionResult Index()

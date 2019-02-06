@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using SadenaFenix.Models.Usuarios;
+using System.Web.Mvc;
 
 namespace Sadena.Controllers.Nacimientos
 {
@@ -10,9 +11,10 @@ namespace Sadena.Controllers.Nacimientos
             return View();
         }
 
-        public ActionResult VerReportes()
+        public ActionResult VerReportes(string userJson)
         {
-            return View("~/Views/Nacimientos/Reportes/VerReportes.cshtml");
+            Usuario usuario = new Usuario { Json = userJson };
+            return View("~/Views/Nacimientos/Reportes/VerReportes.cshtml",usuario);
         }
 
         // GET: Reportes/Details/5

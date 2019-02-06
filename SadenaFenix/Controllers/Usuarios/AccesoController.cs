@@ -59,7 +59,7 @@ namespace SadenaFenix.Controllers.Usuarios
 
                 if(respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)
                 {
-                   return RedirectToAction("Consultar", "Consultas", respuesta.Usuario);
+                   return RedirectToAction("LoginConsultar", "Consultas", respuesta.Usuario);
                 }
                 else
                 {

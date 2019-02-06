@@ -622,6 +622,7 @@
     <Content Include="Views\Georeferenciacion\ModulosHospitalarios.cshtml" />
     <Content Include="Views\Georeferenciacion\Oficialias.cshtml" />
     <Content Include="Views\Georeferenciacion\Hospitales.cshtml" />
+    <Content Include="Views\Archivos\Importar2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

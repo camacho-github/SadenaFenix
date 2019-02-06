@@ -1,4 +1,6 @@
 ﻿<!-- Scope -->
+@model SadenaFenix.Models.Usuarios.Usuario
+
 @{
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Nacimientos";
@@ -18,6 +20,8 @@
 <!-- Page content -->
 <div class="page-content">
 
+    @Html.HiddenFor(model => model.Json, new { id = "objUsuario" })
+
     <!-- Container -->
     <div class="container-fluid">
 
@@ -30,7 +34,6 @@
             </ul>
         </section>
         <!-- ./breadcrumb -->
-
         <!-- Reports section -->
         <section>
 
@@ -91,15 +94,18 @@
                         <div class="col-sm-7">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a href="#registradosTabPane" data-toggle="tab">Registrados</a></li>
+                                    <a href="#registradosTabPane" data-toggle="tab">Registrados</a>
+                                </li>
                                 <li><a href="#subregistradosTabPane" data-toggle="tab">Subregistrados</a></li>
                                 <li><a href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
                             </ul>
                             <div class="tab-content">
                                 <!-- Report period -->
                                 <div class="report-period col-sm-12">
-                                    <p><strong>Periodo: </strong>
-                                    <span id="periodoReport" class="text-underline">Enero 2018 – Junio 2018</span></p>
+                                    <p>
+                                        <strong>Periodo: </strong>
+                                        <span id="periodoReport" class="text-underline">Enero 2018 – Junio 2018</span>
+                                    </p>
                                 </div>
                                 <div id="registradosTabPane" class="tab-pane fade in active">
                                     <div class="report">

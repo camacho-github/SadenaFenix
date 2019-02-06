@@ -18,7 +18,7 @@ $(function () {
         $("#botonCirculoSesion").hide();
         $("#menuGeneral").hide();        
     }
-    
+       
     //Initialize Select2 Elements
     $('.select2').select2({
         tags: "true",
@@ -92,7 +92,41 @@ $(function () {
     });
 
     $('#consultarDatosProcesadosBtn').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "ConsultarTotales",
+            data: JSON.stringify(objUsuario),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, status) {
+                $("#TotalSubregistro").text(data.TotalSubregistro);
+                $("#TotalRegistroOportuno").text(data.TotalRegistroOportuno);
+                $("#TotalRegistroExtemporaneo").text(data.TotalRegistroExtemporaneo);
+                
+                $("#PorcentajeRegistroOportuno").text(data.PorcentajeRegistroOportuno + "%");
+                $("#PorcentajeRegistroExtemporaneo").text(data.PorcentajeRegistroExtemporaneo + "%");
+                $("#PorcentajeSubregistro").text(data.PorcentajeSubregistro + "%");
+            },
+            error: function (request, status, error) {
+                alert(request);
+            }
+        });
         $('#searchingResult').show();
     });
+
+
+    $("#callImportarArchivo").click(function () {
+        window.location.href = "/Archivos/Importar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    $("#callVerReportes").click(function () {
+        window.location.href = "/Reportes/VerReportes?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    $("#callConsultar").click(function () {
+        window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    }); 
+
+    
 
 });
