@@ -69,6 +69,7 @@ namespace SadenaFenix.Persistence
             }
         }
 
+       
         protected void EjecutaProcedimiento(string storedProcedure, Collection<SqlParameter> parametros)
         {
             if (string.IsNullOrEmpty(storedProcedure) || parametros == null)

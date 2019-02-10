@@ -11,19 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @ViewData["Root"]</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/datatables.net-dt/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/buttons-dt/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/buttons-bs/css/buttons.bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/responsive-bs/css/responsive.bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/responsive-dt/css/responsive.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
-    <link rel="stylesheet" href="~/Content/css/site.css" />
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css'>
+    <link rel='stylesheet' href='http://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/r-2.1.1/datatables.min.css'>
 
 </head>
 <body>
@@ -72,7 +64,7 @@
                 </ul>
                 <!-- Right menu -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="callAcercaDe" href="#">Acerca de</a></li>
+                    <li><a id="callAcercaDe" href="#">Acerca de SADENA</a></li>
                     <li><a id="callContacto" href="#">Contacto</a></li>
                     <li id="botonCirculoSesion" class="dropdown" style="display:block;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -135,8 +127,8 @@
                 <div class="modal-body">
                     <p id="defaultModalMessage">Los archivos han sido importados correctamente, los datos pueden ser ahora consultados</p>
                 </div>
-                <div class="modal-footer">                    
-                   <button id="botonConsultar" class="btn btn-default" data-dismiss="modal">Continuar</button>                    
+                <div class="modal-footer">
+                    <button id="botonConsultar" class="btn btn-default" data-dismiss="modal">Continuar</button>
                 </div>
             </div>
         </div>
@@ -146,28 +138,27 @@
     <partial name="_CookieConsentPartial"></partial>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons-dt/js/buttons.dataTables.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.flash.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/jszip/dist/jszip.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/pdfmake.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/vfs_fonts.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/responsive-dt/js/responsive.dataTables.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/responsive-bs/js/responsive.bootstrap.min.js"></script>
-    <script src="~/Scripts/lib/select2/dist/js/select2.full.min.js"></script>
-    <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
-    <script src="~/Scripts/js/site.js"></script>
-    <script src="~/Scripts/js/nacimientos/reportes/reportes.js"></script>
-    <script src="~/Scripts/js/nacimientos/consultas/consultar.js"></script>
-    <script src="~/Scripts/js/nacimientos/consultas/importar.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js'></script>
+    <script src='http://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js'></script>
+
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/r-2.1.1/datatables.min.js'></script>
+    <script src='https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js'></script>
+    <script src='http://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js'></script>
+    <script src='http://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js'></script>
+    <script src='http://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js'></script>
+    <script src='http://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js'></script>
+    <script src='http://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js'></script>
+    <script src="~/Scripts/js/georefenciacion/georeferenciacion.js"></script>
+
 
     @RenderSection("Scripts", required: false)
 

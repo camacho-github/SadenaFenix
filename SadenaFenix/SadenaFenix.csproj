@@ -142,11 +142,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\Catalogos\CatalogosBLL.cs" />
     <Compile Include="Business\Catalogos\Geografia\CatMunicipioBusiness.cs" />
+    <Compile Include="Business\Georeferenciacion\GeoreferenciacionBLL.cs" />
     <Compile Include="Business\Nacimientos\Archivos\CargaBLL.cs" />
     <Compile Include="Business\Nacimientos\Consultas\ConsultasBLL.cs" />
     <Compile Include="Business\Nacimientos\Reportes\ReportesBLL.cs" />
     <Compile Include="Business\Usuarios\UsuarioBLL.cs" />
     <Compile Include="Commons\Utilerias\Bitacora.cs" />
+    <Compile Include="Controllers\Georeferenciacion\GeoOficialiasController.cs" />
     <Compile Include="Controllers\Georeferenciacion\HospitalesController.cs" />
     <Compile Include="Controllers\Georeferenciacion\ModulosHospitalariosController.cs" />
     <Compile Include="Controllers\Georeferenciacion\OficialiasController.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Controllers\Nacimientos\ReportesController.cs" />
     <Compile Include="Controllers\Usuarios\AccesoController.cs" />
     <Compile Include="Daos\Catalogos\CatalogosDAO.cs" />
+    <Compile Include="Daos\Georeferenciacion\GeorefenciacionDAO.cs" />
     <Compile Include="Daos\Nacimientos\Archivos\CargaDAO.cs" />
     <Compile Include="Daos\Nacimientos\Reportes\ReporteDAO.cs" />
     <Compile Include="Daos\Usuarios\UsuarioDAO.cs" />
@@ -175,6 +178,7 @@
     <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
     <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
+    <Compile Include="Models\Georeferenciacion\Oficialia.cs" />
     <Compile Include="Models\Nacimientos\Archivos\Archivo.cs" />
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
     <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
@@ -187,9 +191,12 @@
     <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Georeferenciacion\GeoServicio.cs" />
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
@@ -237,6 +244,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="SadenaFenix.csproj.user" />
+    <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
     <Content Include="Scripts\js\nacimientos\consultas\importar.js" />
@@ -687,11 +695,14 @@
     <Content Include="Scripts\lib\pdfmake\dist\pdfmake.js.map" />
     <Content Include="Scripts\lib\pdfmake\dist\pdfmake.min.js.map" />
     <Content Include="Views\Nacimientos\Reportes\VerReportes.cshtml" />
+    <Content Include="Views\Shared\_GeoLayout.cshtml" />
+    <Content Include="Views\GeoOficialias\OficialiasTabla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Services\Catalogos\Geografia\" />
     <Folder Include="Services\Nacimientos\Consultas\" />
+    <Folder Include="Views\Oficialia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
