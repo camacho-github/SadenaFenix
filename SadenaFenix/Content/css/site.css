@@ -32,7 +32,9 @@
     width: 48% !important;
 }
 
-
+#OficialiasTabla_paginate .paginate_button {
+    padding:0 !important
+}
 
 
 

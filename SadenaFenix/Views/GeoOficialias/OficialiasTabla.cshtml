@@ -1,7 +1,6 @@
 ﻿@model System.Data.DataTable
-<!-- Scope -->
+<!--   Layout = "~/Views/Shared/_GeoLayout.cshtml"; Scope -->
 @{
-
     Layout = "~/Views/Shared/_GeoLayout.cshtml";
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Georeferenciación";
@@ -9,6 +8,11 @@
     ViewData["TableName"] = "Consulta de Oficialias";
     ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
 }
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/js/georefenciacion/georeferenciacion.js")"></script>
+}
+
 
 <!-- Page content -->
 <div class="page-content">
@@ -33,46 +37,73 @@
                         <form class="form-horizontal">
                             <fieldset>
                                 <legend>@ViewData["TableName"]</legend>
-
-                                <table id="LocaliasTabla" class="table-bordered table-striped table-hover">
-                                    <tr class="table">
-                                        <th>Oficialia ID</th>
-                                        <th>Municipio ID</th>
-                                        <th>Localidad ID</th>
-                                        <th>Calle</th>
-                                        <th>Número</th>
-                                        <th>Colonia</th>
-                                        <th>C.P.</th>
-                                        <th>Teléfono</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        <th>Correo</th>
-                                        <th>Latitud</th>
-                                        <th>Longitud</th>
-                                        <th>Observaciones</th>
-                                    </tr>
-                                    @for (int i = 0; i < Model.Rows.Count; i++)
-                                    {
-                                        <tr>
-                                            <td>@Model.Rows[i][1]</td>
-                                            <td>@Model.Rows[i][3]</td>
-                                            <td>@Model.Rows[i][4]</td>
-                                            <td>@Model.Rows[i][5]</td>
-                                            <td>@Model.Rows[i][6]</td>
-                                            <td>@Model.Rows[i][7]</td>
-                                            <td>@Model.Rows[i][8]</td>
-                                            <td>@Model.Rows[i][9]</td>
-                                            <td>@Model.Rows[i][10]</td>
-                                            <td>@Model.Rows[i][11]</td>
-                                            <td>@Model.Rows[i][12]</td>
-                                            <td>@Model.Rows[i][13]</td>
-                                            <td>@Model.Rows[i][14]</td>
-                                            <td>@Model.Rows[i][15]</td>
-                                        </tr>
-                                    }
-
-                                </table>
-
+                                <div class="table-responsive">
+                                    <table id="OficialiasTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                        <thead>
+                                            <tr>
+                                                <th>Oficialia ID</th>
+                                                <th>Municipio ID</th>
+                                                <th>Localidad ID</th>
+                                                <th>Calle</th>
+                                                <th>Número</th>
+                                                <th>Colonia</th>
+                                                <th>C.P.</th>
+                                                <th>Teléfono</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                <th>Correo</th>
+                                                <th>Latitud</th>
+                                                <th>Longitud</th>
+                                                <th>Observaciones</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Model.Rows[i][1]</td>
+                                                    <td>@Model.Rows[i][3]</td>
+                                                    <td>@Model.Rows[i][4]</td>
+                                                    <td>@Model.Rows[i][5]</td>
+                                                    <td>@Model.Rows[i][6]</td>
+                                                    <td>@Model.Rows[i][7]</td>
+                                                    <td>@Model.Rows[i][8]</td>
+                                                    <td>@Model.Rows[i][9]</td>
+                                                    <td>@Model.Rows[i][10]</td>
+                                                    <td>@Model.Rows[i][11]</td>
+                                                    <td>@Model.Rows[i][12]</td>
+                                                    <td>@Model.Rows[i][13]</td>
+                                                    <td>@Model.Rows[i][14]</td>
+                                                    <td>@Model.Rows[i][15]</td>
+                                                    <td>@Model.Rows[i][14]</td>
+                                                    <td>@Model.Rows[i][15]</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Oficialia ID</th>
+                                                <th>Municipio ID</th>
+                                                <th>Localidad ID</th>
+                                                <th>Calle</th>
+                                                <th>Número</th>
+                                                <th>Colonia</th>
+                                                <th>C.P.</th>
+                                                <th>Teléfono</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                <th>Correo</th>
+                                                <th>Latitud</th>
+                                                <th>Longitud</th>
+                                                <th>Observaciones</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </fieldset>
                         </form>
                         <!-- ./form -->
