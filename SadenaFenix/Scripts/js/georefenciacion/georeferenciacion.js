@@ -2,7 +2,7 @@
     //Only needed for the filename of export files.
     //Normally set in the title tag of your page.document.title = 'Simple DataTable';
     //Define hidden columns
-    var hCols = [3, 4];
+    var hCols = [7,9,10,11,12,13,14];
     // DataTable initialisation
     $('#OficialiasTabla').DataTable({
         "bFilter": false,

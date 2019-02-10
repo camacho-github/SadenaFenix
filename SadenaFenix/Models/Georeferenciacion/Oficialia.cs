@@ -17,18 +17,22 @@ namespace SadenaFenix.Models.Georeferenciacion
         [XmlAttribute("OficialiaId")]
         public int OficialiaId { get; set; }
 
-        [DataMember(Name = "EdoId", IsRequired = true)]
-        [XmlAttribute("EdoId")]
-        public int EdoId { get; set; }
-
         [DataMember(Name = "MpioId", IsRequired = true)]
         [XmlAttribute("MpioId")]
         public int MpioId { get; set; }
 
+        [DataMember(Name = "MpioDesc", IsRequired = true)]
+        [XmlAttribute("MpioDesc")]
+        public string MpioDesc { get; set; }
+
         [DataMember(Name = "LocId", IsRequired = true)]
         [XmlAttribute("LocId")]
         public int LocId { get; set; }
-        
+
+        [DataMember(Name = "LocDesc", IsRequired = true)]
+        [XmlAttribute("LocDesc")]
+        public string LocDesc { get; set; }
+
         [DataMember(Name = "Calle", IsRequired = true)]
         [XmlAttribute("Calle")]
         public String Calle { get; set; }

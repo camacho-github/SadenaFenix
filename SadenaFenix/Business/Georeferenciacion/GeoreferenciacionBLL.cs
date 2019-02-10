@@ -42,9 +42,10 @@ namespace SadenaFenix.Business.Georeferenciacion
                 {
                     OId = r.Field<int>("OId"),
                     OficialiaId = r.Field<int>("OficialiaId"),
-                    EdoId = r.Field<int>("EdoId"),
                     MpioId = r.Field<int>("MpioId"),
+                    MpioDesc = r.Field<string>("MpioDesc"),
                     LocId = r.Field<int>("LocId"),
+                    LocDesc = r.Field<string>("LocDesc"),
                     Calle = r.Field<string>("Calle"),
                     Numero = r.Field<string>("Numero"),                   
                     Colonia = r.Field<string>("Colonia"),

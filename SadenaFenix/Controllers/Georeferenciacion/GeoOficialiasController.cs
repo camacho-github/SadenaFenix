@@ -4,6 +4,7 @@ using SadenaFenix.Transport.Georeferenciacion;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +26,7 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             }
             else
             {
-                return View();
+                return View(new DataTable());
             }           
         }
 

@@ -43,7 +43,9 @@
                                             <tr>
                                                 <th>Oficialia ID</th>
                                                 <th>Municipio ID</th>
+                                                <th>Municipio</th>
                                                 <th>Localidad ID</th>
+                                                <th>Localidad</th>
                                                 <th>Calle</th>
                                                 <th>Número</th>
                                                 <th>Colonia</th>
@@ -54,39 +56,39 @@
                                                 <th>Correo</th>
                                                 <th>Latitud</th>
                                                 <th>Longitud</th>
-                                                <th>Observaciones</th>
-                                                <th>Nombres</th>
-                                                <th>Apellidos</th>
+                                                <th>Observaciones</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @for (int i = 0; i < Model.Rows.Count; i++)
                                             {
-                                                <tr>
-                                                    <td>@Model.Rows[i][1]</td>
-                                                    <td>@Model.Rows[i][3]</td>
-                                                    <td>@Model.Rows[i][4]</td>
-                                                    <td>@Model.Rows[i][5]</td>
-                                                    <td>@Model.Rows[i][6]</td>
-                                                    <td>@Model.Rows[i][7]</td>
-                                                    <td>@Model.Rows[i][8]</td>
-                                                    <td>@Model.Rows[i][9]</td>
-                                                    <td>@Model.Rows[i][10]</td>
-                                                    <td>@Model.Rows[i][11]</td>
-                                                    <td>@Model.Rows[i][12]</td>
-                                                    <td>@Model.Rows[i][13]</td>
-                                                    <td>@Model.Rows[i][14]</td>
-                                                    <td>@Model.Rows[i][15]</td>
-                                                    <td>@Model.Rows[i][14]</td>
-                                                    <td>@Model.Rows[i][15]</td>
-                                                </tr>
+                                            <tr>
+                                                <td>@Model.Rows[i][1]</td>
+                                                <td>@Model.Rows[i][2]</td>
+                                                <td>@Model.Rows[i][3]</td>
+                                                <td>@Model.Rows[i][4]</td>
+                                                <td>@Model.Rows[i][5]</td>
+                                                <td>@Model.Rows[i][6]</td>
+                                                <td>@Model.Rows[i][7]</td>
+                                                <td>@Model.Rows[i][8]</td>
+                                                <td>@Model.Rows[i][9]</td>
+                                                <td>@Model.Rows[i][10]</td>
+                                                <td>@Model.Rows[i][11]</td>
+                                                <td>@Model.Rows[i][12]</td>
+                                                <td>@Model.Rows[i][13]</td>
+                                                <td>@Model.Rows[i][14]</td>
+                                                <td>@Model.Rows[i][15]</td>
+                                                <td>@Model.Rows[i][16]</td>                                                                                            
+                                            </tr>
                                             }
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>Oficialia ID</th>
                                                 <th>Municipio ID</th>
+                                                <th>Municipio</th>
                                                 <th>Localidad ID</th>
+                                                <th>Localidad</th>
                                                 <th>Calle</th>
                                                 <th>Número</th>
                                                 <th>Colonia</th>
@@ -98,8 +100,6 @@
                                                 <th>Latitud</th>
                                                 <th>Longitud</th>
                                                 <th>Observaciones</th>
-                                                <th>Nombres</th>
-                                                <th>Apellidos</th>
                                             </tr>
                                         </tfoot>
                                     </table>
