@@ -1,6 +1,11 @@
-﻿using SadenaFenix.Models.Catalogos.Geografia;
+﻿using Newtonsoft.Json;
+using SadenaFenix.Models.Catalogos.Geografia;
+using SadenaFenix.Models.Georeferenciacion;
+using SadenaFenix.Services;
 using SadenaFenix.Services.Georeferenciacion;
+using SadenaFenix.Transport.Catalogos;
 using SadenaFenix.Transport.Georeferenciacion;
+using SadenaFenix.Transport.Usuarios.Acceso;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +13,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 
 namespace SadenaFenix.Controllers.Georeferenciacion
 {
@@ -30,16 +36,39 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             }           
         }
 
-        // GET: GeoOficialias/Details/5
-        public ActionResult Details(int id)
+
+        [HttpGet]
+        public ActionResult CrearOficialia()
         {
-            return View();
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
+            cabeceroPeticion.SesionId = 1;
+            Servicio servicio = new Servicio();
+
+            Oficialia oficialia = new Oficialia();
+            CatalogoMunicipioRespuesta catalogoMunicipioRespuesta = servicio.ConsultarCatalogoMunicipioGeografia(cabeceroPeticion);
+            oficialia.MunicipioLista = new List<Municipio>(catalogoMunicipioRespuesta.ColMunicipio);
+
+
+            CatalogoLocalidadRespuesta catalogoLocalidadRespuesta = servicio.ConsultarCatalogoLocalidadGeografiaCoahuila(cabeceroPeticion);                       
+            oficialia.LocalidadLista = new List<Localidad>(catalogoLocalidadRespuesta.ColLocalidad);
+            return View(oficialia);
         }
 
-        // GET: GeoOficialias/Create
-        public ActionResult Create()
+        [WebMethod]
+        public ActionResult GuardarOficialia(string jsonOficialia)
         {
-            return View();
+            InsertarOficialiaPeticion peticion = new InsertarOficialiaPeticion();
+            peticion.Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia);
+
+            GeoServicio geoServicio = new GeoServicio();
+            InsertarOficialiaRespuesta respuesta = geoServicio.InsertarOficialia(peticion);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ObtenerLocalidadesPorMunicipio()
+        {
+            
+            return PartialView("");
         }
 
         // POST: GeoOficialias/Create

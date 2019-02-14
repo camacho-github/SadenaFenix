@@ -26,6 +26,7 @@ namespace SadenaFenix.Daos.Catalogos
         private const string PRS_CT_ESCOLARIDAD = "SDB.PRSCTEscolaridad";
         private const string PRS_CT_MUNICIPIO = "SDB.PRSCTMunicipio";
         private const string PRS_CT_LOCALIDAD = "SDB.PRSCTLocalidad";
+        private const string PRS_CT_LOCALIDAD_COAHUILA = "SDB.PRSCTLocalidadCoahuila";
         private const string PRS_CONSULTA_MESES_X_ANIO = "SDB.PRSConsultaMesesXAnio";
 
 
@@ -401,6 +402,58 @@ namespace SadenaFenix.Daos.Catalogos
                     CreaParametrosSalida(parametrosCatLocalidad);
 
                     EjecutaProcedimiento(PRS_CT_LOCALIDAD, parametrosCatLocalidad, dataSet);
+
+                    if (this.Codigo == 0 && validaDataSet(dataSet))
+                    {
+                        colLocalidad = new Collection<Localidad>();
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+                            Localidad loc = new Localidad
+                            {
+                                LocEdoId = r.Field<int>("LocEdoId"),
+                                LocEdoDesc = r.Field<string>("LocEdoDesc"),
+                                LocMpioId = r.Field<int>("LocMpioId"),
+                                LocMpioDesc = r.Field<string>("LocMpioDesc"),
+                                LocId = r.Field<int>("LocId"),
+                                LocDesc = r.Field<string>("LocDesc")
+                            };
+                            colLocalidad.Add(loc);
+                        }
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return colLocalidad;
+        }
+
+        public Collection<Localidad> ConsultaCatLocalidadCoahuila()
+        {
+
+            Collection<Localidad> colLocalidad = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosCatLocalidad = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosCatLocalidad);
+
+                    EjecutaProcedimiento(PRS_CT_LOCALIDAD_COAHUILA, parametrosCatLocalidad, dataSet);
 
                     if (this.Codigo == 0 && validaDataSet(dataSet))
                     {

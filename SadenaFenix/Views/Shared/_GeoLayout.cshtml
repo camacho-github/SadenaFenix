@@ -21,12 +21,26 @@
     <link rel="stylesheet" href="~/Scripts/lib/buttons-bs/css/buttons.bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/responsive-bs/css/responsive.bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/responsive-dt/css/responsive.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
+
     <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
     <link rel="stylesheet" href="~/Content/css/site.css" />
+
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
 </head>
 <body>
+    <div id="loader" class="bd-example blackBack">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>
+    
+
+    <div class="alert alert-success mensajeForma" id="AlertaMensaje" style="display: none">
+        <strong id="Titulo">Titulo</strong>
+        <hr />
+        <div id="Mensaje">Mensaje</div>
+    </div>
 
     <!-- Navegation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -143,6 +157,7 @@
     </div>
     <!-- ./modal -->
 
+
     <partial name="_CookieConsentPartial"></partial>
 
     <!-- Scripts no corresponden al modulo
@@ -152,7 +167,6 @@
     <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
      -->
-
     <!-- Scripts tomados del layout, los comentados no son compatibles con desarrollo-->
     <script type="text/javascript" src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -171,16 +185,21 @@
     @*<script type="text/javascript" src="~/Scripts/lib/responsive-bs/js/responsive.bootstrap.min.js"></script>*@
     <script src="~/Scripts/lib/select2/dist/js/select2.full.min.js"></script>
     <script src="~/Scripts/js/site.js"></script>
+    <script src="~/Scripts/js/utilerias/comunes.js"></script>
 
 
-     <!-- Scripts se requieren versiones-->
+    <!-- Scripts se requieren versiones-->
     <script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
     <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
     <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
     <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js'></script>
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
 
     @RenderSection("Scripts", required: false)
+
 
 </body>
 </html>

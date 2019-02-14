@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Commons.Utilerias;
+using SadenaFenix.Models.Georeferenciacion;
 
 namespace SadenaFenix.Daos.Georeferenciacion
 {
@@ -16,6 +17,8 @@ namespace SadenaFenix.Daos.Georeferenciacion
     {
         #region Variables de instancia
         private const string PRS_OFICILIAS = "SDB.PRSOficialias";
+        private const string PR_INS_OFICILIA = "SDB.PRInsOficialia";
+        private const string PR_U_OFICILIA = "SDB.PRUOficialia";
         #endregion
 
         #region Métodos públicos
@@ -81,6 +84,264 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return parametros;
         }
+
+        public bool InsertarOficialia(Oficialia oficialia)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_INS_OFICILIA, CreaParametrosInsertaOficialia(oficialia));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        public bool ActualizarOficialia(Oficialia oficialia)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_U_OFICILIA, CreaParametrosActualizarOficialia(oficialia));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosInsertaOficialia(Oficialia oficialia)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_oficialia_id", SqlDbType.Int)
+            {
+                Value = oficialia.OficialiaId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_mpio_id", SqlDbType.Int)
+            {
+                Value = oficialia.MpioId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_loc_id", SqlDbType.Int)
+            {
+                Value = oficialia.LocId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_calle", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.Calle
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_numero", SqlDbType.NVarChar)
+            {
+                Size = 10,
+                Value = oficialia.Numero
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_colonia", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.Colonia
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_cp", SqlDbType.NVarChar)
+            {
+                Size = 5,
+                Value = oficialia.CP
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_telefono", SqlDbType.NVarChar)
+            {
+                Size = 15,
+                Value = oficialia.Telefono
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_nombres", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficialia.Nombres
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_apellidos", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficialia.Apellidos
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_correo_e", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.CorreoE
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_latitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficialia.Latitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_longitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficialia.Longitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_observaciones", SqlDbType.NVarChar)
+            {
+                Value = oficialia.Observaciones
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosActualizarOficialia(Oficialia oficialia)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_o_id", SqlDbType.Int)
+            {
+                Value = oficialia.OId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_oficialia_id", SqlDbType.Int)
+            {
+                Value = oficialia.OficialiaId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_mpio_id", SqlDbType.Int)
+            {
+                Value = oficialia.MpioId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_loc_id", SqlDbType.Int)
+            {
+                Value = oficialia.LocId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_calle", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.Calle
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_numero", SqlDbType.NVarChar)
+            {
+                Size = 10,
+                Value = oficialia.Numero
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_colonia", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.Colonia
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_cp", SqlDbType.NVarChar)
+            {
+                Size = 5,
+                Value = oficialia.CP
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_telefono", SqlDbType.NVarChar)
+            {
+                Size = 15,
+                Value = oficialia.Telefono
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_nombres", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficialia.Nombres
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_apellidos", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficialia.Apellidos
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_correo_e", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficialia.CorreoE
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_latitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficialia.Latitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_longitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficialia.Longitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_observaciones", SqlDbType.NVarChar)
+            {
+                Value = oficialia.Observaciones
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+
         #endregion
 
     }

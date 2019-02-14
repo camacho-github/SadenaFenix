@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Web;
+using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Daos.Georeferenciacion;
+using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Georeferenciacion;
 using SadenaFenix.Transport.Georeferenciacion;
@@ -67,6 +69,36 @@ namespace SadenaFenix.Business.Georeferenciacion
             };
 
             return respuesta;
+        }
+
+        public bool InsertarOficialia(Oficialia oficialia)
+        {
+            try
+            {
+                geoDAO.InsertarOficialia(oficialia);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficialia no fue registrada correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return true;           
+        }
+
+        public bool ActualizarOficialia(Oficialia oficialia)
+        {
+            try
+            {
+                geoDAO.ActualizarOficialia(oficialia);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficialia no fue actualizada correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return true;
         }
         #endregion
 
