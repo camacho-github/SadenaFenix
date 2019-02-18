@@ -64,7 +64,18 @@ namespace SadenaFenix.Business.Catalogos
             };
             return respuesta;
         }
-                
+
+        public CatalogoLocalidadRespuesta ConsultaCatLocalidadCoahuila()
+        {
+            CatalogoLocalidadRespuesta respuesta = new CatalogoLocalidadRespuesta
+            {
+                ColLocalidad = dao.ConsultaCatLocalidadCoahuila()
+            };
+            return respuesta;
+        }
+
+        
+
         public ConsultaMesesRespuesta ConsultarMesesXAnio(string anio)
         {
             ConsultaMesesRespuesta consultaMesesRespuesta = new ConsultaMesesRespuesta();

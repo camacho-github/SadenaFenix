@@ -295,6 +295,28 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        public CatalogoLocalidadRespuesta ConsultarCatalogoLocalidadGeografiaCoahuila(CabeceroPeticion peticion)
+        {
+            CatalogoLocalidadRespuesta respuesta = new CatalogoLocalidadRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultaCatLocalidadCoahuila();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         public ReporteSubregistroRespuesta ConsultarReporteTotalesSubregistro(ReporteTotalesSubregistroPeticion peticion)
         {
             ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();

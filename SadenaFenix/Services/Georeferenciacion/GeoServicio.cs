@@ -33,6 +33,46 @@ namespace SadenaFenix.Services.Georeferenciacion
             return respuesta;
         }
         #endregion
+        #region Métodos Publicos
+        public InsertarOficialiaRespuesta InsertarOficialia(InsertarOficialiaPeticion peticion)
+        {
+            InsertarOficialiaRespuesta respuesta = new InsertarOficialiaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.InsertarOficialia(peticion.Oficialia);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+        public ActualizarOficialiaRespuesta ActualizarOficialia(ActualizarOficialiaPeticion peticion)
+        {
+            ActualizarOficialiaRespuesta respuesta = new ActualizarOficialiaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.ActualizarOficialia(peticion.Oficialia);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+        #endregion
 
 
         #region Metódos Privados

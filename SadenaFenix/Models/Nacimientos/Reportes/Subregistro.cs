@@ -17,6 +17,10 @@ namespace SadenaFenix.Models.Nacimientos.Reportes
         [XmlAttribute("FechaNacimiento")]
         public String FechaNacimiento { get; set; }
 
+        [DataMember(Name = "HoraNacimiento", IsRequired = true)]
+        [XmlAttribute("HoraNacimiento")]
+        public String HoraNacimiento { get; set; }
+
         [DataMember(Name = "SexoId", IsRequired = true)]
         [XmlAttribute("SexoId")]
         public int SexoId { get; set; }
@@ -29,9 +33,17 @@ namespace SadenaFenix.Models.Nacimientos.Reportes
         [XmlAttribute("EdoId")]
         public int EdoId { get; set; }
 
+        [DataMember(Name = "EdoDesc", IsRequired = true)]
+        [XmlAttribute("EdoDesc")]
+        public String EdoDesc { get; set; }
+
         [DataMember(Name = "MpioId", IsRequired = true)]
         [XmlAttribute("MpioId")]
         public int MpioId { get; set; }
+
+        [DataMember(Name = "MpioDesc", IsRequired = true)]
+        [XmlAttribute("MpioDesc")]
+        public String MpioDesc { get; set; }
 
         [DataMember(Name = "LocId", IsRequired = true)]
         [XmlAttribute("LocId")]
@@ -41,9 +53,17 @@ namespace SadenaFenix.Models.Nacimientos.Reportes
         [XmlAttribute("LocDesc")]
         public String LocDesc { get; set; }
 
-        [DataMember(Name = "Domicilio", IsRequired = true)]
-        [XmlAttribute("Domicilio")]
-        public String Domicilio { get; set; }
+        [DataMember(Name = "Calle", IsRequired = true)]
+        [XmlAttribute("Calle")]
+        public String Calle { get; set; }
+
+        [DataMember(Name = "NoExt", IsRequired = true)]
+        [XmlAttribute("NoExt")]
+        public String NoExt { get; set; }
+
+        [DataMember(Name = "NoInt", IsRequired = true)]
+        [XmlAttribute("NoInt")]
+        public String NoInt { get; set; }
 
         [DataMember(Name = "Edad", IsRequired = true)]
         [XmlAttribute("Edad")]

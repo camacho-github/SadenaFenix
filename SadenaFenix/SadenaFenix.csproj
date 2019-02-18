@@ -195,6 +195,10 @@
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
@@ -251,6 +255,8 @@
     <Content Include="Scripts\js\nacimientos\reportes\reportes.js" />
     <Content Include="Scripts\js\site.js" />
     <Content Include="Scripts\js\site.min.js" />
+    <Content Include="Scripts\js\utilerias\comunes.js" />
+    <Content Include="Scripts\js\utilerias\validador.js" />
     <Content Include="Scripts\lib\admin-lte\dist\css\AdminLTE.css" />
     <Content Include="Scripts\lib\admin-lte\dist\css\AdminLTE.min.css" />
     <Content Include="Scripts\lib\admin-lte\dist\css\alt\AdminLTE-bootstrap-social.css" />
@@ -699,6 +705,7 @@
     <Content Include="Views\Nacimientos\Reportes\VerReportes.cshtml" />
     <Content Include="Views\Shared\_GeoLayout.cshtml" />
     <Content Include="Views\GeoOficialias\OficialiasTabla.cshtml" />
+    <Content Include="Views\GeoOficialias\CrearOficialia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
