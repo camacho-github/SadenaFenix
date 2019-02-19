@@ -3,6 +3,11 @@ $(window).on('load', function () {
     $("#loader").toggleClass("hiddElement");
 });
 
+$(window).on('unload', function () {
+    fnWaitForPost();
+});
+
+
 function fnGetJSONResponse(actionName, parameters) {
     var httpRequest = fnPrepareHttpRequest(actionName);
     httpRequest.send(parameters);
@@ -94,7 +99,7 @@ function fnShowDiv(div, showHide, isClass) {
 function fnWaitForLoading(func) {
     var loader = $("#loader");
     fnShowDiv(loader.attr('id'), 1);
-    loader.fadeOut(100, function () {
+    loader.fadeOut(5000, function () {
         func();
         loader.removeAttr('style');
         fnShowDiv(loader.attr('id'), 0);        

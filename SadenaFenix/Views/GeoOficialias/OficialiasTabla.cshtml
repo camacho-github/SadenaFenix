@@ -41,6 +41,7 @@
                                     <table id="OficialiasTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Oficialia ID</th>
                                                 <th>Municipio ID</th>
                                                 <th>Municipio</th>
@@ -63,6 +64,9 @@
                                             @for (int i = 0; i < Model.Rows.Count; i++)
                                             {
                                             <tr>
+                                                <td>
+                                                    <a href="@Url.Action("ActualizarOficialia","GeoOficialias",new {@id=@Model.Rows[i][0]})">Actualizar</a>
+                                                </td>
                                                 <td>@Model.Rows[i][1]</td>
                                                 <td>@Model.Rows[i][2]</td>
                                                 <td>@Model.Rows[i][3]</td>
@@ -84,6 +88,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th></th>
                                                 <th>Oficialia ID</th>
                                                 <th>Municipio ID</th>
                                                 <th>Municipio</th>

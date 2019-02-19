@@ -8,9 +8,9 @@ using System.Xml.Serialization;
 namespace SadenaFenix.Transport.Georeferenciacion
 {
     [DataContract]
-    public class ConsultaOficialiaRespuesta
+    public class ConsultaOficialiasRespuesta
     {
-        public ConsultaOficialiaRespuesta()
+        public ConsultaOficialiasRespuesta()
         {
             Cabecero = new CabeceroRespuesta();
         }
@@ -19,8 +19,13 @@ namespace SadenaFenix.Transport.Georeferenciacion
         [XmlAttribute("Cabecero")]
         public CabeceroRespuesta Cabecero { get; set; }
 
-        [DataMember(Name = "Oficialia", IsRequired = true)]
-        [XmlAttribute("Oficialia")]
-        public Oficialia Oficialia { get; set; }
+        [DataMember(Name = "ColOficialia", IsRequired = true)]
+        [XmlAttribute("ColOficialia")]
+        public Collection<Oficialia> ColOficialia { get; set; }
+
+        [DataMember(Name = "DTOficialia", IsRequired = true)]
+        [XmlAttribute("DTOficialia")]
+        public DataTable DTOficialia { get; set; }
+
     }
 }

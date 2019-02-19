@@ -25,7 +25,7 @@ namespace SadenaFenix.Business.Georeferenciacion
             geoDAO = new GeorefenciacionDAO();
         }
 
-        public ConsultaOficialiaRespuesta ConsultarOficialias(Collection<Municipio> colMunicipios)
+        public ConsultaOficialiasRespuesta ConsultarOficialias(Collection<Municipio> colMunicipios)
         {
             IList<string> municipiosLista = new List<string>();
             foreach (Municipio m in colMunicipios)
@@ -34,7 +34,7 @@ namespace SadenaFenix.Business.Georeferenciacion
             }
             string municipiosUnion = string.Join(",", municipiosLista);
 
-            DataTable dataTable = geoDAO.ConsultarOficialia(municipiosUnion);
+            DataTable dataTable = geoDAO.ConsultarOficialias(municipiosUnion);
 
             Collection<Oficialia> colOficialias = new Collection<Oficialia>();
 
@@ -62,13 +62,30 @@ namespace SadenaFenix.Business.Georeferenciacion
                 colOficialias.Add(oficialia);
             }
 
-            ConsultaOficialiaRespuesta respuesta = new ConsultaOficialiaRespuesta
+            ConsultaOficialiasRespuesta respuesta = new ConsultaOficialiasRespuesta
             {
                 ColOficialia = colOficialias,
                 DTOficialia = dataTable
             };
 
             return respuesta;
+        }
+
+        public ConsultaOficialiaRespuesta ConsultarOficialia(int OId)
+        {
+            ConsultaOficialiaRespuesta consultaOficialiaRespuesta = new ConsultaOficialiaRespuesta();
+            try
+            {
+                Oficialia oficialia = geoDAO.ConsultarOficialia(OId);
+                consultaOficialiaRespuesta.Oficialia = oficialia;
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficialia no fue obtenida correctamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return consultaOficialiaRespuesta;
         }
 
         public bool InsertarOficialia(Oficialia oficialia)

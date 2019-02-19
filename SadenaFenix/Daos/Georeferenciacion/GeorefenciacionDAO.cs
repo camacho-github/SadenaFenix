@@ -17,12 +17,13 @@ namespace SadenaFenix.Daos.Georeferenciacion
     {
         #region Variables de instancia
         private const string PRS_OFICILIAS = "SDB.PRSOficialias";
+        private const string PRS_OFICILIA = "SDB.PRSOficialia";
         private const string PR_INS_OFICILIA = "SDB.PRInsOficialia";
         private const string PR_U_OFICILIA = "SDB.PRUOficialia";
         #endregion
 
         #region Métodos públicos
-        public DataTable ConsultarOficialia(string municipiosUnion)
+        public DataTable ConsultarOficialias(string municipiosUnion)
         {
             DataTable dataTable = new DataTable();
 
@@ -56,6 +57,62 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return dataTable; 
         }
+
+        public Oficialia ConsultarOficialia(int OId)
+        {
+            Oficialia oficialia = new Oficialia();
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRS_OFICILIA, CreaParametrosConsultaOficialia(OId), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+                            oficialia = new Oficialia
+                            {
+                                OId = r.Field<int>("OId"),
+                                OficialiaId = r.Field<int>("OficialiaId"),
+                                MpioId = r.Field<int>("MpioId"),
+                                MpioDesc = r.Field<string>("MpioDesc"),
+                                LocId = r.Field<int>("LocId"),
+                                LocDesc = r.Field<string>("LocDesc"),
+                                Calle = r.Field<string>("Calle"),
+                                Numero = r.Field<string>("Numero"),
+                                Colonia = r.Field<string>("Colonia"),
+                                CP = r.Field<string>("CP"),
+                                Telefono = r.Field<string>("Telefono"),
+                                Nombres = r.Field<string>("Nombres"),
+                                Apellidos = r.Field<string>("Apellidos"),
+                                CorreoE = r.Field<string>("CorreoE"),
+                                Latitud = r.Field<string>("Latitud"),
+                                Longitud = r.Field<string>("Longitud"),
+                                Observaciones = r.Field<string>("Observaciones")
+                            };
+                        }
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return oficialia;
+        }
         #endregion
 
         #region Métodos privados
@@ -84,6 +141,24 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return parametros;
         }
+
+        private Collection<SqlParameter> CreaParametrosConsultaOficialia(int OId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+
+            parametro = new SqlParameter("@pi_oid", SqlDbType.Int)
+            {
+                Value = OId
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        
 
         public bool InsertarOficialia(Oficialia oficialia)
         {

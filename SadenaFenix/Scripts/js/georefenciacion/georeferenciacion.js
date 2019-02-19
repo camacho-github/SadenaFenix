@@ -2,11 +2,22 @@
     OId: 0
 };
 
+var objMapaConfiguracion;
+if ($('#Longitud').val() != '' && $('#Latitud').val() != '') {
+    objMapaConfiguracion = {
+        lat: parseFloat($('#Latitud').val()),
+        lng: parseFloat($('#Longitud').val()),
+        zoom: 17,
+        disableDoubleClickZoom: true,
+        direccionMarca: $("input#MpioDesc").val() + " " + $("input#LocDesc").val()
+    }
+}
+
 $(function () {
     //Only needed for the filename of export files.
     //Normally set in the title tag of your page.document.title = 'Simple DataTable';
     //Define hidden columns
-    var hCols = [7,9,10,11,12,13,14];
+    var hCols = [8, 10, 11, 12, 13, 14, 15];
     // DataTable initialisation
     $('#OficialiasTabla').DataTable({
         "bFilter": false,
@@ -36,14 +47,14 @@ $(function () {
                 text: 'Restaurar'
             }]
         }, {
-                text: 'Imprimir',
-                extend: 'print',
-                footer: false,
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
+            text: 'Imprimir',
+            extend: 'print',
+            footer: false,
+            exportOptions: {
+                columns: ':visible'
+            }
+        },
+        {
             extend: 'collection',
             text: 'Exportar',
             buttons: [{
@@ -111,7 +122,7 @@ $(function () {
     });
 
 
-    
+
     // Enable Live Search.  
     var $selectMpio = $('#MunicipioLista');
     $selectMpio.attr('data-live-search', true);
@@ -125,6 +136,18 @@ $(function () {
         });
 
     $selectMpio.on('change', function () {
+        var nombreTexto = $(this).find("option:selected").text();
+        fnCargaMapaCoincidencias(nombreTexto + ", Coahuila de Zaragoza, México");
+
+        if ($("input#MpioDesc").exists()) {
+            $("input#MpioDesc").val(nombreTexto);
+
+            $('div.selectMpio').toggleClass("hiddElement", "true");
+            $("input#MpioDesc").toggleClass("hiddElement", "false");
+
+            $("input#LocDesc").val("");
+        }
+
         var selected = $('#MunicipioLista option:selected').val();
         $("#LocalidadLista").children("optgroup[label='" + selected + "']").removeAttr('disabled');
 
@@ -136,16 +159,27 @@ $(function () {
         objOficialia.MpioId = selected;
         fnLoadLocalidadLista();
         $("#LocalidadLista").focus();
-        ///////////////////////
-    }); 
 
-    $('#LocalidadLista').on('change', function () {
-        var selected = $('#LocalidadLista option:selected').val();
-        objOficialia.LocId = selected;
+        ///////////////////////
     });
 
-    fnLoadLocalidadLista();
-    $('#LocalidadLista').prop('disabled', true);
+    $('#LocalidadLista').on('change', function () {
+        var nombreTexto = $(this).find("option:selected").text();
+        var selected = $('#LocalidadLista option:selected').val();
+        objOficialia.LocId = selected;
+
+        if ($("input#LocDesc").exists()) {
+            $("input#LocDesc").val(nombreTexto);
+
+            $('div.selectLoc').toggleClass("hiddElement", "true");
+            $("input#LocDesc").toggleClass("hiddElement", "false");
+        }
+    });
+
+    if (!$("input#LocDesc").exists()) {
+        fnLoadLocalidadLista();
+        $('#LocalidadLista').prop('disabled', true);
+    }
 
     $(".ValidacionTexto").on('keypress', function (event) {
         var regExp = /^[a-zA-z0-9 ]{0,245}$/;
@@ -171,31 +205,57 @@ $(function () {
         }
     });
 
-    $("input.ValidacionTelefono").on('blur', function (event) {        
+    $("input.ValidacionTelefono").on('blur', function (event) {
         var input = $(this),
             number = input.val();
         input.attr("realValue", input.val());
         fnSetFormatPhoneNumber(input, number);
         input.val($.trim(input.val()));
-    });	
+    });
 
 
     $("input.ValidacionNumero").on('keydown', function (event) {
         var okVal = funOnlyNumberExtended(event);
         return okVal;
-    });	
+    });
 
     $('#BotonCrearOficialia').click(function () {
-        if (fnValidarCrearOficialia() == true) {
+        if (fnValidarGuardarOficialia() == true) {
             $('#BotonCrearOficialia').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
             fnGuardarOficialia();
         }
     });
-       
+
+    $('#BotonActualizarOficialia').click(function () {
+        if (fnValidarGuardarOficialia() == true) {
+            $('#BotonActualizarOficialia').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
+            fnGuardarOficialia();
+        }
+    });
+
+    $("input#MpioDesc").on('focus', function (event) {
+        $(this).toggleClass("hiddElement", "true");
+        $('div.selectMpio').toggleClass("hiddElement", "false");
+
+        $("#MunicipioLista").focus();
+    });
+
+    $("input#LocDesc").on('focus', function (event) {
+        $(this).toggleClass("hiddElement", "true");
+        $('div.selectLoc').toggleClass("hiddElement", "false");
+
+        $("#LocalidadLista").focus();
+    });      
 });
 
 function fnLoadLocalidadLista() {
     var $selectLoc = $('#LocalidadLista');
+
+    if ($("input#LocDesc").exists()) {
+        $("input#LocDesc").toggleClass("hiddElement", "true");
+        $('div.selectLoc').toggleClass("hiddElement", "false");
+        $selectLoc.toggleClass("hiddElement", "false");
+    }    
 
     $selectLoc.prop('disabled', false);
     $selectLoc.attr('data-live-search', true);
@@ -210,8 +270,13 @@ function fnLoadLocalidadLista() {
         });
 
     $selectLoc.selectpicker('render');
-
     $selectLoc.selectpicker('refresh');
+
+    if ($("input#LocDesc").exists()) {
+        $("input#LocDesc").toggleClass("hiddElement", "true");
+        $('div.selectLoc').toggleClass("hiddElement", "false");
+        $selectLoc.toggleClass("hiddElement", "false");
+    }
       
 }
 
@@ -273,7 +338,7 @@ function funOnlyNumberExtended(event) {
 
 }
 
-function fnValidarCrearOficialia() {
+function fnValidarGuardarOficialia() {
     var valid = true;
 
     if ($('#OficialiaId').val().length < 0) {
@@ -281,6 +346,22 @@ function fnValidarCrearOficialia() {
         valid = false;
     } else {
         $('#OficialiaId').parent().children('span').text("");
+    }
+
+    if ($("input#MpioDesc").exists()){
+        objOficialia.MpioId = $("input#MpioDesc").attr("identificador");
+    }
+
+    if ($("input#LocDesc").exists()){
+        objOficialia.LocId = $("input#LocDesc").attr("identificador");
+    }
+
+    if (objOficialia.MpioId <= 0) {
+        valid = false;
+    }
+
+    if (objOficialia.LocId <= 0) {
+        valid = false;
     }
 
     if ($('#Calle').val() == '') {
@@ -339,6 +420,10 @@ function fnValidarCrearOficialia() {
 
 function fnObtenerJsonOficialia() {
 
+    if ($('#OId').exists() && $('#OId').val() > 0) {
+        objOficialia.OId = $('#OId').val();
+    }
+    
     objOficialia.OficialiaId = $('#OficialiaId').val();
     objOficialia.Calle = $('#Calle').val();
     objOficialia.Numero = $('#Numero').val();
@@ -367,8 +452,30 @@ function fnGuardarOficialia() {
 
         if (data !== "" && data !== null) {
             if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitosamente almacenada", fnIrConsulta);
+                fnMessage("Operación correcta", "La información fue exitósamente almacenada", fnIrConsulta);
             } else{
+                fnMessage("UPS! =(", "La información no fue guardada, favor de intentar nuevamente");
+            }
+        }
+    };
+
+    fnWaitForLoading(fnComplete);
+}
+
+function fnActualizarOficialia() {
+    var objArray = {
+        "jsonOficialia": fnObtenerJsonOficialia()
+    },
+
+    params = fnParamsString(objArray);
+
+    var fnComplete = function () {
+        var data = fnGetJSONResponse('ActualizarOficialia', params);
+
+        if (data !== "" && data !== null) {
+            if (data.respuesta !== null) {
+                fnMessage("Operación correcta", "La información fue exitósamente actualizada", fnIrConsultaDeActualizacion);
+            } else {
                 fnMessage("UPS! =(", "La información no fue guardada, favor de intentar nuevamente");
             }
         }
@@ -378,9 +485,27 @@ function fnGuardarOficialia() {
 
 }
 
+function fnAsignarPosicion(myLatLng){
+    var lat = myLatLng.lat();
+    var lng = myLatLng.lng();
+
+    $('#Latitud').val(lat);
+    $('#Longitud').val(lng);
+}
+
+function fnNombreMarca() {    
+    return "Oficialia No." + $('#OficialiaId').val();    
+}
+
+
 function fnIrConsulta() {
     fnWaitForPost();
     window.location.assign("OficialiasTabla");
+}
+
+function fnIrConsultaDeActualizacion() {
+    fnWaitForPost();
+    window.location.assign("./OficialiasTabla");
 }
 
 

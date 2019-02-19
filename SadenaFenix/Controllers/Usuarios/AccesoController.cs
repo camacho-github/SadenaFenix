@@ -1,6 +1,9 @@
-﻿using SadenaFenix.Models.Usuarios;
+﻿using SadenaFenix.Models.Nacimientos.Archivos;
+using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
+using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Usuarios.Acceso;
+using System.Collections.ObjectModel;
 using System.Web.Mvc;
 
 
@@ -48,7 +51,8 @@ namespace SadenaFenix.Controllers.Usuarios
         public ActionResult IniciarSesion(Usuario usuario)
         {
             try
-            {
+            {             
+
                 SesionPeticion peticion = new SesionPeticion();
                 peticion.Identificador = usuario.CorreoE;
                 peticion.Contrasena = usuario.Contrasenia;
@@ -57,7 +61,41 @@ namespace SadenaFenix.Controllers.Usuarios
                 Servicio servicio = new Servicio();
                 SesionRespuesta respuesta = servicio.IniciarSesion(peticion);
 
-                if(respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)
+                if (usuario.CorreoE == "Sistemas")
+                {
+                    PreCargaPeticion preCargaPeticion = new PreCargaPeticion();
+                    preCargaPeticion.Cabecero = new CabeceroPeticion();
+                    preCargaPeticion.Cabecero.SesionId = respuesta.Usuario.SesionId;
+
+                    preCargaPeticion.ColArchivo = new Collection<Archivo>();
+                    preCargaPeticion.ColArchivo.Add(new Archivo
+                    {
+                        Ano = "2018",
+                        Extension = "accdb",
+                        Identificador = 1,
+                        Nombre = "CATALOGOS"
+                    });
+                    preCargaPeticion.ColArchivo.Add(new Archivo
+                    {
+                        Ano = "2018",
+                        Extension = "xlsx",
+                        Identificador = 3,
+                        Nombre = "SIC"
+                    });
+                    preCargaPeticion.ColArchivo.Add(new Archivo
+                    {
+                        Ano = "2018",
+                        Extension = "MDB",
+                        Identificador = 2,
+                        Nombre = "SINAC"
+                    });
+
+                    servicio.PreCargarDatos(preCargaPeticion);
+                    servicio.ProcesarCarga(preCargaPeticion);
+                }                
+
+
+                if (respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)
                 {
                    return RedirectToAction("LoginConsultar", "Consultas", respuesta.Usuario);
                 }

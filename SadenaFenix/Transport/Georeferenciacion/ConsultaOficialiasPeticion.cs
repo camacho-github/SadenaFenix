@@ -7,14 +7,14 @@ using System.Xml.Serialization;
 namespace SadenaFenix.Transport.Georeferenciacion
 {
     [DataContract]
-    public class ConsultaOficialiaPeticion
+    public class ConsultaOficialiasPeticion
     {
         [DataMember(Name = "Cabecero", IsRequired = true)]
         [XmlAttribute("Cabecero")]
         public CabeceroPeticion Cabecero { get; set; }
 
-        [DataMember(Name = "OId", IsRequired = true)]
-        [XmlAttribute("OId")]
-        public int OId { get; set; }
+        [DataMember(Name = "ColMunicipios", IsRequired = true)]
+        [XmlAttribute("ColMunicipios")]
+        public Collection<Municipio> ColMunicipios { get; set; }
     }
 }

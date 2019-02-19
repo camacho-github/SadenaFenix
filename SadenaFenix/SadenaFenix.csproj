@@ -197,10 +197,12 @@
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
-    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaRespuesta.cs" />
-    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\InsertarOficialiaPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultaOficialiasPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultaOficialiasRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\AnioViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MesViewModelIEnumerable.cs" />
     <Compile Include="Transport\Nacimientos\Consultas\Comboxes\MunicipioViewModelIEnumerable.cs" />
@@ -704,6 +706,7 @@
     <Content Include="Views\Shared\_GeoLayout.cshtml" />
     <Content Include="Views\GeoOficialias\OficialiasTabla.cshtml" />
     <Content Include="Views\GeoOficialias\CrearOficialia.cshtml" />
+    <Content Include="Views\GeoOficialias\ActualizarOficialia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

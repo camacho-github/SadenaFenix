@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.ObjectModel;
+using System.Web.Mvc;
+using SadenaFenix.Models.Nacimientos.Archivos;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
+using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Nacimientos.Consultas;
 using SadenaFenix.Transport.Usuarios.Acceso;
 
@@ -11,7 +14,9 @@ namespace SadenaFenix.Controllers.Nacimientos
         // GET: Archivos
         public ActionResult Importar(string userJson)
         {
+
             Usuario usuario = new Usuario { Json = userJson };
+                                  
             
             return View("~/Views/Nacimientos/Archivos/Importar.cshtml", usuario);
         }

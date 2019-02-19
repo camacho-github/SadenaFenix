@@ -23,9 +23,9 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [HttpGet]
         public ActionResult OficialiasTabla()
         {
-            ConsultaOficialiaPeticion peticion = new ConsultaOficialiaPeticion();
+            ConsultaOficialiasPeticion peticion = new ConsultaOficialiasPeticion();
             peticion.ColMunicipios = new Collection<Municipio>();
-            ConsultaOficialiaRespuesta respuesta = new GeoServicio().ConsultarOficialias(peticion);
+            ConsultaOficialiasRespuesta respuesta = new GeoServicio().ConsultarOficialias(peticion);
             if(respuesta.Cabecero.EsRespuestaExistosa())
             {
                 return View(respuesta.DTOficialia);
@@ -62,6 +62,39 @@ namespace SadenaFenix.Controllers.Georeferenciacion
 
             GeoServicio geoServicio = new GeoServicio();
             InsertarOficialiaRespuesta respuesta = geoServicio.InsertarOficialia(peticion);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarOficialia(int id)
+        {
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
+            cabeceroPeticion.SesionId = 1;
+
+            ConsultaOficialiaPeticion peticion = new ConsultaOficialiaPeticion();
+            peticion.OId = id;
+
+            GeoServicio geoServicio = new GeoServicio();
+            ConsultaOficialiaRespuesta respuesta = geoServicio.ConsultarOficialia(peticion);
+            Oficialia oficialia = respuesta.Oficialia;
+
+            Servicio servicio = new Servicio();
+            CatalogoMunicipioRespuesta catalogoMunicipioRespuesta = servicio.ConsultarCatalogoMunicipioGeografia(cabeceroPeticion);
+            oficialia.MunicipioLista = new List<Municipio>(catalogoMunicipioRespuesta.ColMunicipio);
+
+            CatalogoLocalidadRespuesta catalogoLocalidadRespuesta = servicio.ConsultarCatalogoLocalidadGeografiaCoahuila(cabeceroPeticion);
+            oficialia.LocalidadLista = new List<Localidad>(catalogoLocalidadRespuesta.ColLocalidad);
+            return View(oficialia);
+        }
+
+        [WebMethod]
+        public ActionResult ActualizarOficialia(string jsonOficialia)
+        {
+            ActualizarOficialiaPeticion peticion = new ActualizarOficialiaPeticion();
+            peticion.Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia);
+
+            GeoServicio geoServicio = new GeoServicio();
+            ActualizarOficialiaRespuesta respuesta = geoServicio.ActualizarOficialia(peticion);
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 

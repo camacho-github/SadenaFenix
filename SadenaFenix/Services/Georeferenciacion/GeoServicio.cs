@@ -1,4 +1,5 @@
 ﻿using SadenaFenix.Business.Georeferenciacion;
+using SadenaFenix.Business.Usuarios;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Transport.Georeferenciacion;
@@ -13,9 +14,9 @@ namespace SadenaFenix.Services.Georeferenciacion
     public class GeoServicio
     {
         #region Métodos Publicos
-        public ConsultaOficialiaRespuesta ConsultarOficialias(ConsultaOficialiaPeticion peticion)
+        public ConsultaOficialiasRespuesta ConsultarOficialias(ConsultaOficialiasPeticion peticion)
         {
-            ConsultaOficialiaRespuesta respuesta = new ConsultaOficialiaRespuesta();
+            ConsultaOficialiasRespuesta respuesta = new ConsultaOficialiasRespuesta();
             try
             {
                 GeoreferenciacionBLL bll = new GeoreferenciacionBLL();               
@@ -32,6 +33,28 @@ namespace SadenaFenix.Services.Georeferenciacion
             }
             return respuesta;
         }
+
+        public ConsultaOficialiaRespuesta ConsultarOficialia(ConsultaOficialiaPeticion peticion)
+        {
+            ConsultaOficialiaRespuesta respuesta = new ConsultaOficialiaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                respuesta = bll.ConsultarOficialia(peticion.OId);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+                
         #endregion
         #region Métodos Publicos
         public InsertarOficialiaRespuesta InsertarOficialia(InsertarOficialiaPeticion peticion)
