@@ -1,6 +1,16 @@
 ﻿/* Script for: Reportes
  */
+var objReporteEdadSubregistro;
+
+/* On ready */
 $(function () {
+
+    /* Initialize Select2 */
+    $('.select2').select2({
+        tags: "true",
+        placeholder: "Selección...",
+        allowClear: true
+    });
 
     $('#coahuilaMap').vectorMap({
         map: 'CoahuilaDeZaragozaMap',
@@ -41,7 +51,6 @@ $(function () {
             alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
         },
     });
-   
 
     /* Unregistered table */
     $('#unregisteredTable').DataTable({
@@ -76,7 +85,6 @@ $(function () {
         'autoWidth': true
     });
 
-
     // Initialize components
     $('.treeview').blur(function () {
         $(this).removeClass('active');
@@ -94,25 +102,30 @@ $(function () {
         $('#infoModal').show();
     });
 
+    $('#ConsultarReporteEdadSubregistro').click(function () {
+        //provisionalmente para evitar que se consulte varias veces
+        if (objReporteEdadSubregistro == undefined) {
 
+            $.ajax({
+                type: "POST",
+                url: "ConsultarReporteEdadSubregistro",
+                data: JSON.stringify(objUsuario),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status) {
+                    if (objReporteEdadSubregistro == undefined) {
+                        objReporteEdadSubregistro = {
+                            cabeceros: data.ColCabeceros,
+                            filas: data.ColFilas
+                        };
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request);
+                }
+            });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
+    });
 
 });
