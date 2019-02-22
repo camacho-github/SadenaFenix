@@ -229,12 +229,10 @@ function prepareResumenTotalesTable(data, tableId) {
     var tr;
     var dataRow;
     for (i in data.filas) {
-        dataRow = data.filas[i];
+        dataRow = data.filas[i].ColCeldas;
         tr = $('<tr></tr>');
-        console.log(dataRow);
         for (j in dataRow) {
             tr.append('<td>'.concat(dataRow[j].Valor, '</td>'));
-            console.log(tr);
         }
         /* Adding row */
         tbody.append(tr);
