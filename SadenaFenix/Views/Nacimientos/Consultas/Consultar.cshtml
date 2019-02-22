@@ -75,7 +75,7 @@
         </section>
         <!-- ./search -->
         <!-- Result -->
-        <section id="cantidadesResumenConsulta" style="display:block;">
+        <section id="cantidadesResumenConsulta" style="display:none;">
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Panel -->
@@ -90,7 +90,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="description-block">
-                                        <a id="subregistradosLink" href="#subregistradosTab" data-toggle="tab" aria-expanded="true">
+                                        <a id="subregistradosLink" class="description-block-review-link" href="#subregistradosTab" data-toggle="tab" aria-expanded="true">
                                             <div id="TotalSubregistro"></div>
                                             <div id="PorcentajeSubregistro" class="badge badge-primary"></div>
                                             <div style="margin-top:5px;">Subregistro</div>
@@ -100,7 +100,7 @@
                                 <!-- /.col -->
                                 <div class="col-sm-3">
                                     <div class="description-block">
-                                        <a id="registradosLink" href="#registradosTab" data-toggle="tab" aria-expanded="true">
+                                        <a id="registradosLink" class="description-block-review-link" href="#registradosTab" data-toggle="tab" aria-expanded="true">
                                             <div id="TotalRegistroOportuno"></div>
                                             <div id="PorcentajeRegistroOportuno" class="badge badge-success"></div>
                                             <div style="margin-top:5px;">Registro Oportuno</div>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="description-block">
-                                        <a id="extemporaneosLink" href="#extemporaneosTab" data-toggle="tab" aria-expanded="true">
+                                        <a id="extemporaneosLink" class="description-block-review-link" href="#extemporaneosTab" data-toggle="tab" aria-expanded="true">
                                             <div id="TotalRegistroExtemporaneo"></div>
                                             <div id="PorcentajeRegistroExtemporaneo" class="badge badge-warning">20%</div>
                                             <div style="margin-top:5px;">Registro Extemporáneo</div>
@@ -118,8 +118,8 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-3">
-                                    <div id="resumenTotalesLink" class="description-block" >
-                                        <a href="#resumenTotalesTab" data-toggle="tab" aria-expanded="true">
+                                    <div class="description-block" >
+                                        <a id="resumenTotalesLink" class="description-block-review-link"  href="#resumenTotalesTab" data-toggle="tab" aria-expanded="true">
                                             <br /><div><i class="fa fa-danger fa-line-chart"></i></div>
                                             <div style="margin-top:5px;">Resumen por Municipio</div>
                                         </a>
@@ -136,48 +136,10 @@
                                 <div id="subregistradosTab" class="row tab-pane fade in">
                                     <div class="col-sm-12">
                                         <p class="text-center"><strong>Nacimientos con Subregistro</strong></p>
-                                        <div class="table-container">
+                                        <div id="subregistradosTableContainer" class="table-container">
                                             <div class="col-sm-12">
                                                 <div id="subregistradosTableBottonsContainer" class="btn-group btn-group-justified"></div>
                                             </div>
-                                            <table id="subregistradosTable" class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="1" style="border-top: 2px solid #dddddd;">FOLIO</th>
-                                                        <th colspan="3" style="border-top: 2px solid #dddddd;">DATOS DE LA MADRE</th>
-                                                        <th colspan="9" style="border-top: 2px solid #dddddd;">DATOS DE LA RESIDENCIA DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS SOCIOECONÓMICOS DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS DEL RECIEN NACIDO</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Folio del certificado de nacimiento</th>
-                                                        <th>Edad</th>
-                                                        <th>ID Estado civil</th>
-                                                        <th>Estado civil</th>
-                                                        <th>Calle</th>
-                                                        <th>Número exterior</th>
-                                                        <th>Número interior</th>
-                                                        <th>ID Entidad</th>
-                                                        <th>Entidad</th>
-                                                        <th>ID Municipio</th>
-                                                        <th>Municipio</th>
-                                                        <th>ID Localidad</th>
-                                                        <th>Localidad</th>
-                                                        <th>Número de nacimiento vivo</th>
-                                                        <th>ID Escolaridad</th>
-                                                        <th>Escolaridad</th>
-                                                        <th>Ocupación</th>
-                                                        <th>Fecha de nacimiento</th>
-                                                        <th>Hora de nacimiento</th>
-                                                        <th>ID Sexo</th>
-                                                        <th>Sexo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Records are fulling by AJAX -->
-                                                </tbody>
-                                            </table>
-                                            <!-- ./table -->
                                         </div>
                                     </div>
                                     <!-- ./col -->
@@ -185,48 +147,10 @@
                                 <div id="registradosTab" class="row tab-pane fade in">
                                     <div class="col-sm-12">
                                         <p class="text-center"><strong>Nacimientos con Registro</strong></p>
-                                        <div class="table-container">
+                                        <div id="registradosTableContainer" class="table-container">
                                             <div class="col-sm-12">
                                                 <div id="registradosTableBottonsContainer" class="btn-group btn-group-justified"></div>
                                             </div>
-                                            <table id="registradosTable" class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="1" style="border-top: 2px solid #dddddd;">FOLIO</th>
-                                                        <th colspan="3" style="border-top: 2px solid #dddddd;">DATOS DE LA MADRE</th>
-                                                        <th colspan="9" style="border-top: 2px solid #dddddd;">DATOS DE LA RESIDENCIA DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS SOCIOECONÓMICOS DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS DEL RECIEN NACIDO</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Folio del certificado de nacimiento</th>
-                                                        <th>Edad</th>
-                                                        <th>ID Estado civil</th>
-                                                        <th>Estado civil</th>
-                                                        <th>Calle</th>
-                                                        <th>Número exterior</th>
-                                                        <th>Número interior</th>
-                                                        <th>ID Entidad</th>
-                                                        <th>Entidad</th>
-                                                        <th>ID Municipio</th>
-                                                        <th>Municipio</th>
-                                                        <th>ID Localidad</th>
-                                                        <th>Localidad</th>
-                                                        <th>Número de nacimiento vivo</th>
-                                                        <th>ID Escolaridad</th>
-                                                        <th>Escolaridad</th>
-                                                        <th>Ocupación</th>
-                                                        <th>Fecha de nacimiento</th>
-                                                        <th>Hora de nacimiento</th>
-                                                        <th>ID Sexo</th>
-                                                        <th>Sexo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Records are fulling by AJAX -->
-                                                 </tbody>
-                                            </table>
-                                            <!-- ./table -->
                                         </div>
                                     </div>
                                     <!-- ./col -->
@@ -234,74 +158,21 @@
                                 <div id="extemporaneosTab" class="row tab-pane fade in">
                                     <div class="col-sm-12">
                                         <p class="text-center"><strong>Nacimientos con Registro Extemporáneo</strong></p>
-                                        <div class="table-container">
+                                        <div id="extemporaneosTableContainer" class="table-container">
                                             <div class="col-sm-12">
                                                 <div id="extemporaneosTableBottonsContainer" class="btn-group btn-group-justified"></div>
                                             </div>
-                                            <table id="extemporaneosTable" class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="1" style="border-top: 2px solid #dddddd;">FOLIO</th>
-                                                        <th colspan="3" style="border-top: 2px solid #dddddd;">DATOS DE LA MADRE</th>
-                                                        <th colspan="9" style="border-top: 2px solid #dddddd;">DATOS DE LA RESIDENCIA DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS SOCIOECONÓMICOS DE LA MADRE</th>
-                                                        <th colspan="4" style="border-top: 2px solid #dddddd;">DATOS DEL RECIEN NACIDO</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Folio del certificado de nacimiento</th>
-                                                        <th>Edad</th>
-                                                        <th>ID Estado civil</th>
-                                                        <th>Estado civil</th>
-                                                        <th>Calle</th>
-                                                        <th>Número exterior</th>
-                                                        <th>Número interior</th>
-                                                        <th>ID Entidad</th>
-                                                        <th>Entidad</th>
-                                                        <th>ID Municipio</th>
-                                                        <th>Municipio</th>
-                                                        <th>ID Localidad</th>
-                                                        <th>Localidad</th>
-                                                        <th>Número de nacimiento vivo</th>
-                                                        <th>ID Escolaridad</th>
-                                                        <th>Escolaridad</th>
-                                                        <th>Ocupación</th>
-                                                        <th>Fecha de nacimiento</th>
-                                                        <th>Hora de nacimiento</th>
-                                                        <th>ID Sexo</th>
-                                                        <th>Sexo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Records are fulling by AJAX -->
-                                                </tbody>
-                                            </table>
-                                            <!-- ./table -->
                                         </div>
                                     </div>
                                     <!-- ./col -->
                                 </div>
                                 <div id="resumenTotalesTab" class="row tab-pane fade in">
                                     <div class="col-sm-12">
-                                        <p class="text-center"><strong>Resumen por municipio</strong></p>
-                                        <div class="table-container">
+                                        <p class="text-center"><strong>Resumen por Municipio</strong></p>
+                                        <div id="resumenTotalesTableContainer" class="table-container">
                                             <div class="col-sm-12">
                                                 <div id="resumenTotalesTableBottonsContainer" class="btn-group btn-group-justified"></div>
                                             </div>
-                                            <table id="resumenTotalesTable" class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="border-top: 2px solid #dddddd;">ID Municipio</th>
-                                                        <th style="border-top: 2px solid #dddddd;">Municipio</th>
-                                                        <th style="border-top: 2px solid #dddddd;">Total Subregistro</th>
-                                                        <th style="border-top: 2px solid #dddddd;">Total Registro Oportuno</th>
-                                                        <th style="border-top: 2px solid #dddddd;">Total Registro Extemporáneo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Records are fulling by AJAX -->
-                                                </tbody>
-                                            </table>
-                                            <!-- ./table -->
                                         </div>
                                     </div>
                                     <!-- ./col -->

@@ -228,11 +228,11 @@ p.note-feet {
     color: #444444;
 }
 
-    .description-block:hover {
-        cursor: pointer;
-        background-image: linear-gradient(to top, white, #f4f4f4);
-        border-radius: 5px;
-    }
+.description-block:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to top, white, #f4f4f4);
+    border-radius: 5px;
+}
 
 .badge-default {
     background-color: #474949;
