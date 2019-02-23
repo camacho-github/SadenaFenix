@@ -14,6 +14,26 @@ namespace SadenaFenix.Services.Georeferenciacion
     public class GeoServicio
     {
         #region Métodos Publicos
+        public ConsultarOficinasRespuesta ConsultarOficinas(ConsultarOficinasPeticion peticion)
+        {
+            ConsultarOficinasRespuesta respuesta = new ConsultarOficinasRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                respuesta = bll.ConsultarOficinas(peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         public ConsultaOficialiasRespuesta ConsultarOficialias(ConsultaOficialiasPeticion peticion)
         {
             ConsultaOficialiasRespuesta respuesta = new ConsultaOficialiasRespuesta();
@@ -83,6 +103,26 @@ namespace SadenaFenix.Services.Georeferenciacion
             {
                 GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
                 bool resultado = bll.ActualizarOficialia(peticion.Oficialia);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ActualizarOficialiaRespuesta EliminarOficialia(int oId)
+        {
+            ActualizarOficialiaRespuesta respuesta = new ActualizarOficialiaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.EliminarOficialia(oId);
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }
             catch (BusinessException e)

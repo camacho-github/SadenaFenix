@@ -98,6 +98,15 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
+        [WebMethod]
+        public ActionResult EliminarOficialia(int oid)
+        {
+            
+            GeoServicio geoServicio = new GeoServicio();
+            ActualizarOficialiaRespuesta respuesta = geoServicio.EliminarOficialia(oid);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult ObtenerLocalidadesPorMunicipio()
         {
             

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\Georeferenciacion\HospitalesController.cs" />
     <Compile Include="Controllers\Georeferenciacion\ModulosHospitalariosController.cs" />
     <Compile Include="Controllers\Georeferenciacion\OficialiasController.cs" />
+    <Compile Include="Controllers\Georeferenciacion\OficinasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Nacimientos\ArchivosController.cs" />
     <Compile Include="Controllers\Nacimientos\ConsultasController.cs" />
@@ -178,7 +179,9 @@
     <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
     <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
+    <Compile Include="Models\Georeferenciacion\Oficina.cs" />
     <Compile Include="Models\Georeferenciacion\Oficialia.cs" />
+    <Compile Include="Models\Georeferenciacion\TipoOficina.cs" />
     <Compile Include="Models\Nacimientos\Archivos\Archivo.cs" />
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
     <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
@@ -199,6 +202,8 @@
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultarOficinasPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultarOficinasRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\InsertarOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\InsertarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiasPeticion.cs" />
@@ -250,6 +255,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="SadenaFenix.csproj.user" />
+    <Content Include="Scripts\js\georefenciacion\oficinas.js" />
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
@@ -709,6 +715,8 @@
     <Content Include="Views\GeoOficialias\OficialiasTabla.cshtml" />
     <Content Include="Views\GeoOficialias\CrearOficialia.cshtml" />
     <Content Include="Views\GeoOficialias\ActualizarOficialia.cshtml" />
+    <Content Include="Views\GeoOficialias\OficinasConsulta.cshtml" />
+    <Content Include="Views\Oficinas\OficinasConsulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
