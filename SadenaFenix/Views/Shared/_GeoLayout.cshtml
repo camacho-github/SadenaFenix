@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
     <link rel="stylesheet" href="~/Content/css/site.css" />
 
-     
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
 </head>
@@ -35,6 +38,8 @@
         <div class="lds-facebook"><div></div><div></div><div></div></div>
     </div>
 
+    <div id="transparentBackLayer" class="hiddElement"></div>
+
 
     <div class="alert alert-success mensajeForma" id="AlertaMensaje" style="display: none">
         <strong id="Titulo">Titulo</strong>
@@ -42,6 +47,18 @@
         <div id="Mensaje">Mensaje</div>
     </div>
 
+    <div id="ConfirmacionMensaje" class="alert alert-dismissible alert-warning mensajeForma hiddElement">
+        <div class="hiddElement">
+            <a href="#"><img id="closeMessage" class="close_modal" src="~/Content/images/icon_close.png" alt="Close" /></a>
+        </div>
+        <strong id="Titulo">Titulo</strong>
+        <hr />
+        <div id="Mensaje">Mensaje</div>
+        <div id="buttonsContainer" class="center" classToChildren="btn btn-primary btn-sm">
+            <!-- Buttons Details. -->
+        </div>
+    </div>
+    
     <!-- Navegation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -71,16 +88,19 @@
                             <li><a id="callVerReportes" href="#">Reportes por municipios</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown" style="display:block;">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span>Georeferenciación <span class="caret"></span></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li style="display:block;">
-                                <a href="/GeoOficialias/OficialiasTabla">Oficialías</a>
+                                <a id="callConsultaOficinas" href="#">Consulta de oficinas</a>
                             </li>
-                            <li style="display:block;">
-                                <a href="/Oficinas/OficinasConsulta">Oficinas</a>
+                            <li class="opcAdministradorOficinas" style="display:block;">
+                                <a id="callCrearOficina" href="#">Crear nueva oficina</a>
+                            </li>
+                            <li  class="opcAdministradorOficinas"  style="display:block;">
+                                <a id="callActualizarOficina" href="#">Actualizar oficina</a>
                             </li>
                         </ul>
                     </li>
@@ -198,6 +218,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 

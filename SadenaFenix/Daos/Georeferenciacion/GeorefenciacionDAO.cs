@@ -22,10 +22,12 @@ namespace SadenaFenix.Daos.Georeferenciacion
         private const string PR_U_OFICILIA = "SDB.PRUOficialia";
         private const string PR_DEL_OFICILIA = "SDB.PRDelOficialia";
         private const string PRS_OFICINAS = "SDB.PRSOficinas";
+        private const string PR_INS_OFICINA = "SDB.PRInsOficina";
+        
 
         #endregion
 
-        #region Métodos públicos
+        #region Métodos públicos oficinas
         public DataTable ConsultarOficinas(string municipiosUnion)
         {
             DataTable dataTable = new DataTable();
@@ -61,6 +63,319 @@ namespace SadenaFenix.Daos.Georeferenciacion
             return dataTable;
         }
 
+        public bool InsertarOficina(Oficina oficina)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_INS_OFICINA, CreaParametrosInsertaOficina(oficina));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        #endregion métodos públicos oficinas
+
+        #region métodos privados Oficinas
+        private static Boolean ValidaDataSet(DataSet dataSet)
+        {
+            if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosConsultaGeoreferenciacion(string municipiosUnion)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+
+            parametro = new SqlParameter("@pc_municipios", SqlDbType.NVarChar)
+            {
+                Size = 255,
+                Value = (string.IsNullOrEmpty(municipiosUnion)) ? (object)DBNull.Value : municipiosUnion
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosInsertaOficina(Oficina oficina)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_oficina_id", SqlDbType.Int)
+            {
+                Value = oficina.OficinaId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_tipo_id", SqlDbType.Int)
+            {
+                Value = oficina.TipoId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_tipo_institucion", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficina.TipoInstitucion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_institucion", SqlDbType.NVarChar)
+            {
+                Size = 30,
+                Value = oficina.Institucion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_latitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficina.Latitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_longitud", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficina.Longitud
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_region", SqlDbType.NVarChar)
+            {
+                Size = 20,
+                Value = oficina.Region
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_edo_id", SqlDbType.Int)
+            {
+                Value = 5
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_mpio_id", SqlDbType.Int)
+            {
+                Value = oficina.MpioId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_loc_id", SqlDbType.Int)
+            {
+                Value = oficina.LocId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_calle", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficina.Calle
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_numero", SqlDbType.NVarChar)
+            {
+                Size = 10,
+                Value = oficina.Numero
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_colonia", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficina.Colonia
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_cp", SqlDbType.NVarChar)
+            {
+                Size = 5,
+                Value = oficina.CP
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_entre_calles", SqlDbType.NVarChar)
+            {
+                Size = 200,
+                Value = oficina.EntreCalles
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_horario_atencion", SqlDbType.NVarChar)
+            {
+                Size = 50,
+                Value = oficina.HorarioAtencion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_telefono", SqlDbType.NVarChar)
+            {
+                Size = 25,
+                Value = oficina.Telefono
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_oficial_nombre", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficina.OficialNombre
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_oficial_apellidos", SqlDbType.NVarChar)
+            {
+                Size = 80,
+                Value = oficina.OficialApellidos
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_oficial_correo_e", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = oficina.CorreoE
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_serv_luz", SqlDbType.Int)
+            {
+               Value = oficina.InvSerLuz
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_serv_agua", SqlDbType.Int)
+            {
+                Value = oficina.InvSerAgua
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_local_propio", SqlDbType.Int)
+            {
+                Value = oficina.InvLocalPropio
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_serv_sanitario", SqlDbType.Int)
+            {
+                Value = oficina.InvSerSanitario
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_escritorios", SqlDbType.Int)
+            {
+                Value = oficina.InvEscritorios
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_sillas", SqlDbType.Int)
+            {
+                Value = oficina.InvSillas
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_archiveros", SqlDbType.Int)
+            {
+                Value = oficina.InvArchiveros
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_computo_priv", SqlDbType.Int)
+            {
+                Value = oficina.InvCompPriv
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_computo_gob", SqlDbType.Int)
+            {
+                Value = oficina.InvCompGob
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_escaner_priv", SqlDbType.Int)
+            {
+                Value = oficina.InvEscanPriv
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_escaner_gob", SqlDbType.Int)
+            {
+                Value = oficina.InvEscanGob
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_impresora_priv", SqlDbType.Int)
+            {
+                Value = oficina.InvImpPriv
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_inv_impresora_gob", SqlDbType.Int)
+            {
+                Value = oficina.InvImpGob
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_equi_internet", SqlDbType.Int)
+            {
+                Value = oficina.EquiNet
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_equi_trab_internet", SqlDbType.Int)
+            {
+                Value = oficina.EquiTrabNet
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_equi_vent_express", SqlDbType.Int)
+            {
+                Value = oficina.EquiVentExpress
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_equi_con_drc", SqlDbType.Int)
+            {
+                Value = oficina.EquiConDrc
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_expide_curp", SqlDbType.Int)
+            {
+                Value = oficina.ExpideCurp
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_expide_actas_foraneas", SqlDbType.Int)
+            {
+                Value = oficina.ExpideActasForaneas
+            };
+            parametros.Add(parametro);            
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+        #endregion métodos privados Oficinas
+
+
+
+        #region métodos públicos oficialias
         public DataTable ConsultarOficialias(string municipiosUnion)
         {
             DataTable dataTable = new DataTable();
@@ -93,10 +408,10 @@ namespace SadenaFenix.Daos.Georeferenciacion
                 throw new DAOException(-1, de.Message);
             }
 
-            return dataTable; 
+            return dataTable;
         }
 
-        
+
 
         public Oficialia ConsultarOficialia(int OId)
         {
@@ -153,52 +468,7 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return oficialia;
         }
-        #endregion
 
-        #region Métodos privados
-        private static Boolean ValidaDataSet(DataSet dataSet)
-        {
-            if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private Collection<SqlParameter> CreaParametrosConsultaGeoreferenciacion(string municipiosUnion)
-        {
-            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
-            SqlParameter parametro = null;
-
-            parametro = new SqlParameter("@pc_municipios", SqlDbType.NVarChar)
-            {
-                Size = 255,
-                Value = (string.IsNullOrEmpty(municipiosUnion)) ? (object)DBNull.Value : municipiosUnion
-            };
-            parametros.Add(parametro);
-
-            CreaParametrosSalida(parametros);
-
-            return parametros;
-        }
-
-        private Collection<SqlParameter> CreaParametrosConsultaOficialia(int OId)
-        {
-            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
-            SqlParameter parametro = null;
-
-            parametro = new SqlParameter("@pi_oid", SqlDbType.Int)
-            {
-                Value = OId
-            };
-            parametros.Add(parametro);
-
-            CreaParametrosSalida(parametros);
-
-            return parametros;
-        }
-
-        
 
         public bool InsertarOficialia(Oficialia oficialia)
         {
@@ -265,6 +535,25 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return resultado;
         }
+        #endregion métodos públicos oficialías
+
+        #region métodos privados oficialías
+        private static Collection<SqlParameter> CreaParametrosConsultaOficialia(int OId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+
+            parametro = new SqlParameter("@pi_oid", SqlDbType.Int)
+            {
+                Value = OId
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
 
         private static Collection<SqlParameter> CreaParametrosInsertaOficialia(Oficialia oficialia)
         {
@@ -369,6 +658,8 @@ namespace SadenaFenix.Daos.Georeferenciacion
             return parametros;
         }
 
+
+        
         private static Collection<SqlParameter> CreaParametrosActualizarOficialia(Oficialia oficialia)
         {
             Collection<SqlParameter> parametros = new Collection<SqlParameter>();
@@ -492,10 +783,6 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return parametros;
         }
-
-        
-
-
         #endregion
 
     }

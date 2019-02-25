@@ -1,27 +1,6 @@
 ﻿var map;
 var autocomplete;
 
-//$('.search-location').keypress(function (e) {
-//    if (e.which == 13) {
-//        google.maps.event.trigger(autocomplete, 'place_changed');
-//        return false;
-//    }
-//});
-
-//function locationAuto() {
-//    $('.search-location').focus(function () {
-//        autocomplete = new google.maps.places.Autocomplete(this);
-//        searchbox = this;
-
-//        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//            var thisplace = autocomplete.getPlace();
-//            if (thisplace.geometry.location != null) {
-//                $.cookie.raw = true;
-//                $.cookie('location', searchbox.value, { expires: 1 });
-//                $.cookie('geo', thisplace.geometry.location, { expires: 1 });
-//            }
-//        });
-//    });
 
 function fnCargaMapaCoincidencias(strValor) {
 
@@ -111,7 +90,8 @@ function initMap() {
         var myLatLng = event.latLng;       
         fnAsignarPosicion(myLatLng);        
         marker.setPosition(myLatLng);        
-        marker.setTitle("Localía");
+        marker.setTitle("Oficina");
+        infowindowContent.children['place-name'].textContent = fnNombreMarca();
         map.setZoom(17);
     })
 

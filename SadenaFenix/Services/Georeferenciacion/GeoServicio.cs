@@ -13,7 +13,7 @@ namespace SadenaFenix.Services.Georeferenciacion
 {
     public class GeoServicio
     {
-        #region Métodos Publicos
+        #region Métodos Oficinas
         public ConsultarOficinasRespuesta ConsultarOficinas(ConsultarOficinasPeticion peticion)
         {
             ConsultarOficinasRespuesta respuesta = new ConsultarOficinasRespuesta();
@@ -34,12 +34,36 @@ namespace SadenaFenix.Services.Georeferenciacion
             return respuesta;
         }
 
+        public InsertarOficinaRespuesta InsertarOficina(InsertarOficinaPeticion peticion)
+        {
+            InsertarOficinaRespuesta respuesta = new InsertarOficinaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.InsertarOficina(peticion.Oficina);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        #endregion
+
+
+        #region Métodos Publicos
         public ConsultaOficialiasRespuesta ConsultarOficialias(ConsultaOficialiasPeticion peticion)
         {
             ConsultaOficialiasRespuesta respuesta = new ConsultaOficialiasRespuesta();
             try
             {
-                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();               
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
                 respuesta = bll.ConsultarOficialias(peticion.ColMunicipios);
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }
@@ -74,9 +98,8 @@ namespace SadenaFenix.Services.Georeferenciacion
             }
             return respuesta;
         }
-                
-        #endregion
-        #region Métodos Publicos
+
+
         public InsertarOficialiaRespuesta InsertarOficialia(InsertarOficialiaPeticion peticion)
         {
             InsertarOficialiaRespuesta respuesta = new InsertarOficialiaRespuesta();

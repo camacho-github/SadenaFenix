@@ -7,6 +7,45 @@ $(window).on('unload', function () {
     fnWaitForPost();
 });
 
+$(function () {
+    $(".ValidacionTexto").on('keypress', function (event) {
+        var regExp = /^[a-zA-z0-9 ]{0,245}$/;
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        var text = $(this).val();
+
+        if (!regExp.test(key) || !regExp.test(text)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+
+    $("input.ValidacionTelefono").focus(function () {
+        $(this).trigger("click");
+    });
+
+    $("input.ValidacionTelefono").click(function () {
+        if (!$(this).hasClass("disable")) {
+            var input = $(this);
+            input.val(input.attr("realValue"));
+            fnMoveCursorToEnd(input);
+        }
+    });
+
+    $("input.ValidacionTelefono").on('blur', function (event) {
+        var input = $(this),
+            number = input.val();
+        input.attr("realValue", input.val());
+        fnSetFormatPhoneNumber(input, number);
+        input.val($.trim(input.val()));
+    });
+
+
+    $("input.ValidacionNumero").on('keydown', function (event) {
+        var okVal = funOnlyNumberExtended(event);
+        return okVal;
+    });
+});
 
 function fnGetJSONResponse(actionName, parameters) {
     var httpRequest = fnPrepareHttpRequest(actionName);
@@ -66,8 +105,14 @@ function fnParamsString(objArray) {
     return paramsArray;
 }
 
-function fnMessage(title, message, finalFunction) {
+function fnMessage(title, message, finalFunction, clase) {
     var idDiv = $('#AlertaMensaje');
+
+    if (clase != undefined) {
+        idDiv.toggleClass("alert-success", false);
+        idDiv.toggleClass(clase, true);
+    }
+
     idDiv.stop(true, true);
     idDiv.removeAttr('style');
     idDiv.find('#Titulo').text(title);
@@ -79,6 +124,51 @@ function fnMessage(title, message, finalFunction) {
     idDiv.find('#CierreMensaje').on("click", function () {
         idDiv.stop(true, true);
     });
+
+    $('html, body').animate({
+        scrollTop: 0
+    }, 100);
+}
+
+function fnMensajeBotonesLista(tittle, message, btnList, clase) {
+    var idDiv = $('#ConfirmacionMensaje'),
+        containerDiv = $('#ConfirmacionMensaje #buttonsContainer'),
+        transparentLayer = $('#transparentBackLayer');
+
+    if (clase != undefined) {
+        idDiv.toggleClass("alert-warning", false);
+        idDiv.toggleClass(clase, true);
+    }
+
+    idDiv.find('#Titulo').text(tittle);
+    idDiv.find('#Mensaje').text(message);
+
+    containerDiv.empty();
+    $.each(btnList, function (key, value) {
+        var btn = $('<button/>',
+            {
+                text: key,
+                class: containerDiv.attr('classToChildren'),
+                click: function () {
+                    transparentLayer.toggleClass("hiddElement", true);
+                    idDiv.toggleClass("hiddElement", true);
+                    value();
+                }
+            });
+
+        containerDiv.append(btn);
+    });
+
+    idDiv.find('#closeMessage').on("click", function () {
+        idDiv.toggleClass("hiddElement", true);
+    });
+
+    idDiv.toggleClass("hiddElement", false);
+    transparentLayer.toggleClass("hiddElement", false);
+
+    $('html, body').animate({
+        scrollTop: 0
+    }, 100);
 }
 
 function fnShowDiv(div, showHide, isClass) {
@@ -99,7 +189,7 @@ function fnShowDiv(div, showHide, isClass) {
 function fnWaitForLoading(func) {
     var loader = $("#loader");
     fnShowDiv(loader.attr('id'), 1);
-    loader.fadeOut(5000, function () {
+    loader.fadeOut(100, function () {
         func();
         loader.removeAttr('style');
         fnShowDiv(loader.attr('id'), 0);        
@@ -114,6 +204,66 @@ function fnWaitForPost() {
 function fnCompleteWait() {
     fnShowDiv("loader", 0);
 }
+
+
+function fnSetFormatPhoneNumber(element, number) {
+    try {
+        if (number !== "" && number.length > 0) {
+            var tmp1 = number.substring(0, 3),
+                tmp2 = number.substring(3, 6),
+                tmp3 = number.substring(6);
+
+            number = "(" + tmp1 + ")" + tmp2 + " - " + tmp3;
+        }
+        $(element).val(number);
+    } catch (e) {
+        console.error("Error at setFormat phone number cause: " + e);
+    }
+
+}
+
+function fnMoveCursorToEnd(element) {
+    try {
+        var target = event.currentTarget || event.srcElement || event.target;
+        var position = $(element).val().length;
+        fnMoveCursor(target, position);
+    } catch (e) {
+        console.info("No target to move end" + e);
+    }
+
+}
+
+function fnMoveCursor(o, newPosition) {
+    if (o.createTextRange) {
+        var r = o.createTextRange();
+        var value = o.value;
+        var moveTo = value.length - newPosition;
+        r.moveStart('character', newPosition);
+        r.moveEnd('character', -moveTo);
+        r.select();
+    } else {
+        o.selectionStart = newPosition;
+        o.selectionEnd = newPosition;
+    }
+}
+
+function funOnlyNumberExtended(event) {
+    var whichCode = (window.Event) ? event.which : event.keyCode;
+    if (whichCode == 13) {
+        return true;
+    }
+    if (whichCode == 8 || whichCode == 0) {
+        return true;
+    }
+    if ((whichCode >= 48 && whichCode <= 57)
+        || (whichCode >= 96 && whichCode <= 105)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 
 
 $.fn.exists = function () {

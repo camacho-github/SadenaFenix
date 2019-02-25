@@ -27,5 +27,9 @@ namespace SadenaFenix.Transport.Georeferenciacion
         [XmlAttribute("DTOficinas")]
         public DataTable DTOficinas { get; set; }
 
+        [DataMember(Name = "UserJson", IsRequired = true)]
+        [XmlAttribute("UserJson")]
+        public string UserJson { get; set; }
+
     }
 }

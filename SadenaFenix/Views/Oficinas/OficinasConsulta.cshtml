@@ -1,4 +1,5 @@
-﻿@model System.Data.DataTable
+﻿@model SadenaFenix.Transport.Georeferenciacion.ConsultarOficinasRespuesta
+
 <!--   Layout = "~/Views/Shared/_GeoLayout.cshtml"; Scope -->
 @{
     Layout = "~/Views/Shared/_GeoLayout.cshtml";
@@ -10,187 +11,188 @@
 }
 @section Scripts
 {
-    <script src="@Url.Content("~/Scripts/js/georefenciacion/oficinas.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/georefenciacion/consultaOficinas.js")"></script>
 }
 
 
 <!-- Page content -->
-<div class="page-content">
+    <div class="page-content">
+        @Html.HiddenFor(model => model.UserJson, new { id = "objUsuario" })
+        
+        <!-- Container -->
+        <div class="container">
 
-    <!-- Container -->
-    <div class="container">
-
-        <!-- Breadcrumb -->
-        <section class="pull-right">
-            <ul class="breadcrumb">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
-                <li><a href="#">@ViewData["Modulo"]</a></li>
-                <li class="active">@ViewData["Option"]</li>
-            </ul>
-        </section>
-        <!-- ./breadcrumb -->
-        <section>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="well loading-well">
-                        <!-- Form -->
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <legend>@ViewData["TableName"]</legend>
-                                <div class="table-responsive">
-                                    <table id="OficinasTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
-                                        <thead>
-                                            <tr>
-                                                <th>Oficina ID</th>
-                                                <th>Municipio ID</th>
-                                                <th>Municipio</th>
-                                                <th>Localidad ID</th>
-                                                <th>Localidad</th>
-                                                <th>TipoOficina</th>
-                                                <th>TipoInstitucion</th>
-                                                <th>Institucion</th>
-                                                <th>Latitud</th>
-                                                <th>Longitud</th>
-                                                <th>Region</th>
-                                                <th>Calle</th>
-                                                <th>Número</th>
-                                                <th>Colonia</th>
-                                                <th>C.P.</th>
-                                                <th>Entre calles</th>
-                                                <th>Horario de atención</th>
-                                                <th>Teléfono</th>
-                                                <th>Nombre(s) del Oficial</th>
-                                                <th>Apellido(s) del Oficial</th>
-                                                <th>E-mail</th>
-                                                <th>Servicio de luz</th>
-                                                <th>Servicio de agua</th>
-                                                <th>Local propio</th>
-                                                <th>Servicio sanitario</th>
-                                                <th>Escritorios</th>
-                                                <th>Sillas</th>
-                                                <th>Archivero, estantes</th>
-                                                <th>Equipo de computo privado</th>
-                                                <th>Equipo de computo de gobierno</th>
-                                                <th>Escaner privado</th>
-                                                <th>Escaner de gobierno</th>
-                                                <th>Impresora privada</th>
-                                                <th>Impresora de gobierno</th>
-                                                <th>Internet</th>
-                                                <th>Trabajo con Internet</th>
-                                                <th>Ventanilla express</th>
-                                                <th>Conexión con DRC</th>
-                                                <th>Expide CURP</th>
-                                                <th>Expide actas de otros estados</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @for (int i = 0; i < Model.Rows.Count; i++)
-                                            {
-                                            <tr>
-                                                <td>@Model.Rows[i][1]</td>
-                                                <td>@Model.Rows[i][2]</td>
-                                                <td>@Model.Rows[i][3]</td>
-                                                <td>@Model.Rows[i][4]</td>
-                                                <td>@Model.Rows[i][5]</td>
-                                                <td>@Model.Rows[i][6]</td>
-                                                <td>@Model.Rows[i][7]</td>
-                                                <td>@Model.Rows[i][8]</td>
-                                                <td>@Model.Rows[i][9]</td>
-                                                <td>@Model.Rows[i][10]</td>
-                                                <td>@Model.Rows[i][11]</td>
-                                                <td>@Model.Rows[i][12]</td>
-                                                <td>@Model.Rows[i][13]</td>
-                                                <td>@Model.Rows[i][14]</td>
-                                                <td>@Model.Rows[i][15]</td>
-                                                <td>@Model.Rows[i][16]</td>
-                                                <td>@Model.Rows[i][17]</td>
-                                                <td>@Model.Rows[i][18]</td>
-                                                <td>@Model.Rows[i][19]</td>
-                                                <td>@Model.Rows[i][20]</td>
-                                                <td>@Model.Rows[i][21]</td>
-                                                <td>@Model.Rows[i][22]</td>
-                                                <td>@Model.Rows[i][23]</td>
-                                                <td>@Model.Rows[i][24]</td>
-                                                <td>@Model.Rows[i][25]</td>
-                                                <td>@Model.Rows[i][26]</td>
-                                                <td>@Model.Rows[i][27]</td>
-                                                <td>@Model.Rows[i][28]</td>
-                                                <td>@Model.Rows[i][29]</td>
-                                                <td>@Model.Rows[i][30]</td>
-                                                <td>@Model.Rows[i][31]</td>
-                                                <td>@Model.Rows[i][32]</td>
-                                                <td>@Model.Rows[i][33]</td>
-                                                <td>@Model.Rows[i][34]</td>
-                                                <td>@Model.Rows[i][35]</td>
-                                                <td>@Model.Rows[i][36]</td>
-                                                <td>@Model.Rows[i][37]</td>
-                                                <td>@Model.Rows[i][38]</td>
-                                                <td>@Model.Rows[i][39]</td>
-                                                <td>@Model.Rows[i][40]</td>
-                                                <td>
-                                                    <a href="@Url.Action("ActualizarOficialia","GeoOficialias",new {@id=@Model.Rows[i][0]})">Actualizar</a>
-                                                </td>
-                                            </tr>
-                                            }
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Oficina ID</th>
-                                                <th>Municipio ID</th>
-                                                <th>Municipio</th>
-                                                <th>Localidad ID</th>
-                                                <th>Localidad</th>
-                                                <th>TipoOficina</th>
-                                                <th>TipoInstitucion</th>
-                                                <th>Institucion</th>
-                                                <th>Latitud</th>
-                                                <th>Longitud</th>
-                                                <th>Region</th>
-                                                <th>Calle</th>
-                                                <th>Número</th>
-                                                <th>Colonia</th>
-                                                <th>C.P.</th>
-                                                <th>Entre calles</th>
-                                                <th>Horario de atención</th>
-                                                <th>Teléfono</th>
-                                                <th>Nombre(s) del Oficial</th>
-                                                <th>Apellido(s) del Oficial</th>
-                                                <th>E-mail</th>
-                                                <th>Servicio de luz</th>
-                                                <th>Servicio de agua</th>
-                                                <th>Local propio</th>
-                                                <th>Servicio sanitario</th>
-                                                <th>Escritorios</th>
-                                                <th>Sillas</th>
-                                                <th>Archivero, estantes</th>
-                                                <th>Equipo de computo privado</th>
-                                                <th>Equipo de computo de gobierno</th>
-                                                <th>Escaner privado</th>
-                                                <th>Escaner de gobierno</th>
-                                                <th>Impresora privada</th>
-                                                <th>Impresora de gobierno</th>
-                                                <th>Internet</th>
-                                                <th>Trabajo con Internet</th>
-                                                <th>Ventanilla express</th>
-                                                <th>Conexión con DRC</th>
-                                                <th>Expide CURP</th>
-                                                <th>Expide actas de otros estados</th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </fieldset>
-                        </form>
-                        <!-- ./form -->
+            <!-- Breadcrumb -->
+            <section class="pull-right">
+                <ul class="breadcrumb">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                    <li><a href="#">@ViewData["Modulo"]</a></li>
+                    <li class="active">@ViewData["Option"]</li>
+                </ul>
+            </section>
+            <!-- ./breadcrumb -->
+            <section>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well loading-well">
+                            <!-- Form -->
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <legend>@ViewData["TableName"]</legend>
+                                    <div class="table-responsive">
+                                        <table id="OficinasTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                            <thead>
+                                                <tr>
+                                                    <th>Oficina ID</th>
+                                                    <th>Municipio ID</th>
+                                                    <th>Municipio</th>
+                                                    <th>Localidad ID</th>
+                                                    <th>Localidad</th>
+                                                    <th>TipoOficina</th>
+                                                    <th>TipoInstitucion</th>
+                                                    <th>Institucion</th>
+                                                    <th>Latitud</th>
+                                                    <th>Longitud</th>
+                                                    <th>Region</th>
+                                                    <th>Calle</th>
+                                                    <th>Número</th>
+                                                    <th>Colonia</th>
+                                                    <th>C.P.</th>
+                                                    <th>Entre calles</th>
+                                                    <th>Horario de atención</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Nombre(s) del Oficial</th>
+                                                    <th>Apellido(s) del Oficial</th>
+                                                    <th>E-mail</th>
+                                                    <th>Servicio de luz</th>
+                                                    <th>Servicio de agua</th>
+                                                    <th>Local propio</th>
+                                                    <th>Servicio sanitario</th>
+                                                    <th>Escritorios</th>
+                                                    <th>Sillas</th>
+                                                    <th>Archivero, estantes</th>
+                                                    <th>Equipo de computo privado</th>
+                                                    <th>Equipo de computo de gobierno</th>
+                                                    <th>Escaner privado</th>
+                                                    <th>Escaner de gobierno</th>
+                                                    <th>Impresora privada</th>
+                                                    <th>Impresora de gobierno</th>
+                                                    <th>Internet</th>
+                                                    <th>Trabajo con Internet</th>
+                                                    <th>Ventanilla express</th>
+                                                    <th>Conexión con DRC</th>
+                                                    <th>Expide CURP</th>
+                                                    <th>Expide actas de otros estados</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.DTOficinas.Rows.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Model.DTOficinas.Rows[i][1]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][2]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][3]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][4]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][5]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][6]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][7]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][8]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][9]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][10]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][11]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][12]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][13]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][14]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][15]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][16]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][17]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][18]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][19]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][20]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][21]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][22]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][23]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][24]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][25]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][26]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][27]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][28]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][29]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][30]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][31]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][32]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][33]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][34]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][35]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][36]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][37]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][38]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][39]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][40]</td>
+                                                        <td>
+                                                            <a href="@Url.Action("ActualizarOficialia","GeoOficialias",new {@id=@Model.DTOficinas.Rows[i][0]})">Actualizar</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Oficina ID</th>
+                                                    <th>Municipio ID</th>
+                                                    <th>Municipio</th>
+                                                    <th>Localidad ID</th>
+                                                    <th>Localidad</th>
+                                                    <th>TipoOficina</th>
+                                                    <th>TipoInstitucion</th>
+                                                    <th>Institucion</th>
+                                                    <th>Latitud</th>
+                                                    <th>Longitud</th>
+                                                    <th>Region</th>
+                                                    <th>Calle</th>
+                                                    <th>Número</th>
+                                                    <th>Colonia</th>
+                                                    <th>C.P.</th>
+                                                    <th>Entre calles</th>
+                                                    <th>Horario de atención</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Nombre(s) del Oficial</th>
+                                                    <th>Apellido(s) del Oficial</th>
+                                                    <th>E-mail</th>
+                                                    <th>Servicio de luz</th>
+                                                    <th>Servicio de agua</th>
+                                                    <th>Local propio</th>
+                                                    <th>Servicio sanitario</th>
+                                                    <th>Escritorios</th>
+                                                    <th>Sillas</th>
+                                                    <th>Archivero, estantes</th>
+                                                    <th>Equipo de computo privado</th>
+                                                    <th>Equipo de computo de gobierno</th>
+                                                    <th>Escaner privado</th>
+                                                    <th>Escaner de gobierno</th>
+                                                    <th>Impresora privada</th>
+                                                    <th>Impresora de gobierno</th>
+                                                    <th>Internet</th>
+                                                    <th>Trabajo con Internet</th>
+                                                    <th>Ventanilla express</th>
+                                                    <th>Conexión con DRC</th>
+                                                    <th>Expide CURP</th>
+                                                    <th>Expide actas de otros estados</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <!-- ./form -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+        </div>
+        <!-- ./container -->
 
     </div>
-    <!-- ./container -->
-
-</div>
 <!-- ./page content -->

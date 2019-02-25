@@ -24,7 +24,9 @@ namespace SadenaFenix.Business.Georeferenciacion
         {
             geoDAO = new GeorefenciacionDAO();
         }
+        #endregion
 
+        #region Métodos Públicos Oficinas
         public ConsultarOficinasRespuesta ConsultarOficinas(Collection<Municipio> colMunicipios)
         {
             IList<string> municipiosLista = new List<string>();
@@ -95,6 +97,24 @@ namespace SadenaFenix.Business.Georeferenciacion
             return respuesta;
         }
 
+        public bool InsertarOficina(Oficina oficina)
+        {
+            try
+            {
+                geoDAO.InsertarOficina(oficina);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficina no fue registrada correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return true;
+        }
+
+        #endregion Métodos Públicos Oficinas
+
+        #region Métodos Públicos Oficialias
 
         public ConsultaOficialiasRespuesta ConsultarOficialias(Collection<Municipio> colMunicipios)
         {
@@ -120,7 +140,7 @@ namespace SadenaFenix.Business.Georeferenciacion
                     LocId = r.Field<int>("LocId"),
                     LocDesc = r.Field<string>("LocDesc"),
                     Calle = r.Field<string>("Calle"),
-                    Numero = r.Field<string>("Numero"),                   
+                    Numero = r.Field<string>("Numero"),
                     Colonia = r.Field<string>("Colonia"),
                     CP = r.Field<string>("CP"),
                     Telefono = r.Field<string>("Telefono"),
@@ -171,7 +191,7 @@ namespace SadenaFenix.Business.Georeferenciacion
                 throw new BusinessException("La oficialia no fue registrada correctamente, favor de validar los datos: " + e.Message);
             }
 
-            return true;           
+            return true;
         }
 
         public bool ActualizarOficialia(Oficialia oficialia)
@@ -203,10 +223,6 @@ namespace SadenaFenix.Business.Georeferenciacion
 
             return true;
         }
-        #endregion
-
-        #region Métodos Públicos
-
 
         #endregion
 

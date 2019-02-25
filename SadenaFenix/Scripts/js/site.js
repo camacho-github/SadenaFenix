@@ -14,6 +14,7 @@ $(function () {
         if (objUsuario.Rol.RolId == CONST_ROL_ANALISTA) {
             $("#opcionImportarArchivos").hide();
             $("#estiloDivisionMenu").hide();
+            $("#opcAdministradorOficinas").hide();
         }
     } else {
         $("#botonCirculoSesion").hide();
@@ -31,6 +32,18 @@ $(function () {
 
     $("#callConsultar").click(function () {
         window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    $("#callConsultaOficinas").click(function () {
+        window.location.href = "/Oficinas/OficinasConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    $("#callCrearOficina").click(function () {
+        window.location.href = "/Oficinas/CrearOficina?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    $("#callActualizarOficina").click(function () {
+        window.location.href = "/Oficinas/ActualizarOficina?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
     $("#callAcercaDe").click(function () {

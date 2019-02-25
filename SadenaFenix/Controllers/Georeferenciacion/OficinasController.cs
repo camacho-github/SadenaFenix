@@ -1,6 +1,12 @@
-﻿using SadenaFenix.Models.Catalogos.Geografia;
+﻿using Newtonsoft.Json;
+using SadenaFenix.Models.Catalogos.Geografia;
+using SadenaFenix.Models.Georeferenciacion;
+using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Services;
 using SadenaFenix.Services.Georeferenciacion;
+using SadenaFenix.Transport.Catalogos;
 using SadenaFenix.Transport.Georeferenciacion;
+using SadenaFenix.Transport.Usuarios.Acceso;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +14,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 
 namespace SadenaFenix.Controllers.Georeferenciacion
 {
@@ -15,20 +22,70 @@ namespace SadenaFenix.Controllers.Georeferenciacion
     {
         // GET: Oficinas/OficinasConsulta
         [HttpGet]
-        public ActionResult OficinasConsulta()
+        public ActionResult OficinasConsulta(string userJson)
         {
+
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userJson);
+            usuario.Json = userJson;
+
             ConsultarOficinasPeticion peticion = new ConsultarOficinasPeticion();
+            peticion.Cabecero = new CabeceroPeticion();
+            peticion.Cabecero.SesionId = usuario.SesionId;
+
             peticion.ColMunicipios = new Collection<Municipio>();
             ConsultarOficinasRespuesta respuesta = new GeoServicio().ConsultarOficinas(peticion);
-            if (respuesta.Cabecero.EsRespuestaExistosa())
+            respuesta.UserJson = userJson;
+
+            if (! respuesta.Cabecero.EsRespuestaExistosa())
             {
-                return View(respuesta.DTOficinas);
+                respuesta.DTOficinas = new DataTable();                
             }
-            else
-            {
-                return View(new DataTable());
-            }
+
+            return View(respuesta);
         }
+
+        [HttpGet]
+        public ActionResult CrearOficina(string userJson)
+        {
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userJson);
+            usuario.Json = userJson;
+
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
+            cabeceroPeticion.SesionId = usuario.SesionId;
+            
+            Servicio servicio = new Servicio();
+
+            Oficina oficina = new Oficina();
+            CatalogoMunicipioRespuesta catalogoMunicipioRespuesta = servicio.ConsultarCatalogoMunicipioGeografia(cabeceroPeticion);
+            oficina.MunicipioLista = new List<Municipio>(catalogoMunicipioRespuesta.ColMunicipio);
+            
+            CatalogoLocalidadRespuesta catalogoLocalidadRespuesta = servicio.ConsultarCatalogoLocalidadGeografiaCoahuila(cabeceroPeticion);
+            oficina.LocalidadLista = new List<Localidad>(catalogoLocalidadRespuesta.ColLocalidad);
+
+            oficina.TipoLista = new List<TipoOficina>();
+            oficina.TipoLista.Add(new TipoOficina(1, "Oficialia"));
+            oficina.TipoLista.Add(new TipoOficina(2, "Módulo Hospitalario"));
+
+            InsertarOficinaPeticion oficinaPeticion = new InsertarOficinaPeticion();
+            oficinaPeticion.Oficina = oficina;
+            oficinaPeticion.UserJson = userJson;
+
+            return View(oficinaPeticion);
+        }
+
+
+        [WebMethod]
+        public ActionResult GuardarOficina(string jsonOficina)
+        {
+            InsertarOficinaPeticion peticion = new InsertarOficinaPeticion();
+            peticion.Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina);
+
+            GeoServicio geoServicio = new GeoServicio();
+            InsertarOficinaRespuesta respuesta = geoServicio.InsertarOficina(peticion);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         // GET: Oficinas/Details/5
         public ActionResult Details(int id)
