@@ -9,21 +9,21 @@ namespace SadenaFenix
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/lib/jquery/dist/jquery.js"));
+                        "~/Scripts/vendor/jquery/dist/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/lib/jquery-validation/dist/jquery.validate*"));
+                        "~/Scripts/vendor/jquery-validation/dist/jquery.validate*"));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/lib/modernizr/modernizr*"));
+                        "~/Scripts/vendor/modernizr/modernizr*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/lib/bootstrap/dist/js/bootstrap.js"));
+                      "~/Scripts/vendor/bootstrap/dist/js/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Scripts/lib/bootstrap/dist/css/bootstrap.css",
+                      "~/Scripts/vendor/bootstrap/dist/css/bootstrap.css",
                       "~/Content/css/site.css"));
         }
 

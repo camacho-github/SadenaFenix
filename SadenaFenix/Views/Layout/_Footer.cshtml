@@ -1,0 +1,22 @@
+﻿@{
+
+    ViewData["Version"] = "1.0.0";
+    ViewData["Year"] = "2019";
+
+}
+<!-- Footer -->
+<div class="footer-container">
+    <hr />
+    <footer>
+        <!-- Version -->
+        <div class="pull-right hidden-xs">
+            <b>Versión</b> @ViewData["Version"]
+        </div>
+        <!-- Default -->
+        <strong>
+            Copyright &copy; @ViewData["Year"] -
+            <a href="/Home/Index">@ViewData["Root"]</a>.
+        </strong> Todos los derechos reservados.
+    </footer>
+</div>
+<!-- ./footer -->

@@ -1,9 +1,14 @@
-﻿@model SadenaFenix.Models.Usuarios.Usuario
-<!-- Scope -->
+﻿@* Model *@
+@model SadenaFenix.Models.Usuarios.Usuario
+
 @{
-    ViewData["Title"] = "Acerca de";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Acerca de";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
     ViewData["ApplicationName"] = "SADENA";
     ViewData["ApplicationDescription"] = "Sistema Analizador de Nacimientos";
+
 }
 
 <!-- Page content -->

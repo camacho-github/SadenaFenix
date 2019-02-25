@@ -1,0 +1,552 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+   for details on configuring this project to bundle and minify static web assets. */
+
+/*
+#subregistradosTab .badge, #registradosTab .badge, #extemporaneosTab .badge{
+    margin-left: 20px;
+    width: 30%;
+    font-size: 15px;
+}*/
+
+/*
+#subregistradosTab h5, #registradosTab h5, #extemporaneosTab h5 {
+    font-size: 16px;
+    font-weight: bold;
+} */
+
+.map-container {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.tab-content.tabOficina{
+    margin-top:20px;
+}
+
+.toogleStyleOficinas .toggle {
+    width: 120px !important;
+}
+
+.map-container iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.controls {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    height: 29px;
+    margin-left: 17px;
+    margin-top: 10px;
+    outline: none;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+.controls:focus {
+    border-color: #4d90fe;
+}
+
+.title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#mapGoogle #infowindow-content {
+    display: inline;
+}
+
+.table-container {
+    table-layout: auto;
+    width: 100%;
+}
+
+
+#resumenTotalesTable {
+    width: 40% !important;
+    margin: 0 !important;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+    /*
+   * Header and footer styles
+   */
+    /*
+   * Body styles
+   */
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
+#resumenTotalesTable_wrapper .dataTables_scrollBody {
+    width: 48% !important;
+}
+
+#OficinasTabla_paginate .paginate_button {
+    padding:0 !important
+}
+
+#OficinasTabla_wrapper .dt-buttons{
+    margin-bottom:20px !important
+}
+
+#OficinasTabla_wrapper .bs-select {
+    margin-left: 80px !important
+}
+
+.mensajeForma {
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 800px;
+    height: 116px;
+    width: 400px;
+    z-index: 100;
+    font-size: medium;
+    font-style: italic;
+    text-align: center;
+}
+
+#ConfirmacionMensaje {
+    height: 170px;
+}
+
+#buttonsContainer{
+    margin-top:10px;
+}
+
+#buttonsContainer .btn {
+    margin-right: 5px;
+}
+
+#transparentBackLayer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    opacity: 0.01;
+}
+
+.close_modal {
+    float: right;
+    margin: 5px 8px 0px 0px;
+}
+
+.hiddElement {
+    display: none !important;
+}
+
+.blackBack {
+    background: #000 !important;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+}
+
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+    top:50%;
+    left:50%;
+}
+
+    .lds-facebook div {
+        display: inline-block;
+        position: absolute;
+        left: 6px;
+        width: 13px;
+        background: #fff;
+        animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+
+        .lds-facebook div:nth-child(1) {
+            left: 6px;
+            animation-delay: -0.24s;
+        }
+
+        .lds-facebook div:nth-child(2) {
+            left: 26px;
+            animation-delay: -0.12s;
+        }
+
+        .lds-facebook div:nth-child(3) {
+            left: 45px;
+            animation-delay: 0;
+        }
+
+@keyframes lds-facebook {
+    0% {
+        top: 6px;
+        height: 51px;
+    }
+
+    50%, 100% {
+        top: 19px;
+        height: 26px;
+    }
+}
+
+
+
+/* Table */
+table thead tr th {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+table tbody tr td {
+    font-size: 11px;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.dataTables_scrollBody, .dataTables_scrollHead {
+    border: 1px solid #dddddd;
+}
+
+.navbar-default {
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* Site classes */
+p.note-feet {
+    font-size: 12px;
+}
+
+.image-block-container {
+    padding-left: 5%;
+}
+
+.image-container {
+    height: 100px;
+    position: relative;
+    text-align: center;
+}
+
+.image-container img {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
+.page-content {
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+
+.panel-title {
+    font-size: 20px;
+}
+
+.description-block {
+    text-align: center;
+    padding: 10px;
+}
+
+.description-block a:link,
+.description-block a:visited,
+.description-block a:hover,
+.description-block a:active,
+.description-block a:focus {
+    text-decoration: none;
+    color: #444444;
+}
+
+.description-block:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to top, white, #f4f4f4);
+    border-radius: 5px;
+}
+
+.badge-default {
+    background-color: #474949;
+}
+
+.badge-primary {
+    background-color: #d9230f;
+}
+
+.badge-success {
+    background-color: #469408;
+}
+
+.badge-warning {
+    background-color: #9b479f;
+}
+
+.badge-danger {
+    background-color: #d9831f;
+}
+
+.badge-info {
+    background-color: #029acf;
+}
+
+.panel-default .panel-heading {
+    color: #ffffff;
+    background-color: #474949;
+}
+
+.fa-danger {
+    color: #d9831f;
+}
+
+input[type='file'] {
+    height: 30px;
+    width: 100%;
+    padding-right: 3px;
+}
+
+fieldset {
+    padding: 20px 20px 0px 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.nav-tabs > li > a {
+    border-radius: 0px;
+    /* font-weight: bold; */
+}
+
+.login-panel-container {
+    padding: 10% 20% 30% 20%;
+}
+
+.loading-well {
+    padding-bottom: 50px;
+}
+
+.simple-icon:hover {
+    cursor: default;
+}
+
+.mr-3 {
+    margin-right: 3px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+
+.btn-width-80 {
+    width: 80px;
+}
+
+.report-title {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.report-period {
+    padding-top: 20px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+
+.report-header {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.report-tables-container {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.report-options .list-group-item {
+    display: inline-block;
+    cursor: pointer;
+    min-width: 300px;
+    text-align: center;
+}
+
+:first-child.list-group-item {
+    border-radius: 0px;
+}
+
+:last-child.list-group-item {
+    border-radius: 0px;
+}
+
+.report-map {
+    width: 680px;
+    height: 550px;
+    overflow: hidden;
+}
+
+.map-container {
+    margin-top: 40px;
+    /* position: absolute; 
+    top: 0px;
+    left: 0px; 
+    background-color: rgb(229, 227, 223); */
+}
+
+.customised-card {
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.customised-card-header {
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+
+.customised-card-body {
+    padding-top: 8px;
+}
+
+.customised-card-subtitle {
+    font-size: 14px;
+}
+
+.customised-card-header-divider {
+    border-bottom: 1px solid #dddddd;
+}
+
+.jumbotron {
+    border: 1px solid #dddddd;
+}
+
+.address-container span {
+    vertical-align: top;
+}
+
+.address-container address {
+    display: inline-block;
+}
+
+.right {
+    float: right;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer-container {
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+    right: 15px;
+}
+
+.footer-container footer {
+    position: relative;
+}
+
+@media screen and (max-height: 800px) {
+
+    .login-panel-container {
+        padding: 10% 20% 20% 20%;
+    }
+
+}
+
+
+
+/* Hide/rearrange for smaller screens, On screens that are 1024px or less */
+@media screen and (max-width: 1024px) {
+    /* Hide captions */
+    .image-block-container {
+        flex: 80%;
+        max-width: 80%;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    /* Hide captions */
+
+    .image-block-container {
+        flex: 50%;
+        max-width: 50%;
+        text-align: center;
+    }
+
+    .image-block-container img {
+        width: auto;
+    }
+
+
+}
+
+@media screen and (max-width: 680px) {
+    /* Hide captions */
+
+    .image-block-container {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .image-block-container img {
+        width: auto;
+    }
+
+
+}

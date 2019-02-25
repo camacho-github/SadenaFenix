@@ -1,6 +1,8 @@
-﻿@model SadenaFenix.Models.Usuarios.Usuario
+﻿@* Model *@
+@model SadenaFenix.Models.Usuarios.Usuario
 
 @{
+
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Nacimientos";
     ViewData["Option"] = "Importar";
@@ -19,7 +21,7 @@
         <!-- Breadcrumb -->
         <section class="pull-right">
             <ul class="breadcrumb">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                <li><a href="/Home/Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
                 <li><a href="#">@ViewData["Modulo"]</a></li>
                 <li class="active">@ViewData["Option"]</li>
             </ul>
@@ -37,18 +39,18 @@
                                 <div class="form-group">
                                     <label class="col-sm-12" for="sinacFile">SINAC</label>
                                     <div class="col-sm-12">
-                                        <input type="file" accept="*.mdb" id="sinacFile" name="sinacFile" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo">
+                                        <input id="sinacFile" name="sinacFile" type="file" accept="*.mdb" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SINAC">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-12" for="sicFile">SIC</label>
                                     <div class="col-sm-12">
-                                        <input type="file" accept="*.xls, *.xlsx" id="sicFile" name="sicFile" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo">
+                                        <input id="sicFile" name="sicFile" type="file" accept="*.xls, *.xlsx" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SIC">
                                     </div>
                                 </div><br />
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button id ="botonCargarArchivos" type="button" class="btn btn-success" onclick="loadingFiles()" title="Cargar Archivos">Cargar Archivos</button>
+                                        <button id="loadingFilesBtn" type="button" class="btn btn-success" title="Cargar Archivos">Cargar Archivos</button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -65,3 +67,8 @@
 
 </div>
 <!-- ./page content -->
+
+@section Scripts
+{
+    <script src="~/Scripts/js/nacimientos/consultas/importar.js"></script>
+}

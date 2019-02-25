@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using SadenaFenix.Models.Catalogos.Geografia;
-using SadenaFenix.Business.Catalogos.Geografia;
 using System.Web.Mvc;
 using SadenaFenix.Services;
-using SadenaFenix.Transport.Usuarios.Acceso;
 using SadenaFenix.Transport.Catalogos;
 using System.Collections.ObjectModel;
-using Sadena.Transport.Nacimientos.Consultas;
+using SadenaFenix.Transport.Nacimientos.Consultas;
 
 namespace Sadena.Sevices.Catalogos.Geografia
 {
