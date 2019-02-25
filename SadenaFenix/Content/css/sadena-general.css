@@ -83,21 +83,41 @@
    */
 }
 
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
 #resumenTotalesTable_wrapper .dataTables_scrollBody {
     width: 48% !important;
 }
 
-#OficialiasTabla_paginate .paginate_button {
+#OficinasTabla_paginate .paginate_button {
     padding:0 !important
 }
 
+#OficinasTabla_wrapper .dt-buttons{
+    margin-bottom:20px !important
+}
 
-.mensajeForma{
-    position:absolute;   
-    margin-top:120px;
-    margin-left:1000px;
-    height:100px;
-    z-index:1;
+#OficinasTabla_wrapper .bs-select {
+    margin-left: 80px !important
+}
+
+.mensajeForma {
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 1000px;
+    height: 100px;
+    z-index: 1;
 }
 
 .hiddElement {

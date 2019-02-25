@@ -233,6 +233,15 @@ $(function () {
         }
     });
 
+    $('#BotonEliminarOficialia').click(function () {
+        
+        $('#BotonEliminarOficialia').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
+        fnEliminarOficialia();
+       
+    });
+
+    
+
     $("input#MpioDesc").on('focus', function (event) {
         $(this).toggleClass("hiddElement", "true");
         $('div.selectMpio').toggleClass("hiddElement", "false");
@@ -462,12 +471,35 @@ function fnGuardarOficialia() {
     fnWaitForLoading(fnComplete);
 }
 
+function fnEliminarOficialia () {
+    var objArray = {
+        "oId": $('#OId').val()
+    }
+
+    params = fnParamsString(objArray);
+
+    var fnComplete = function () {
+        var data = fnGetJSONResponse('../EliminarOficialia', params);
+
+        if (data !== "" && data !== null) {
+            if (data.respuesta !== null) {
+                fnMessage("Operación correcta", "La información fue exitósamente eliminada", fnIrConsultaDeActualizacion);
+            } else {
+                fnMessage("UPS! =(", "La información no fue eliminada, favor de intentar nuevamente");
+            }
+        }
+    };
+
+    fnWaitForLoading(fnComplete);
+
+}
+
 function fnActualizarOficialia() {
     var objArray = {
         "jsonOficialia": fnObtenerJsonOficialia()
     },
 
-    params = fnParamsString(objArray);
+        params = fnParamsString(objArray);
 
     var fnComplete = function () {
         var data = fnGetJSONResponse('ActualizarOficialia', params);
@@ -485,6 +517,7 @@ function fnActualizarOficialia() {
 
 }
 
+
 function fnAsignarPosicion(myLatLng){
     var lat = myLatLng.lat();
     var lng = myLatLng.lng();
@@ -500,12 +533,12 @@ function fnNombreMarca() {
 
 function fnIrConsulta() {
     fnWaitForPost();
-    window.location.assign("OficialiasTabla");
+    window.location.assign("../OficialiasTabla");
 }
 
 function fnIrConsultaDeActualizacion() {
     fnWaitForPost();
-    window.location.assign("./OficialiasTabla");
+    window.location.assign("../OficialiasTabla");
 }
 
 

@@ -20,9 +20,47 @@ namespace SadenaFenix.Daos.Georeferenciacion
         private const string PRS_OFICILIA = "SDB.PRSOficialia";
         private const string PR_INS_OFICILIA = "SDB.PRInsOficialia";
         private const string PR_U_OFICILIA = "SDB.PRUOficialia";
+        private const string PR_DEL_OFICILIA = "SDB.PRDelOficialia";
+        private const string PRS_OFICINAS = "SDB.PRSOficinas";
+
         #endregion
 
         #region Métodos públicos
+        public DataTable ConsultarOficinas(string municipiosUnion)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRS_OFICINAS, CreaParametrosConsultaGeoreferenciacion(municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        dataTable = dataSet.Tables[0];
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dataTable;
+        }
+
         public DataTable ConsultarOficialias(string municipiosUnion)
         {
             DataTable dataTable = new DataTable();
@@ -57,6 +95,8 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return dataTable; 
         }
+
+        
 
         public Oficialia ConsultarOficialia(int OId)
         {
@@ -188,6 +228,28 @@ namespace SadenaFenix.Daos.Georeferenciacion
             try
             {
                 EjecutaProcedimiento(PR_U_OFICILIA, CreaParametrosActualizarOficialia(oficialia));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        public bool EliminarOficialia(int oId)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_DEL_OFICILIA, CreaParametrosEliminarOficialia(oId));
 
                 if (this.Codigo == 0)
                 {
@@ -415,6 +477,23 @@ namespace SadenaFenix.Daos.Georeferenciacion
 
             return parametros;
         }
+
+        private static Collection<SqlParameter> CreaParametrosEliminarOficialia(int oId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_o_id", SqlDbType.Int)
+            {
+                Value = oId
+            };
+            parametros.Add(parametro);            
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        
 
 
         #endregion
