@@ -1,6 +1,12 @@
-﻿<!-- Scope -->
+﻿@* Model *@
+@model SadenaFenix.Models.Usuarios.Usuario
+
 @{
-    ViewData["Title"] = "Aviso de Privacidad";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Aviso de Privacidad";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
+
 }
 
 <!-- Page content -->
@@ -13,15 +19,21 @@
         <section>
             <div class="row">
                 <div class="col-sm-12">
-                    <h2>@ViewData["Title"]</h2>
-                    <p>Use this page to detail your site's privacy policy.</p>
+                    <!-- Panel -->
+                    <div class="panel panel-default mt-30">
+                        <div class="panel-body">
+                            <h3>@ViewData["Option"]</h3>
+                            <p>Use this page to detail your site's privacy policy.</p>
+                        </div>
+                    </div>
+                    <!-- ./panel -->
                 </div>
             </div>
         </section>
         <!-- ./privacy -->
 
     </div>
-    <!-- ./container -->
+    <!-- /.container -->
 
 </div>
 <!-- ./page content -->

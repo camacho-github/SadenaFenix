@@ -1,7 +1,11 @@
-﻿<!-- Scope -->
+﻿@* Model *@
 @{
-    ViewData["Title"] = "Cierre de Sesión";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Cierre de Sesión";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
     ViewData["Message"] = "¡Su sesión ha finalizado correctamente!";
+
 }
 
 <!-- Page content -->
@@ -20,6 +24,11 @@
                         </div><hr />
                         <div class="alert-message">
                             <h3>@ViewData["Message"]</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="center-block">
+                            <a href="/Home/Index">Inicio</a>.
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ namespace Sadena.Controllers.Nacimientos
         public ActionResult VerReportes(string userJson)
         {
             Usuario usuario = new Usuario { Json = userJson };
-            return View("~/Views/Nacimientos/Reportes/VerReportes.cshtml",usuario);
+            return View("~/Views/Nacimientos/Reportes/Reportes.cshtml",usuario);
         }
 
         // GET: Reportes/Details/5

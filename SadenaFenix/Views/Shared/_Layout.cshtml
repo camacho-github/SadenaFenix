@@ -1,174 +1,27 @@
-﻿<!-- Scope -->
-@{
+﻿@{
     ViewData["Root"] = "Sadena";
-    ViewData["Version"] = "1.0.0";
-    ViewData["Year"] = "2018";
 }
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="es">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @ViewData["Root"]</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
-    <!--<link rel="stylesheet" href="~/Scripts/lib/datatables.net-bs/css/dataTables.bootstrap.min.css" />-->
-    <link rel="stylesheet" href="~/Scripts/lib/datatables.net-dt/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/buttons-dt/css/buttons.dataTables.min.css" />
-    <!--<link rel="stylesheet" href="~/Scripts/lib/buttons-bs/css/buttons.bootstrap.min.css" />-->
-    <!--<link rel="stylesheet" href="~/Scripts/lib/responsive-bs/css/responsive.bootstrap.min.css" />-->
-    <link rel="stylesheet" href="~/Scripts/lib/responsive-dt/css/responsive.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/select2/dist/css/select2.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/bootswatch/3/simplex/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.css" />
-    <link rel="stylesheet" href="~/Content/css/site.css" />
-
+    <title>@ViewData["Title"]</title>
+    @Html.Partial("~/Views/Include/_PrincipalStylesImport.cshtml")
+    @Html.Partial("~/Views/Include/_SpecificStylesImport.cshtml")
+    @RenderSection("Styles", required: false)
 </head>
 <body>
-
-    <!-- Navegation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Brand -->
-                <a class="navbar-brand" href="/Home/Index">@ViewData["Root"]</a>
-            </div>
-            <!-- Menu-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                <ul id="menuGeneral" class="nav navbar-nav">
-                    <li class="dropdown" style="display:block;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span>Nacimientos <span class="caret"></span></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li id="opcionImportarArchivos" style="display:block;">
-                                <a id="callImportarArchivo" href="#">Importar archivos</a>
-                            </li>
-                            <li id="estiloDivisionMenu" class="divider" style="display:block;"></li>
-                            <li><a id="callConsultar" href="#">Consultar</a></li>
-                            <li><a id="callVerReportes" href="#">Reportes por municipios</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" style="display:block;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span>Georeferenciación <span class="caret"></span></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li style="display:block;">
-                                <a href="/GeoOficialias/OficialiasTabla">Oficialías</a>
-                            </li>
-                            <li><a href="/Hospitales/Hospitales">Hospitales</a></li>
-                            <li><a href="/ModulosHospitalarios/ModulosHospitalarios">Módulos Hospitalarios</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- Right menu -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a id="callAcercaDe" href="#">Acerca de</a></li>
-                    <li><a id="callContacto" href="#">Contacto</a></li>
-                    <li id="botonCirculoSesion" class="dropdown" style="display:block;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span><i class="fa fa-user-circle-o"></i></span>
-                        </a>
-                        <!-- User's menu -->
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <!-- Session's info -->
-                                <div class="col-sm-12">
-                                    <h5>
-                                        <strong id="etiquetaSesionUsuarioDesc"></strong>
-                                        <br /><small id="etiquetaSesionCorreoE"></small>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="/Acceso/Salir">
-                                    <span><i class="fa fa-sign-out mr-3"></i>Salir</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- ./navegation -->
-    <!-- Main container -->
+    @Html.Partial("~/Views/Layout/_Navbar.cshtml")
+    <!-- Container -->
     <div class="container-fluid">
         @RenderBody()
-
-        <!-- Footer -->
-        <div class="footer-container">
-            <hr />
-            <footer>
-                <!-- Version -->
-                <div class="pull-right hidden-xs">
-                    <b>Versión</b> @ViewData["Version"]
-                </div>
-                <!-- Default -->
-                <strong>
-                    Copyright &copy; @ViewData["Year"] -
-                    <a href="/Home/Index">@ViewData["Root"]</a>.
-                </strong> Todos los derechos reservados.
-            </footer>
-        </div>
-        <!-- ./footer -->
-
+        @Html.Partial("~/Views/Layout/_Footer.cshtml")
     </div>
-    <!-- ./main container -->
-    <!-- Modal -->
-    <div id="defaultModal" class="modal fade in" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Mensaje</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="defaultModalMessage">Los archivos han sido importados correctamente, los datos pueden ser ahora consultados</p>
-                </div>
-                <div class="modal-footer">                    
-                   <button id="botonConsultar" class="btn btn-default" data-dismiss="modal">Continuar</button>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./modal -->
-
-    <partial name="_CookieConsentPartial"></partial>
-
-    <!-- Scripts -->
-    <script type="text/javascript" src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/datatables.net/js/jquery.dataTables.min.js"></script>
-    <!--<script type="text/javascript" src="~/Scripts/lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>-->
-    <script type="text/javascript" src="~/Scripts/lib/buttons-dt/js/buttons.dataTables.min.js"></script>
-    <!--<script type="text/javascript" src="~/Scripts/lib/buttons-bs/js/buttons.bootstrap.min.js"></script>-->
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.flash.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.html5.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/buttons/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/jszip/dist/jszip.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/pdfmake.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/pdfmake/dist/vfs_fonts.js"></script>
-    <script type="text/javascript" src="~/Scripts/lib/responsive-dt/js/responsive.dataTables.min.js"></script>
-    <!--<script type="text/javascript" src="~/Scripts/lib/responsive-bs/js/responsive.bootstrap.min.js"></script>-->
-    <script src="~/Scripts/lib/select2/dist/js/select2.full.min.js"></script>
-    <script src="~/Scripts/lib/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
-    <script src="~/Scripts/js/site.js"></script>
-    <script src="~/Scripts/js/nacimientos/reportes/reportes.js"></script>
-    <script src="~/Scripts/js/nacimientos/consultas/consultar.js"></script>
-    <script src="~/Scripts/js/nacimientos/consultas/importar.js"></script>
-
+    <!-- ./container -->
+    @Html.Partial("~/Views/Layout/_Modals.cshtml");
+    @Html.Partial("~/Views/Include/_PrincipalScriptsImport.cshtml")
+    @Html.Partial("~/Views/Include/_SpecificScriptsImport.cshtml")
     @RenderSection("Scripts", required: false)
 
 </body>

@@ -1,9 +1,12 @@
-﻿<!-- Imports -->
+﻿@* Model *@
 @model SadenaFenix.Models.Usuarios.Usuario
 
-<!-- Scope -->
 @{
-    ViewData["Title"] = "Inicio de Sesión";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Inicio de Sesión";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
+
 }
 
 <!-- Page content -->
@@ -21,7 +24,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <span class="simple-icon pull-right"><i class="fa fa-user-circle-o"></i></span>
-                                <h3 class="panel-title">@ViewData["Title"]</h3>
+                                <h3 class="panel-title">@ViewData["Option"]</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="row">

@@ -168,7 +168,7 @@ function prepareSubregistroTable(data, tableId) {
 
     /* Adding datable functionality */
     prepareSubregistroDataTable(tableId);
-    //$(containerSelector).fadeIn("slow");
+    $(containerSelector).fadeIn("slow");
 
     return;
 }
@@ -178,7 +178,7 @@ function createSubregistroTable(tableId) {
     /* Create subregistro table */
     var subregistroTable = $('<table></table>');
     $(subregistroTable).attr('id', tableId);
-    $(subregistroTable).addClass('table table-striped table-hover');
+    $(subregistroTable).addClass('table table-striped table-hover responsive');
 
     /* Create headers */
     var thead = $('<thead></thead>');
@@ -246,7 +246,7 @@ function prepareResumenTotalesTable(data, tableId) {
 
     /* Adding datable functionality */
     prepareSubregistroDataTable(tableId);
-   // $(containerSelector).fadeIn("slow");
+    $(containerSelector).fadeIn("slow");
 
     return;
 }
@@ -256,7 +256,7 @@ function createResumenTotalesTable(data, tableId) {
     /* Create resumenTotales table */
     var resumenTotalesTable = $('<table></table>');
     $(resumenTotalesTable).attr('id', tableId);
-    $(resumenTotalesTable).addClass('table table-striped table-hover');
+    $(resumenTotalesTable).addClass('table table-striped table-hover responsive');
 
     /* Create header */
     var thead = $('<thead></thead>');
@@ -275,26 +275,23 @@ function createResumenTotalesTable(data, tableId) {
 function prepareSubregistroDataTable(tableId) {
     /* Prepare registradosTable */
     var subregistroTable = $('#'.concat(tableId)).DataTable({
-        responsive: true,
-        scrollX: true,
+        //responsive: true,
+        //scrollX: true,
         searching: true,
         ordering: true,
         paging: true,
         lengthChange: false,
         info: false,
-        autoWidth: true,
+        //autoWidth: true,
         buttons: [
-            { extend: 'copy', className: 'btn btn-primary btn-sm', text: ' Copiar filas', },
-            { extend: 'excel', className: 'btn btn-primary btn-sm', text: ' Exportar a Excel' },
-            { extend: 'pdf', className: 'btn btn-primary btn-sm', text: ' Exportar a PDF' },
-            { extend: 'print', className: 'btn btn-primary btn-sm', text: ' Imprimir' }
+            'excel', 'pdf'
         ]
     });
     /* Adding icons */
-   /* $(subregistroTable.buttons[0]).prepend('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+    $(subregistroTable.buttons[0]).prepend('<i class="fa fa-clipboard" aria-hidden="true"></i>');
     $(subregistroTable.buttons[1]).prepend('<i class="fa fa-file-excel-o" aria-hidden="true"></i>');
     $(subregistroTable.buttons[2]).prepend('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>');
-    $(subregistroTable.buttons[3]).prepend('<i class="fa fa-print" aria-hidden="true"></i>');*/
+    $(subregistroTable.buttons[3]).prepend('<i class="fa fa-print" aria-hidden="true"></i>');
 
     return;
 }

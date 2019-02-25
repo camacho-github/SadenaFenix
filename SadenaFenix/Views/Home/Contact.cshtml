@@ -1,8 +1,13 @@
-﻿@model SadenaFenix.Models.Usuarios.Usuario
-<!-- Scope -->
+﻿@* Model *@
+@model SadenaFenix.Models.Usuarios.Usuario
+
 @{
-    ViewData["Title"] = "Contacto";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Contacto";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
     ViewData["Message"] = "Para información acerca de esta herramienta";
+
 }
 
 <!-- Page content -->
@@ -46,7 +51,7 @@
                                 <!-- Mail -->
                                 <span class="simple-icon mr-3" title="Correo Electrónico">
                                     <i class="fa fa-envelope"></i>
-                                </span><strong>Soporte: </strong><a href="mailto:soporte@sadena.gob.mx">soporte@sadena.gob.mx</a>
+                                </span><strong>Soporte: </strong><a href="mailto:soporte@sadena.gob.mx" target="_blank">soporte@sadena.gob.mx</a>
                             </div>
                         </div>
                     </div>

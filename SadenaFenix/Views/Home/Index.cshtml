@@ -1,7 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Inicio";
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Inicio";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
     ViewData["ApplicationName"] = "SADENA";
     ViewData["ApplicationDescription"] = "Sistema Analizador de Nacimientos";
+
 }
 
 <!-- Page content -->
@@ -14,10 +18,10 @@
         <section>
             <div class="row">
                 <div class="col-sm-12">
-                    <!-- Welcome information -->
                     <div class="jumbotron mt-30">
-                        <h1>SADENA</h1>
-                        <p>Sistema Analizador de Nacimientos</p>
+                        <!-- Welcome information -->
+                        <h1>@ViewData["ApplicationName"]</h1>
+                        <p>@ViewData["ApplicationDescription"]</p>
                         <form action="/Acceso/Ingresar" method="get">
                             <p><button class="btn btn-lg btn-primary" type="submit">Ingresar</button></p>
                         </form>
@@ -41,7 +45,7 @@
                                  title="Banco Interamericano de Desarrollo">
                         </div>
                         <div class="col-sm-3 image-container">
-                            <img alt="Logo del Gobierno de Canada" src="~/Content/images/canada-logo.png"
+                            <img alt="Logo del Gobierno de Canadá" src="~/Content/images/canada-logo.png"
                                  title="Gobierno de Canadá">
                         </div>
                         <div class="col-sm-3 image-container">
