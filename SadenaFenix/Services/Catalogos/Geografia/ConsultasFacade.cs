@@ -13,6 +13,10 @@ namespace Sadena.Sevices.Catalogos.Geografia
         /*private readonly CatMunicipioBusiness CatMunicipioBusiness;*/
         private Servicio Servicio;
 
+        public CatMunicipioFacade()
+        {
+            Servicio = new Servicio();
+        }
         public ConsultasViewModel ObtenerTodosLosMuncipios()
         {
             ConsultasViewModel model = new ConsultasViewModel();

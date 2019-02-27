@@ -166,6 +166,7 @@
     <Compile Include="Excepcions\BusinessException.cs" />
     <Compile Include="Excepcions\DAOException.cs" />
     <Compile Include="Excepcions\EmptyDataException.cs" />
+    <Compile Include="Facade\Nacimientos\Archivos\ArchivosFacade.cs" />
     <Compile Include="Facade\Nacimientos\Consultas\ConsultasFacade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,8 +225,8 @@
     <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaRespuesta.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesPeticion.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesRespuesta.cs" />
-    <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
-    <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Archivos\ImportarArchivosViewModel.cs" />
+    <Compile Include="Models\Nacimientos\Archivos\PreCargaPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEdadSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEdoCivilSubregistroPeticion .cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEscolaridadSubregistroPeticion.cs" />
