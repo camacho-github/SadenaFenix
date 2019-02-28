@@ -2,6 +2,7 @@
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Usuarios.Acceso;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Web;
 
@@ -12,7 +13,7 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
         /* Import files */
         public CabeceroRespuesta SalvarArchivos(ImportarArchivosViewModel viewModel)
         {
-            CabeceroRespuesta cabeceroRespuesta = new CabeceroRespuesta();
+            CabeceroRespuesta cabeceroRespuesta;
             Servicio servicio = new Servicio();
 
             /* Processing uploaded files */
@@ -22,8 +23,9 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             /* Validation .*/
             if (sinacFileBase.ContentLength <= 0 || sicFileBase.ContentLength <= 0)
             {
+                cabeceroRespuesta = new CabeceroRespuesta();
                 cabeceroRespuesta.CodigoRespuesta = -1;
-                cabeceroRespuesta.MensajeRespuesta = "Archivos incorrectos o sin datos.";
+                cabeceroRespuesta.MensajeRespuesta = "Los archivos son incorrectos o no tienen datos.";
                 return cabeceroRespuesta;
             }
 
@@ -39,6 +41,7 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
                 Nombre = pathSINAC,
                 Ano = "2019"
             };
+            archivoSINAC.IdentificarTablaSINAC();
 
             /* SIC */
             var pathSIC = Path.Combine(tempPath, Path.GetFileName(sicFileBase.FileName));
@@ -49,13 +52,27 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
                 Nombre = pathSIC,
                 Ano = "2019"
             };
+            archivoSIC.IdentificarTablaSIC();
+
+            /* Preparing request to service */
             CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
             {
                 SesionId = viewModel.Usuario.SesionId
             };
-            PreCargaPeticion preCargaPeticion = new PreCargaPeticion();
+            PreCargaPeticion preCargaPeticion = new PreCargaPeticion()
+            {
+                Cabecero = cabeceroPeticion,
+                ColArchivo = new Collection<Archivo>()
+            };
+            preCargaPeticion.ColArchivo.Add(archivoSINAC);
+            preCargaPeticion.ColArchivo.Add(archivoSIC);
 
-            /*"Archivos guardados exitosamente.";*/
+            /* Almacenar archivos */
+            cabeceroRespuesta = servicio.PreCargarDatos(preCargaPeticion);
+            if (cabeceroRespuesta.EsRespuestaExistosa())
+            {
+                cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitosamente.";
+            }
             return cabeceroRespuesta;
         }
 

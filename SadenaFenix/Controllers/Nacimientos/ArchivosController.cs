@@ -1,7 +1,8 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Newtonsoft.Json;
 using SadenaFenix.Facade.Nacimientos.Archivos;
 using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Transport;
 using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Usuarios.Acceso;
 
@@ -19,9 +20,27 @@ namespace SadenaFenix.Controllers.Nacimientos
         [HttpPost]
         public ActionResult Importar(ImportarArchivosViewModel viewModel)
         {
-            /* Usuario usuario = new Usuario { Json = viewModel.Usuario.Json }; */
-            var result  = ArchivosFacade.SalvarArchivos(viewModel);
-            return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);
+            /* Take user. */
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(viewModel.Usuario.Json);
+            usuario.Json = viewModel.Usuario.Json;
+            viewModel.Usuario = usuario;
+
+            /* Saving files */
+            CabeceroRespuesta cabeceroRespuesta = ArchivosFacade.SalvarArchivos(viewModel);
+            if (cabeceroRespuesta.EsRespuestaExistosa())
+            {
+                viewModel.CabeceroRespuesta = cabeceroRespuesta;
+                return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);
+            } else
+            {
+                ErrorViewModel errorViewModel = new ErrorViewModel()
+                {
+                    CabeceroRespuesta = cabeceroRespuesta,
+                    Usuario = usuario
+                };
+                return View("~/Views/Shared/500.cshtml", errorViewModel);
+            }
+
         }
 
         // GET: Archivos

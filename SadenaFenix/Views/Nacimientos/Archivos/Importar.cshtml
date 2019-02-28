@@ -13,8 +13,6 @@
 <!-- Page content -->
 <div class="page-content">
 
-    @Html.HiddenFor(model => model.Usuario.Json, new { id = "objUsuario", name= "Usuario.Json" })
-
     <!-- Container -->
     <div class="container">
 
@@ -33,7 +31,10 @@
                 <div class="col-sm-12">
                     <div class="well loading-well">
                         <!-- Form -->
-                        <form id="loadingFilesForm" class="form-horizontal" action="/Archivos/Importar" method="post" enctype="multipart/form-data" >
+                        <form id="loadingFilesForm" class="form-horizontal" action="/Archivos/Importar" method="post" enctype="multipart/form-data">
+
+                            @Html.HiddenFor(model => model.Usuario.Json)
+
                             <fieldset>
                                 <legend>Selección de Archivos</legend>
                                 <div class="form-group">
@@ -55,6 +56,12 @@
                                 </div>
                             </fieldset>
                         </form>
+                        <div class="col-sm-12">
+                            @if (Model.CabeceroRespuesta != null)
+                            {
+                                <p>@Model.CabeceroRespuesta.MensajeRespuesta</p>
+                            }
+                        </div>
                         <!-- ./form -->
                     </div>
                 </div>

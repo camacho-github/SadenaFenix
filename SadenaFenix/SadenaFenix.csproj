@@ -180,7 +180,6 @@
     <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
     <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\Georeferenciacion\Oficina.cs" />
     <Compile Include="Models\Georeferenciacion\Oficialia.cs" />
     <Compile Include="Models\Georeferenciacion\TipoOficina.cs" />
@@ -201,6 +200,7 @@
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
+    <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
@@ -2196,6 +2196,7 @@
     <Content Include="Scripts\vendor\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\vendor\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\vendor\select2\src\js\wrapper.start.js" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2216,7 +2217,6 @@
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_GeoLayout.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_CookieConsentPartial.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <Content Include="Views\Nacimientos\Archivos\Importar.cshtml" />
@@ -2285,6 +2285,7 @@
     <Content Include="Views\GeoOficialias\OficinasConsulta.cshtml" />
     <Content Include="Views\Oficinas\OficinasConsulta.cshtml" />
     <Content Include="Views\Oficinas\CrearOficina.cshtml" />
+    <Content Include="Views\Shared\500.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Nacimientos\Archivos\" />

@@ -110,7 +110,7 @@ namespace SadenaFenix.Business.Nacimientos.Archivos
         #region Métodos Privados
         private static string ObtieneNombreArchivo(Archivo archivo)
         {
-            return archivo.Nombre + "." + archivo.Extension;
+            return archivo.Nombre; // + "." + archivo.Extension;
         }
         #endregion
     }
