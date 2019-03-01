@@ -1,6 +1,6 @@
 ﻿
 $(window).on('load', function () {
-    $("#loader").toggleClass("hiddElement");
+    $("#loader").toggleClass("hiddElement");        
 });
 
 $(window).on('unload', function () {
@@ -45,6 +45,23 @@ $(function () {
         var okVal = funOnlyNumberExtended(event);
         return okVal;
     });
+
+    /* Initialize Select2 */
+    $('.select2').select2({
+        placeholder: "Selección...",
+        allowClear: true,
+        "language": {
+            "noResults": function () {
+                return "No existen coincidencias";
+            }
+        }
+    });
+
+    $('.select2').on('select2:select', function (e) {
+        var data = e.params.data;
+        console.log(data);
+        console.log($(this).val());
+    });
 });
 
 function fnGetJSONResponse(actionName, parameters) {
@@ -87,6 +104,34 @@ function fnParseJSONResponse(content) {
     }
 
     return jsonResponse;
+}
+
+function fnGetAndSetTemplate(actionName, params, divName, fnName, noWait) {
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        url: actionName,
+        data: params,
+        converters: { 'text json': true },
+        beforeSend: function () {
+            if (noWait === undefined || noWait === null)
+                fnWaitForPost();
+        },
+        success: function (data) {
+            $("#" + divName).empty();
+            $("#" + divName).html(data);
+            fnCompleteWait();
+        },
+        error: function (xhr, textStatus) {
+            console.error('Error during the ajax call. Error: '
+                + xhr + ' ' + textStatus);
+            fnCompleteWait();
+        },
+        complete: function () {
+            if (fnName !== undefined && fnName !== null)
+                fnName();
+        }
+    });
 }
 
 
@@ -264,6 +309,114 @@ function funOnlyNumberExtended(event) {
 
 }
 
+
+function fnCrearTabla(nombreTabla,columnasOcultas) {
+
+    $('#' + nombreTabla).DataTable({
+        "bFilter": false,
+        "dom": 'Blfrtip',
+        "paging": true,
+        "searching": true,
+        "autoWidth": true,
+        "columnDefs": [{
+            "visible": false,
+            "targets": columnasOcultas
+        }],
+        "buttons": [{
+            extend: 'colvis',
+            collectionLayout: 'three-column',
+            text: function () {
+                var totCols = $('#' + nombreTabla +' thead th').length;
+                var hiddenCols = columnasOcultas.length;
+                var shownCols = totCols - hiddenCols;
+                return 'Columnas (' + shownCols + ' de ' + totCols + ')';
+            },
+            prefixButtons: [{
+                extend: 'colvisGroup',
+                text: 'Mostrar todo',
+                show: ':hidden'
+            }, {
+                extend: 'colvisRestore',
+                text: 'Restaurar'
+            }]
+        }, {
+            text: 'Imprimir',
+            extend: 'print',
+            footer: false,
+            exportOptions: {
+                columns: ':visible'
+            }
+        },
+        {
+            extend: 'collection',
+            text: 'Exportar',
+            buttons: [{
+                text: 'Excel',
+                extend: 'excelHtml5',
+                footer: false,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'CSV',
+                extend: 'csvHtml5',
+                fieldSeparator: ';',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'PDF Vertical',
+                extend: 'pdfHtml5',
+                message: '',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'PDF Horizontal',
+                extend: 'pdfHtml5',
+                message: '',
+                orientation: 'landscape',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }]
+        }]
+        , language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "searchPlaceholder": "Buscar coincidencias",
+            "search": "",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+        , "initComplete": function (settings, json) {
+            // Adjust hidden columns counter text in button -->
+            $('#' + nombreTabla).on('column-visibility.dt', function (e, settings, column, state) {
+                var visCols = $('#' + nombreTabla + ' thead tr:first th').length;
+                //Below: The minus 2 because of the 2 extra buttons Show all and Restore
+                var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla +'] a').length - 2;
+                $('.buttons-colvis[aria-controls=' + nombreTabla +'] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                e.stopPropagation();
+            });
+        }
+
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+}
 
 
 $.fn.exists = function () {

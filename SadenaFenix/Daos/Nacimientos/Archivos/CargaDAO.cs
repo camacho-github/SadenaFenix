@@ -1,6 +1,7 @@
 ﻿using SadenaFenix.Commons.Utilerias;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Catalogos.Geografia;
+using SadenaFenix.Models.Catalogos.Tiempo;
 using SadenaFenix.Persistence;
 using SadenaFenix.Transport.Catalogos;
 using System;
@@ -30,7 +31,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
         private const string PRDEL_TM_SINAC = "SDB.PRDelTMSINAC";
         private const string PRN_PROCESAR_CARGA_SINAC = "SDB.PRNProcesarCargaSINAC";
         private const string PRN_PROCESAR_CARGA_SIC = "SDB.PRNProcesarCargaSIC";
-        private const string PRS_CATALOGOS_PRE_CONSULTA = "SDB.PRSCatatalogosPreConsulta";
+        private const string PRS_CATALOGOS_PRE_CONSULTA = "SDB.PRSCatalogosPreConsulta";
         #endregion
 
         #region Métodos Públicos
@@ -100,12 +101,17 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
                             && dataSet.Tables[0].Rows.Count > 0)
                         {
 
-                            catalogosCargasRespuesta.ColAnos = new Collection<string>();
+                            catalogosCargasRespuesta.ColAnios = new Collection<Anio>();
 
                             foreach (DataRow r in dataSet.Tables[0].Rows)
                             {
-                                string anoCarga = r.Field<string>("AnoCarga");
-                                catalogosCargasRespuesta.ColAnos.Add(anoCarga);
+                                Anio anio = new Anio
+                                {
+                                    AnioId = Convert.ToInt32(r.Field<string>("AnoCarga")),
+                                    AnioDesc = r.Field<string>("AnoCarga")
+                                };
+                                
+                                catalogosCargasRespuesta.ColAnios.Add(anio);
                             }
                         }
 
@@ -113,12 +119,17 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
                             && dataSet.Tables[1].Rows.Count > 0)
                         {
 
-                            catalogosCargasRespuesta.ColMeses = new Collection<string>();
+                            catalogosCargasRespuesta.ColMeses = new Collection<Mes>();
 
                             foreach (DataRow r in dataSet.Tables[1].Rows)
                             {
-                                string mesCarga = r.Field<string>("MesCarga");
-                                catalogosCargasRespuesta.ColMeses.Add(mesCarga);
+                                Mes mes = new Mes
+                                {
+                                    MesId = r.Field<int>("MesId"),
+                                    MesDesc = r.Field<string>("MesDesc")
+                                };
+                               
+                                catalogosCargasRespuesta.ColMeses.Add(mes);
                             }
                         }
 

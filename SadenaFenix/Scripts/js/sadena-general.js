@@ -31,7 +31,7 @@ $(function () {
     });
 
     $("#callConsultar").click(function () {
-        window.location.href = "/Consultas/Consultar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        window.location.href = "/SubRegistro/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
     $("#callConsultaOficinas").click(function () {

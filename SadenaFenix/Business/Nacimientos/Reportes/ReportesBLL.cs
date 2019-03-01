@@ -114,6 +114,8 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
+            SubregistroNacimientosRespuesta respuesta = new SubregistroNacimientosRespuesta();
+
             try
             {
                 IList<string> anosLista = new List<string>(colAnos);
@@ -129,7 +131,51 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                return reporteDAO.ConsultaSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion);
+                respuesta = reporteDAO.ConsultaDTSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion);
+
+                int total = 0;
+                foreach (SubregistroTotal s in respuesta.ColTotales)
+                {
+                    if (s.IdGrupo < Constantes.REGISTRO_DUPLICADO)
+                    {
+                        total += s.Total;
+                    }
+                }
+
+                respuesta.Total = total;
+
+                foreach (SubregistroTotal s in respuesta.ColTotales)
+                {
+                    if (s.IdGrupo < Constantes.REGISTRO_DUPLICADO)
+                    {
+                        decimal d = (decimal)s.Total * 100 / total;
+                        s.TotalPorcentaje = Math.Round(d, 2);
+
+                        int caseSwitch = s.IdGrupo;
+
+                        switch (caseSwitch)
+                        {
+                            case Constantes.SUBREGISTRO:
+                                respuesta.TotalSubregistro = s.Total;
+                                respuesta.PorcentajeSubregistro = s.TotalPorcentaje;
+                                break;
+                            case Constantes.REGISTRO_OPORTUNO:
+                                respuesta.TotalRegistroOportuno = s.Total;
+                                respuesta.PorcentajeRegistroOportuno = s.TotalPorcentaje;
+                                break;
+                            case Constantes.REGISTRO_EXTEMPORANEO:
+                                respuesta.TotalRegistroExtemporaneo = s.Total;
+                                respuesta.PorcentajeRegistroExtemporaneo = s.TotalPorcentaje;
+                                break;
+                            default:
+                                Console.WriteLine("Default case");
+                                break;
+                        }
+                    }
+                }
+
+                return respuesta;
+
             }
             catch (DAOException e)
             {
@@ -175,16 +221,16 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
             }
             catch (DAOException e)
             {
-                Bitacora.Error(e.Message);
-                if (e.Codigo == 1)
-                {
-                    throw new BusinessException(e.Message);
-                }
-                else
-                {
-                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
-                }
+                //Inicializa tabla vacía
+                Collection<string> cabeceros = new Collection<string>();
+                cabeceros.Add("ID Municipio");
+                cabeceros.Add("Municipio");
+                cabeceros.Add("Total");
+                reporte.ColCabeceros = cabeceros;
 
+                Collection<ReporteFila> Filas = new Collection<ReporteFila>();                
+                reporte.ColFilas = Filas;
+                return reporte;
             }
         }
 

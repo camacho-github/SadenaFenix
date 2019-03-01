@@ -1,0 +1,398 @@
+﻿@model dynamic
+
+<section id="cantidadesResumenConsulta">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Panel -->
+            <div class="panel panel-default">
+                <!-- Heading -->
+                <div class="panel-heading">
+                    <span class="panel-title">Resultados de la comparación</span>
+                </div>
+                <!-- ./heading -->
+                <!-- Body -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="description-block">
+                                <a id="subregistradosLink" class="description-block-review-link" href="#subregistradosTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalSubregistro">@Model.TotalSubregistro</div>
+                                    <div id="PorcentajeSubregistro" class="badge badge-primary">@Model.PorcentajeSubregistro %</div>
+                                    <div style="margin-top:5px;">Subregistro</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3">
+                            <div class="description-block">
+                                <a id="registradosLink" class="description-block-review-link" href="#registradosTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalRegistroOportuno">@Model.TotalRegistroOportuno</div>
+                                    <div id="PorcentajeRegistroOportuno" class="badge badge-success">@Model.PorcentajeRegistroOportuno %</div>
+                                    <div style="margin-top:5px;">Registro Oportuno</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="description-block">
+                                <a id="extemporaneosLink" class="description-block-review-link" href="#extemporaneosTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalRegistroExtemporaneo">@Model.TotalRegistroExtemporaneo</div>
+                                    <div id="PorcentajeRegistroExtemporaneo" class="badge badge-warning">@Model.PorcentajeRegistroExtemporaneo %</div>
+                                    <div style="margin-top:5px;">Registro Extemporáneo</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3">
+                            <div class="description-block">
+                                <a id="resumenTotalesLink" class="description-block-review-link" href="#resumenTotalesTab" data-toggle="tab" aria-expanded="true">
+                                    <br /><div><i class="fa fa-danger fa-line-chart"></i></div>
+                                    <div style="margin-top:5px;">Resumen por Municipio</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./body -->
+                <div id="resultadosPanelFooterTable" class="panel-footer" style="display:block">
+                    <div class="tab-content">
+                        <!-- Results -->
+                        <div id="subregistradosTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Nacimientos con Subregistro</strong></p>
+                                <div id="subregistradosTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="subregistradosTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="SubRegistroTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.ColDataTables[0].Rows.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td>@Model.ColDataTables[0].Rows[i][1]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][2]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][3]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][4]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][5]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][6]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][7]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][8]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][9]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][10]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][11]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][12]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][13]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][14]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][15]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][16]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][17]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][18]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][19]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][20]</td>
+                                                                <td>@Model.ColDataTables[0].Rows[i][21]</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="registradosTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Nacimientos con Registro Oportuno</strong></p>
+                                <div id="registradosTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="registradosTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="OportunosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.ColDataTables[1].Rows.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td>@Model.ColDataTables[1].Rows[i][1]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][2]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][3]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][4]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][5]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][6]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][7]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][8]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][9]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][10]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][11]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][12]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][13]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][14]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][15]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][16]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][17]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][18]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][19]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][20]</td>
+                                                                <td>@Model.ColDataTables[1].Rows[i][21]</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="extemporaneosTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Nacimientos con Registro Extemporáneo</strong></p>
+                                <div id="extemporaneosTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="extemporaneosTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="ExtemporaneosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.ColDataTables[2].Rows.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td>@Model.ColDataTables[2].Rows[i][1]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][2]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][3]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][4]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][5]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][6]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][7]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][8]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][9]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][10]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][11]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][12]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][13]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][14]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][15]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][16]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][17]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][18]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][19]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][20]</td>
+                                                                <td>@Model.ColDataTables[2].Rows[i][21]</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Folio del certificado de nacimiento</th>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <th>Hora de nacimiento</th>
+                                                            <th>ID Sexo</th>
+                                                            <th>Sexo</th>
+                                                            <th>ID Entidad</th>
+                                                            <th>Entidad</th>
+                                                            <th>ID Municipio</th>
+                                                            <th>Municipio</th>
+                                                            <th>ID Localidad</th>
+                                                            <th>Localidad</th>
+                                                            <th>Calle</th>
+                                                            <th>Número exterior</th>
+                                                            <th>Número interior</th>
+                                                            <th>Edad</th>
+                                                            <th>Número de nacimiento vivo</th>
+                                                            <th>Ocupación</th>
+                                                            <th>ID Estado civil</th>
+                                                            <th>Estado civil</th>
+                                                            <th>ID Escolaridad</th>
+                                                            <th>Escolaridad</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="resumenTotalesTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Resumen por Municipio</strong></p>
+                                <div id="resumenTotalesTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="resumenTotalesTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="ReporteMpiosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            @for (int i = 0; i < Model.ColCabeceros.Count; i++)
+                                                            {
+                                                                <th>@Model.ColCabeceros[i]</th>
+                                                            }
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.ColFilas.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                @for (int j = 0; j < Model.ColFilas[i].ColCeldas.Count; j++)
+                                                                {
+                                                                    <td>@Model.ColFilas[i].ColCeldas[j].Valor</td>
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            @for (int i = 0; i < Model.ColCabeceros.Count; i++)
+                                                            {
+                                                                <th>@Model.ColCabeceros[i]</th>
+                                                            }
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ./footer -->
+            </div>
+            <!-- ./panel -->
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row -->
+</section>
+<!-- ./result -->

@@ -155,6 +155,7 @@
     <Compile Include="Controllers\Georeferenciacion\OficinasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Nacimientos\ArchivosController.cs" />
+    <Compile Include="Controllers\Nacimientos\SubRegistroController.cs" />
     <Compile Include="Controllers\Nacimientos\ConsultasController.cs" />
     <Compile Include="Controllers\Nacimientos\ReportesController.cs" />
     <Compile Include="Controllers\Usuarios\AccesoController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\Catalogos\Socioeconomica\Escolaridad.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\EstatusRegistro.cs" />
     <Compile Include="Models\Catalogos\Socioeconomica\Sexo.cs" />
+    <Compile Include="Models\Catalogos\Tiempo\Anio.cs" />
     <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
     <Compile Include="Models\ErrorViewModel.cs" />
@@ -195,7 +197,6 @@
     <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Catalogos\Geografia\ConsultasFacade.cs" />
     <Compile Include="Services\Georeferenciacion\GeoServicio.cs" />
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
@@ -249,7 +250,10 @@
     <Content Include="Content\images\banner1.svg" />
     <Content Include="Content\images\banner2.svg" />
     <Content Include="Content\images\banner3.svg" />
+    <Content Include="Content\images\bgResult_01.png" />
+    <Content Include="Content\images\bgResult_02.png" />
     <Content Include="Content\images\bid-logo.png" />
+    <Content Include="Content\images\btnSearch.png" />
     <Content Include="Content\images\canada-logo.png" />
     <Content Include="Content\images\coahuila-map.svg" />
     <Content Include="Content\images\cohauila-gob-logo.png" />
@@ -264,6 +268,7 @@
     <Content Include="Scripts\js\georefenciacion\crearOficinas.js" />
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
+    <Content Include="Scripts\js\nacimientos\consultas\consultaSubRegistro.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
     <Content Include="Scripts\js\nacimientos\consultas\importar.js" />
     <Content Include="Scripts\js\nacimientos\reportes\reportes.js" />
@@ -2284,8 +2289,12 @@
     <Content Include="Views\GeoOficialias\OficinasConsulta.cshtml" />
     <Content Include="Views\Oficinas\OficinasConsulta.cshtml" />
     <Content Include="Views\Oficinas\CrearOficina.cshtml" />
+    <Content Include="Views\SubRegistro\SubRegistroInformacion.cshtml" />
+    <Content Include="Views\SubRegistro\SeleccionarConsulta.cshtml" />
+    <Content Include="Views\Nacimientos\Modales\SeleccionarConsultaModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Services\Catalogos\Geografia\" />
     <Folder Include="Services\Nacimientos\Archivos\" />
     <Folder Include="Services\Nacimientos\Consultas\" />
     <Folder Include="Services\Nacimientos\Reportes\" />
