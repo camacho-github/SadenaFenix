@@ -156,7 +156,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Nacimientos\ArchivosController.cs" />
     <Compile Include="Controllers\Nacimientos\SubRegistroController.cs" />
-    <Compile Include="Controllers\Nacimientos\ConsultasController.cs" />
     <Compile Include="Controllers\Nacimientos\ReportesController.cs" />
     <Compile Include="Controllers\Usuarios\AccesoController.cs" />
     <Compile Include="Daos\Catalogos\CatalogosDAO.cs" />
@@ -168,7 +167,6 @@
     <Compile Include="Excepcions\DAOException.cs" />
     <Compile Include="Excepcions\EmptyDataException.cs" />
     <Compile Include="Facade\Nacimientos\Archivos\ArchivosFacade.cs" />
-    <Compile Include="Facade\Nacimientos\Consultas\ConsultasFacade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2295,6 +2293,7 @@
     <Content Include="Views\Nacimientos\Modales\SeleccionarConsultaModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Facade\Nacimientos\Consultas\" />
     <Folder Include="Services\Catalogos\Geografia\" />
     <Folder Include="Services\Nacimientos\Archivos\" />
     <Folder Include="Services\Nacimientos\Consultas\" />

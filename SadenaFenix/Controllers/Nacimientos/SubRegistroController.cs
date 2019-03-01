@@ -1,17 +1,12 @@
 ﻿using Newtonsoft.Json;
-using SadenaFenix.Facade.Nacimientos.Consultas;
 using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Catalogos.Tiempo;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Catalogos;
-using SadenaFenix.Transport.Nacimientos.Consultas;
-using SadenaFenix.Transport.Nacimientos.Consultas.Comboxes;
 using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Dynamic;
 using System.Web.Mvc;
 
