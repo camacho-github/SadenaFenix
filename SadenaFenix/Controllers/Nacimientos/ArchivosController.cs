@@ -1,24 +1,55 @@
-﻿using System.Collections.ObjectModel;
-using System.Web.Mvc;
-using SadenaFenix.Models.Nacimientos.Archivos;
+﻿using System.Web.Mvc;
+using Newtonsoft.Json;
+using SadenaFenix.Facade.Nacimientos.Archivos;
 using SadenaFenix.Models.Usuarios;
-using SadenaFenix.Services;
+using SadenaFenix.Transport;
 using SadenaFenix.Transport.Nacimientos.Archivos;
-using SadenaFenix.Transport.Nacimientos.Consultas;
 using SadenaFenix.Transport.Usuarios.Acceso;
 
 namespace SadenaFenix.Controllers.Nacimientos
 {
     public class ArchivosController : Controller
     {
-        // GET: Archivos
-        public ActionResult Importar(string userJson)
-        {
+        public ArchivosFacade ArchivosFacade;
 
+        public ArchivosController()
+        {
+            ArchivosFacade = new ArchivosFacade();
+        }
+
+        [HttpPost]
+        public ActionResult Importar(ImportarArchivosViewModel viewModel)
+        {
+            /* Take user. */
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(viewModel.Usuario.Json);
+            usuario.Json = viewModel.Usuario.Json;
+            viewModel.Usuario = usuario;
+
+            /* Saving files */
+            CabeceroRespuesta cabeceroRespuesta = ArchivosFacade.SalvarArchivos(viewModel);
+            if (cabeceroRespuesta.EsRespuestaExistosa())
+            {
+                viewModel.CabeceroRespuesta = cabeceroRespuesta;
+                return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);
+            } else
+            {
+                ErrorViewModel errorViewModel = new ErrorViewModel()
+                {
+                    CabeceroRespuesta = cabeceroRespuesta,
+                    Usuario = usuario
+                };
+                return View("~/Views/Shared/500.cshtml", errorViewModel);
+            }
+
+        }
+
+        // GET: Archivos
+        public ActionResult SeleccionarArchivos(string userJson)
+        {
+            ImportarArchivosViewModel viewModel = new ImportarArchivosViewModel();
             Usuario usuario = new Usuario { Json = userJson };
-                                  
-            
-            return View("~/Views/Nacimientos/Archivos/Importar.cshtml", usuario);
+            viewModel.Usuario = usuario;
+            return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);
         }
 
         public ActionResult Index()

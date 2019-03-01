@@ -23,7 +23,7 @@ $(function () {
 
     /* Menu options */
     $("#callImportarArchivo").click(function () {
-        window.location.href = "/Archivos/Importar?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        window.location.href = "/Archivos/SeleccionarArchivos?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
     $("#callReportes").click(function () {

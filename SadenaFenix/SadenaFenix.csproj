@@ -167,6 +167,7 @@
     <Compile Include="Excepcions\BusinessException.cs" />
     <Compile Include="Excepcions\DAOException.cs" />
     <Compile Include="Excepcions\EmptyDataException.cs" />
+    <Compile Include="Facade\Nacimientos\Archivos\ArchivosFacade.cs" />
     <Compile Include="Facade\Nacimientos\Consultas\ConsultasFacade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,7 +182,6 @@
     <Compile Include="Models\Catalogos\Tiempo\Anio.cs" />
     <Compile Include="Models\Catalogos\Tiempo\Mes.cs" />
     <Compile Include="Models\Constantes\Constantes.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\Georeferenciacion\Oficina.cs" />
     <Compile Include="Models\Georeferenciacion\Oficialia.cs" />
     <Compile Include="Models\Georeferenciacion\TipoOficina.cs" />
@@ -201,6 +201,7 @@
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
+    <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
@@ -225,8 +226,8 @@
     <Compile Include="Transport\Catalogos\CatalogosSocioEconomicaRespuesta.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesPeticion.cs" />
     <Compile Include="Transport\Catalogos\ConsultaMesesRespuesta.cs" />
-    <Compile Include="Transport\Nacimientos\Archivos\Importacion.cs" />
-    <Compile Include="Transport\Nacimientos\Archivos\PreCargaPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Archivos\ImportarArchivosViewModel.cs" />
+    <Compile Include="Models\Nacimientos\Archivos\PreCargaPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEdadSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEdoCivilSubregistroPeticion .cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEscolaridadSubregistroPeticion.cs" />
@@ -2200,6 +2201,7 @@
     <Content Include="Scripts\vendor\select2\src\js\select2\utils.js" />
     <Content Include="Scripts\vendor\select2\src\js\wrapper.end.js" />
     <Content Include="Scripts\vendor\select2\src\js\wrapper.start.js" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2220,7 +2222,6 @@
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_GeoLayout.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_CookieConsentPartial.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <Content Include="Views\Nacimientos\Archivos\Importar.cshtml" />

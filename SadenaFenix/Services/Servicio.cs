@@ -1,13 +1,10 @@
-﻿using SadenaFenix.Business;
-using SadenaFenix.Business.Catalogos;
+﻿using SadenaFenix.Business.Catalogos;
 using SadenaFenix.Business.Nacimientos.Archivos;
 using SadenaFenix.Business.Nacimientos.Reportes;
 using SadenaFenix.Business.Usuarios;
 using SadenaFenix.Excepcions;
-using SadenaFenix.Models.Georeferenciacion;
 using SadenaFenix.Models.Nacimientos.Archivos;
 using SadenaFenix.Transport.Catalogos;
-using SadenaFenix.Transport.Georeferenciacion;
 using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Nacimientos.Reportes;
 using SadenaFenix.Transport.Usuarios.Acceso;

@@ -1,0 +1,41 @@
+﻿@* Model *@
+@model SadenaFenix.Transport.ErrorViewModel
+
+@{
+
+    ViewData["Root"] = "Sadena";
+    ViewData["Option"] = "Error";
+    ViewData["Title"] = ViewData["Root"] + " / " + ViewData["Option"];
+
+}
+
+<!-- Page content -->
+<div class="page-content">
+
+    @Html.HiddenFor(model => model.Usuario.Json, new { id = "objUsuario" })
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Error -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Panel -->
+                    <div class="panel panel-default mt-30">
+                        <div class="panel-body">
+                            <h3>@ViewData["Option"]</h3>
+                            <p class="text-danger"><strong>@Model.CabeceroRespuesta.CodigoRespuesta :</strong>@Model.CabeceroRespuesta.MensajeRespuesta</p>
+                        </div>
+                    </div>
+                    <!-- ./panel -->
+                </div>
+            </div>
+        </section>
+        <!-- ./error -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- ./page content -->

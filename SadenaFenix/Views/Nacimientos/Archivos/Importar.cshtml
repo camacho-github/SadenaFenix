@@ -1,5 +1,5 @@
 ﻿@* Model *@
-@model SadenaFenix.Models.Usuarios.Usuario
+@model SadenaFenix.Transport.Nacimientos.Archivos.ImportarArchivosViewModel
 
 @{
 
@@ -12,8 +12,6 @@
 
 <!-- Page content -->
 <div class="page-content">
-
-    @Html.HiddenFor(model => model.Json, new { id = "objUsuario" })
 
     <!-- Container -->
     <div class="container">
@@ -33,28 +31,37 @@
                 <div class="col-sm-12">
                     <div class="well loading-well">
                         <!-- Form -->
-                        <form class="form-horizontal">
+                        <form id="loadingFilesForm" class="form-horizontal" action="/Archivos/Importar" method="post" enctype="multipart/form-data">
+
+                            @Html.HiddenFor(model => model.Usuario.Json)
+
                             <fieldset>
                                 <legend>Selección de Archivos</legend>
                                 <div class="form-group">
                                     <label class="col-sm-12" for="sinacFile">SINAC</label>
                                     <div class="col-sm-12">
-                                        <input id="sinacFile" name="sinacFile" type="file" accept="*.mdb" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SINAC">
+                                        <input id="SinacFile" name="SinacFile" type="file" accept="*.mdb" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SINAC">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-12" for="sicFile">SIC</label>
                                     <div class="col-sm-12">
-                                        <input id="sicFile" name="sicFile" type="file" accept="*.xls, *.xlsx" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SIC">
+                                        <input id="SicFile" name="SicFile" type="file" accept="*.xls, *.xlsx" class="form-control-file" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SIC">
                                     </div>
                                 </div><br />
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button id="loadingFilesBtn" type="button" class="btn btn-success" title="Cargar Archivos">Cargar Archivos</button>
+                                        <button id="loadingFilesBtn" type="submit" class="btn btn-success" title="Cargar Archivos">Cargar Archivos</button>
                                     </div>
                                 </div>
                             </fieldset>
                         </form>
+                        <div class="col-sm-12">
+                            @if (Model.CabeceroRespuesta != null)
+                            {
+                                <p>@Model.CabeceroRespuesta.MensajeRespuesta</p>
+                            }
+                        </div>
                         <!-- ./form -->
                     </div>
                 </div>
