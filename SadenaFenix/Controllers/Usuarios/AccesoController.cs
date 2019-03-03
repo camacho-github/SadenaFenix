@@ -98,7 +98,11 @@ namespace SadenaFenix.Controllers.Usuarios
 
                 if (respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)
                 {
-                   return RedirectToAction("LoginConsultar", "Consultas", respuesta.Usuario);
+                   return RedirectToAction("SeleccionarConsulta", "SubRegistro", new
+                   {
+                       userJson = respuesta.Usuario.Json
+                   });
+                    
                 }
                 else
                 {
