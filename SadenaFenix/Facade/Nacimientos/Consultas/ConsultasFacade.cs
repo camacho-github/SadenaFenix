@@ -19,9 +19,9 @@ namespace SadenaFenix.Facade.Nacimientos.Consultas
             ConsultasViewModel modelView = new ConsultasViewModel();
             /* Get catalogos. */
             CatalogosCargasRespuesta catalogosCargasRespuesta = servicio.ObtenerCatalogosCargas(null);
-            Collection<string> anios = catalogosCargasRespuesta.ColAnos;
-            Collection<string> meses = catalogosCargasRespuesta.ColMeses;
-            Collection<Municipio> municipios = catalogosCargasRespuesta.ColMunicipios;
+            Collection<string> anios = new Collection<string>(); //  catalogosCargasRespuesta.ColAnos;
+            Collection<string> meses = new Collection<string>();  // catalogosCargasRespuesta.ColMeses;
+            Collection<Municipio> municipios = new Collection<Municipio>();  //catalogosCargasRespuesta.ColMunicipios;
 
             /* Municipios */
             List <SelectListItem> municipiosItems = new List<SelectListItem>();

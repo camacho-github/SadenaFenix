@@ -75,6 +75,7 @@ namespace SadenaFenix.Controllers.Usuarios
                         Identificador = 1,
                         Nombre = "CATALOGOS"
                     });
+                    /*
                     preCargaPeticion.ColArchivo.Add(new Archivo
                     {
                         Ano = "2018",
@@ -88,7 +89,7 @@ namespace SadenaFenix.Controllers.Usuarios
                         Extension = "MDB",
                         Identificador = 2,
                         Nombre = "SINAC"
-                    });
+                    });*/
 
                     servicio.PreCargarDatos(preCargaPeticion);
                     servicio.ProcesarCarga(preCargaPeticion);

@@ -73,6 +73,12 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             {
                 cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitosamente.";
             }
+            /* Procesar archivos. */
+            cabeceroRespuesta = servicio.ProcesarCarga(preCargaPeticion);
+            if (cabeceroRespuesta.EsRespuestaExistosa())
+            {
+                cabeceroRespuesta.MensajeRespuesta = "Los archivos han sido guardados y procesados exitosamente, los datos pueden ser consultados ahora.";
+            }
             return cabeceroRespuesta;
         }
 
