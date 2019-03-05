@@ -1,12 +1,4 @@
 ﻿
-$(window).on('load', function () {
-    $("#loader").toggleClass("hiddElement");        
-});
-
-$(window).on('unload', function () {
-    fnWaitForPost();
-});
-
 $(function () {
     $(".ValidacionTexto").on('keypress', function (event) {
         var regExp = /^[a-zA-z0-9 ]{0,245}$/;
@@ -215,41 +207,6 @@ function fnMensajeBotonesLista(tittle, message, btnList, clase) {
         scrollTop: 0
     }, 100);
 }
-
-function fnShowDiv(div, showHide, isClass) {
-    var selector;
-    if (isClass !== undefined && isClass === true) {
-        selector = $("." + div);
-    } else {
-        selector = $("#" + div);
-    }
-
-    if (showHide === 1)
-        selector.toggleClass('hiddElement', false);
-    if (showHide === 0)
-        selector.toggleClass('hiddElement', true);
-}
-
-
-function fnWaitForLoading(func) {
-    var loader = $("#loader");
-    fnShowDiv(loader.attr('id'), 1);
-    loader.fadeOut(100, function () {
-        func();
-        loader.removeAttr('style');
-        fnShowDiv(loader.attr('id'), 0);        
-    });
-}
-
-function fnWaitForPost() {
-    fnShowDiv("loader", 1);   
-}
-
-
-function fnCompleteWait() {
-    fnShowDiv("loader", 0);
-}
-
 
 function fnSetFormatPhoneNumber(element, number) {
     try {

@@ -2,6 +2,14 @@
  */
 var CONST_ROL_ANALISTA = 3;
 
+$(window).on('unload', function () {
+    fnWaitForPost();
+});
+
+$(window).on('load', function () {
+    fnCompleteWait();
+});
+
 /* On ready */
 $(function () {
 
@@ -54,7 +62,6 @@ $(function () {
         window.location.href = "/Home/Contact?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
-
     /* Loaders 
     $(document).ajaxStart(function () {
 
@@ -70,6 +77,38 @@ $(function () {
     });	*/
 
 });
+
+function fnShowDiv(div, showHide, isClass) {
+    var selector;
+    if (isClass !== undefined && isClass === true) {
+        selector = $("." + div);
+    } else {
+        selector = $("#" + div);
+    }
+
+    if (showHide === 1)
+        selector.toggleClass('hiddElement', false);
+    if (showHide === 0)
+        selector.toggleClass('hiddElement', true);
+}
+
+function fnWaitForPost() {
+    fnShowDiv("loader", 1);
+}
+
+function fnCompleteWait() {
+    fnShowDiv("loader", 0);
+}
+
+function fnWaitForLoading(func) {
+    var loader = $("#loader");
+    fnShowDiv(loader.attr('id'), 1);
+    loader.fadeOut(100, function () {
+        func();
+        loader.removeAttr('style');
+        fnShowDiv(loader.attr('id'), 0);
+    });
+}
 
 /* Showing loading 
 function charginModal() {
