@@ -34,7 +34,7 @@ $(function () {
         window.location.href = "/SubRegistro/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
-    $("#callConsultaOficinas").click(function () {
+    $(".callConsultaOficinas").click(function () {
         window.location.href = "/Oficinas/OficinasConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 

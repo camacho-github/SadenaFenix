@@ -5,12 +5,12 @@
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Georeferenciación";
     ViewData["Option"] = "Oficialias/Módulos Hospitalarios";
-    ViewData["TableName"] = "Crear Oficialía/Módulo Hospitalario";
+    ViewData["TableName"] = "Actualizar Oficialía/Módulo Hospitalario";
     ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
 }
 @section Scripts
 {
-    <script src="@Url.Content("~/Scripts/js/georefenciacion/crearOficinas.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/georefenciacion/actualizarOficina.js")"></script>
     <script src="@Url.Content("~/Scripts/js/utilerias/mapasOficina.js")"></script>
     <!-- Replace the value of the key parameter with your own API key. -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZR7MAkSG9XJovKvEhEfBOa--vPwt5IzM&libraries=places&callback=initMap"
@@ -48,6 +48,8 @@
 
                                 <hr />
 
+                                @Html.HiddenFor(model => model.OId)
+
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#ubicacionOficina" data-toggle="tab">Ubicación de la Oficina</a>
@@ -64,8 +66,9 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.TipoDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-4">
-                                                @Html.DropDownListFor(model => model.TipoId, new SelectList(Model.TipoLista, "TipoId", "TipoDesc"), new { id = "TipoLista", @class = "selectTipo show-tick form-control" })
-                                                @Html.ValidationMessageFor(model => model.TipoId, "", new { @class = "text-danger", @id = "valMessageTipo" })
+                                                @Html.EditorFor(model => model.TipoDesc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @identificador = Model.TipoId } })
+                                                @Html.DropDownListFor(model => model.TipoId, new SelectList(Model.TipoLista, "TipoId", "TipoDesc"), new { id = "TipoLista", @class = "selectTipo show-tick form-control hiddElement" })
+                                                @Html.ValidationMessageFor(model => model.TipoDesc, "", new { @class = "text-danger", @id = "valMessageTipo" })
                                             </div>
                                         </div>
 
@@ -115,14 +118,17 @@
                                             <div>
                                                 @Html.LabelFor(model => model.MpioDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-4">
-                                                    @Html.DropDownListFor(model => model.MpioId, new SelectList(Model.MunicipioLista, "MpioId", "MpioDesc"), new { id = "MunicipioLista", @class = "selectMpio show-tick form-control" })
-                                                    @Html.ValidationMessageFor(model => model.MpioId, "", new { @class = "text-danger", @id = "valMessageMpio" })
+                                                    @Html.EditorFor(model => model.MpioDesc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @identificador = Model.MpioId } })
+                                                    @Html.DropDownListFor(model => model.MpioId, new SelectList(Model.MunicipioLista, "MpioId", "MpioDesc"), new { id = "MunicipioLista", @class = "selectMpio show-tick form-control hiddElement" })
+                                                    @Html.ValidationMessageFor(model => model.MpioDesc, "", new { @class = "text-danger", @id = "valMessageMpio" })
                                                 </div>
                                             </div>
                                             <div>
                                                 @Html.LabelFor(model => model.LocDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-4">
-                                                    @Html.DropDownListFor(model => model.LocDesc, new SelectList(Model.LocalidadLista, "LocId", "LocDesc", "LocMpioId", "LocMpioDesc", "", ""), new { id = "LocalidadLista", @class = "selectLoc show-tick form-control" })
+                                                    @Html.EditorFor(model => model.LocDesc, new { htmlAttributes = new { @class = "form-control ValidacionTexto", @maxlength = "60", @placeholder = "Localidad", @readonly = "readonly", @identificador = Model.LocId } })
+                                                    @Html.DropDownListFor(model => model.LocId, new SelectList(Model.LocalidadLista, "LocId", "LocDesc", "LocMpioId", "LocMpioDesc", "", ""), new { id = "LocalidadLista", @class = "selectLoc show-tick form-control hiddElement" })
+                                                    @Html.ValidationMessageFor(model => model.LocDesc, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
@@ -159,13 +165,13 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EntreCalles, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-4">
-                                                @Html.EditorFor(model => model.EntreCalles, new { htmlAttributes = new { @class = "form-control", @maxlength = "200", @placeholder = "Entre calles" } })
+                                                @Html.EditorFor(model => model.EntreCalles, new { htmlAttributes = new { @class = "form-control ValidacionTexto", @maxlength = "200", @placeholder = "Entre calles" } })
                                                 @Html.ValidationMessageFor(model => model.EntreCalles, "", new { @class = "text-danger" })
                                             </div>
 
                                             @Html.LabelFor(model => model.HorarioAtencion, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-4">
-                                                @Html.EditorFor(model => model.HorarioAtencion, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @placeholder = "Horario de Atención" } })
+                                                @Html.EditorFor(model => model.HorarioAtencion, new { htmlAttributes = new { @class = "form-control ValidacionTexto", @maxlength = "50", @placeholder = "Horario de Atención" } })
                                                 @Html.ValidationMessageFor(model => model.HorarioAtencion, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -204,17 +210,17 @@
                                     <div id="InmuebleYMobiliario" class="tab-pane fade">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.InvSerLuz, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.InvSerLuz">
                                                 <input id="InvSerLuz" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.InvSerAgua, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.InvSerAgua">
                                                 <input id="InvSerAgua" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.InvLocalPropio, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.InvLocalPropio">
                                                 <input id="InvLocalPropio" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
                                         </div>
@@ -222,7 +228,7 @@
                                         <div class="form-group">
 
                                             @Html.LabelFor(model => model.InvSerSanitario, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-4 toogleStyleOficinas">
+                                            <div class="col-md-4 toogleStyleOficinas" valorToggle="@Model.InvSerSanitario">
                                                 <input id="InvSerSanitario" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
@@ -294,34 +300,34 @@
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EquiNet, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.EquiNet">
                                                 <input id="EquiNet" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.EquiTrabNet, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.EquiTrabNet">
                                                 <input id="EquiTrabNet" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.EquiVentExpress, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.EquiVentExpress">
                                                 <input id="EquiVentExpress" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EquiConDrc, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.EquiConDrc">
                                                 <input id="EquiConDrc" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.ExpideCurp, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.ExpideCurp">
                                                 <input id="ExpideCurp" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
 
                                             @Html.LabelFor(model => model.ExpideActasForaneas, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-2 toogleStyleOficinas">
+                                            <div class="col-md-2 toogleStyleOficinas" valorToggle="@Model.ExpideActasForaneas">
                                                 <input id="ExpideActasForaneas" class="toggleChecks" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO">
                                             </div>
                                         </div>
@@ -331,13 +337,13 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input id="BotonCrearOficina" type="submit" value="Crear" class="btn btn-primary" />
+                                        <input id="BotonActualizarOficina" type="submit" value="Actualizar" class="btn btn-primary" />
                                     </div>
                                 </div>
 
                             </div><!--fin del form horizontal-->
-                                                        
-                            <a class="callConsultaOficinas" href="#">Ir a Consulta Oficialías/Módulos Hospitalarios</a>
+
+                            <a class="callConsultaOficinas" href="#">Ir a Consulta Oficialías/Módulos Hospitalarios</a>                            
                         </fieldset>
                     </div>
                 </div>

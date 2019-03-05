@@ -200,8 +200,12 @@
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
     <Compile Include="Transport\ErrorViewModel.cs" />
+    <Compile Include="Transport\Georeferenciacion\ActualizarOficinaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ActualizarOficinaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficialiaPeticion.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultarOficinaRespuesta.cs" />
+    <Compile Include="Transport\Georeferenciacion\ConsultarOficinaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultarOficinasPeticion.cs" />
@@ -257,13 +261,19 @@
     <Content Include="Content\images\coahuila-map.svg" />
     <Content Include="Content\images\cohauila-gob-logo.png" />
     <Content Include="Content\images\cohauila-uploaded.jpg" />
+    <Content Include="Content\images\icon_hospital.png" />
     <Content Include="Content\images\icon_close.png" />
+    <Content Include="Content\images\icon_TagBlack.png" />
+    <Content Include="Content\images\icon_TagVerde.png" />
+    <Content Include="Content\images\markerOficialia.png" />
+    <Content Include="Content\images\markerOficialia60.png" />
     <Content Include="Content\images\regcivil-gob-logo.png" />
     <Content Include="Content\images\user-default-160x160.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="SadenaFenix.csproj.user" />
     <Content Include="Scripts\js\georefenciacion\consultaOficinas.js" />
+    <Content Include="Scripts\js\georefenciacion\actualizarOficina.js" />
     <Content Include="Scripts\js\georefenciacion\crearOficinas.js" />
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
@@ -273,7 +283,8 @@
     <Content Include="Scripts\js\nacimientos\reportes\reportes.js" />
     <Content Include="Scripts\js\sadena-general.js" />
     <Content Include="Scripts\js\utilerias\comunes.js" />
-    <Content Include="Scripts\js\utilerias\mapas.js" />
+    <Content Include="Scripts\js\utilerias\mapaConsultaOficinas.js" />
+    <Content Include="Scripts\js\utilerias\mapasOficina.js" />
     <Content Include="Scripts\js\utilerias\validador.js" />
     <Content Include="Scripts\vendor\datatables.net-responsive\js\dataTables.responsive.js" />
     <Content Include="Scripts\vendor\datatables.net-responsive\js\dataTables.responsive.min.js" />
@@ -2007,6 +2018,8 @@
     <Content Include="Scripts\vendor\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Scripts\vendor\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="Scripts\vendor\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\kml\CapaMunicipios.kml" />
+    <Content Include="Content\kml\MunicipiosCapa.kml" />
     <None Include="Scripts\vendor\jquery-validation\dist\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\vendor\jquery-validation\dist\jquery.validate.js" />
     <Content Include="Scripts\vendor\jquery-validation\dist\jquery.validate.min.js" />
@@ -2287,10 +2300,11 @@
     <Content Include="Views\Layout\_Sidebar.cshtml" />
     <Content Include="Views\GeoOficialias\OficinasConsulta.cshtml" />
     <Content Include="Views\Oficinas\OficinasConsulta.cshtml" />
-    <Content Include="Views\Oficinas\CrearOficina.cshtml" />
     <Content Include="Views\SubRegistro\SubRegistroInformacion.cshtml" />
     <Content Include="Views\SubRegistro\SeleccionarConsulta.cshtml" />
     <Content Include="Views\Nacimientos\Modales\SeleccionarConsultaModal.cshtml" />
+    <Content Include="Views\Oficinas\CrearOficina.cshtml" />
+    <Content Include="Views\Oficinas\ActualizarOficina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\Nacimientos\Consultas\" />
