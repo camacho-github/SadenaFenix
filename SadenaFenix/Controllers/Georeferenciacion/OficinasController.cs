@@ -49,6 +49,7 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         {
             Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userJson);
             usuario.Json = userJson;
+            ViewBag.UserJson = userJson;
 
             CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
             cabeceroPeticion.SesionId = usuario.SesionId;
@@ -65,12 +66,8 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             oficina.TipoLista = new List<TipoOficina>();
             oficina.TipoLista.Add(new TipoOficina(1, "Oficialia"));
             oficina.TipoLista.Add(new TipoOficina(2, "Módulo Hospitalario"));
-
-            InsertarOficinaPeticion oficinaPeticion = new InsertarOficinaPeticion();
-            oficinaPeticion.Oficina = oficina;
-            oficinaPeticion.UserJson = userJson;
-
-            return View(oficinaPeticion);
+                        
+            return View(oficina);
         }
 
 
@@ -86,77 +83,62 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         }
 
 
-
-        // GET: Oficinas/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult ActualizarOficina(int id)
         {
-            return View();
-        }
-
-        // GET: Oficinas/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Oficinas/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            Usuario usuario = new Usuario
             {
-                // TODO: Add insert logic here
+                UsuarioDesc = "Administrador",
+                CorreoE = "elcorreo@hot.com.mx",
+                Rol = new Rol{RolId =  2 }
+            };            
+            usuario.Json = JsonConvert.SerializeObject(usuario);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.UserJson = usuario.Json;
+
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
+            cabeceroPeticion.SesionId = 1;
+
+            ConsultarOficinaPeticion peticion = new ConsultarOficinaPeticion();
+            peticion.OId = id;
+
+            GeoServicio geoServicio = new GeoServicio();
+            ConsultarOficinaRespuesta respuesta = geoServicio.ConsultarOficina(peticion);
+            Oficina oficina = respuesta.Oficina;
+
+            Servicio servicio = new Servicio();
+            CatalogoMunicipioRespuesta catalogoMunicipioRespuesta = servicio.ConsultarCatalogoMunicipioGeografia(cabeceroPeticion);
+            oficina.MunicipioLista = new List<Municipio>(catalogoMunicipioRespuesta.ColMunicipio);
+
+            CatalogoLocalidadRespuesta catalogoLocalidadRespuesta = servicio.ConsultarCatalogoLocalidadGeografiaCoahuila(cabeceroPeticion);
+            oficina.LocalidadLista = new List<Localidad>(catalogoLocalidadRespuesta.ColLocalidad);
+
+            oficina.TipoLista = new List<TipoOficina>();
+            oficina.TipoLista.Add(new TipoOficina(1, "Oficialia"));
+            oficina.TipoLista.Add(new TipoOficina(2, "Módulo Hospitalario"));
+
+            return View(oficina);
         }
 
-        // GET: Oficinas/Edit/5
-        public ActionResult Edit(int id)
+        [WebMethod]
+        public ActionResult ActualizarOficina(string jsonOficina)
         {
-            return View();
+            ActualizarOficinaPeticion peticion = new ActualizarOficinaPeticion();
+            peticion.Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina);
+
+            GeoServicio geoServicio = new GeoServicio();
+            ActualizarOficinaRespuesta respuesta = geoServicio.ActualizarOficina(peticion);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Oficinas/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+
+        [WebMethod]
+        public ActionResult EliminarOficina(int oid)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            GeoServicio geoServicio = new GeoServicio();
+            ActualizarOficinaRespuesta respuesta = geoServicio.EliminarOficina(oid);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Oficinas/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Oficinas/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

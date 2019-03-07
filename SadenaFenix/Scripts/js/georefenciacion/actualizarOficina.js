@@ -21,25 +21,25 @@ $(function () {
     var $selectTipo = $('#TipoLista');
     $selectTipo.attr('data-live-search', true);
     $selectTipo.selectpicker(
-    {
-        width: '100%',
-        title: '- [selecciona el tipo de Oficina] -',
-        limit: 1,
-        size: 6
-    });
+        {
+            width: '100%',
+            title: '- [selecciona el tipo de Oficina] -',
+            limit: 1,
+            size: 6
+        });
 
 
     $selectTipo.on('change', function () {
         var nombreTexto = $(this).find("option:selected").text();
         var selected = $('#TipoLista option:selected').val();
-        objOficina.TipoId = selected;   
+        objOficina.TipoId = selected;
 
         if ($("input#TipoDesc").exists()) {
             $("input#TipoDesc").val(nombreTexto);
 
             $('div.selectTipo').toggleClass("hiddElement", "true");
             $("input#TipoDesc").toggleClass("hiddElement", "false");
-        }    
+        }
     });
 
     var $selectMpio = $('#MunicipioLista');
@@ -81,10 +81,33 @@ $(function () {
         ///////////////////////
     });
 
-    $('#LocalidadLista').on('change', function () {
+    if ($("input#TipoDesc").exists()) {
+        var selected = $('#TipoLista option:selected').val();
+        objOficina.TipoId = selected;
+    }
+
+    if (!$("input#LocDesc").exists()) {
+        fnLoadLocalidadLista();
+        $('#LocalidadLista').prop('disabled', true);
+    } else {
+        var selected = $('#MunicipioLista option:selected').val();
+        objOficina.MpioId = selected;
+
+        fnLoadLocalidadLista();
+        $("#LocalidadLista").children("optgroup[label='" + selected + "']").removeAttr('disabled');
+        var arrNotSelected = $('#MunicipioLista option:not(:selected)');
+        for (var i = 0; i < arrNotSelected.length; i++) {
+            $("#LocalidadLista").children("optgroup[label='" + arrNotSelected[i].value + "']").prop("disabled", "disabled");
+        }
+
+        selected = $('#LocalidadLista option:selected').val();
+        objOficina.MpioId = selected;
+        fnLoadLocalidadLista();
+    }
+
+    var $selectLoc = $('#LocalidadLista');
+    $selectLoc.on('change', function () {
         var nombreTexto = $(this).find("option:selected").text();
-        var selected = $('#LocalidadLista option:selected').val();
-        objOficina.LocId = selected;
 
         if ($("input#LocDesc").exists()) {
             $("input#LocDesc").val(nombreTexto);
@@ -92,12 +115,11 @@ $(function () {
             $('div.selectLoc').toggleClass("hiddElement", "true");
             $("input#LocDesc").toggleClass("hiddElement", "false");
         }
+
+        var selected = $('#LocalidadLista option:selected').val();
+        objOficina.LocId = selected;
     });
 
-    if (!$("input#LocDesc").exists()) {
-        fnLoadLocalidadLista();
-        $('#LocalidadLista').prop('disabled', true);
-    }
 
     $('#BotonCrearOficina').click(function () {
         if (fnValidarGuardarOficina() == true) {
@@ -109,16 +131,16 @@ $(function () {
     $('#BotonActualizarOficina').click(function () {
         if (fnValidarGuardarOficina() == true) {
             $('#BotonActualizarOficina').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
-            fnGuardarOficina();
+            fnActualizarOficina();
         }
     });
 
     $('#BotonEliminarOficina').click(function () {
-        
+
         $('#BotonEliminarOficina').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
         fnEliminarOficina();
-       
-    });    
+
+    });
 
     $("input#MpioDesc").on('focus', function (event) {
         $(this).toggleClass("hiddElement", "true");
@@ -132,7 +154,14 @@ $(function () {
         $('div.selectLoc').toggleClass("hiddElement", "false");
 
         $("#LocalidadLista").focus();
-    }); 
+    });
+
+    $("input#TipoDesc").on('focus', function (event) {
+        $(this).toggleClass("hiddElement", "true");
+        $('div.selectTipo').toggleClass("hiddElement", "false");
+
+        $("#TipoLista").focus();
+    });
 
     $('.toggleChecks').change(function () {
         var valor = $(this).prop('checked');
@@ -143,15 +172,20 @@ $(function () {
             objOficina[id] = 0;
         }
     })
-        
+
     fnIniciarBotonesBinarios();
 });
 
 
-function fnIniciarBotonesBinarios(){
+function fnIniciarBotonesBinarios() {
     $('.toggleChecks').bootstrapToggle();
-
     $('.toggleChecks').prop('checked', false).change();
+
+    $(".toggleChecks").each(function () {
+        if ($(this).parent().parent().attr('valorToggle') == '1') {
+            $(this).prop('checked', true).change();
+        }
+    });
 }
 
 function fnLoadLocalidadLista() {
@@ -161,7 +195,7 @@ function fnLoadLocalidadLista() {
         $("input#LocDesc").toggleClass("hiddElement", "true");
         $('div.selectLoc').toggleClass("hiddElement", "false");
         $selectLoc.toggleClass("hiddElement", "false");
-    }    
+    }
 
     $selectLoc.prop('disabled', false);
     $selectLoc.attr('data-live-search', true);
@@ -183,7 +217,7 @@ function fnLoadLocalidadLista() {
         $('div.selectLoc').toggleClass("hiddElement", "false");
         $selectLoc.toggleClass("hiddElement", "false");
     }
-      
+
 }
 
 function fnValidarGuardarOficina() {
@@ -238,7 +272,7 @@ function fnValidarGuardarOficina() {
     } else {
         $('#valMessageMpio').text("");
     }
-    
+
     if ($('#Calle').val() == '') {
         advertenciaVacios = true;
     }
@@ -282,7 +316,7 @@ function fnValidarGuardarOficina() {
     if (valid == false) {
         fnMessage("Validación de información", "Los datos ingresados son incorrectos", undefined, "alert-warning");
         return false;
-    } else if(advertenciaVacios == true){
+    } else if (advertenciaVacios == true) {
         fnAdvertenciaVacios();
         return false;
     }
@@ -295,13 +329,13 @@ function fnAdvertenciaVacios() {
         msgQuestion = "Algunos datos no fueron capturados, ¿desea continuar con el guardado sin estos valores?";
 
     buttonsList["SI"] = function () {
-        fnWaitForPost();      
+        fnWaitForPost();
         if (objOficina.OId == 0) {
             fnGuardarOficina();
         } else {
             fnActualizarOficina();
-        }         
-     };
+        }
+    };
     buttonsList["No"] = function () {
         fnShowDiv("ConfirmacionMensaje", 0);
     };
@@ -310,35 +344,35 @@ function fnAdvertenciaVacios() {
 
 function fnObtenerJsonOficina() {
 
-        if ($('#OId').exists() && $('#OId').val() > 0) {
-            objOficina.OId = $('#OId').val();
-        }
-    
-        objOficina.OficinaId = $('#OficinaId').val();
-        objOficina.TipoInstitucion = $('#TipoInstitucion').val();
-        objOficina.Institucion = $('#Institucion').val();
-        objOficina.Latitud = $('#Latitud').val();
-        objOficina.Longitud = $('#Longitud').val(); 
-        objOficina.Region = $('#Region').val();
-        objOficina.Calle = $('#Calle').val();
-        objOficina.Numero = $('#Numero').val();
-        objOficina.Colonia = $('#Colonia').val();
-        objOficina.CP = $('#CP').val();
-        objOficina.EntreCalles = $('#EntreCalles').val();
-        objOficina.HorarioAtencion = $('#HorarioAtencion').val();
-        objOficina.OficialNombre = $('#OficialNombre').val();
-        objOficina.OficialApellidos = $('#OficialApellidos').val();
-        objOficina.Telefono = $('#Telefono').val();
-        objOficina.CorreoE = $('#CorreoE').val();
-        objOficina.InvEscritorios = $('#InvEscritorios').val();
-        objOficina.InvSillas = $('#InvSillas').val();
-        objOficina.InvArchiveros = $('#InvArchiveros').val();
-        objOficina.InvCompPriv = $('#InvCompPriv').val();
-        objOficina.InvCompGob = $('#InvCompGob').val();
-        objOficina.InvEscanPriv = $('#InvEscanPriv').val();
-        objOficina.InvEscanGob = $('#InvEscanGob').val();
-        objOficina.InvImpPriv = $('#InvImpPriv').val();
-        objOficina.InvImpGob = $('#InvImpGob').val();
+    if ($('#OId').exists() && $('#OId').val() > 0) {
+        objOficina.OId = $('#OId').val();
+    }
+
+    objOficina.OficinaId = $('#OficinaId').val();
+    objOficina.TipoInstitucion = $('#TipoInstitucion').val();
+    objOficina.Institucion = $('#Institucion').val();
+    objOficina.Latitud = $('#Latitud').val();
+    objOficina.Longitud = $('#Longitud').val();
+    objOficina.Region = $('#Region').val();
+    objOficina.Calle = $('#Calle').val();
+    objOficina.Numero = $('#Numero').val();
+    objOficina.Colonia = $('#Colonia').val();
+    objOficina.CP = $('#CP').val();
+    objOficina.EntreCalles = $('#EntreCalles').val();
+    objOficina.HorarioAtencion = $('#HorarioAtencion').val();
+    objOficina.OficialNombre = $('#OficialNombre').val();
+    objOficina.OficialApellidos = $('#OficialApellidos').val();
+    objOficina.Telefono = $('#Telefono').val();
+    objOficina.CorreoE = $('#CorreoE').val();
+    objOficina.InvEscritorios = $('#InvEscritorios').val();
+    objOficina.InvSillas = $('#InvSillas').val();
+    objOficina.InvArchiveros = $('#InvArchiveros').val();
+    objOficina.InvCompPriv = $('#InvCompPriv').val();
+    objOficina.InvCompGob = $('#InvCompGob').val();
+    objOficina.InvEscanPriv = $('#InvEscanPriv').val();
+    objOficina.InvEscanGob = $('#InvEscanGob').val();
+    objOficina.InvImpPriv = $('#InvImpPriv').val();
+    objOficina.InvImpGob = $('#InvImpGob').val();
 
     return JSON.stringify(objOficina);
 }
@@ -353,39 +387,16 @@ function fnGuardarOficina() {
         var data = fnGetJSONResponse('GuardarOficina', params);
 
         if (data !== "" && data !== null) {
-            
+
             if (data.respuesta !== null) {
                 fnMessage("Operación correcta", "La información fue exitósamente almacenada", fnIrConsulta);
-            } else{
+            } else {
                 fnMessage("UPS! =(", "La información no fue guardada, favor de intentar nuevamente");
             }
         }
     };
 
     fnWaitForLoading(fnComplete);
-}
-
-function fnEliminarOficina () {
-    var objArray = {
-        "oId": $('#OId').val()
-    }
-
-    params = fnParamsString(objArray);
-
-    var fnComplete = function () {
-        var data = fnGetJSONResponse('../EliminarOficina', params);
-
-        if (data !== "" && data !== null) {
-            if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitósamente eliminada", fnIrConsultaDeActualizacion);
-            } else {
-                fnMessage("UPS! =(", "La información no fue eliminada, favor de intentar nuevamente");
-            }
-        }
-    };
-
-    fnWaitForLoading(fnComplete);
-
 }
 
 function fnActualizarOficina() {
@@ -411,7 +422,7 @@ function fnActualizarOficina() {
 }
 
 
-function fnAsignarPosicion(myLatLng){
+function fnAsignarPosicion(myLatLng) {
     var lat = myLatLng.lat();
     var lng = myLatLng.lng();
 
@@ -419,19 +430,19 @@ function fnAsignarPosicion(myLatLng){
     $('#Longitud').val(lng);
 }
 
-function fnNombreMarca() {    
-    return "Oficina No." + $('#OficinaId').val();    
+function fnNombreMarca() {
+    return "Oficina No." + $('#OficinaId').val();
 }
 
 
 function fnIrConsulta() {
     fnWaitForPost();
-    $(".callConsultaOficinas").click();    
+    $(".callConsultaOficinas").click();
 }
 
 function fnIrConsultaDeActualizacion() {
     fnWaitForPost();
-    $(".callConsultaOficinas").click(); 
+    $(".callConsultaOficinas").click();
 }
 
 

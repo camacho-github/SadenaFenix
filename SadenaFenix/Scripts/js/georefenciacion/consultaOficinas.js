@@ -1,4 +1,5 @@
-﻿
+﻿var objMapaConfiguracion = undefined;
+
 $(function () {
     var hCols = [1, 3, 5, 6, 7, 8, 9, 15, 16, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39];
     $('#OficinasTabla').DataTable({
@@ -104,4 +105,53 @@ $(function () {
 
     });
     $('.dataTables_length').addClass('bs-select');
+
+
+    $('.eliminarAction').click(function () {
+        var oid = $(this).attr('oid');        
+        fnAdvertenciaEliminarOficina(oid);
+    }); 
+   
 });
+
+function fnAdvertenciaEliminarOficina(oid) {
+    var buttonsList = {},
+        msgQuestion = "El registro seleccionado será eliminado permanentemente, ¿desea continuar?";
+
+    buttonsList["SI"] = function () {
+        fnWaitForPost();
+        fnEliminarOficina(oid);
+    };
+    buttonsList["No"] = function () {
+        fnShowDiv("ConfirmacionMensaje", 0);
+    };
+    fnMensajeBotonesLista("Confirmación", msgQuestion, buttonsList);
+}
+
+function fnEliminarOficina(oid) {
+    var objArray = {
+        "oId": oid
+    }
+
+    params = fnParamsString(objArray);
+
+    var fnComplete = function () {
+        var data = fnGetJSONResponse('EliminarOficina', params);
+
+        if (data !== "" && data !== null) {
+            if (data.respuesta !== null) {
+                fnMessage("Operación correcta", "La información fue exitósamente eliminada", fnIrConsulta);
+            } else {
+                fnMessage("UPS! =(", "La información no fue eliminada, favor de intentar nuevamente");
+            }
+        }
+    };
+
+    fnWaitForLoading(fnComplete);
+
+}
+
+function fnIrConsulta() {
+    fnWaitForPost();
+    $("#callConsultaOficinas").click();
+}

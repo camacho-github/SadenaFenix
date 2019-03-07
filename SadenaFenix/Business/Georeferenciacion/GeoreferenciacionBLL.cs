@@ -112,6 +112,54 @@ namespace SadenaFenix.Business.Georeferenciacion
             return true;
         }
 
+
+        public ConsultarOficinaRespuesta ConsultarOficina(int OId)
+        {
+            ConsultarOficinaRespuesta consultarOficinaRespuesta = new ConsultarOficinaRespuesta();
+            try
+            {
+                Oficina oficina = geoDAO.ConsultarOficina(OId);
+                consultarOficinaRespuesta.Oficina = oficina;
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficina no fue obtenida correctamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return consultarOficinaRespuesta;
+        }
+
+        public bool ActualizarOficina(Oficina oficina)
+        {
+            try
+            {
+                geoDAO.ActualizarOficina(oficina);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficina no fue actualizada correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return true;
+        }
+
+        public bool EliminarOficina(int oId)
+        {
+            try
+            {
+                geoDAO.EliminarOficina(oId);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La oficina no fue eliminada correctamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return true;
+        }
+
         #endregion Métodos Públicos Oficinas
 
         #region Métodos Públicos Oficialias

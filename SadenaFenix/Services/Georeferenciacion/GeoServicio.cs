@@ -54,6 +54,46 @@ namespace SadenaFenix.Services.Georeferenciacion
             return respuesta;
         }
 
+        public ConsultarOficinaRespuesta ConsultarOficina(ConsultarOficinaPeticion peticion)
+        {
+            ConsultarOficinaRespuesta respuesta = new ConsultarOficinaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                respuesta = bll.ConsultarOficina(peticion.OId);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ActualizarOficinaRespuesta EliminarOficina(int oId)
+        {
+            ActualizarOficinaRespuesta respuesta = new ActualizarOficinaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.EliminarOficina(oId);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
         #endregion
 
 
@@ -99,7 +139,7 @@ namespace SadenaFenix.Services.Georeferenciacion
             return respuesta;
         }
 
-
+        
         public InsertarOficialiaRespuesta InsertarOficialia(InsertarOficialiaPeticion peticion)
         {
             InsertarOficialiaRespuesta respuesta = new InsertarOficialiaRespuesta();
@@ -126,6 +166,26 @@ namespace SadenaFenix.Services.Georeferenciacion
             {
                 GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
                 bool resultado = bll.ActualizarOficialia(peticion.Oficialia);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ActualizarOficinaRespuesta ActualizarOficina(ActualizarOficinaPeticion peticion)
+        {
+            ActualizarOficinaRespuesta respuesta = new ActualizarOficinaRespuesta();
+            try
+            {
+                GeoreferenciacionBLL bll = new GeoreferenciacionBLL();
+                bool resultado = bll.ActualizarOficina(peticion.Oficina);
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }
             catch (BusinessException e)

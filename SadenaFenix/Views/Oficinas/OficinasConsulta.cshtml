@@ -5,20 +5,24 @@
     Layout = "~/Views/Shared/_GeoLayout.cshtml";
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Georeferenciación";
-    ViewData["Option"] = "Oficinas";
-    ViewData["TableName"] = "Consulta de Oficinas";
+    ViewData["Option"] = "Oficialías/Módulos Hospitalarios";
+    ViewData["TableName"] = "Consulta de Oficialías/Módulos Hospitalarios";
     ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
 }
 @section Scripts
 {
     <script src="@Url.Content("~/Scripts/js/georefenciacion/consultaOficinas.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/utilerias/mapaConsultaOficinas.js")"></script>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZR7MAkSG9XJovKvEhEfBOa--vPwt5IzM&libraries=places&callback=initMap"
+            async defer></script>
 }
 
 
 <!-- Page content -->
     <div class="page-content">
         @Html.HiddenFor(model => model.UserJson, new { id = "objUsuario" })
-        
+
         <!-- Container -->
         <div class="container">
 
@@ -84,12 +88,19 @@
                                                     <th>Expide CURP</th>
                                                     <th>Expide actas de otros estados</th>
                                                     <th></th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @for (int i = 0; i < Model.DTOficinas.Rows.Count; i++)
                                                 {
-                                                    <tr>
+                                                    <tr class="regOficina"                                                         
+                                                        oid="@Model.DTOficinas.Rows[i][0]"
+                                                        id="@Model.DTOficinas.Rows[i][1]"
+                                                        mpio="@Model.DTOficinas.Rows[i][3]"
+                                                        tipo="@Model.DTOficinas.Rows[i][6]"
+                                                        lat="@Model.DTOficinas.Rows[i][9]"
+                                                        lng="@Model.DTOficinas.Rows[i][10]">
                                                         <td>@Model.DTOficinas.Rows[i][1]</td>
                                                         <td>@Model.DTOficinas.Rows[i][2]</td>
                                                         <td>@Model.DTOficinas.Rows[i][3]</td>
@@ -131,7 +142,10 @@
                                                         <td>@Model.DTOficinas.Rows[i][39]</td>
                                                         <td>@Model.DTOficinas.Rows[i][40]</td>
                                                         <td>
-                                                            <a href="@Url.Action("ActualizarOficialia","GeoOficialias",new {@id=@Model.DTOficinas.Rows[i][0]})">Actualizar</a>
+                                                            <a href="@Url.Action("ActualizarOficina","Oficinas",new {@id=@Model.DTOficinas.Rows[i][0]})">Actualizar</a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="eliminarAction" oid="@Model.DTOficinas.Rows[i][0]" href="#">Eliminar</a>
                                                         </td>
                                                     </tr>
                                                 }
@@ -179,6 +193,7 @@
                                                     <th>Expide CURP</th>
                                                     <th>Expide actas de otros estados</th>
                                                     <th></th>
+                                                    <th></th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -188,6 +203,39 @@
                             <!-- ./form -->
                         </div>
                     </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- ./container -->
+        <!-- Container -->
+        <div class="container">
+
+            <section>
+
+                <div style="display: none">
+                    <input id="inputUbicacionMapa"
+                           class="controls"
+                           type="text"
+                           placeholder="Introduce la ubicación">
+                </div>
+
+                @*<div id="infowindow-content">
+                    <span id="place-name" class="title"></span><br>
+                    <strong>Place ID:</strong> <span id="place-id"></span><br>
+                    <span id="place-address"></span>
+                </div>*@
+
+                <div id="infowindow-content">
+                    <img src="" width="16" height="16" id="place-icon">
+                    <span id="place-name" class="title"></span><br>
+                    <span id="place-address"></span>
+                </div>
+
+
+                <div id="mapGoogle" class="z-depth-1-half map-container" style="height: 500px">
+                    <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                            style="border:0" allowfullscreen></iframe>
                 </div>
             </section>
 
