@@ -148,6 +148,7 @@
     <Compile Include="Business\Nacimientos\Reportes\ReportesBLL.cs" />
     <Compile Include="Business\Usuarios\UsuarioBLL.cs" />
     <Compile Include="Commons\Utilerias\Bitacora.cs" />
+    <Compile Include="Controllers\Configuraciones\ConfiguracionesController.cs" />
     <Compile Include="Controllers\Georeferenciacion\GeoOficialiasController.cs" />
     <Compile Include="Controllers\Georeferenciacion\HospitalesController.cs" />
     <Compile Include="Controllers\Georeferenciacion\ModulosHospitalariosController.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Transport\Usuarios\Acceso\CabeceroRespuesta.cs" />
     <Compile Include="Transport\Usuarios\Acceso\SesionPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\SesionRespuesta.cs" />
+    <Compile Include="Views\Nacimientos\Configuraciones\Parametros.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Imports-Datables-Bootstrap.cshtml" />
@@ -253,6 +255,8 @@
     <Content Include="Content\images\banner1.svg" />
     <Content Include="Content\images\banner2.svg" />
     <Content Include="Content\images\banner3.svg" />
+    <Content Include="Content\images\btnPeriod.png" />
+    <Content Include="Content\images\calendarIcon.png" />
     <Content Include="Content\images\bgResult_01.png" />
     <Content Include="Content\images\bgResult_02.png" />
     <Content Include="Content\images\bid-logo.png" />
@@ -277,9 +281,11 @@
     <Content Include="Scripts\js\georefenciacion\crearOficinas.js" />
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
+    <Content Include="Scripts\js\nacimientos\configuraciones\diasExtemporaneos.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultaSubRegistro.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
     <Content Include="Scripts\js\nacimientos\consultas\importar.js" />
+    <Content Include="Scripts\js\nacimientos\reportes\consultaReportes.js" />
     <Content Include="Scripts\js\nacimientos\reportes\reportes.js" />
     <Content Include="Scripts\js\sadena-general.js" />
     <Content Include="Scripts\js\utilerias\comunes.js" />
@@ -2305,6 +2311,14 @@
     <Content Include="Views\Nacimientos\Modales\SeleccionarConsultaModal.cshtml" />
     <Content Include="Views\Oficinas\CrearOficina.cshtml" />
     <Content Include="Views\Oficinas\ActualizarOficina.cshtml" />
+    <Content Include="Views\Reportes\ConsultarReportes.cshtml" />
+    <Content Include="Views\Reportes\SeleccionarConsulta.cshtml" />
+    <Content Include="Views\Reportes\ReportesEdad.cshtml" />
+    <Content Include="Views\Reportes\ReportesEdoCivil.cshtml" />
+    <Content Include="Views\Reportes\ReportesEscolaridad.cshtml" />
+    <Content Include="Views\Reportes\ReportesNumNac.cshtml" />
+    <Content Include="Views\Reportes\ReportesSexo.cshtml" />
+    <Content Include="Views\Configuraciones\DiasExtemporaneos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\Nacimientos\Consultas\" />

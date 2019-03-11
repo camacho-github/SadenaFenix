@@ -35,7 +35,7 @@ $(function () {
     });
 
     $("#callReportes").click(function () {
-        window.location.href = "/Reportes/Reportes?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        window.location.href = "/Reportes/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
     $("#callConsultar").click(function () {
@@ -61,6 +61,12 @@ $(function () {
     $("#callContacto").click(function () {
         window.location.href = "/Home/Contact?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
+
+    $("#callConfigDiasExtemporaneos").click(function () {
+        window.location.href = "/Configuraciones/DiasExtemporaneos?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    
 
     /* Loaders 
     $(document).ajaxStart(function () {

@@ -5,6 +5,7 @@ using SadenaFenix.Models.Nacimientos.Reportes;
 using SadenaFenix.Persistence;
 using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -430,9 +431,9 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
         }
 
-        public XmlDocument ConsultarReporteSexoSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        public Collection<DataTable> ConsultarReporteSexoSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {
-            XmlDocument xmlDocument = null;
+            Collection<DataTable> dts = new Collection<DataTable>();
 
             try
             {
@@ -442,9 +443,12 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     EjecutaProcedimiento(PRN_CONSULTA_REPORTE_SEXO_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
-                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
                     {
-                        xmlDocument = GetXml(dataSet);
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
                     }
                     else
                     {
@@ -462,14 +466,14 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 throw new DAOException(-1, de.Message);
             }
 
-            return xmlDocument;
+            return dts;
 
-        }
+        }       
 
 
-        public XmlDocument ConsultarReporteEdoCivilSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        public Collection<DataTable> ConsultarReporteDSEdoCivilSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {
-            XmlDocument xmlDocument = null;
+            Collection<DataTable> dts = new Collection<DataTable>();
 
             try
             {
@@ -479,9 +483,12 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     EjecutaProcedimiento(PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
-                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
                     {
-                        xmlDocument = GetXml(dataSet);
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
                     }
                     else
                     {
@@ -499,7 +506,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 throw new DAOException(-1, de.Message);
             }
 
-            return xmlDocument;
+            return dts;
 
         }
 
@@ -515,9 +522,15 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     EjecutaProcedimiento(PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
-                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    if (this.Codigo == 0 && (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0))
                     {
-                        xmlDocument = GetXml(dataSet);
+
+                        System.IO.StringWriter writer = new System.IO.StringWriter();
+                        dataSet.Tables[0].WriteXml(writer, XmlWriteMode.WriteSchema, false);
+                        string result = writer.ToString();
+
+                        xmlDocument = new XmlDocument();
+                        xmlDocument.LoadXml(result);
                     }
                     else
                     {
@@ -538,9 +551,47 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return xmlDocument;
         }
 
-        public XmlDocument ConsultarReporteEscolaridadSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        public Collection<DataTable> ConsultarReporteDSEdadSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {
-            XmlDocument xmlDocument = null;
+            Collection<DataTable> dts = new Collection<DataTable>();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
+                    {
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dts;
+        }
+
+        public Collection<DataTable> ConsultarReporteEscolaridadSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<DataTable> dts = new Collection<DataTable>();
 
             try
             {
@@ -550,9 +601,12 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     EjecutaProcedimiento(PRN_CONSULTA_REPORTE_ESCOLARIDAD_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
-                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
                     {
-                        xmlDocument = GetXml(dataSet);
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
                     }
                     else
                     {
@@ -570,13 +624,13 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 throw new DAOException(-1, de.Message);
             }
 
-            return xmlDocument;
+            return dts;
 
         }
 
-        public XmlDocument ConsultarReporteNumNacSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        public Collection<DataTable> ConsultarReporteNumNacSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {
-            XmlDocument xmlDocument = null;
+            Collection<DataTable> dts = new Collection<DataTable>();
 
             try
             {
@@ -586,9 +640,12 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                     EjecutaProcedimiento(PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
-                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
                     {
-                        xmlDocument = GetXml(dataSet);
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
                     }
                     else
                     {
@@ -606,7 +663,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 throw new DAOException(-1, de.Message);
             }
 
-            return xmlDocument;
+            return dts;
 
         }
 

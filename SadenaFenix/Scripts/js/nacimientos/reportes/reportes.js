@@ -1,6 +1,7 @@
 ﻿/* Script for: Reportes
  */
 var objReporteEdadSubregistro;
+var mapMpios = {};
 
 /* On ready */
 $(function () {
@@ -46,9 +47,25 @@ $(function () {
                 fill: '#F4A582',
                 "stroke-width": "0.5",
                 stroke: "red"
-            }            
+            }
         }, onRegionSelected: function (event, code) {
             alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
+            if (fnSizeObject(mapMpios) == 0) {
+                $("tbody tr").toggleClass("hiddElement", true);
+                $("tr." + parseInt(code)).toggleClass("hiddElement",false);
+                mapMpios[parseInt(code)] = parseInt(code);
+            } else {
+                if (mapMpios[parseInt(code)] == undefined) {
+                    mapMpios[parseInt(code)] = parseInt(code);
+                    $("tr." + parseInt(code)).toggleClass("hiddElement", false);
+                } else {
+                    delete mapMpios[parseInt(code)];
+                    $("tr." + parseInt(code)).toggleClass("hiddElement", true);
+                    if (fnSizeObject(mapMpios) == 0) {
+                        $("tbody tr").toggleClass("hiddElement", true);
+                    }
+                }
+            }            
         },
     });
 
@@ -129,3 +146,14 @@ $(function () {
     });
 
 });
+
+function fnSizeObject(obj) {
+    var count = 0;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            count++;
+        }
+    }
+
+    return count;
+}

@@ -1,0 +1,306 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_GeoLayout.cshtml";
+    ViewData["Root"] = "Sadena";
+    ViewData["Modulo"] = "Nacimientos";
+    ViewData["Option"] = "Reportes";
+    ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
+
+    /* Indicators. */
+    ViewData["Todos"] = "Todos";
+    ViewData["EdadMadre"] = "Edad de la madre";
+    ViewData["EstadoCivil"] = "Estado civil";
+    ViewData["NumeroNacidosVivos"] = "Número de nacimientos vivos";
+    ViewData["Escolaridad"] = "Escolaridad";
+    ViewData["SexoRecienNacido"] = "Sexo de recién nacido";
+
+}
+
+
+@Html.Partial("~/Views/Nacimientos/Modales/SeleccionarConsultaModal.cshtml");
+
+
+<!-- Page content -->
+<div class="page-content">
+
+
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <!-- Breadcrumb -->
+        <section class="pull-right">
+            <ul class="breadcrumb">
+                <li><a action="/Home/Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                <li><a href="#">@ViewData["Modulo"]</a></li>
+                <li class="active">@ViewData["Option"]</li>
+            </ul>
+        </section>
+        <!-- ./breadcrumb -->
+        <!-- Reports section -->
+        <section>
+
+            <!-- Report container -->
+            <div class="report-container">
+                <!-- Header -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="report-title">
+                            <h4>Seleccione los indicadores socioeconómicos deseados:</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="report-options">
+                            <div class="list-group">
+                                <a id="linkTodos" class="list-group-item" href="#edadMadre">
+                                    <i class="fa fa-reorder"></i>
+                                    <span class="mr-3">@ViewData["Todos"]</span>
+                                    <span class="badge badge-primary right"></span>
+                                </a>
+                                <a id="linkEdad" class="list-group-item" tbCont="indicadorEdad" href="#edadMadre">
+                                    <i class="fa fa-female"></i>
+                                    <span class="mr-3">@ViewData["EdadMadre"]</span>
+                                    <span class="badge badge-warning right"></span>
+                                </a>
+                                <a id="linkEdoCiv" class="list-group-item" tbCont="indicadorEdoCiv" href="#estadoCivil">
+                                    <i class="fa fa-leanpub"></i>
+                                    <span class="mr-3">@ViewData["EstadoCivil"]</span>
+                                    <span class="badge badge-default right"></span>
+                                </a>
+                                <a id="linkNumNac" class="list-group-item" tbCont="indicadorNumNac" href="#numeroNacidosVivos">
+                                    <i class="fa fa-heartbeat"></i>
+                                    <span class="mr-3">@ViewData["NumeroNacidosVivos"]</span>
+                                    <span class="badge badge-success right"></span>
+                                </a>
+                                <a id="linkEscol" class="list-group-item" tbCont="indicadorEscol" href="#escolaridadMadre">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    <span class="mr-3">@ViewData["Escolaridad"]</span>
+                                    <span class="badge badge-danger right"></span>
+                                </a>
+                                <a id="linkSexo" class="list-group-item" tbCont="indicadorSexo" href="#sexoRecienNacido">
+                                    <i class="fa fa-id-badge"></i>
+                                    <span class="mr-3">@ViewData["SexoRecienNacido"]</span>
+                                    <span class="badge badge-info right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./menu -->
+                <!-- Reports -->
+                <div class="row">
+                    <div class="reports">
+                        <!-- Tables -->
+                        <div class="col-sm-7">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#registradosTabPane" data-toggle="tab">Registrados</a>
+                                </li>
+                                <li><a href="#subregistradosTabPane" data-toggle="tab">Subregistrados</a></li>
+                                <li><a href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Report period -->
+                                @*<div class="report-period col-sm-12">
+                                        <p>
+                                            <strong>Periodo: </strong>
+                                            <span id="periodoReport" class="text-underline">Enero 2018 – Junio 2018</span>
+                                        </p>
+                                    </div>*@
+                                <div id="registradosTabPane" class="tab-pane fade in active">
+
+                                    <div class="report-tables-container col-sm-12">
+                                        <!-- Reports by indicator -->
+                                        <div id="edadMadreRegistradosReport" class="report-by-indicator indicadorEdad  hiddElement">
+                                            <div class="report-header">
+                                                <h5><strong>@ViewData["EdadMadre"]</strong></h5>
+                                            </div>
+                                            <div id="edadMadreOpoContainer">
+
+                                            </div>
+                                        </div>
+                                        <div id="estadoCivilRegistradosReport" class="report-by-indicator indicadorEdoCiv hiddElement">
+                                            <div class="report-header">
+                                                <h5><strong>@ViewData["EstadoCivil"]</strong></h5>
+                                            </div>
+                                            <div id="estadoCivilRegistradosTableContainer">
+                                            </div>
+                                        </div>
+                                        <div id="numeroNacidosVivosRegistradosReport" class="report-by-indicator indicadorNumNac hiddElement">
+                                            <div class="report-header">
+                                                <h5><strong>@ViewData["NumeroNacidosVivos"]</strong></h5>
+                                            </div>
+                                            <div id="numeroNacidosVivosRegistradosTableContainer">
+                                            </div>
+                                        </div>
+                                        <div id="escolaridadMadreRegistradosReport" class="report-by-indicator indicadorEscol hiddElement">
+                                            <div class="report-header">
+                                                <h5><strong>@ViewData["Escolaridad"]</strong></h5>
+                                            </div>
+                                            <div id="escolaridadMadreRegistradosTableContainer">
+                                            </div>
+                                        </div>
+                                        <div id="sexoRecienNacidoRegistradosReport" class="report-by-indicator indicadorSexo hiddElement">
+                                            <div class="report-header">
+                                                <h5><strong>@ViewData["SexoRecienNacido"]</strong></h5>
+                                            </div>
+                                            <div id="sexoRecienNacidoRegistradosTableContainer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="subregistradosTabPane" class="tab-pane fade in">
+                                    <div class="report">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="edadMadreSubregistradosReport" class="report-by-indicator indicadorEdad hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["EdadMadre"]</strong></h5>
+                                                </div>
+
+                                                <div id="edadMadreSubContainer">
+                                                </div>
+
+                                            </div>
+                                            <div id="estadoCivilSubregistradosReport" class="report-by-indicator indicadorEdoCiv  hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["EstadoCivil"]</strong></h5>
+                                                </div>
+                                                <div id="estadoCivilSubregistradosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="numeroNacidosVivosSubregistradosReport" class="report-by-indicator indicadorNumNac hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["NumeroNacidosVivos"]</strong></h5>
+                                                </div>
+                                                <div id="numeroNacidosVivosSubregistradosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="escolaridadMadreSubregistradosReport" class="report-by-indicator indicadorEscol  hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["Escolaridad"]</strong></h5>
+                                                </div>
+                                                <div id="escolaridadMadreSubregistradosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="sexoRecienNacidoSubregistradosReport" class="report-by-indicator indicadorSexo hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["SexoRecienNacido"]</strong></h5>
+                                                </div>
+                                                <div id="sexoRecienNacidoSubregistradosTableContainer">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="registrosExtemporaneosTabPane" class="tab-pane fade in">
+                                    <div class="report">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="edadMadreRegistrosExtemporaneosReport" class="report-by-indicator indicadorEdad hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["EdadMadre"]</strong></h5>
+                                                </div>
+
+
+                                                <div id="edadMadreExtContainer">
+                                                </div>
+
+                                            </div>
+                                            <div id="estadoCivilRegistrosExtemporaneosReport" class="report-by-indicator indicadorEdoCiv hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["EstadoCivil"]</strong></h5>
+                                                </div>
+                                                <div id="estadoCivilRegistrosExtemporaneosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="numeroNacidosVivosRegistrosExtemporaneosReport" class="report-by-indicator indicadorNumNac  hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["NumeroNacidosVivos"]</strong></h5>
+                                                </div>
+                                                <div id="numeroNacidosVivosRegistrosExtemporaneosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="escolaridadMadreRegistrosExtemporaneosReport" class="report-by-indicator indicadorEscol  hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["Escolaridad"]</strong></h5>
+                                                </div>
+                                                <div id="escolaridadMadreRegistrosExtemporaneosTableContainer">
+                                                </div>
+                                            </div>
+                                            <div id="sexoRecienNacidoRegistrosExtemporaneosReport" class="report-by-indicator indicadorSexo hiddElement">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["SexoRecienNacido"]</strong></h5>
+                                                </div>
+                                                <div id="sexoRecienNacidoRegistrosExtemporaneosTableContainer">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Map -->
+                        <div class="col-sm-5">
+                            <div class="map-container col-sm-12">
+                                <div class="customised-card">
+                                    <div class="customised-card-header">
+                                        <div class="customised-card-title customised-card-header-divider">
+                                            Coahuila de Zaragoza<br />
+                                            <span class="customised-card-subtitle">Indicadores Socieconómicos por Municipios</span>
+                                        </div>
+                                    </div>
+                                    <div class="customised-card-body">
+                                        <div id="coahuilaMap" class="report-map" style="width: 450px; height: 600px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./map -->
+                    </div>
+                </div>
+                <!-- ./reports -->
+            </div>
+            <!-- ./reports container -->
+
+        </section>
+        <!-- ./reports section -->
+
+    </div>
+    <!-- ./container -->
+
+</div>
+<!-- ./page content -->
+
+<input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+<div id="tablaContenedorEdad">
+    <!--Respuesta por ajax-->
+</div>
+<div id="tablaContenedorECiv">
+    <!--Respuesta por ajax-->
+</div>
+<div id="tablaContenedorNumNac">
+    <!--Respuesta por ajax-->
+</div>
+<div id="tablaContenedorEscol">
+    <!--Respuesta por ajax-->
+</div>
+<div id="tablaContenedorSexo">
+    <!--Respuesta por ajax-->
+</div>
+
+@section Scripts
+{
+    <!-- jVectormap -->
+    <script type="text/javascript" src="~/Scripts/vendor/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+
+    <!-- Sadena -->
+    <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
+    <script src="~/Scripts/js/nacimientos/reportes/reportes.js"></script>
+    <script src="@Url.Content("~/Scripts/js/nacimientos/reportes/consultaReportes.js")"></script>
+}

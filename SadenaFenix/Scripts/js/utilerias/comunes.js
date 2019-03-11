@@ -167,6 +167,8 @@ function fnMessage(title, message, finalFunction, clase) {
     }, 100);
 }
 
+
+
 function fnMensajeBotonesLista(tittle, message, btnList, clase) {
     var idDiv = $('#ConfirmacionMensaje'),
         containerDiv = $('#ConfirmacionMensaje #buttonsContainer'),

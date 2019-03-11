@@ -2,6 +2,7 @@
 using SadenaFenix.Transport.Usuarios.Acceso;
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
@@ -31,9 +32,16 @@ namespace SadenaFenix.Transport.Nacimientos.Reportes
         [XmlAttribute("XmlReporte")]
         public string XmlReporte { get; set; }
 
-        //[DataMember(Name = "XmlReporte", IsRequired = true)]
-        //[XmlAttribute("XmlReporte")]
-        //public XmlDocument XmlReporte { get; set; }
+
+        [DataMember(Name = "Cabeceros", IsRequired = true)]
+        [XmlAttribute("Cabeceros")]
+        public Collection<Collection<string>> Cabeceros{ get; set; }
+
+
+        [DataMember(Name = "DTs", IsRequired = true)]
+        [XmlAttribute("DTs")]
+        public Collection<DataTable> DTs { get; set; }
+      
 
     }
 }

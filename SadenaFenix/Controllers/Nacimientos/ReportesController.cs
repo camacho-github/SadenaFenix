@@ -1,8 +1,12 @@
-﻿using SadenaFenix.Models.Catalogos.Geografia;
+﻿using Newtonsoft.Json;
+using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
+using SadenaFenix.Transport.Catalogos;
 using SadenaFenix.Transport.Nacimientos.Reportes;
+using System;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Web.Mvc;
 using System.Web.Services;
 
@@ -10,92 +14,270 @@ namespace Sadena.Controllers.Nacimientos
 {
     public class ReportesController : Controller
     {
-        // GET: Reportes
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult VerReportes(string userJson)
         {
             Usuario usuario = new Usuario { Json = userJson };
-            return View("~/Views/Nacimientos/Reportes/Reportes.cshtml",usuario);
+            return View("~/Views/Nacimientos/Reportes/Reportes.cshtml", usuario);
         }
 
-        // GET: Reportes/Details/5
-        public ActionResult Details(int id)
+        public ActionResult SeleccionarConsulta(string userJson)
         {
-            return View();
+            /* Obtener json del usuario. */
+            Usuario usuario = new Usuario { Json = userJson };
+            ViewBag.UserJson = userJson;
+
+            Servicio servicio = new Servicio();
+            /* Obtener catalogos. */
+            CatalogosCargasRespuesta catalogosCargasRespuesta = servicio.ObtenerCatalogosCargas(null);
+            ViewBag.Anios = catalogosCargasRespuesta.ColAnios;
+            ViewBag.Meses = catalogosCargasRespuesta.ColMeses;
+            ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;
+
+            return View(catalogosCargasRespuesta);
         }
 
-        // GET: Reportes/Create
-        public ActionResult Create()
+        public ActionResult ReportesEdad(string AniosJson, string MesesJson, string MpiosJson)
         {
-            return View();
-        }
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
+                        
+            ReporteEdadSubregistroPeticion reporteEdadSubregistroPeticion = new ReporteEdadSubregistroPeticion();
 
-        // POST: Reportes/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            reporteEdadSubregistroPeticion.ColAnos = new Collection<string>();           
+            foreach (string anio in anios)
             {
-                // TODO: Add insert logic here
+                reporteEdadSubregistroPeticion.ColAnos.Add(anio);               
+            }
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            reporteEdadSubregistroPeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
             {
-                return View();
+                reporteEdadSubregistroPeticion.ColMeses.Add(mes);               
             }
+
+            reporteEdadSubregistroPeticion.ColMunicipios = new Collection<Municipio>();           
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                reporteEdadSubregistroPeticion.ColMunicipios.Add(municipio);                
+            }
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteEdadSubregistro(reporteEdadSubregistroPeticion);
+            
+            dynamic model = new ExpandoObject();
+            model.ReporteSubRegistros = respuesta.DTs[0];
+            model.ReporteOportunos = respuesta.DTs[1];
+            model.ReporteExtemporaneos = respuesta.DTs[2];
+
+            //if (Request.IsAjaxRequest())
+            return PartialView(model);
+
         }
 
-        // GET: Reportes/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult ReportesEdoCivil(string AniosJson, string MesesJson, string MpiosJson)
         {
-            return View();
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
+
+            ReporteEdoCivilSubregistroPeticion reportePeticion = new ReporteEdoCivilSubregistroPeticion();
+
+            reportePeticion.ColAnos = new Collection<string>();
+            foreach (string anio in anios)
+            {
+                reportePeticion.ColAnos.Add(anio);
+            }
+
+            reportePeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
+            {
+                reportePeticion.ColMeses.Add(mes);
+            }
+
+            reportePeticion.ColMunicipios = new Collection<Municipio>();
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                reportePeticion.ColMunicipios.Add(municipio);
+            }
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteEdoCivilSubregistro(reportePeticion);
+
+            dynamic model = new ExpandoObject();
+            model.ReporteSubRegistros = respuesta.DTs[0];
+            model.ReporteOportunos = respuesta.DTs[1];
+            model.ReporteExtemporaneos = respuesta.DTs[2];
+
+            //if (Request.IsAjaxRequest())
+            return PartialView(model);
+
         }
 
-        // POST: Reportes/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult ReportesNumNac(string AniosJson, string MesesJson, string MpiosJson)
         {
-            try
-            {
-                // TODO: Add update logic here
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            ReporteNumNacSubregistroPeticion reportePeticion = new ReporteNumNacSubregistroPeticion();
+
+            reportePeticion.ColAnos = new Collection<string>();
+            foreach (string anio in anios)
             {
-                return View();
+                reportePeticion.ColAnos.Add(anio);
             }
+
+            reportePeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
+            {
+                reportePeticion.ColMeses.Add(mes);
+            }
+
+            reportePeticion.ColMunicipios = new Collection<Municipio>();
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                reportePeticion.ColMunicipios.Add(municipio);
+            }
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteNumNacSubregistro(reportePeticion);
+
+            dynamic model = new ExpandoObject();
+            model.ReporteSubRegistros = respuesta.DTs[0];
+            model.ReporteOportunos = respuesta.DTs[1];
+            model.ReporteExtemporaneos = respuesta.DTs[2];
+
+            //if (Request.IsAjaxRequest())
+            return PartialView(model);
+
         }
 
-        // GET: Reportes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ReportesEscolaridad(string AniosJson, string MesesJson, string MpiosJson)
         {
-            return View();
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
+
+            ReporteEscolaridadSubregistroPeticion reportePeticion = new ReporteEscolaridadSubregistroPeticion();
+
+            reportePeticion.ColAnos = new Collection<string>();
+            foreach (string anio in anios)
+            {
+                reportePeticion.ColAnos.Add(anio);
+            }
+
+            reportePeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
+            {
+                reportePeticion.ColMeses.Add(mes);
+            }
+
+            reportePeticion.ColMunicipios = new Collection<Municipio>();
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                reportePeticion.ColMunicipios.Add(municipio);
+            }
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteEscolaridadSubregistro(reportePeticion);
+
+            dynamic model = new ExpandoObject();
+            model.ReporteSubRegistros = respuesta.DTs[0];
+            model.ReporteOportunos = respuesta.DTs[1];
+            model.ReporteExtemporaneos = respuesta.DTs[2];
+
+            //if (Request.IsAjaxRequest())
+            return PartialView(model);
+
         }
 
-        // POST: Reportes/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult ReportesSexo(string AniosJson, string MesesJson, string MpiosJson)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            ReporteSexoSubregistroPeticion reportePeticion = new ReporteSexoSubregistroPeticion();
+
+            reportePeticion.ColAnos = new Collection<string>();
+            foreach (string anio in anios)
             {
-                return View();
+                reportePeticion.ColAnos.Add(anio);
             }
+
+            reportePeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
+            {
+                reportePeticion.ColMeses.Add(mes);
+            }
+
+            reportePeticion.ColMunicipios = new Collection<Municipio>();
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                reportePeticion.ColMunicipios.Add(municipio);
+            }
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteSexoSubregistro(reportePeticion);
+
+            dynamic model = new ExpandoObject();
+            model.ReporteSubRegistros = respuesta.DTs[0];
+            model.ReporteOportunos = respuesta.DTs[1];
+            model.ReporteExtemporaneos = respuesta.DTs[2];
+
+            //if (Request.IsAjaxRequest())
+            return PartialView(model);
+
         }
+
+        [WebMethod]
+        public ActionResult ConsultarReporteEdadSubregistro()
+        {
+            Servicio servicio = new Servicio();
+            ReporteEdadSubregistroPeticion peticion = new ReporteEdadSubregistroPeticion();
+            Collection<string> ColAnos = new Collection<string>();
+            ColAnos.Add("2017");
+            ColAnos.Add("2018");
+
+            Collection<string> ColMeses = new Collection<string>();
+            ColMeses.Add("1");
+            ColMeses.Add("2");
+            ColMeses.Add("3");
+
+            Collection<Municipio> ColMunicipio = new Collection<Municipio>();
+
+            peticion.ColAnos = ColAnos;
+            peticion.ColMeses = ColMeses;
+            peticion.ColMunicipios = ColMunicipio;
+
+            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
+            respuesta = servicio.ConsultarReporteEdadSubregistro(peticion);
+
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         [WebMethod]
@@ -150,31 +332,7 @@ namespace Sadena.Controllers.Nacimientos
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
-        [WebMethod]
-        public ActionResult ConsultarReporteEdadSubregistro()
-        {
-            Servicio servicio = new Servicio();
-            ReporteEdadSubregistroPeticion peticion = new ReporteEdadSubregistroPeticion();
-            Collection<string> ColAnos = new Collection<string>();
-            ColAnos.Add("2017");
-            ColAnos.Add("2018");
-
-            Collection<string> ColMeses = new Collection<string>();
-            ColMeses.Add("1");
-            ColMeses.Add("2");
-            ColMeses.Add("3");
-
-            Collection<Municipio> ColMunicipio = new Collection<Municipio>();
-
-            peticion.ColAnos = ColAnos;
-            peticion.ColMeses = ColMeses;
-            peticion.ColMunicipios = ColMunicipio;
-
-            ReporteSubregistroRespuesta respuesta = new ReporteSubregistroRespuesta();
-            respuesta = servicio.ConsultarReporteEdadSubregistro(peticion);
-
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
-        }
+       
 
         [WebMethod]
         public ActionResult ConsultarReporteEscolaridadSubregistro()

@@ -1,0 +1,126 @@
+﻿@model dynamic
+
+<div id="ResReporteEscolSub">
+    <div id="subregistradosTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="subregistradosTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="EscolSubTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteSubRegistros.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteSubRegistros.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ReporteSubRegistros.Rows.Count; i++)
+                            {
+                                <tr class=@Model.ReporteSubRegistros.Rows[i][0]>
+                                    @for (int j = 0; j < Model.ReporteSubRegistros.Columns.Count; j++)
+                                    {
+                                        <td>@Model.ReporteSubRegistros.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteSubRegistros.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteSubRegistros.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+                            
+
+<div id="ResReporteEscolOpor">
+    <div id="registradosTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="registradosTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="EscolOporTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteOportunos.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteOportunos.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ReporteOportunos.Rows.Count; i++)
+                            {
+                                <tr class=@Model.ReporteOportunos.Rows[i][0]>
+                                    @for (int j = 0; j < Model.ReporteOportunos.Columns.Count; j++)
+                                    {
+                                        <td>@Model.ReporteOportunos.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteOportunos.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteOportunos.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+                            
+
+<div id="ResReporteEscolExt">
+    <div id="extemporaneosTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="extemporaneosTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="EscolExtTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteExtemporaneos.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteExtemporaneos.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ReporteExtemporaneos.Rows.Count; i++)
+                            {
+                                <tr class=@Model.ReporteExtemporaneos.Rows[i][0]>
+                                    @for (int j = 0; j < Model.ReporteExtemporaneos.Columns.Count; j++)
+                                    {
+                                        <td>@Model.ReporteExtemporaneos.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.ReporteExtemporaneos.Columns.Count; j++)
+                                {
+                                    <th>@Model.ReporteExtemporaneos.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            

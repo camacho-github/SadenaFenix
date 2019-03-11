@@ -14,12 +14,12 @@
     font-weight: bold;
 } */
 
-.map-container {
+/*.map-container {
     overflow: hidden;
     padding-bottom: 56.25%;
     position: relative;
     height: 0;
-}
+}*/
 
 .tab-content.tabOficina{
     margin-top:20px;
@@ -197,7 +197,10 @@
     text-align: center;
     float: left;
     margin-right: 7px;
-    max-width: 38px;
+    max-width: 35px;
+}
+.s-icon-adjust{
+    margin-top:5px;
 }
 
 .icon_title img {
@@ -214,7 +217,7 @@
     font-size: 26px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #bababa;
+    color: #777;
     padding: 0px 0 0 5px;
 }
 
@@ -246,7 +249,19 @@ table.dataTable thead .sorting_desc_disabled:before {
 #OficinasTabla_paginate .paginate_button,
 #SubRegistroTabla_paginate .paginate_button,
 #OportunosTabla_paginate .paginate_button,
-#Extemporaneos_paginate .paginate_button
+#Extemporaneos_paginate .paginate_button,
+#EdoCivSubTabla_paginate .paginate_button,
+#EdoCivOporTabla_paginate .paginate_button,
+#EdoCivExtTabla_paginate .paginate_button,
+#NumNacSubTabla_paginate .paginate_button,
+#NumNacOporTabla_paginate .paginate_button,
+#NumNacExtTabla_paginate .paginate_button,
+#EscolSubTabla_paginate .paginate_button,
+#EscolOporTabla_paginate .paginate_button,
+#EscolExtTabla_paginate .paginate_button,
+#SexoSubTabla_paginate .paginate_button,
+#SexoOporTabla_paginate .paginate_button,
+#SexoExtTabla_paginate .paginate_button,
 #ReporteMpiosTabla .paginate_button {
     padding: 0 !important
 }
@@ -255,6 +270,18 @@ table.dataTable thead .sorting_desc_disabled:before {
 #SubRegistroTabla_wrapper .dt-buttons,
 #OportunosTabla_wrapper .dt-buttons,
 #ExtemporaneosTabla_wrapper .dt-buttons,
+#EdoCivSubTabla_wrapper .dt-buttons,
+#EdoCivOporTabla_wrapper .dt-buttons,
+#EdoCivExtTabla_wrapper .dt-buttons,
+#NumNacSubTabla_wrapper .dt-buttons,
+#NumNacOporTabla_wrapper .dt-buttons,
+#NumNacExtTabla_wrapper .dt-buttons,
+#EscolSubTabla_wrapper .dt-buttons,
+#EscolOporTabla_wrapper .dt-buttons,
+#EscolExtTabla_wrapper .dt-buttons,
+#SexoSubTabla_wrapper .dt-buttons,
+#SexoOporTabla_wrapper .dt-buttons,
+#SexoExtTabla_wrapper .dt-buttons,
 #ReporteMpiosTabla_wrapper .dt-buttons {
     margin-bottom: 20px !important
 }
@@ -263,8 +290,24 @@ table.dataTable thead .sorting_desc_disabled:before {
 #SubRegistroTabla_wrapper .bs-select,
 #OportunosTabla_wrapper .bs-select,
 #ExtemporaneosTabla_wrapper .bs-select,
+#EdoCivSubTabla_wrapper .bs-select,
+#EdoCivOporTabla_wrapper .bs-select,
+#EdoCivExtTabla_wrapper .bs-select,
+#NumNacSubTabla_wrapper .bs-select,
+#NumNacOporTabla_wrapper .bs-select,
+#NumNacExtTabla_wrapper .bs-select,
+#EscolSubTabla_wrapper .bs-select,
+#EscolOporTabla_wrapper .bs-select,
+#EscolExtTabla_wrapper .bs-select,
+#SexoSubTabla_wrapper .bs-select,
+#SexoOporTabla_wrapper .bs-select,
+#SexoExtTabla_wrapper .bs-select,
 #ReporteMpiosTabla_wrapper .bs-select {
     margin-left: 80px !important
+}
+
+.linkActive{
+
 }
 
 .mensajeForma {
@@ -582,6 +625,7 @@ fieldset {
 
 .map-container {
     margin-top: 40px;
+    width: 520px;
     /* position: absolute; 
     top: 0px;
     left: 0px; 

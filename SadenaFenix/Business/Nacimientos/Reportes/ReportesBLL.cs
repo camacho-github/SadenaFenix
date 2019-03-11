@@ -13,6 +13,7 @@ using SadenaFenix.Models.Constantes;
 using System.Xml;
 using Newtonsoft.Json;
 using SadenaFenix.Models.Nacimientos.Reportes;
+using System.Data;
 
 namespace SadenaFenix.Business.Nacimientos.Reportes
 {
@@ -253,12 +254,8 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteSexoSubregistro(anosUnion, mesesUnion, municipiosUnion);
-                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
-
-                Collection<string> cabeceros = new Collection<string>();
-                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
-                reporte.ColCabeceros = cabeceros;
+                reporte.DTs = reporteDAO.ConsultarReporteSexoSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                
                 return reporte;
             }
             catch (DAOException e)
@@ -296,12 +293,7 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEscolaridadSubregistro(anosUnion, mesesUnion, municipiosUnion);
-                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
-
-                Collection<string> cabeceros = new Collection<string>();
-                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
-                reporte.ColCabeceros = cabeceros;
+                reporte.DTs = reporteDAO.ConsultarReporteEscolaridadSubregistro(anosUnion, mesesUnion, municipiosUnion);                
                 return reporte;
             }
             catch (DAOException e)
@@ -338,12 +330,7 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEdoCivilSubregistro(anosUnion, mesesUnion, municipiosUnion);
-                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
-
-                Collection<string> cabeceros = new Collection<string>();
-                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
-                reporte.ColCabeceros = cabeceros;
+                reporte.DTs = reporteDAO.ConsultarReporteDSEdoCivilSubregistro(anosUnion, mesesUnion, municipiosUnion);
                 return reporte;
             }
             catch (DAOException e)
@@ -369,6 +356,7 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
         public ReporteSubregistroRespuesta ConsultarReporteEdadSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
             ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
+            reporte.Cabeceros = new Collection<Collection<string>>();
 
             try
             {
@@ -384,13 +372,8 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                     municipiosLista.Add(m.MpioId.ToString());
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
-
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteEdadSubregistro(anosUnion, mesesUnion, municipiosUnion);
-                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
-
-                Collection<string> cabeceros = new Collection<string>();
-                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
-                reporte.ColCabeceros = cabeceros;
+                                
+                reporte.DTs = reporteDAO.ConsultarReporteDSEdadSubregistro(anosUnion, mesesUnion, municipiosUnion); 
                 return reporte;
             }
             catch (DAOException e)
@@ -427,12 +410,8 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteNumNacSubregistro(anosUnion, mesesUnion, municipiosUnion);
-                reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
-
-                Collection<string> cabeceros = new Collection<string>();
-                reporte.ColFilas = ObtenerFilas(cabeceros, xmlReporte);
-                reporte.ColCabeceros = cabeceros;
+                reporte.DTs = reporteDAO.ConsultarReporteNumNacSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                
                 return reporte;
             }
             catch (DAOException e)
