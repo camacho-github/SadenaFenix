@@ -1,4 +1,29 @@
-﻿
+﻿var objMpiosMapas = {};
+var mpiosList;
+var mapVector;
+
+
+window.onscroll = function (e) {
+    var vertical_position = 0;
+    if (pageYOffset)//usual
+        vertical_position = pageYOffset;
+    else if (document.documentElement.clientHeight)//ie
+        vertical_position = document.documentElement.scrollTop;
+    else if (document.body)//ie quirks
+        vertical_position = document.body.scrollTop;
+
+    if (vertical_position > 300) {
+        if ((vertical_position + $("#vectorMapDiv").innerHeight()) < $(".footer-container").position().top) {
+            $("#vectorMapDiv").css("top", (vertical_position - 320) + 'px');
+        }
+    } else {
+        $("#vectorMapDiv").css("top", "");
+    }
+
+    //your_div.top = (vertical_position + 200) + 'px';//200 is arbitrary.. just to show you could now position it how you want
+}
+
+
 $(function () {
        
 
@@ -36,6 +61,30 @@ function fnConsultarDatos() {
         "MpiosJson": JSON.stringify($("#MpiosLista").val()),
     },
         params = fnParamsString(objArray);
+
+    mapVector = $('#coahuilaMap').vectorMap('get', 'mapObject');
+    mpiosList = $("#MpiosLista").val();
+    if (mpiosList.length == 0) {
+        for (obj in objMap) {
+            objMpiosMapas[obj] = obj;
+            mapVector.regions[obj].element.setStyle({
+                'fill': '#CDD6D5'
+            });
+            mapVector.setSelectedRegions([obj]);
+        }
+    }else if (mpiosList.length > 0) {
+        for (var i = 0; i < mpiosList.length; i++) {
+            //console.info(i);
+            objMpiosMapas[mpiosList[i]] = mpiosList[i];
+            mapVector.regions[mpiosList[i]].element.setStyle({
+                'fill': '#CDD6D5'
+            });
+            mapVector.setSelectedRegions(mpiosList[i]);
+        }
+    } 
+
+      
+    
     
     fnGetAndSetTemplate('/Reportes/ReportesEdad', params,
         "tablaContenedorEdad", fnCrearTablasEdadSubregistro);  
@@ -52,15 +101,14 @@ function fnConsultarDatos() {
     fnGetAndSetTemplate('/Reportes/ReportesSexo', params,
         "tablaContenedorSexo", fnCrearTablasSexoSubregistro);      
 
-    $("#linkTodos").trigger("click");
-    
+    $("#linkTodos").trigger("click");    
 }
 
 function fnCrearTablasEdadSubregistro() {
-    var hCols = [2, 3, 5, 7, 9, 17, 19];
-    fnCrearTabla('SubRegistroTabla', hCols);
-    fnCrearTabla('OportunosTabla', hCols);
-    fnCrearTabla('ExtemporaneosTabla', hCols);
+    var hCols = [];
+    fnCrearTabla('SubRegistroTabla', hCols,false);
+    fnCrearTabla('OportunosTabla', hCols,false);
+    fnCrearTabla('ExtemporaneosTabla', hCols,false);
         
     fnShowDiv("modalConsulta", 0);
     fnShowDiv("loader", 0);
@@ -73,9 +121,9 @@ function fnCrearTablasEdadSubregistro() {
 
 function fnCrearTablasEdoCivilSubregistro() {
     var hCols = [];
-    fnCrearTabla('EdoCivSubTabla', hCols);
-    fnCrearTabla('EdoCivOporTabla', hCols);
-    fnCrearTabla('EdoCivExtTabla', hCols);
+    fnCrearTabla('EdoCivSubTabla', hCols,false);
+    fnCrearTabla('EdoCivOporTabla', hCols,false);
+    fnCrearTabla('EdoCivExtTabla', hCols,false);
 
     $('#ResReporteEdoCivOpor').appendTo('#estadoCivilRegistradosTableContainer');
     $('#ResReporteEdoCivSub').appendTo('#estadoCivilSubregistradosTableContainer');
@@ -87,9 +135,9 @@ function fnCrearTablasEdoCivilSubregistro() {
 
 function fnCrearTablasNumNacSubregistro() {
     var hCols = [];
-    fnCrearTabla('NumNacSubTabla', hCols);
-    fnCrearTabla('NumNacOporTabla', hCols);
-    fnCrearTabla('NumNacExtTabla', hCols);
+    fnCrearTabla('NumNacSubTabla', hCols,false);
+    fnCrearTabla('NumNacOporTabla', hCols,false);
+    fnCrearTabla('NumNacExtTabla', hCols,false);
 
     $('#ResReporteNumNacOpor').appendTo('#numeroNacidosVivosRegistradosTableContainer');
     $('#ResReporteNumNacSub').appendTo('#numeroNacidosVivosSubregistradosTableContainer');
@@ -103,9 +151,9 @@ function fnCrearTablasNumNacSubregistro() {
 
 function fnCrearTablasEscolSubregistro() {
     var hCols = [];
-    fnCrearTabla('EscolSubTabla', hCols);
-    fnCrearTabla('EscolOporTabla', hCols);
-    fnCrearTabla('EscolExtTabla', hCols);
+    fnCrearTabla('EscolSubTabla', hCols,false);
+    fnCrearTabla('EscolOporTabla', hCols,false);
+    fnCrearTabla('EscolExtTabla', hCols,false);
 
     $('#ResReporteEscolOpor').appendTo('#escolaridadMadreRegistradosTableContainer');
     $('#ResReporteEscolSub').appendTo('#escolaridadMadreSubregistradosTableContainer');
@@ -117,9 +165,9 @@ function fnCrearTablasEscolSubregistro() {
 
 function fnCrearTablasSexoSubregistro() {
     var hCols = [];
-    fnCrearTabla('SexoSubTabla', hCols);
-    fnCrearTabla('SexoOporTabla', hCols);
-    fnCrearTabla('SexoExtTabla', hCols);
+    fnCrearTabla('SexoSubTabla', hCols,false);
+    fnCrearTabla('SexoOporTabla', hCols,false);
+    fnCrearTabla('SexoExtTabla', hCols,false);
 
     $('#ResReporteSexoOpor').appendTo('#sexoRecienNacidoRegistradosTableContainer');
     $('#ResReporteSexoSub').appendTo('#sexoRecienNacidoSubregistradosTableContainer');

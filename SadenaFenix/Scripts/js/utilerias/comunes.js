@@ -269,12 +269,15 @@ function funOnlyNumberExtended(event) {
 }
 
 
-function fnCrearTabla(nombreTabla,columnasOcultas) {
+function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
+    if (paginacion == undefined) {
+        paginacion = true;
+    }
 
     $('#' + nombreTabla).DataTable({
         "bFilter": false,
         "dom": 'Blfrtip',
-        "paging": true,
+        "paging": paginacion,
         "searching": true,
         "autoWidth": true,
         "columnDefs": [{

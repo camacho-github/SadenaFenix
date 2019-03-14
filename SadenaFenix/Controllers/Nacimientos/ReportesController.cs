@@ -33,7 +33,7 @@ namespace Sadena.Controllers.Nacimientos
             ViewBag.Anios = catalogosCargasRespuesta.ColAnios;
             ViewBag.Meses = catalogosCargasRespuesta.ColMeses;
             ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;
-
+            ViewBag.ModalTitulo = "Consulta de reportes";
             return View(catalogosCargasRespuesta);
         }
 

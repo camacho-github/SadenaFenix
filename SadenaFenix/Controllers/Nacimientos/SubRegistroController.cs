@@ -28,7 +28,8 @@ namespace SadenaFenix.Controllers.Nacimientos
             CatalogosCargasRespuesta catalogosCargasRespuesta = servicio.ObtenerCatalogosCargas(null);
             ViewBag.Anios = catalogosCargasRespuesta.ColAnios;
             ViewBag.Meses = catalogosCargasRespuesta.ColMeses;
-            ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;            
+            ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;
+            ViewBag.ModalTitulo = "Consulta del subregistro";
 
             return View(catalogosCargasRespuesta);
         }

@@ -19,55 +19,70 @@ $(function () {
         borderColor: '#818181',
         borderOpacity: 0.25,
         borderWidth: 2,
-        color: '#f4f3f0',
+        //color: '#f4f3f0',
         enableZoom: true,
         hoverColor: '#c9dfaf',
         hoverOpacity: null,
         normalizeFunction: 'linear',
-        scaleColors: ['#b6d6ff', '#005ace'],
-        selectedColor: '#c9dfaf',
+        //scaleColors: ['#b6d6ff', '#005ace'],
+        selectedColor: '#586967',
         selectedRegion: true,
         showTooltip: true,
         regionsSelectable: true,
+        labels: objlabels,
         markerStyle: {
             initial: {
                 fill: '#4DAC26'
             },
             selected: {
-                fill: '#CA0020'
+                fill: '#586967'
             }
         },
         regionStyle: {
             initial: {
-                fill: '#92B5B1',
+                //fill: '#92B5B1',
                 "stroke-width": "0.5",
                 stroke: "black"
             },
             selected: {
-                fill: '#F4A582',
+                fill: '#586967',
                 "stroke-width": "0.5",
                 stroke: "red"
+            }        
+        },
+        onRegionClick: function (event, code) {
+            
+            if (objMpiosMapas[code] == undefined) {
+                //mapVector.regions[code].element.setStyle({
+                //    'fill': "#ffffff"
+                //});
+                event.preventDefault();
+               
             }
-        }, onRegionSelected: function (event, code) {
-            alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
-            if (fnSizeObject(mapMpios) == 0) {
-                $("tbody tr").toggleClass("hiddElement", true);
-                $("tr." + parseInt(code)).toggleClass("hiddElement",false);
-                mapMpios[parseInt(code)] = parseInt(code);
-            } else {
-                if (mapMpios[parseInt(code)] == undefined) {
-                    mapMpios[parseInt(code)] = parseInt(code);
-                    $("tr." + parseInt(code)).toggleClass("hiddElement", false);
+        },
+        onRegionSelected: function (event, code) {
+            //alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
+
+
+            //if (fnSizeObject(mapMpios) == 0) {
+            //    $("tbody tr").toggleClass("hiddElement", true);
+            //    $("tr." + parseInt(code)).toggleClass("hiddElement",false);
+            //    mapMpios[parseInt(code)] = parseInt(code);
+            //} else {
+                if (mapMpios[code] == undefined) {
+                    mapMpios[code] = code;
+                    $("tr." + code).toggleClass("hiddElement", false);
                 } else {
-                    delete mapMpios[parseInt(code)];
+                    delete mapMpios[code];
                     $("tr." + parseInt(code)).toggleClass("hiddElement", true);
                     if (fnSizeObject(mapMpios) == 0) {
                         $("tbody tr").toggleClass("hiddElement", true);
                     }
                 }
-            }            
+            //}            
         },
     });
+    
 
     /* Unregistered table */
     $('#unregisteredTable').DataTable({
