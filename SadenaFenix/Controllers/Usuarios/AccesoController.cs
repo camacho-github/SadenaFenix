@@ -73,27 +73,13 @@ namespace SadenaFenix.Controllers.Usuarios
                         Ano = "2018",
                         Extension = "accdb",
                         Identificador = 1,
-                        Nombre = "CATALOGOS"
+                        Nombre = "C:\\SADENA\\CATALOGOS.accdb"
                     });
-                    /*
-                    preCargaPeticion.ColArchivo.Add(new Archivo
-                    {
-                        Ano = "2018",
-                        Extension = "xlsx",
-                        Identificador = 3,
-                        Nombre = "SIC"
-                    });
-                    preCargaPeticion.ColArchivo.Add(new Archivo
-                    {
-                        Ano = "2018",
-                        Extension = "MDB",
-                        Identificador = 2,
-                        Nombre = "SINAC"
-                    });*/
-
+                   
                     servicio.PreCargarDatos(preCargaPeticion);
                     servicio.ProcesarCarga(preCargaPeticion);
-                }                
+                    return View("~/Views/Usuarios/Acceso/Ingresar.cshtml");
+                }            
 
 
                 if (respuesta.Cabecero.EsRespuestaExistosa() && respuesta.Usuario.SesionId > 0)

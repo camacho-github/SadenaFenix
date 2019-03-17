@@ -4,6 +4,7 @@ using SadenaFenix.Models.Catalogos.Tiempo;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Catalogos;
+using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
 using System.Collections.ObjectModel;
@@ -30,6 +31,9 @@ namespace SadenaFenix.Controllers.Nacimientos
             ViewBag.Meses = catalogosCargasRespuesta.ColMeses;
             ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;
             ViewBag.ModalTitulo = "Consulta del subregistro";
+
+            if(catalogosCargasRespuesta.ColAnios==null)
+                return View("~/Views/Nacimientos/Archivos/Importar.cshtml", new ImportarArchivosViewModel());
 
             return View(catalogosCargasRespuesta);
         }

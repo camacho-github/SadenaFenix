@@ -16,6 +16,7 @@ namespace SadenaFenix.Models.Usuarios
         public int UsuarioId { get; set; }
 
         [DataMember(Name = "UsuarioDesc", IsRequired = true)]
+        [DisplayName("Usuario")]
         [XmlAttribute("UsuarioDesc")]
         public string UsuarioDesc { get; set; }
 

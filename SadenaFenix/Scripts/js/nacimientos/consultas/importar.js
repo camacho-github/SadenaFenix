@@ -4,6 +4,18 @@
 /* On ready */
 $(function () {
 
+    if ($("#MensajeRespuesta") != undefined && $("#MensajeRespuesta").text().length > 0) {
+        var mensajeCodigo = parseInt($("#MensajeCodigo").text());
+        var mensaje = $("#MensajeRespuesta").text();
+        $("#MensajeRespuesta").text("");
+        $("#MensajeCodigo").text("");
+        if (mensajeCodigo == 0)
+            fnShowDialogModal("Operación correcta", mensaje);
+        else
+            fnShowDialogModal("Error", mensaje);
+
+    }
+
     /*
     $("#myBtn").click(function () {
         $("#myModal").modal({ backdrop: true });
@@ -91,19 +103,31 @@ $(function () {
         var sinacFile = $('#SinacFile');
         var sicFile = $('#SicFile');
         if (sinacFile.val() != '' && sicFile.val() != '') {
-            showLargeDialogModal('Mensaje', 'Los archivos seleccionados requieren de un tiempo de procesamiento, por favor espere a que estos sean cargados completamente.');
+            showLargeDialogModal('Confirmación', 'Los archivos seleccionados requieren de un tiempo de procesamiento, por favor espere a que estos sean cargados completamente.');
         } else {
             showAlertModal('alert-warning', 'Información', 'Por favor seleccione los archivos de SINAC y SIC.')
         }
     });
 
     /* Sending files. */
-    $('#largeModalAcceptBtn').click(function () {
+    $('#ModalAcceptBtn').click(function () {
         $('#loadingFilesForm').submit();
         fnWaitForPost();
     });
 
 });
+
+
+/* Showing large dialog modal. */
+function fnShowDialogModal(title, text) {
+    /* Prepare modal. */
+    var modal = $('#DialogoModal');
+    $(modal).find('.modal-title').html(title);
+    $(modal).find('.modal-text').html(text);
+    /* Showing */
+    $(modal).modal({ backdrop: 'static' });
+    return;
+}
 
 /* Showing large dialog modal. */
 function showLargeDialogModal(title, text) {

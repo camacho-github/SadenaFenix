@@ -21,25 +21,15 @@ namespace SadenaFenix.Controllers.Nacimientos
         public ActionResult Importar(ImportarArchivosViewModel viewModel)
         {
             /* Take user. */
-            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(viewModel.Usuario.Json);
-            usuario.Json = viewModel.Usuario.Json;
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(viewModel.UserJson);
+            usuario.Json = viewModel.UserJson;
             viewModel.Usuario = usuario;
+            ViewBag.UserJson = viewModel.UserJson;
 
             /* Saving files */
             CabeceroRespuesta cabeceroRespuesta = ArchivosFacade.SalvarArchivos(viewModel);
-            if (cabeceroRespuesta.EsRespuestaExistosa())
-            {
-                viewModel.CabeceroRespuesta = cabeceroRespuesta;
-                return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);
-            } else
-            {
-                ErrorViewModel errorViewModel = new ErrorViewModel()
-                {
-                    CabeceroRespuesta = cabeceroRespuesta,
-                    Usuario = usuario
-                };
-                return View("~/Views/Shared/500.cshtml", errorViewModel);
-            }
+            viewModel.CabeceroRespuesta = cabeceroRespuesta;
+            return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);          
 
         }
 
@@ -47,6 +37,7 @@ namespace SadenaFenix.Controllers.Nacimientos
         public ActionResult SeleccionarArchivos(string userJson)
         {
             ImportarArchivosViewModel viewModel = new ImportarArchivosViewModel();
+            viewModel.Usuario = new Usuario { Json = userJson };
             ViewBag.UserJson = userJson;
 
             return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);

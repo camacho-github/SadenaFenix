@@ -33,58 +33,60 @@
                         <!-- Form -->
                         <form id="loadingFilesForm" class="form-horizontal" action="/Archivos/Importar" method="post" enctype="multipart/form-data">
 
-                            
-                               <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
-                            
 
-                                <fieldset>
-                                    <legend>Selección de Archivos</legend>
-                                    <!-- File SINAC-->
-                                    <div class="form-group">
-                                        <label class="col-sm-12" for="sinacFile">SINAC</label>
-                                        <div class="col-sm-12">
-                                            @Html.HiddenFor(model => model.SinacArchivo.Ano, new { id = "SinacFileAnio" })
-                                            @Html.HiddenFor(model => model.SinacArchivo.Extension, new { id = "SinacFileExtesion" })
-                                            <div class="input-group">
-                                                <input id="SinacFileText" type="text" class="form-control" readonly="readonly" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SINAC">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-default btn-file">
-                                                        Examinar...
-                                                        <input id="SinacFile" name="SinacFile" type="file" accept=".mdb,.dbf,application/msaccess">
-                                                    </span>
+                            <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+
+                            <input type="hidden" name="UserJson" id="UserJson" value="@ViewBag.UserJson" />
+
+                            <fieldset>
+                                <legend>Selección de Archivos</legend>
+                                <!-- File SINAC-->
+                                <div class="form-group">
+                                    <label class="col-sm-12" for="sinacFile">SINAC</label>
+                                    <div class="col-sm-12">
+                                        @Html.HiddenFor(model => model.SinacArchivo.Ano, new { id = "SinacFileAnio" })
+                                        @Html.HiddenFor(model => model.SinacArchivo.Extension, new { id = "SinacFileExtesion" })
+                                        <div class="input-group">
+                                            <input id="SinacFileText" type="text" class="form-control" readonly="readonly" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SINAC">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Examinar...
+                                                    <input id="SinacFile" name="SinacFile" type="file" accept=".mdb,.dbf,application/msaccess">
                                                 </span>
-                                            </div>
+                                            </span>
                                         </div>
                                     </div>
-                                    <!-- File SIC -->
-                                    <div class="form-group">
-                                        <label class="col-sm-12" for="sicFile">SIC</label>
-                                        <div class="col-sm-12">
-                                            @Html.HiddenFor(model => model.SicArchivo.Ano, new { id = "SicFileAnio" })
-                                            @Html.HiddenFor(model => model.SicArchivo.Extension, new { id = "SicFileExtension" })
-                                            <div class="input-group">
-                                                <input id="SicFileText" type="text" class="form-control" readonly="readonly" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SIC">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-default btn-file">
-                                                        Examinar...
-                                                        <input id="SicFile" name="SicFile" type="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                                                    </span>
+                                </div>
+                                <!-- File SIC -->
+                                <div class="form-group">
+                                    <label class="col-sm-12" for="sicFile">SIC</label>
+                                    <div class="col-sm-12">
+                                        @Html.HiddenFor(model => model.SicArchivo.Ano, new { id = "SicFileAnio" })
+                                        @Html.HiddenFor(model => model.SicArchivo.Extension, new { id = "SicFileExtension" })
+                                        <div class="input-group">
+                                            <input id="SicFileText" type="text" class="form-control" readonly="readonly" placeholder="Selección de archivo..." title="Campo para seleccionar archivo SIC">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Examinar...
+                                                    <input id="SicFile" name="SicFile" type="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                                 </span>
-                                            </div>
-                                        </div>
-                                    </div><br />
-                                    <!-- Botton for loading -->
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button id="loadingFilesBtn" type="button" class="btn btn-success" title="Cargar Archivos">Cargar Archivos</button>
+                                            </span>
                                         </div>
                                     </div>
-                                </fieldset>
-                            </form>
+                                </div><br />
+                                <!-- Botton for loading -->
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button id="loadingFilesBtn" type="button" class="btn btn-success" title="Cargar Archivos">Cargar Archivos</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                         <div class="col-sm-12">
                             @if (Model.CabeceroRespuesta != null)
                             {
-                                <p>@Model.CabeceroRespuesta.MensajeRespuesta</p>
+                                <p id="MensajeCodigo">@Model.CabeceroRespuesta.CodigoRespuesta</p>
+                                <p id="MensajeRespuesta">@Model.CabeceroRespuesta.MensajeRespuesta</p>
                             }
                         </div>
                         <!-- ./form -->

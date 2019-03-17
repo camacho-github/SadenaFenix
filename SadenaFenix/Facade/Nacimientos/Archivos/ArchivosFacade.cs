@@ -35,22 +35,27 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             /* SINAC */
             var pathSINAC = Path.Combine(tempPath, Path.GetFileName(sinacFileBase.FileName));
             sinacFileBase.SaveAs(pathSINAC);
+
+            var index_anio = sinacFileBase.FileName.IndexOf("SINAC");
+            var anio = sinacFileBase.FileName.Substring(index_anio + 6, 4);
             Archivo archivoSINAC = new Archivo
             {
                 Extension = sinacFileBase.ContentType,
                 Nombre = pathSINAC,
-                Ano = "2019"
+                Ano = anio
             };
             archivoSINAC.IdentificarTablaSINAC();
 
             /* SIC */
             var pathSIC = Path.Combine(tempPath, Path.GetFileName(sicFileBase.FileName));
+            index_anio = sicFileBase.FileName.IndexOf("SIC");
+            anio = sicFileBase.FileName.Substring(index_anio + 4, 4);
             sicFileBase.SaveAs(pathSIC);
             Archivo archivoSIC = new Archivo
             {
                 Extension = sicFileBase.ContentType,
                 Nombre = pathSIC,
-                Ano = "2019"
+                Ano = anio
             };
             archivoSIC.IdentificarTablaSIC();
 
@@ -71,13 +76,22 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             cabeceroRespuesta = servicio.PreCargarDatos(preCargaPeticion);
             if (cabeceroRespuesta.EsRespuestaExistosa())
             {
-                cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitosamente.";
+                cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitósamente.";
             }
+            else
+            {
+                return cabeceroRespuesta;
+            }            
+
             /* Procesar archivos. */
             cabeceroRespuesta = servicio.ProcesarCarga(preCargaPeticion);
             if (cabeceroRespuesta.EsRespuestaExistosa())
             {
-                cabeceroRespuesta.MensajeRespuesta = "Los archivos han sido guardados y procesados exitosamente, los datos pueden ser consultados ahora.";
+                cabeceroRespuesta.MensajeRespuesta = "Los archivos han sido guardados y procesados exitósamente, los datos pueden ser consultados ahora.";
+            }
+            else
+            {
+                return cabeceroRespuesta;
             }
             return cabeceroRespuesta;
         }

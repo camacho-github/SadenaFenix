@@ -1,0 +1,110 @@
+﻿<!-- Scope -->
+@{
+    ViewData["Root"] = "Sadena";
+    ViewData["Version"] = "1.0.0";
+    ViewData["Year"] = "2018";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @ViewData["Root"]</title>
+
+    @Html.Partial("~/Views/Include/_PrincipalStylesImport.cshtml")
+    @Html.Partial("~/Views/Include/_SpecificStylesImport.cshtml")
+
+    <link rel="stylesheet" href="~/Scripts/vendor/datatables.net-dt/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/Scripts/vendor/buttons-dt/css/buttons.dataTables.min.css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="loader" class="bd-example blackBack">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>
+
+    <div id="transparentBackLayer" class="hiddElement"></div>
+
+
+    <div class="alert alert-success mensajeForma" id="AlertaMensaje" style="display: none">
+        <strong id="Titulo">Titulo</strong>
+        <hr />
+        <div id="Mensaje">Mensaje</div>
+    </div>
+
+    <div id="ConfirmacionMensaje" class="alert alert-dismissible alert-warning mensajeForma hiddElement">
+        <div class="hiddElement">
+            <a href="#"><img id="closeMessage" class="close_modal" src="~/Content/images/icon_close.png" alt="Close" /></a>
+        </div>
+        <strong id="Titulo">Titulo</strong>
+        <hr />
+        <div id="Mensaje">Mensaje</div>
+        <div id="buttonsContainer" class="center" classToChildren="btn btn-primary btn-sm">
+            <!-- Buttons Details. -->
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Layout/_Navbar.cshtml")
+
+    <div class="container-fluid">
+        @RenderBody()
+        @Html.Partial("~/Views/Layout/_Footer.cshtml")
+    </div>
+
+    <partial name="_CookieConsentPartial"></partial>
+
+
+
+
+    @Html.Partial("~/Views/Include/_PrincipalScriptsImport.cshtml")
+
+    <!-- DataTables Bootstrap 3 Integration -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- Buttons Bootstrap 3 Integration -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.bootstrap.min.js"></script>
+       
+    <!-- Files plugins -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Scripts/vendor/buttons/js/buttons.print.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    <!-- Responsive Bootstrap 3 Integration -->
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
+    <script src="~/Scripts/js/utilerias/comunes.js"></script>
+
+    <!-- Scripts se requieren versiones-->
+    <script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+    <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
+    <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
+    <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js'></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>*@
+
+    <!-- Select2 -->
+    <script type="text/javascript" src="~/Scripts/vendor/select2/dist/js/select2.full.min.js"></script>
+
+    <!-- Bootstrap Select -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/js/bootstrap-select.min.js"></script>
+
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+</html>

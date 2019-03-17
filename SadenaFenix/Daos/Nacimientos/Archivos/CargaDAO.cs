@@ -23,8 +23,9 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
         private const string TM_SIC = "SDB.TMSIC";
         private const string CONSULTA_FUENTE_LOCALIDAD = "Select [EDO],[EDO_DESCRIP],[MPO],[MPO_DESCRIP],[LOC],[LOC_DESCRIP] from [CATLOC$A1:I298548]";
         private const string CONSULTA_FUENTE_ACCESS_LOCALIDAD = "Select EDO,EDO_DESCRIP,MPO,MPO_DESCRIP,LOC,LOC_DESCRIP from CATLOC";
-        private const string CONSULTA_FUENTE_SINAC = "SELECT FOLIO, NOMBRE, PATERNO, MATERNO, CURP_M, ENT_NACM, MPO_NACM,FECH_NACH,HORA_NACH, EDADM, EDOCIVIL, CALLE_RES, NUMEXT_RES, NUMINT_RES,NOMASEN_RES, CODPOS_RES, ENT_RES, MPO_RES, LOC_RES, TEL_RES, NUM_EMB, NUM_NACMTO, NUM_NACVIVO, HIJO_SOBV, HIJO_ANTE, IIF(VIVE_AUN = '1', 1, 0), IIF(VAL(NIV_ESCOL)>1,VAL(NIV_ESCOL),1), OCUPHAB,val(SEXOH) FROM NACIMIENTO";
-        private const string CONSULTA_FUENTE_SIC = "Select [EDO_OFI],[MUN_OFI],[DESCR_MUN_OFI],[OFICIALIA],[ANO],[FECHA_REG],[FECHA_NAC],[LOCALIDAD],[MUNICIPIO],[DESC_MUNICIPIO],[ESTADO],[DESC_ESTADO],[PAIS],[DESC_PAIS],[NO_CERTIF] from [{0}$A2:O{1}]";
+        //private const string CONSULTA_FUENTE_SINAC = "SELECT FOLIO, NOMBRE, PATERNO, MATERNO, CURP_M, IIF(VAL(ENT_NACM)>0,VAL(ENT_NACM),99), MPO_NACM,FECH_NACH,HORA_NACH, EDADM, EDOCIVIL, CALLE_RES, NUMEXT_RES, NUMINT_RES,NOMASEN_RES, CODPOS_RES, ENT_RES, MPO_RES, LOC_RES, TEL_RES, NUM_EMB, NUM_NACMTO, NUM_NACVIVO, HIJO_SOBV, HIJO_ANTE, IIF(VIVE_AUN = '1', 1, 0), IIF(VAL(NIV_ESCOL)>1,VAL(NIV_ESCOL),1), OCUPHAB,val(SEXOH) FROM NACIMIENTO";
+        private const string CONSULTA_FUENTE_SINAC = "SELECT FOLIO, IIF(VAL(ENT_NACM) > 0, VAL(ENT_NACM), 99), MPO_NACM, FECH_NACH, HORA_NACH, EDADM, EDOCIVIL, CALLE_RES, NUMEXT_RES, NUMINT_RES, ENT_RES, MPO_RES, LOC_RES, IIF(NUM_NACVIVO IS NULL, 0,NUM_NACVIVO),  IIF(VAL(NIV_ESCOL) > 1, VAL(NIV_ESCOL), 1), OCUPHAB, val(SEXOH) FROM NACIMIENTO";
+        private const string CONSULTA_FUENTE_SIC = "Select [EDO_OFI],[MUN_OFI],[OFICIALIA],[ANO],[FECHA_REG],[FECHA_NAC],[LOCALIDAD],[MUNICIPIO],[ESTADO],[PAIS],[NO_CERTIF] from [{0}$A1:DD{1}]";
         private const string RUTA_SERVIDOR = ""; //"C:\\SADENA\\";
         private const string PRN_INS_CONTROL_CARGA = "SDB.PRNInsControlCarga";
         private const string PRDEL_TM_SIC = "SDB.PRDelTMSIC";
@@ -58,12 +59,12 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
         }
 
 
-        public bool InsertarBitacoraCarga(int sesionId, int identificador, string ano, string nombreArchivo, string extension)
+        public bool InsertarBitacoraCarga(int sesionId, int identificador, string ano, string nombreArchivo)
         {
             bool resultado = false;
             try
             {
-                EjecutaProcedimiento(PRN_INS_CONTROL_CARGA, CreaParametrosInsertaControlCarga(sesionId, identificador, ano, nombreArchivo, extension));
+                EjecutaProcedimiento(PRN_INS_CONTROL_CARGA, CreaParametrosInsertaControlCarga(sesionId, identificador, ano, nombreArchivo));
 
                 if (this.Codigo == 0)
                 {
@@ -177,7 +178,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             {
                 string consultaFuente = CONSULTA_FUENTE_SINAC;
                 string nombreTabla = TM_SINAC;
-                string nombreCompletoArchivo = RUTA_SERVIDOR + nombreArchivo;
+                string nombreCompletoArchivo = nombreArchivo;
                 DepurarTablaSINACTemporal();
                 GuardarAccessEnBaseDatos(nombreCompletoArchivo, consultaFuente, nombreTabla);
             }
@@ -198,7 +199,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             {
                 string consultaFuente = CONSULTA_FUENTE_SIC;
                 string nombreTabla = TM_SIC;
-                string nombreCompletoArchivo = RUTA_SERVIDOR + nombreArchivo;
+                string nombreCompletoArchivo = nombreArchivo;
                 DepurarTablaSICTemporal();
                 GuardarExcelEnBaseDatos(nombreCompletoArchivo, consultaFuente, nombreTabla);
             }
@@ -316,7 +317,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             return false;
         }
 
-        private static Collection<SqlParameter> CreaParametrosInsertaControlCarga(int sesionId, int identificador, string ano, string nombreArchivo, string extension)
+        private static Collection<SqlParameter> CreaParametrosInsertaControlCarga(int sesionId, int identificador, string ano, string nombreArchivo)
         {
             Collection<SqlParameter> parametros = new Collection<SqlParameter>();
             SqlParameter parametro = null;
@@ -341,18 +342,11 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
 
             parametro = new SqlParameter("@pc_nombre_archivo", SqlDbType.NVarChar)
             {
-                Size = 40,
+                Size = 255,
                 Value = nombreArchivo
             };
             parametros.Add(parametro);
-
-            parametro = new SqlParameter("@pc_extension", SqlDbType.NVarChar)
-            {
-                Size = 8,
-                Value = extension
-            };
-            parametros.Add(parametro);
-
+            
             CreaParametrosSalida(parametros);
 
             return parametros;

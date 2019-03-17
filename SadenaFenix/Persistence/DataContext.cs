@@ -167,7 +167,8 @@ namespace SadenaFenix.Persistence
                     {
                         using (SqlBulkCopy sqlBulk = new SqlBulkCopy(connectionString))
                         {
-                            //Give your Destination table name 
+                            //Give your Destination table name
+                            sqlBulk.BulkCopyTimeout = 0;
                             sqlBulk.DestinationTableName = nombreTabla;
                             sqlBulk.WriteToServer(dReader);
                         }

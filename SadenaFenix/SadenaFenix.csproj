@@ -769,6 +769,7 @@
     <Content Include="Views\Reportes\ReportesNumNac.cshtml" />
     <Content Include="Views\Reportes\ReportesSexo.cshtml" />
     <Content Include="Views\Configuraciones\DiasExtemporaneos.cshtml" />
+    <Content Include="Views\Shared\_SistemasLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\Nacimientos\Consultas\" />

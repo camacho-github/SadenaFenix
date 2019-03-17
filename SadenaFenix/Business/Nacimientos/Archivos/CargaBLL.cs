@@ -53,14 +53,14 @@ namespace SadenaFenix.Business.Nacimientos.Archivos
                             break;
                     }
 
-                    cargaDAO.InsertarBitacoraCarga(sesionId, archivo.Identificador, archivo.Ano, archivo.Nombre, archivo.Extension);
+                    cargaDAO.InsertarBitacoraCarga(sesionId, archivo.Identificador, archivo.Ano, archivo.Nombre);
                 }
             }
 
             catch (Exception e)
             {
                 Bitacora.Error(e.Message);
-                throw new BusinessException("La carga no fue exitosa, favor de validar los archivos a importar: " + e.Message);
+                throw new BusinessException(1, "La carga no fue exitosa, favor de validar los archivos a importar: " + e.Message);
             }
 
             return true;
