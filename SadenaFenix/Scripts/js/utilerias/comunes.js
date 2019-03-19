@@ -303,8 +303,21 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
             }]
         }, {
             text: 'Imprimir',
+            title: ' ',
             extend: 'print',
-            footer: false,
+            customize: function (win) {
+                $(win.document.body)
+                    .css('font-size', '10pt');               
+
+                $(win.document.body).find('table').css('font-size', '9px');               
+                $(win.document.body).find('thead').prepend(
+                    '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
+                var headerColumns = $(win.document.body).find('thead').find("th").length;
+                var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" /></TH></TR >';
+                $(win.document.body).find('tfoot').empty().prepend(footer);
+                    
+            },
+            footer: true,
             exportOptions: {
                 columns: ':visible'
             }
@@ -327,17 +340,22 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                     columns: ':visible'
                 }
             }, {
-                text: 'PDF Vertical',
-                extend: 'pdfHtml5',
-                message: '',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            }, {
-                text: 'PDF Horizontal',
-                extend: 'pdfHtml5',
-                message: '',
-                orientation: 'landscape',
+                text: 'PDF',                
+                title: ' ',
+                extend: 'print',
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '10pt');
+
+                    $(win.document.body).find('table').css('font-size', '9px');
+                    $(win.document.body).find('thead').prepend(
+                        '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
+                    var headerColumns = $(win.document.body).find('thead').find("th").length;
+                    var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" style="position:absolute; bottom:0; /></TH></TR >';
+                    $(win.document.body).find('tfoot').empty().prepend(footer);
+
+                },
+                footer: true,
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -371,6 +389,8 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 //Below: The minus 2 because of the 2 extra buttons Show all and Restore
                 var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla +'] a').length - 2;
                 $('.buttons-colvis[aria-controls=' + nombreTabla +'] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').blur();
+                //$("a").blur();
                 e.stopPropagation();
             });
         }

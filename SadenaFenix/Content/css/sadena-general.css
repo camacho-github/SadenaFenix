@@ -20,6 +20,52 @@
     position: relative;
     height: 0;
 }*/
+/*
+@media print {
+    body {
+        margin: 50px;
+        padding: 15px;
+        line-height: 1.4em;
+        word-spacing: 1px;
+        letter-spacing: 0.2px;
+        font: 13px Arial, Helvetica,"Lucida Grande", serif;
+        color: #000;
+    }
+
+    #print-btn #update-btn #nav-left #nav-bar, #selectUnitContainer, .navbar, .sidebar-nav {
+        display: none;
+    }
+
+    #print-btn, #update-btn, #units {
+        display: none;
+    }
+
+    #nav-left {
+        display: none;
+    }
+
+    #report-container {
+        visibility: visible;
+    }
+
+    .well .span12 {
+        width: 100%;
+        visibility: visible;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .sidebar-nav {
+        display: none;
+    }
+}
+*/
+
+ul.dt-button-collection.dropdown-menu.three-column {
+    width: auto !important;   
+}
 
 .tab-content.tabOficina{
     margin-top:20px;
@@ -488,6 +534,19 @@ p.note-feet {
     background-image: linear-gradient(to top, white, #f4f4f4);
     border-radius: 5px;
 }
+/*#551fd940;*/
+.description-block.active {
+    cursor: pointer;
+    border-bottom: 1px solid #a8afc7;
+    border-top: 1px solid #a8afc7;
+}
+
+/*
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: #ffe1ff !important;
+}*/
+
 .modal-header {
     padding-left: 20px;
 }

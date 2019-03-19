@@ -61,7 +61,7 @@ $(function () {
         if (isValid == false) {
             $(this).val('');
             $('#SinacFileText').val('');
-            showAlertModal('alert-warning', 'Información', 'El tipo de archivo es incorrecto o éste tiene una extensión no válida.')
+            fnShowDialogModal('Información', 'El tipo de archivo es incorrecto o éste tiene una extensión no válida.')
         }
     });
 

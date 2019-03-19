@@ -265,12 +265,8 @@
     <Content Include="Content\images\coahuila-map.svg" />
     <Content Include="Content\images\cohauila-gob-logo.png" />
     <Content Include="Content\images\cohauila-uploaded.jpg" />
-    <Content Include="Content\images\icon_hospital.png" />
     <Content Include="Content\images\icon_close.png" />
-    <Content Include="Content\images\icon_TagBlack.png" />
-    <Content Include="Content\images\icon_TagVerde.png" />
-    <Content Include="Content\images\markerOficialia.png" />
-    <Content Include="Content\images\markerOficialia60.png" />
+    <Content Include="Content\images\pie_sadena6.png" />
     <Content Include="Content\images\regcivil-gob-logo.png" />
     <Content Include="Content\images\user-default-160x160.png" />
     <Content Include="favicon.ico" />

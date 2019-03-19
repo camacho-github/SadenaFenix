@@ -5,6 +5,19 @@ $(function () {
     $("#consultarDatosProcesadosBtn").click(function () {        
         fnConsultarDatos();
     });
+
+    $("#tablaContenedor").on("click", ".description-block", function () {
+        if (!$(this).hasClass("active")) {
+            $(".description-block").removeClass("active");
+            $(this).addClass("active");
+            var link = $(this).attr("aKey");
+            $("#" + link).click();
+            
+        }        
+        //$(this).find(".description-block-review-link").click();
+        
+        //$(this).find(a).trigger("click");
+    });
    
 });
 
@@ -29,6 +42,7 @@ function fnCrearTablasSubregistro() {
 
     hCols = [1];
     fnCrearTabla('ReporteMpiosTabla', hCols)
+    $("#resumenTotalesLink").click();
     fnShowDiv("modalConsulta", 0);
     fnShowDiv("loader", 0);
 }
