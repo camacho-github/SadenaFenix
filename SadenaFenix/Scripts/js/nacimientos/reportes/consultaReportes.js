@@ -1,6 +1,7 @@
 ﻿var objMpiosMapas = {};
 var mpiosList;
-var mapVector;
+var mapVector
+var jsonTotales;
 
 
 window.onscroll = function (e) {
@@ -99,9 +100,23 @@ function fnConsultarDatos() {
         "tablaContenedorEscol", fnCrearTablasEscolSubregistro);   
 
     fnGetAndSetTemplate('/Reportes/ReportesSexo', params,
-        "tablaContenedorSexo", fnCrearTablasSexoSubregistro);      
+        "tablaContenedorSexo", fnCrearTablasSexoSubregistro);   
+
+    fnObtenerTotalesMunicipio(params);
 
     $("#linkTodos").trigger("click");    
+}
+
+function fnObtenerTotalesMunicipio(params) {
+    var data = fnGetJSONResponse('ReporteTotalesMunicipios', params);
+
+    if (data !== "" && data !== null) {
+
+        if (data.JsonTotales !== null) {
+            jsonTotales = data.JsonTotales;
+            fnMessage("Operación correcta", data.JsonTotales);
+        }
+    }
 }
 
 function fnCrearTablasEdadSubregistro() {

@@ -19,7 +19,8 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
         #region Variables de instancia        
         private const string PRN_CONSULTA_SUBREGISTRO_NACIMIENTOS = "SDB.PRSSubregistroNacimientos";
         private const string PRN_CONSULTA_TOTALES_SUBREGISTRO_NACIMIENTOS = "SDB.PRSTotalesSubregistroNacimientos";
-        private const string PRN_CONSULTA_REPORTE_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_XML_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteXMLSubregistroMunicipios";
+        private const string PRN_CONSULTA_REPORTE_TOTALES_MUNICIPIOS = "SDB.PRSReporteTotalesMunicipios";        
         private const string PRN_CONSULTA_REPORTE_SEXO_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteSexoSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_ESCOLARIDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEscolaridadSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdoCivilSubregistroMunicipios";
@@ -395,7 +396,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return SubregistroNacimientosRespuesta;
         }
 
-        public XmlDocument ConsultarReporteTotalesSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
+        public XmlDocument ConsultarReporteXMLTotalesSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {
             XmlDocument xmlDocument = null;
 
@@ -405,7 +406,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 {
                     dataSet.Locale = CultureInfo.InvariantCulture;
 
-                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_XML_SUBREGISTRO_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
 
                     if (this.Codigo == 0 && ValidaDataSet(dataSet))
                     {
@@ -430,6 +431,54 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return xmlDocument;
 
         }
+
+        public Collection<TotalesMunicipio> ConsultarReporteTotalesMunicipio(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<TotalesMunicipio> col = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_REPORTE_TOTALES_MUNICIPIOS, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        col = new Collection<TotalesMunicipio>();
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+                            TotalesMunicipio mpio = new TotalesMunicipio
+                            {
+                                IdMunicipio = r.Field<int>("IdMunicipio"),
+                                TotalSubregistro = r.Field<int>("TotalSubregistro"),
+                                TotalRegistroOportuno = r.Field<int>("TotalRegistroOportuno"),
+                                TotalRegistroExtemporaneo = r.Field<int>("TotalRegistroExtemporaneo")
+                            };
+                            col.Add(mpio);
+                        }
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return col;
+
+        }
+
 
         public Collection<DataTable> ConsultarReporteSexoSubregistro(string anosUnion, string mesesUnion, string municipiosUnion)
         {

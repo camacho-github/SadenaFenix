@@ -186,6 +186,7 @@
     <Compile Include="Models\Georeferenciacion\TipoOficina.cs" />
     <Compile Include="Models\Nacimientos\Archivos\Archivo.cs" />
     <Compile Include="Models\Nacimientos\Consultas\SubregistroTotal.cs" />
+    <Compile Include="Models\Nacimientos\Consultas\TotalesMunicipio.cs" />
     <Compile Include="Models\Nacimientos\Reportes\CabeceroValor.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Reporte.cs" />
     <Compile Include="Models\Nacimientos\Reportes\ReporteCelda.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\TotalesMunicipiosRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroRespuesta.cs" />

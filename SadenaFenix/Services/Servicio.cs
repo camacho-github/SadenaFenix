@@ -337,6 +337,28 @@ namespace SadenaFenix.Services
             return respuesta;
 
         }
+        public TotalesMunicipiosRespuesta ConsultarReporteTotalesMunicipio(ReporteTotalesSubregistroPeticion peticion)
+        {
+            TotalesMunicipiosRespuesta respuesta = new TotalesMunicipiosRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarReporteTotalesMunicipio(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+
+        }
+
+        
 
         public ReporteSubregistroRespuesta ConsultarReporteSexoSubregistro(ReporteSexoSubregistroPeticion peticion)
         {

@@ -72,8 +72,8 @@ namespace SadenaFenix.Controllers.Usuarios
                     {
                         Ano = "2018",
                         Extension = "accdb",
-                        Identificador = 1,
-                        Nombre = "C:\\SADENA\\CATALOGOS.accdb"
+                        Identificador = 1,                        
+                        Nombre = "D:\\JOE\\DOCS\\CATALOGOS.accdb"
                     });
                    
                     servicio.PreCargarDatos(preCargaPeticion);

@@ -37,6 +37,45 @@ namespace Sadena.Controllers.Nacimientos
             return View(catalogosCargasRespuesta);
         }
 
+
+        [WebMethod]
+        public ActionResult ReporteTotalesMunicipios(string AniosJson, string MesesJson, string MpiosJson)
+        {
+            Servicio servicio = new Servicio();
+            dynamic anios = JsonConvert.DeserializeObject(AniosJson);
+            dynamic meses = JsonConvert.DeserializeObject(MesesJson);
+            dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
+
+            ReporteTotalesSubregistroPeticion subregistroPeticion = new ReporteTotalesSubregistroPeticion();
+
+            subregistroPeticion.ColAnos = new Collection<string>();
+            foreach (string anio in anios)
+            {
+                subregistroPeticion.ColAnos.Add(anio);
+            }
+
+            subregistroPeticion.ColMeses = new Collection<string>();
+            foreach (string mes in meses)
+            {
+                subregistroPeticion.ColMeses.Add(mes);
+            }
+
+            subregistroPeticion.ColMunicipios = new Collection<Municipio>();
+            foreach (string mpio in mpios)
+            {
+                Municipio municipio = new Municipio();
+                municipio.MpioId = Convert.ToInt32(mpio);
+
+                subregistroPeticion.ColMunicipios.Add(municipio);
+            }
+
+            TotalesMunicipiosRespuesta respuesta = new TotalesMunicipiosRespuesta();
+            respuesta = servicio.ConsultarReporteTotalesMunicipio(subregistroPeticion);
+
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+
+        }
+
         public ActionResult ReportesEdad(string AniosJson, string MesesJson, string MpiosJson)
         {
             Servicio servicio = new Servicio();

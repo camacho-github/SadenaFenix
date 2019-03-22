@@ -212,7 +212,7 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                XmlDocument xmlReporte = reporteDAO.ConsultarReporteTotalesSubregistro(anosUnion, mesesUnion, municipiosUnion);
+                XmlDocument xmlReporte = reporteDAO.ConsultarReporteXMLTotalesSubregistro(anosUnion, mesesUnion, municipiosUnion);
                 reporte.XmlReporte = JsonConvert.SerializeXmlNode(xmlReporte);
 
                 Collection<string> cabeceros = new Collection<string>();
@@ -232,6 +232,45 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 Collection<ReporteFila> Filas = new Collection<ReporteFila>();                
                 reporte.ColFilas = Filas;
                 return reporte;
+            }
+        }
+
+        public TotalesMunicipiosRespuesta ConsultarReporteTotalesMunicipio(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            TotalesMunicipiosRespuesta respuesta = new TotalesMunicipiosRespuesta();
+
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                Collection <TotalesMunicipio> totales = reporteDAO.ConsultarReporteTotalesMunicipio(anosUnion, mesesUnion, municipiosUnion);
+                respuesta.ColTotales = totales;
+                respuesta.JsonTotales = JsonConvert.SerializeObject(totales);
+
+                return respuesta;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
             }
         }
 
