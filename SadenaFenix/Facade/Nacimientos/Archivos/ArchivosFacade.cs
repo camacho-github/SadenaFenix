@@ -36,8 +36,8 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             var pathSINAC = Path.Combine(tempPath, Path.GetFileName(sinacFileBase.FileName));
             sinacFileBase.SaveAs(pathSINAC);
 
-            var index_anio = sinacFileBase.FileName.IndexOf("SINAC");
-            var anio = sinacFileBase.FileName.Substring(index_anio + 6, 4);
+            var index_anio = sinacFileBase.FileName.IndexOf(".SINAC_");
+            var anio = sinacFileBase.FileName.Substring(index_anio + 7, 4);
             Archivo archivoSINAC = new Archivo
             {
                 Extension = sinacFileBase.ContentType,
@@ -48,8 +48,8 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
 
             /* SIC */
             var pathSIC = Path.Combine(tempPath, Path.GetFileName(sicFileBase.FileName));
-            index_anio = sicFileBase.FileName.IndexOf("SIC");
-            anio = sicFileBase.FileName.Substring(index_anio + 4, 4);
+            index_anio = sicFileBase.FileName.IndexOf(".SIC_");
+            anio = sicFileBase.FileName.Substring(index_anio + 5, 4);
             sicFileBase.SaveAs(pathSIC);
             Archivo archivoSIC = new Archivo
             {

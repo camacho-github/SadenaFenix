@@ -76,7 +76,7 @@ namespace SadenaFenix.Business.Nacimientos.Archivos
             catch (Exception e)
             {
                 Bitacora.Error(e.Message);
-                throw new BusinessException("El procesamiento de la carga no fue completado exitosamente, favor de intentar nuevamente: " + e.Message);
+                throw new BusinessException(1,"El procesamiento de la carga no fue completado exitosamente, favor de intentar nuevamente: " + e.Message);
             }
 
         }
