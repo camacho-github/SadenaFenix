@@ -1,67 +1,40 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
    for details on configuring this project to bundle and minify static web assets. */
 
-/*
-#subregistradosTab .badge, #registradosTab .badge, #extemporaneosTab .badge{
-    margin-left: 20px;
-    width: 30%;
-    font-size: 15px;
-}*/
-
-/*
-#subregistradosTab h5, #registradosTab h5, #extemporaneosTab h5 {
-    font-size: 16px;
-    font-weight: bold;
-} */
-
-/*.map-container {
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    position: relative;
-    height: 0;
-}*/
-/*
-@media print {
-    body {
-        margin: 50px;
-        padding: 15px;
-        line-height: 1.4em;
-        word-spacing: 1px;
-        letter-spacing: 0.2px;
-        font: 13px Arial, Helvetica,"Lucida Grande", serif;
-        color: #000;
-    }
-
-    #print-btn #update-btn #nav-left #nav-bar, #selectUnitContainer, .navbar, .sidebar-nav {
-        display: none;
-    }
-
-    #print-btn, #update-btn, #units {
-        display: none;
-    }
-
-    #nav-left {
-        display: none;
-    }
-
-    #report-container {
-        visibility: visible;
-    }
-
-    .well .span12 {
-        width: 100%;
-        visibility: visible;
-    }
-
-    .navbar {
-        display: none;
-    }
-
-    .sidebar-nav {
-        display: none;
-    }
+.jvectormap-label {
+    border: 1px solid white;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    background: #4A7E2A;
+    color: white;
+    font-family: Arial;
+    padding: 5px 15px;
+    font-size: 20px;
 }
-*/
+
+.mapaImpresion {
+    position: relative;
+    top: 150px;
+    left: 100px;
+}
+
+.mapaImpresion .jvectormap-zoomin, .mapaImpresion .jvectormap-zoomout {
+    display: none !important
+}
+
+.jvectormap-legend .jvectormap-legend-tick-sample {
+    height: 26px;
+}
+
+.jvectormap-legend-icons {
+    background: white;
+    border: black 1px solid;
+}
+
+.jvectormap-legend-icons {
+    color: black;
+}
 
 ul.dt-button-collection.dropdown-menu.three-column {
     width: auto !important;   

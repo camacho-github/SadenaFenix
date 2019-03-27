@@ -12,6 +12,10 @@ namespace SadenaFenix.Models.Nacimientos.Consultas
         [XmlAttribute("IdMunicipio")]
         public int IdMunicipio { get; set; }
 
+        [DataMember(Name = "MpioDesc", IsRequired = true)]
+        [XmlAttribute("MpioDesc")]
+        public String MpioDesc { get; set; }
+
         [DataMember(Name = "TotalSubregistro", IsRequired = true)]
         [XmlAttribute("TotalSubregistro")]
         public int TotalSubregistro { get; set; }

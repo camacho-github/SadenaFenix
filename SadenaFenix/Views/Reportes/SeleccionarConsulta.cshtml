@@ -99,7 +99,7 @@
                                 <li><a href="#subregistradosTabPane" data-toggle="tab">Subregistros</a></li>
                                 <li class="active">
                                     <a href="#registradosTabPane" data-toggle="tab">Registros Oportunos</a>
-                                </li>                                
+                                </li>
                                 <li><a href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
                             </ul>
                             <div class="tab-content">
@@ -245,20 +245,40 @@
                             </div>
                         </div>
                         <!-- Map -->
-                        <div id ="vectorMapDiv" class="col-sm-5">
+                        <div id="vectorMapDiv" class="col-sm-5">
                             <div class="map-container col-sm-12">
-                                <div class="customised-card">
+                                <div id="cardMap" class="customised-card">
                                     <div class="customised-card-header">
                                         <div class="customised-card-title customised-card-header-divider">
                                             Coahuila de Zaragoza<br />
-                                            <span class="customised-card-subtitle">Indicadores Socieconómicos por Municipios</span>
+                                            <span class="customised-card-subtitle">Indicadores Socieconómicos por Subregistro</span>
                                         </div>
+                                    </div>
+                                    <div id="subregistradosMapaTableBottonsContainer" class="btn-group btn-group-justified">
+                                        <div class="table-responsive">
+                                            <table id="SubRegistroMapaTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID Municipio</th>
+                                                        <th>Municipio</th>
+                                                        <th>SubRegistro</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="bodySubregistroMapa">                                                    
+                                                </tbody>
+                                                <tfoot id="footSubRegistroMapa">                                                    
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
                                     </div>
                                     <div class="customised-card-body">
                                         <div id="coahuilaMap" class="report-map" style="width: 450px; height: 600px">
                                         </div>
                                     </div>
-                                </div>
+
+                                </div>                                
+
                             </div>
                         </div>
                         <!-- ./map -->
@@ -303,4 +323,6 @@
     <script src="~/Scripts/js/maps/jqvmap/jquery.vmap.municipios_coahuila.js"></script>
     <script src="~/Scripts/js/nacimientos/reportes/reportes.js"></script>
     <script src="@Url.Content("~/Scripts/js/nacimientos/reportes/consultaReportes.js")"></script>
+    <script type="text/javascript" src="//canvg.googlecode.com/svn/trunk/rgbcolor.js"></script>
+    <script type="text/javascript" src="//canvg.googlecode.com/svn/trunk/canvg.js"></script>
 }

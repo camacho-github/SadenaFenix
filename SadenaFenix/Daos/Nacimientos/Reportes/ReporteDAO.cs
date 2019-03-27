@@ -452,6 +452,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                             TotalesMunicipio mpio = new TotalesMunicipio
                             {
                                 IdMunicipio = r.Field<int>("IdMunicipio"),
+                                MpioDesc = r.Field<string>("MpioDesc"),
                                 TotalSubregistro = r.Field<int>("TotalSubregistro"),
                                 TotalRegistroOportuno = r.Field<int>("TotalRegistroOportuno"),
                                 TotalRegistroExtemporaneo = r.Field<int>("TotalRegistroExtemporaneo")

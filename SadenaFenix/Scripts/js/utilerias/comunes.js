@@ -309,11 +309,18 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 $(win.document.body)
                     .css('font-size', '10pt');               
 
+                //$(".buttons-print")[0].click();
+
                 $(win.document.body).find('table').css('font-size', '9px');               
                 $(win.document.body).find('thead').prepend(
-                    '<img src="http://localhost:80/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:80/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:80/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:80/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
+                    '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px">');
+
+                if ($("#vectorMapDiv").exists()) {
+                    $(win.document.body).find('thead').prepend($("#coahuilaMap").clone().addClass("mapaImpresion"));
+                }
+
                 var headerColumns = $(win.document.body).find('thead').find("th").length;
-                var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:80/Content/images/pie_sadena6.png" /></TH></TR >';
+                var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" /></TH></TR >';
                 $(win.document.body).find('tfoot').empty().prepend(footer);
                     
             },
@@ -349,9 +356,9 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
 
                     $(win.document.body).find('table').css('font-size', '9px');
                     $(win.document.body).find('thead').prepend(
-                        '<img src="http://localhost:80/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:80/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:80/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:80/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
+                        '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
                     var headerColumns = $(win.document.body).find('thead').find("th").length;
-                    var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:80/Content/images/pie_sadena6.png" style="position:absolute; bottom:0; /></TH></TR >';
+                    var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" style="position:absolute; bottom:0; /></TH></TR >';
                     $(win.document.body).find('tfoot').empty().prepend(footer);
 
                 },
