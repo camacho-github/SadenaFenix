@@ -68,19 +68,19 @@ function fnConsultarDatos() {
     fnGetAndSetTemplate('/Reportes/ReportesEdad', params,
         "tablaContenedorEdad", fnCrearTablasEdadSubregistro);  
 
-    //fnGetAndSetTemplate('/Reportes/ReportesEdoCivil', params,
-      //  "tablaContenedorECiv", fnCrearTablasEdoCivilSubregistro);     
+    fnGetAndSetTemplate('/Reportes/ReportesEdoCivil', params,
+    "tablaContenedorECiv", fnCrearTablasEdoCivilSubregistro);     
 
-    //fnGetAndSetTemplate('/Reportes/ReportesNumNac', params,
-      //  "tablaContenedorNumNac", fnCrearTablasNumNacSubregistro);     
+    fnGetAndSetTemplate('/Reportes/ReportesNumNac', params,
+    "tablaContenedorNumNac", fnCrearTablasNumNacSubregistro);     
 
-    //fnGetAndSetTemplate('/Reportes/ReportesEscolaridad', params,
-      //  "tablaContenedorEscol", fnCrearTablasEscolSubregistro);   
+    fnGetAndSetTemplate('/Reportes/ReportesEscolaridad', params,
+    "tablaContenedorEscol", fnCrearTablasEscolSubregistro);   
     
-    //fnGetAndSetTemplate('/Reportes/ReportesSexo', params,
-      //  "tablaContenedorSexo", fnCrearTablasSexoSubregistro);  
+    fnGetAndSetTemplate('/Reportes/ReportesSexo', params,
+    "tablaContenedorSexo", fnCrearTablasSexoSubregistro);  
 
-    //fnObtenerTotalesMapa(params);
+    fnObtenerTotalesMapa(params);
 
    $("#linkTodos").trigger("click");    
 }
@@ -130,7 +130,7 @@ function fnObtenerTotalesMapa(params) {
                 objMpiosMapas[IdMunicipio] = value;
 
                 $("#bodySubregistroMapa").prepend('<tr class=' + IdMunicipio +'><td>' + IdMunicipio + '</td><td>' + value.MpioDesc + '</td><td>' + value.TotalSubregistro + '</td></tr>');
-                
+                                
                 sumaSubRegistro = sumaSubRegistro + parseInt(value.TotalSubregistro);
                 objMpiosMapas[IdMunicipio].TotalSubregistro = parseInt(value.TotalSubregistro);
 

@@ -16,15 +16,29 @@ namespace SadenaFenix.Controllers
 
         public ActionResult About(string userJson)
         {
-            Usuario usuario = new Usuario { Json = userJson };
+            if (userJson == null)
+            {
+                return View("~/Views/Home/About.cshtml", new Usuario());
+            }
+            else
+            {
+                Usuario usuario = new Usuario { Json = userJson };
 
-            return View("~/Views/Home/About.cshtml", usuario);
+                return View("~/Views/Home/About.cshtml", usuario);
+            }
+            
         }
        
         public ActionResult Contact(string userJson)
         {
-            Usuario usuario = new Usuario { Json = userJson };
-            return View("~/Views/Home/Contact.cshtml", usuario);
+            if (userJson == null)
+            {
+                return View("~/Views/Home/Contact.cshtml", new Usuario());
+            }else
+            {
+                Usuario usuario = new Usuario { Json = userJson };
+                return View("~/Views/Home/Contact.cshtml", usuario);
+            }
         }
 
 

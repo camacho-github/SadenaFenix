@@ -55,11 +55,20 @@ $(function () {
     });
 
     $("#callAcercaDe").click(function () {
-        window.location.href = "/Home/About?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        if ($("#ingresarSadena").val() != undefined) {
+            window.location.href = "/Home/About";
+        } else {
+            window.location.href = "/Home/About?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        }
+        
     });
 
     $("#callContacto").click(function () {
-        window.location.href = "/Home/Contact?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        if ($("#ingresarSadena").val() != undefined) {
+            window.location.href = "/Home/Contact";
+        } else {
+            window.location.href = "/Home/Contact?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        }
     });
 
     $("#callConfigDiasExtemporaneos").click(function () {
