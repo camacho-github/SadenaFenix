@@ -28,6 +28,11 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userJson);
             usuario.Json = userJson;
 
+            if (usuario.Rol.RolId == 3)
+            {
+                ViewBag.perfilInvalido = 1;
+            }
+
             ConsultarOficinasPeticion peticion = new ConsultarOficinasPeticion();
             peticion.Cabecero = new CabeceroPeticion();
             peticion.Cabecero.SesionId = usuario.SesionId;

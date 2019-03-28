@@ -202,8 +202,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Georeferenciacion\GeoServicio.cs" />
     <Compile Include="Services\Servicio.cs" />
+    <Compile Include="Transport\Catalogos\ActualizarParametroPeticion.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\ActualizarParametroRespuesta.cs" />
+    <Compile Include="Transport\Catalogos\ParametroRespuesta.cs" />
     <Compile Include="Transport\ErrorViewModel.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficinaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ActualizarOficinaPeticion.cs" />

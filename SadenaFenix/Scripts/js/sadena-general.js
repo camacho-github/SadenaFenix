@@ -22,7 +22,7 @@ $(function () {
         if (objUsuario.Rol.RolId == CONST_ROL_ANALISTA) {
             $("#opcionImportarArchivos").hide();
             $("#estiloDivisionMenu").hide();
-            $("#opcAdministradorOficinas").hide();
+            $(".opcAdministradorOficinas").hide();
         }
     } else {
         $("#botonCirculoSesion").hide();

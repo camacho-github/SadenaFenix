@@ -33,6 +33,69 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
         private const string PRN_PROCESAR_CARGA_SINAC = "SDB.PRNProcesarCargaSINAC";
         private const string PRN_PROCESAR_CARGA_SIC = "SDB.PRNProcesarCargaSIC";
         private const string PRS_CATALOGOS_PRE_CONSULTA = "SDB.PRSCatalogosPreConsulta";
+        private const string PRS_CONSULTAR_PARAMETRO = "SDB.PRSParametro";
+        private const string PRS_ACTUALIZAR_PARAMETRO = "SDB.PRUParametro";
+
+        public ParametroRespuesta ConsultarParametroRegistroExtemporaneo()
+        {
+            ParametroRespuesta p = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRS_CONSULTAR_PARAMETRO, CreaParametrosConsultaParametro(1), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        DataRow row = dataSet.Tables[0].Rows[0];
+
+                        p = new ParametroRespuesta
+                        {
+                            ParametroValor = row.Field<int>("ParametroValor")
+                        };
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return p;
+        }
+
+        public bool ActualizarDiasExtemporaneos(int parametroValor)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PRS_ACTUALIZAR_PARAMETRO, CreaParametrosActualizarDiasExtemporaneos(1,parametroValor));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+            return resultado;
+        }
         #endregion
 
         #region Métodos Públicos
@@ -352,6 +415,41 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             return parametros;
         }
 
+        private static Collection<SqlParameter> CreaParametrosConsultaParametro(int parametroId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_parametro_id", SqlDbType.Int)
+            {
+                Value = parametroId
+            };            
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosActualizarDiasExtemporaneos(int parametroId,int parametroValor)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_parametro_id", SqlDbType.Int)
+            {
+                Value = parametroId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_parametro_valor", SqlDbType.Int)
+            {
+                Value = parametroValor
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
 
         #endregion
 

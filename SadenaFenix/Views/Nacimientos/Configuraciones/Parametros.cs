@@ -14,5 +14,6 @@ namespace SadenaFenix.Views.Nacimientos.Configuraciones
         [XmlAttribute("NoDiasExtemporaneos")]
         [DisplayName("Número de días Extemporaneos")]
         public int NoDiasExtemporaneos { get; set; }
+               
     }
 }

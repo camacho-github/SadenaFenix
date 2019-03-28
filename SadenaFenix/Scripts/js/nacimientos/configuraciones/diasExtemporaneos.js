@@ -1,12 +1,36 @@
 ﻿$(function () {
 
+    if ($("#perfilInvalido").val() == 1) {
+        $(".perfilInvalido").addClass("hiddElement");
+    }
 
     $("#actualizarConfigDiasExtBtn").click(function () {
-        //fnMessage("Operación correcta", "La configuración fue actualizada exitósamente", fnRefrescarConsulta);
-        fnShowDialogModal('Operación correcta', 'La configuración fue actualizada exitósamente.');
+        var valor = parseInt($("#NoDiasExtemporaneos").val());
+        if (valor > 0) 
+            fnActualizarDiasExtemporaneos(valor);
+        else {
+            fnShowDialogModal('Operación incorrecta', 'El parámetro ingresado no es válido');
+        }
     });
 
 });
+
+function fnActualizarDiasExtemporaneos(valor) {
+    var objArray = {
+        "valor": valor
+    },
+        params = fnParamsString(objArray);
+
+    var fnComplete = function () {
+        var data = fnGetJSONResponse('ActualizarDiasExtemporaneos', params);
+
+        if (data !== "" && data !== null) {
+            fnShowDialogModal('Operación correcta', 'La configuración fue actualizada exitósamente.');
+        }
+    };
+
+    fnWaitForLoading(fnComplete);
+}
 
 
 function fnRefrescarConsulta() {

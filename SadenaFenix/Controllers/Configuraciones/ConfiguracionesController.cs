@@ -1,10 +1,16 @@
-﻿using SadenaFenix.Models.Usuarios;
+﻿using Newtonsoft.Json;
+using SadenaFenix.Models.Usuarios;
+using SadenaFenix.Services;
+using SadenaFenix.Transport.Catalogos;
+using SadenaFenix.Transport.Nacimientos.Archivos;
+using SadenaFenix.Transport.Usuarios.Acceso;
 using SadenaFenix.Views.Nacimientos.Configuraciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 
 namespace SadenaFenix.Controllers.Configuraciones
 {
@@ -14,13 +20,38 @@ namespace SadenaFenix.Controllers.Configuraciones
         public ActionResult DiasExtemporaneos(string userJson)
         {
             /* Obtener json del usuario. */
-            Usuario usuario = new Usuario { Json = userJson };
+
+            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userJson);
+            usuario.Json = userJson;
+
             ViewBag.UserJson = userJson;
 
+            CabeceroPeticion peticion = new CabeceroPeticion();
+            peticion.SesionId = usuario.SesionId;
+
+            if (usuario.Rol.RolId == 3)
+            {
+                ViewBag.perfilInvalido = 1;
+            }
+
+            Servicio servicio = new Servicio();
+            ParametroRespuesta respuesta = servicio.ConsultarParametroRegistroExtemporaneo(peticion);
+
             Parametros parametros = new Parametros();
-            parametros.NoDiasExtemporaneos = 60;
+            parametros.NoDiasExtemporaneos = respuesta.ParametroValor;
 
             return View(parametros);
+        }
+
+        [WebMethod]
+        public ActionResult ActualizarDiasExtemporaneos(int valor)
+        {
+            ActualizarParametroPeticion peticion = new ActualizarParametroPeticion();
+            peticion.ParametroValor = valor;
+
+            Servicio servicio = new Servicio();
+            ActualizarParametroRespuesta respuesta = servicio.ActualizarDiasExtemporaneos(peticion);
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Configuraciones/Details/5

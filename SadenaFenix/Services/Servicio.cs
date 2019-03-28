@@ -39,6 +39,51 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        public ParametroRespuesta ConsultarParametroRegistroExtemporaneo(CabeceroPeticion peticion)
+        {
+            ParametroRespuesta respuesta = new ParametroRespuesta();           
+
+            try
+            {
+                int sesionId = peticion.SesionId;
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                usuarioBLL.ConsultarSesionActiva(sesionId);
+
+                CargaBLL cargaBLL = new CargaBLL();
+                respuesta = cargaBLL.ConsultarParametroRegistroExtemporaneo();
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+
+        }
+
+        public ActualizarParametroRespuesta ActualizarDiasExtemporaneos(ActualizarParametroPeticion peticion)
+        {
+            ActualizarParametroRespuesta respuesta = new ActualizarParametroRespuesta();
+
+            try
+            {
+                CargaBLL cargaBLL = new CargaBLL();
+                cargaBLL.ActualizarDiasExtemporaneos(peticion.ParametroValor);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         public SesionRespuesta FinalizarSesion(SesionPeticion peticion)
         {
             SesionRespuesta respuesta = new SesionRespuesta();
@@ -62,6 +107,7 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        
         public CabeceroRespuesta PreCargarDatos(PreCargaPeticion peticion)
         {
             CabeceroRespuesta response = new CabeceroRespuesta();
