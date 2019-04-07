@@ -26,6 +26,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
         private const string PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdoCivilSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdadSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteNumNacSubregistroMunicipios";
+        private const string PRN_CONSULTA_ANALISIS_INFO_SIC = "SDB.PRSAnalisisInfoSIC";
         #endregion
 
         #region Métodos Públicos
@@ -237,6 +238,45 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return SubregistroNacimientosRespuesta;
         }
 
+        public Collection<DataTable> ConsultarAnalisisInformacionSIC(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<DataTable> dts = new Collection<DataTable>();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_ANALISIS_INFO_SIC, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
+                    {
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                        dts.Add(dataSet.Tables[2]);
+                        dts.Add(dataSet.Tables[3]);
+                        dts.Add(dataSet.Tables[4]);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dts;
+        }
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
         {

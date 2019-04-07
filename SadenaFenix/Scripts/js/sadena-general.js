@@ -75,6 +75,13 @@ $(function () {
         window.location.href = "/Configuraciones/DiasExtemporaneos?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
 
+    $("#callAnalisisSIC").click(function () {
+        window.location.href = "/AnalisisSIC/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+
+    
+
     
 
     /* Loaders 

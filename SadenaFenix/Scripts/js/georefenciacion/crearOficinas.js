@@ -191,17 +191,17 @@ function fnValidarGuardarOficina() {
     var advertenciaVacios = false;
 
     if (objOficina.TipoId <= 0) {
-        $('#valMessageTipo').text("El valor es requerido para continuar");
+        $('#valMessageTipo').addClass("text-danger").text("El valor es requerido para continuar");
         valid = false;
     } else {
-        $('#valMessageTipo').text("");
+        $('#valMessageTipo').removeClass("text-danger").text("");
     }
 
     if (parseInt($('#OficinaId').val()) <= 0) {
-        $('#OficinaId').parent().children('span').text("El valor es requerido para continuar");
+        $('#OficinaId').parent().children('span').addClass("text-danger").text("El valor es requerido para continuar");
         valid = false;
     } else {
-        $('#OficinaId').parent().children('span').text("");
+        $('#OficinaId').parent().children('span').removeClass("text-danger").text("");
     }
 
     if ($('#TipoInstitucion').val() == '') {
@@ -233,10 +233,10 @@ function fnValidarGuardarOficina() {
     }
 
     if (objOficina.MpioId <= 0) {
-        $('#valMessageMpio').text("El valor es requerido para continuar");
+        $('#valMessageMpio').addClass("text-danger").text("El valor es requerido para continuar");
         valid = false;
     } else {
-        $('#valMessageMpio').text("");
+        $('#valMessageMpio').removeClass("text-danger").text("");
     }
     
     if ($('#Calle').val() == '') {

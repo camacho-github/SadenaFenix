@@ -281,7 +281,11 @@ table.dataTable thead .sorting_desc_disabled:before {
 #SexoSubTabla_paginate .paginate_button,
 #SexoOporTabla_paginate .paginate_button,
 #SexoExtTabla_paginate .paginate_button,
-#ReporteMpiosTabla .paginate_button {
+#relacionFolioTabla_paginate .paginate_button,
+#relacionFechaTabla_paginate .paginate_button,
+#duplicadosTabla_paginate .paginate_button,
+#sinSinacTabla_paginate .paginate_button,
+#ReporteMpiosTabla_paginate .paginate_button {
     padding: 0 !important
 }
 
@@ -301,6 +305,10 @@ table.dataTable thead .sorting_desc_disabled:before {
 #SexoSubTabla_wrapper .dt-buttons,
 #SexoOporTabla_wrapper .dt-buttons,
 #SexoExtTabla_wrapper .dt-buttons,
+#relacionFolioTabla_wrapper .dt-buttons,
+#relacionFechaTabla_wrapper .dt-buttons,
+#duplicadosTabla_wrapper .dt-buttons,
+#sinSinacTabla_wrapper .dt-buttons,
 #ReporteMpiosTabla_wrapper .dt-buttons {
     margin-bottom: 20px !important
 }
@@ -321,6 +329,10 @@ table.dataTable thead .sorting_desc_disabled:before {
 #SexoSubTabla_wrapper .bs-select,
 #SexoOporTabla_wrapper .bs-select,
 #SexoExtTabla_wrapper .bs-select,
+#relacionFolioTabla_wrapper .bs-select,
+#relacionFechaTabla_wrapper .bs-select,
+#duplicadosTabla_wrapper .bs-select,
+#sinSinacTabla_wrapper .bs-select,
 #ReporteMpiosTabla_wrapper .bs-select {
     margin-left: 80px !important
 }

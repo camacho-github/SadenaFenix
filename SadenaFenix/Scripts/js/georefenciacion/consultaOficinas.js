@@ -25,7 +25,13 @@ $(function () {
                 extend: 'colvisGroup',
                 text: 'Mostrar todo',
                 show: ':hidden'
-            }, {
+            },
+            {
+                extend: 'colvisGroup',
+                text: 'Ocultar todo',
+                hide: ':visible'
+            },
+            {
                 extend: 'colvisRestore',
                 text: 'Restaurar'
             }]

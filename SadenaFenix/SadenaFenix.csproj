@@ -159,6 +159,7 @@
     <Compile Include="Controllers\Georeferenciacion\OficinasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Nacimientos\ArchivosController.cs" />
+    <Compile Include="Controllers\Nacimientos\AnalisisSICController.cs" />
     <Compile Include="Controllers\Nacimientos\SubRegistroController.cs" />
     <Compile Include="Controllers\Nacimientos\ReportesController.cs" />
     <Compile Include="Controllers\Usuarios\AccesoController.cs" />
@@ -242,7 +243,9 @@
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEdoCivilSubregistroPeticion .cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteEscolaridadSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteNumNacSubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\AnalisisSICPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteSexoSubregistroPeticion.cs" />
+    <Compile Include="Transport\Nacimientos\Reportes\AnalisisSICRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteSubregistroRespuesta.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\ReporteTotalesSubregistroPeticion.cs" />
     <Compile Include="Transport\Nacimientos\Reportes\SubregistroNacimientosRespuesta.cs" />
@@ -286,6 +289,7 @@
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
     <Content Include="Scripts\js\nacimientos\configuraciones\diasExtemporaneos.js" />
+    <Content Include="Scripts\js\nacimientos\consultas\consultaAnalisisSIC.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultaSubRegistro.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
     <Content Include="Scripts\js\nacimientos\consultas\importar.js" />
@@ -775,6 +779,8 @@
     <Content Include="Views\Reportes\ReportesSexo.cshtml" />
     <Content Include="Views\Configuraciones\DiasExtemporaneos.cshtml" />
     <Content Include="Views\Shared\_SistemasLayout.cshtml" />
+    <Content Include="Views\AnalisisSIC\SeleccionarConsulta.cshtml" />
+    <Content Include="Views\AnalisisSIC\AnalisisSICInformacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\Nacimientos\Consultas\" />
@@ -783,6 +789,7 @@
     <Folder Include="Services\Nacimientos\Archivos\" />
     <Folder Include="Services\Nacimientos\Consultas\" />
     <Folder Include="Services\Nacimientos\Reportes\" />
+    <Folder Include="Views\AnalisiSIC\" />
     <Folder Include="Views\Georeferenciacion\Hospitales\" />
     <Folder Include="Views\Georeferenciacion\Modulos\" />
     <Folder Include="Views\Georeferenciacion\Oficinas\" />

@@ -113,6 +113,43 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
             return totalesSubregistroNacimientosRespuesta;
         }
 
+        public AnalisisSICRespuesta ConsultarAnalisisInformacionSIC(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+            
+            try
+            {
+                IList<string> anosLista = new List<string>(colAnos);
+                string anosUnion = string.Join(",", anosLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                respuesta.DTs = reporteDAO.ConsultarAnalisisInformacionSIC(anosUnion, mesesUnion, municipiosUnion);
+                return respuesta;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
             SubregistroNacimientosRespuesta respuesta = new SubregistroNacimientosRespuesta();

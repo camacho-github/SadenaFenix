@@ -21,43 +21,16 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             HttpPostedFileBase sicFileBase = viewModel.SicFile;
 
             /* Validation .*/
-            if (sinacFileBase.ContentLength <= 0 || sicFileBase.ContentLength <= 0)
-            {
-                cabeceroRespuesta = new CabeceroRespuesta();
-                cabeceroRespuesta.CodigoRespuesta = -1;
-                cabeceroRespuesta.MensajeRespuesta = "Los archivos son incorrectos o no tienen datos.";
-                return cabeceroRespuesta;
-            }
+            //if (sinacFileBase.ContentLength <= 0 || sicFileBase.ContentLength <= 0)
+            //{
+            //    cabeceroRespuesta = new CabeceroRespuesta();
+            //    cabeceroRespuesta.CodigoRespuesta = -1;
+            //    cabeceroRespuesta.MensajeRespuesta = "Los archivos son incorrectos o no tienen datos.";
+            //    return cabeceroRespuesta;
+            //}
 
             /* Temp location */
             var tempPath = Path.GetTempPath();
-
-            /* SINAC */
-            var pathSINAC = Path.Combine(tempPath, Path.GetFileName(sinacFileBase.FileName));
-            sinacFileBase.SaveAs(pathSINAC);
-
-            var index_anio = sinacFileBase.FileName.IndexOf(".SINAC_");
-            var anio = sinacFileBase.FileName.Substring(index_anio + 7, 4);
-            Archivo archivoSINAC = new Archivo
-            {
-                Extension = sinacFileBase.ContentType,
-                Nombre = pathSINAC,
-                Ano = anio
-            };
-            archivoSINAC.IdentificarTablaSINAC();
-
-            /* SIC */
-            var pathSIC = Path.Combine(tempPath, Path.GetFileName(sicFileBase.FileName));
-            index_anio = sicFileBase.FileName.IndexOf(".SIC_");
-            anio = sicFileBase.FileName.Substring(index_anio + 5, 4);
-            sicFileBase.SaveAs(pathSIC);
-            Archivo archivoSIC = new Archivo
-            {
-                Extension = sicFileBase.ContentType,
-                Nombre = pathSIC,
-                Ano = anio
-            };
-            archivoSIC.IdentificarTablaSIC();
 
             /* Preparing request to service */
             CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
@@ -69,8 +42,44 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
                 Cabecero = cabeceroPeticion,
                 ColArchivo = new Collection<Archivo>()
             };
-            preCargaPeticion.ColArchivo.Add(archivoSINAC);
-            preCargaPeticion.ColArchivo.Add(archivoSIC);
+
+            /* SINAC */
+            if (sinacFileBase != null && sinacFileBase.ContentLength > 0)
+            {
+                var pathSINAC = Path.Combine(tempPath, Path.GetFileName(sinacFileBase.FileName));
+                sinacFileBase.SaveAs(pathSINAC);
+
+                var index_anio = sinacFileBase.FileName.IndexOf(".SINAC_");
+                var anio = sinacFileBase.FileName.Substring(index_anio + 7, 4);
+                Archivo archivoSINAC = new Archivo
+                {
+                    Extension = sinacFileBase.ContentType,
+                    Nombre = pathSINAC,
+                    Ano = anio
+                };
+                archivoSINAC.IdentificarTablaSINAC();
+
+                preCargaPeticion.ColArchivo.Add(archivoSINAC);
+            }
+
+
+            /* SIC */
+            if (sicFileBase != null && sicFileBase.ContentLength > 0)
+            {
+                var pathSIC = Path.Combine(tempPath, Path.GetFileName(sicFileBase.FileName));
+                var index_anio = sicFileBase.FileName.IndexOf(".SIC_");
+                var anio = sicFileBase.FileName.Substring(index_anio + 5, 4);
+                sicFileBase.SaveAs(pathSIC);
+                Archivo archivoSIC = new Archivo
+                {
+                    Extension = sicFileBase.ContentType,
+                    Nombre = pathSIC,
+                    Ano = anio
+                };
+                archivoSIC.IdentificarTablaSIC();
+
+                preCargaPeticion.ColArchivo.Add(archivoSIC);
+            }
 
             /* Almacenar archivos */
             cabeceroRespuesta = servicio.PreCargarDatos(preCargaPeticion);

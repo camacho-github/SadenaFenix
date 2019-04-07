@@ -1,0 +1,244 @@
+﻿@model dynamic
+
+<section id="cantidadesResumenConsulta">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Panel -->
+            <div class="panel panel-default">
+                <!-- Heading -->
+                <div class="panel-heading">
+                    <span class="panel-title">Resultados del análisis</span>
+                </div>
+                <!-- ./heading -->
+                <!-- Body -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="description-block" aKey="relacionFolioLink">
+                                <a id="relacionFolioLink" class="description-block-review-link" href="#relacionFolioTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalRelacionFolio" class="badge badge-success">@Model.RelacionPorFolio.Rows.Count</div>
+                                    <div style="margin-top:5px;">Relacionados por folio</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3">
+                            <div class="description-block" aKey="relacionFechaLink">
+                                <a id="relacionFechaLink" class="description-block-review-link" href="#relacionFechaTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalRelacionFecha" class="badge badge-success">@Model.RelacionPorFecha.Rows.Count</div>
+                                    <div style="margin-top:5px;">Relacionados por fecha</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="description-block" aKey="duplicadosLink">
+                                <a id="duplicadosLink" class="description-block-review-link" href="#duplicadosTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalDuplicados" class="badge badge-warning">@Model.Duplicados.Rows.Count</div>
+                                    <div style="margin-top:5px;">Duplicados</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3">
+                            <div class="description-block" aKey="sinSinacLink">
+                                <a id="sinSinacLink" class="description-block-review-link" href="#sinSinacTab" data-toggle="tab" aria-expanded="true">
+                                    <div id="TotalSINRelacionSIC" class="badge badge-primary">@Model.SinSinac.Rows.Count</div>
+                                    <div style="margin-top:5px;">Sin relación SINAC</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./body -->
+                <div id="resultadosPanelFooterTable" class="panel-footer" style="display:block">
+                    <div class="tab-content">
+                        <!-- Results -->
+                        <div id="relacionFolioTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Registros SIC relacionados por folio</strong></p>
+                                <div id="relacionFolioTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="relacionFolioTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="relacionFolioTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.RelacionPorFolio.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.RelacionPorFolio.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.RelacionPorFolio.Rows.Count; i++)
+                                                        {
+                                                            <tr class=@Model.RelacionPorFolio.Rows[i][0]>
+                                                                @for (int j = 0; j < Model.RelacionPorFolio.Columns.Count; j++)
+                                                                {
+                                                                    <td>@Model.RelacionPorFolio.Rows[i][j]</td>
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.RelacionPorFolio.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.RelacionPorFolio.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="relacionFechaTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Registros SIC relacionados por fecha</strong></p>
+                                <div id="relacionFechaTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="relacionFechaTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="relacionFechaTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.RelacionPorFecha.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.RelacionPorFecha.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.RelacionPorFecha.Rows.Count; i++)
+                                                        {
+                                                            <tr class=@Model.RelacionPorFecha.Rows[i][0]>
+                                                                @for (int j = 0; j < Model.RelacionPorFecha.Columns.Count; j++)
+                                                                {
+                                                                    <td>@Model.RelacionPorFecha.Rows[i][j]</td>
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.RelacionPorFecha.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.RelacionPorFecha.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="duplicadosTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Registros SIC duplicados</strong></p>
+                                <div id="duplicadosTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="duplicadosTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="duplicadosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.Duplicados.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.Duplicados.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.Duplicados.Rows.Count; i++)
+                                                        {
+                                                            <tr class=@Model.Duplicados.Rows[i][0]>
+                                                                @for (int j = 0; j < Model.Duplicados.Columns.Count; j++)
+                                                                {
+                                                                    <td>@Model.Duplicados.Rows[i][j]</td>
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.Duplicados.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.Duplicados.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <div id="sinSinacTab" class="row tab-pane fade in">
+                            <div class="col-sm-12">
+                                <p class="text-center"><strong>Registros SIC sin relación SINAC</strong></p>
+                                <div id="sinSinacTableContainer" class="table-container table-responsive">
+                                    <div class="col-sm-12">
+                                        <div id="sinSinacTableBottonsContainer" class="btn-group btn-group-justified">
+                                            <div class="table-responsive">
+                                                <table id="sinSinacTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                                    <thead>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.SinSinac.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.SinSinac.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.SinSinac.Rows.Count; i++)
+                                                        {
+                                                            <tr class=@Model.SinSinac.Rows[i][0]>
+                                                                @for (int j = 0; j < Model.SinSinac.Columns.Count; j++)
+                                                                {
+                                                                    <td>@Model.SinSinac.Rows[i][j]</td>
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            @for (int j = 0; j < Model.SinSinac.Columns.Count; j++)
+                                                            {
+                                                                <th>@Model.SinSinac.Columns[j]</th>
+                                                            }
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                    </div><!-- ./tabcontent -->
+                </div>
+                <!-- ./footer -->
+            </div>
+            <!-- ./panel -->
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row -->
+</section>
+<!-- ./result -->

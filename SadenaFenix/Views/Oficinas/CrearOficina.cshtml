@@ -65,7 +65,7 @@
                                             @Html.LabelFor(model => model.TipoDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-4">
                                                 @Html.DropDownListFor(model => model.TipoId, new SelectList(Model.TipoLista, "TipoId", "TipoDesc"), new { id = "TipoLista", @class = "selectTipo show-tick form-control" })
-                                                @Html.ValidationMessageFor(model => model.TipoId, "", new { @class = "text-danger", @id = "valMessageTipo" })
+                                                @Html.ValidationMessageFor(model => model.TipoId, "* valor obligatorio", new { @class = "text", @id = "valMessageTipo" })
                                             </div>
                                         </div>
 
@@ -73,7 +73,7 @@
                                             @Html.LabelFor(model => model.OficinaId, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-4">
                                                 @Html.EditorFor(model => model.OficinaId, new { htmlAttributes = new { @class = "form-control ValidacionNumero", @maxlength = "10", @placeholder = "Oficina Id", @min = "0" } })
-                                                @Html.ValidationMessageFor(model => model.OficinaId, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.OficinaId, "* valor obligatorio", new { @class = "text" })
                                             </div>
 
                                             @Html.LabelFor(model => model.TipoInstitucion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -116,7 +116,7 @@
                                                 @Html.LabelFor(model => model.MpioDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-4">
                                                     @Html.DropDownListFor(model => model.MpioId, new SelectList(Model.MunicipioLista, "MpioId", "MpioDesc"), new { id = "MunicipioLista", @class = "selectMpio show-tick form-control" })
-                                                    @Html.ValidationMessageFor(model => model.MpioId, "", new { @class = "text-danger", @id = "valMessageMpio" })
+                                                    @Html.ValidationMessageFor(model => model.MpioId, "* valor obligatorio", new { @class = "text", @id = "valMessageMpio" })
                                                 </div>
                                             </div>
                                             <div>
