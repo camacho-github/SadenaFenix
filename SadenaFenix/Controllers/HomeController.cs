@@ -52,10 +52,14 @@ namespace SadenaFenix.Controllers
         {
             SesionRespuesta resultadoIniciarSesion = IniciarSesion();
             ViewBag.Message = "Resultados de servicio de iniciar Sesión " + JsonConvert.SerializeObject(resultadoIniciarSesion);
-           
-            SesionPeticion sesionPeticion = new SesionPeticion();
-            sesionPeticion.Cabecero = new CabeceroPeticion();
-            sesionPeticion.Cabecero.SesionId = resultadoIniciarSesion.Usuario.SesionId;
+
+            SesionPeticion sesionPeticion = new SesionPeticion
+            {
+                Cabecero = new CabeceroPeticion
+                {
+                    SesionId = resultadoIniciarSesion.Usuario.SesionId
+                }
+            };
 
             SesionRespuesta resultadoFinalizarSesion = FinalizarSesion(sesionPeticion);
             ViewBag.Message = ViewBag.Message + "\n\n\n Resultados de servicio de Finalizar Sesión " + JsonConvert.SerializeObject(resultadoFinalizarSesion);

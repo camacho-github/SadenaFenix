@@ -1,0 +1,28 @@
+﻿@model SadenaFenix.Models.Usuarios.UsuarioAlta
+
+@{
+    Layout = "~/Views/Shared/_GeoLayout.cshtml";
+    ViewData["Root"] = "Sadena";
+    ViewData["Modulo"] = "SuperAdministrador";     
+}
+
+<!-- Page content -->
+<div class="page-content">
+    <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <section class="pull-right">
+            <ul class="breadcrumb">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                <li><a href="#">@ViewData["Modulo"]</a></li>                
+            </ul>
+        </section>
+        <!-- ./breadcrumb -->
+
+    </div>
+    <!-- ./container -->
+</div>
+<!-- ./page content -->

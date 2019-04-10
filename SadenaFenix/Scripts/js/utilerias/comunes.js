@@ -418,6 +418,155 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
 
 }
 
+function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
+    try {
+        if (paginacion == undefined) {
+            paginacion = true;
+        }
+
+        $('#' + nombreTabla).DataTable({
+            "bFilter": false,
+            "dom": 'Blfrtip',
+            "paging": paginacion,
+            "searching": true,
+            "autoWidth": true,
+            "columnDefs": [{
+                "visible": false,
+                "targets": columnasOcultas
+            }],
+            "buttons": [{
+                extend: 'colvis',
+                collectionLayout: 'three-column',
+                text: function () {
+                    var totCols = $('#' + nombreTabla + ' thead th').length;
+                    var hiddenCols = columnasOcultas.length;
+                    var shownCols = totCols - hiddenCols;
+                    return 'Columnas (' + shownCols + ' de ' + totCols + ')';
+                },
+                prefixButtons: [{
+                    extend: 'colvisGroup',
+                    text: 'Mostrar todo',
+                    show: ':hidden'
+                },
+                {
+                    extend: 'colvisGroup',
+                    text: 'Ocultar todo',
+                    hide: ':visible'
+                },
+                {
+                    extend: 'colvisRestore',
+                    text: 'Restaurar'
+                }]
+
+            }, {
+                text: 'Imprimir',
+                title: ' ',
+                extend: 'print',
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '10pt');
+
+                    //$(".buttons-print")[0].click();
+
+                    $(win.document.body).find('table').css('font-size', '9px');
+                    $(win.document.body).find('thead').prepend(
+                        '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px">');
+
+                    if ($("#vectorMapDiv").exists()) {
+                        $(win.document.body).find('thead').prepend($("#coahuilaMap").clone().addClass("mapaImpresion"));
+                    }
+
+                    var headerColumns = $(win.document.body).find('thead').find("th").length;
+                    var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" /></TH></TR >';
+                    $(win.document.body).find('tfoot').empty().prepend(footer);
+
+                },
+                footer: true,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'collection',
+                text: 'Exportar',
+                buttons: [{
+                    text: 'Excel',
+                    extend: 'excelHtml5',
+                    footer: false,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    text: 'CSV',
+                    extend: 'csvHtml5',
+                    fieldSeparator: ';',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    text: 'PDF',
+                    title: ' ',
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt');
+
+                        $(win.document.body).find('table').css('font-size', '9px');
+                        $(win.document.body).find('thead').prepend(
+                            '<img src="http://localhost:54040/Content/images/cohauila-gob-logo.png" style="position:fixed; top:30px; left:30;" /><img src="http://localhost:54040/Content/images/bid-logo.png" style="position:fixed; top:30px; left:500px;" /><img src="http://localhost:54040/Content/images/canada-logo.png" style="position:fixed; top:30px; left:1000px;" /><img src="http://localhost:54040/Content/images/regcivil-gob-logo.png" style="position:fixed; top:30px; left:1500px;" /><div style="margin-top:130px"></div>');
+                        var headerColumns = $(win.document.body).find('thead').find("th").length;
+                        var footer = '<TR> <TH ALIGN=LEFT COLSPAN=' + headerColumns + '><img src="http://localhost:54040/Content/images/pie_sadena6.png" style="position:absolute; bottom:0; /></TH></TR >';
+                        $(win.document.body).find('tfoot').empty().prepend(footer);
+
+                    },
+                    footer: true,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }]
+            }]
+            , language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "searchPlaceholder": "Buscar coincidencias",
+                "search": "",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+            , "initComplete": function (settings, json) {
+                // Adjust hidden columns counter text in button -->
+                $('#' + nombreTabla).on('column-visibility.dt', function (e, settings, column, state) {
+                    var visCols = $('#' + nombreTabla + ' thead tr:first th').length;
+                    //Below: The minus 2 because of the 2 extra buttons Show all and Restore
+                    var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').length - 2;
+                    $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                    $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').blur();
+                    //$("a").blur();
+                    e.stopPropagation();
+                });
+            }
+
+        });
+        $('.dataTables_length').addClass('bs-select');
+    } catch (e) {
+        console.log(e)
+    }
+
+}
+
 
 $.fn.exists = function () {
     return this.val() !== undefined;

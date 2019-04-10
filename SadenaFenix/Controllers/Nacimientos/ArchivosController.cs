@@ -36,8 +36,10 @@ namespace SadenaFenix.Controllers.Nacimientos
         // GET: Archivos
         public ActionResult SeleccionarArchivos(string userJson)
         {
-            ImportarArchivosViewModel viewModel = new ImportarArchivosViewModel();
-            viewModel.Usuario = new Usuario { Json = userJson };
+            ImportarArchivosViewModel viewModel = new ImportarArchivosViewModel
+            {
+                Usuario = new Usuario { Json = userJson }
+            };
             ViewBag.UserJson = userJson;
 
             return View("~/Views/Nacimientos/Archivos/Importar.cshtml", viewModel);

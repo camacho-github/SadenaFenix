@@ -4,6 +4,7 @@ using SadenaFenix.Excepcions;
 using SadenaFenix.Transport.Catalogos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -91,6 +92,25 @@ namespace SadenaFenix.Business.Catalogos
 
             return consultaMesesRespuesta;
         }
+
+
+        public CatalogoRolesRespuesta ConsultarCatRoles()
+        {
+
+            CatalogoRolesRespuesta respuesta = new CatalogoRolesRespuesta();
+            try
+            {
+                respuesta.ColRoles = dao.ConsultaCatRoles();
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("La consulta no fue realizada exitosamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return respuesta;
+        }
+
 
         #endregion
     }

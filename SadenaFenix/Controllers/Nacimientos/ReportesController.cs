@@ -46,9 +46,10 @@ namespace Sadena.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            ReporteTotalesSubregistroPeticion subregistroPeticion = new ReporteTotalesSubregistroPeticion();
-
-            subregistroPeticion.ColAnos = new Collection<string>();
+            ReporteTotalesSubregistroPeticion subregistroPeticion = new ReporteTotalesSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 subregistroPeticion.ColAnos.Add(anio);
@@ -63,8 +64,10 @@ namespace Sadena.Controllers.Nacimientos
             subregistroPeticion.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 subregistroPeticion.ColMunicipios.Add(municipio);
             }
@@ -82,10 +85,11 @@ namespace Sadena.Controllers.Nacimientos
             dynamic anios = JsonConvert.DeserializeObject(AniosJson);
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
-                        
-            ReporteEdadSubregistroPeticion reporteEdadSubregistroPeticion = new ReporteEdadSubregistroPeticion();
 
-            reporteEdadSubregistroPeticion.ColAnos = new Collection<string>();           
+            ReporteEdadSubregistroPeticion reporteEdadSubregistroPeticion = new ReporteEdadSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 reporteEdadSubregistroPeticion.ColAnos.Add(anio);               
@@ -100,8 +104,10 @@ namespace Sadena.Controllers.Nacimientos
             reporteEdadSubregistroPeticion.ColMunicipios = new Collection<Municipio>();           
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 reporteEdadSubregistroPeticion.ColMunicipios.Add(municipio);                
             }
@@ -126,9 +132,10 @@ namespace Sadena.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            ReporteEdoCivilSubregistroPeticion reportePeticion = new ReporteEdoCivilSubregistroPeticion();
-
-            reportePeticion.ColAnos = new Collection<string>();
+            ReporteEdoCivilSubregistroPeticion reportePeticion = new ReporteEdoCivilSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 reportePeticion.ColAnos.Add(anio);
@@ -143,8 +150,10 @@ namespace Sadena.Controllers.Nacimientos
             reportePeticion.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 reportePeticion.ColMunicipios.Add(municipio);
             }
@@ -169,9 +178,10 @@ namespace Sadena.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            ReporteNumNacSubregistroPeticion reportePeticion = new ReporteNumNacSubregistroPeticion();
-
-            reportePeticion.ColAnos = new Collection<string>();
+            ReporteNumNacSubregistroPeticion reportePeticion = new ReporteNumNacSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 reportePeticion.ColAnos.Add(anio);
@@ -186,8 +196,10 @@ namespace Sadena.Controllers.Nacimientos
             reportePeticion.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 reportePeticion.ColMunicipios.Add(municipio);
             }
@@ -212,9 +224,10 @@ namespace Sadena.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            ReporteEscolaridadSubregistroPeticion reportePeticion = new ReporteEscolaridadSubregistroPeticion();
-
-            reportePeticion.ColAnos = new Collection<string>();
+            ReporteEscolaridadSubregistroPeticion reportePeticion = new ReporteEscolaridadSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 reportePeticion.ColAnos.Add(anio);
@@ -229,8 +242,10 @@ namespace Sadena.Controllers.Nacimientos
             reportePeticion.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 reportePeticion.ColMunicipios.Add(municipio);
             }
@@ -255,9 +270,10 @@ namespace Sadena.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            ReporteSexoSubregistroPeticion reportePeticion = new ReporteSexoSubregistroPeticion();
-
-            reportePeticion.ColAnos = new Collection<string>();
+            ReporteSexoSubregistroPeticion reportePeticion = new ReporteSexoSubregistroPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 reportePeticion.ColAnos.Add(anio);
@@ -272,8 +288,10 @@ namespace Sadena.Controllers.Nacimientos
             reportePeticion.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 reportePeticion.ColMunicipios.Add(municipio);
             }

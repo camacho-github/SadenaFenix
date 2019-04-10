@@ -14,7 +14,20 @@
         <!-- Menu-->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul id="menuGeneral" class="nav navbar-nav">
-                <li class="dropdown" style="display:block;">
+                <li id="opcionesAdministracionSistema" class="dropdown" style="display:none;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span>Administración del Sistema <span class="caret"></span></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li id="opcionConsultarUsuarios" style="display:block;">
+                            <a id="callConsultarUsuarios" href="#">Consultar usuarios</a>
+                        </li>
+                        <li class="opcionCrearUsuarios" style="display:block;">
+                            <a id="callCrearUsuario" href="#">Crear nuevo usuario</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="opcionesNacimientos" class="dropdown" style="display:block;">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span>Nacimientos <span class="caret"></span></span>
                     </a>
@@ -29,7 +42,7 @@
                         <li><a id="callReportes" href="#">Reportes por municipios</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" style="display:block;">
+                <li id="opcionesGeoreferenciacion" class="dropdown" style="display:block;">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span>Georeferenciación <span class="caret"></span></span>
                     </a>

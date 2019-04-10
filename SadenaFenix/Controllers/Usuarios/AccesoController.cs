@@ -51,23 +51,34 @@ namespace SadenaFenix.Controllers.Usuarios
         public ActionResult IniciarSesion(Usuario usuario)
         {
             try
-            {             
-
-                SesionPeticion peticion = new SesionPeticion();
-                peticion.Identificador = usuario.CorreoE;
-                peticion.Contrasena = usuario.Contrasenia;
-                peticion.IP = "127.0.0.1";
+            {
+                SesionPeticion peticion = new SesionPeticion
+                {
+                    Identificador = usuario.CorreoE,
+                    Contrasena = usuario.Contrasenia,
+                    IP = "127.0.0.1"
+                };
 
                 Servicio servicio = new Servicio();
                 SesionRespuesta respuesta = servicio.IniciarSesion(peticion);
+                
+                if (respuesta.Usuario.Rol.RolId == 1)
+                {
+                    ViewBag.UserJson = respuesta.Usuario.Json;
+                    return View("~/Views/Home/SuperAdministrador.cshtml");
+                }
 
                 if (usuario.CorreoE == "Sistemas")
                 {
-                    PreCargaPeticion preCargaPeticion = new PreCargaPeticion();
-                    preCargaPeticion.Cabecero = new CabeceroPeticion();
-                    preCargaPeticion.Cabecero.SesionId = respuesta.Usuario.SesionId;
+                    PreCargaPeticion preCargaPeticion = new PreCargaPeticion
+                    {
+                        Cabecero = new CabeceroPeticion
+                        {
+                            SesionId = respuesta.Usuario.SesionId
+                        },
 
-                    preCargaPeticion.ColArchivo = new Collection<Archivo>();
+                        ColArchivo = new Collection<Archivo>()
+                    };
                     preCargaPeticion.ColArchivo.Add(new Archivo
                     {
                         Ano = "2018",

@@ -1,0 +1,96 @@
+﻿@model SadenaFenix.Transport.Usuarios.Acceso.ConsultarUsuariosRespuesta
+
+<!--   Layout = "~/Views/Shared/_GeoLayout.cshtml"; Scope -->
+@{
+    Layout = "~/Views/Shared/_GeoLayout.cshtml";
+    ViewData["Root"] = "Sadena";
+    ViewData["Modulo"] = "Administración de Usuarios";
+    ViewData["Option"] = "Usuarios";
+    ViewData["TableName"] = "Consulta de Usuarios";
+    ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/js/usuarios/consultaUsuarios.js")"></script>
+}
+
+
+<!-- Page content -->
+<div class="page-content">
+    <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <section class="pull-right">
+            <ul class="breadcrumb">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                <li><a href="#">@ViewData["Modulo"]</a></li>
+                <li class="active">@ViewData["Option"]</li>
+            </ul>
+        </section>
+        <!-- ./breadcrumb -->
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well loading-well">
+                        <!-- Form -->
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <legend>@ViewData["TableName"]</legend>
+                                <div class="table-responsive">
+                                    <table id="usuariosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                                        <thead>
+                                            <tr>
+                                                @for (int j = 0; j < Model.DTUsuarios.Columns.Count; j++)
+                                                {
+                                                    <th>@Model.DTUsuarios.Columns[j]</th>
+                                                }
+                                                    <th></th>
+                                                    <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.DTUsuarios.Rows.Count; i++)
+                                            {
+                                            <tr class=@Model.DTUsuarios.Rows[i][0]>
+                                                @for (int j = 0; j < Model.DTUsuarios.Columns.Count; j++)
+                                                {
+                                                    <td>@Model.DTUsuarios.Rows[i][j]</td>
+                                                }
+
+                                                <td>
+                                                    <a href="@Url.Action("ActualizarUsuario","Usuarios",new {@id=@Model.DTUsuarios.Rows[i][0]})">Actualizar</a>                                                    
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("EliminarUsuario","Usuarios",new {@id=@Model.DTUsuarios.Rows[i][0]})">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                @for (int j = 0; j < Model.DTUsuarios.Columns.Count; j++)
+                                                {
+                                                    <th>@Model.DTUsuarios.Columns[j]</th>
+                                                }
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- ./form -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- ./container -->    
+
+</div>
+<!-- ./page content -->

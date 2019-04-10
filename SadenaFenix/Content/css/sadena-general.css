@@ -265,6 +265,7 @@ table.dataTable thead .sorting_desc_disabled:before {
     width: 48% !important;
 }
 
+/*
 #OficinasTabla_paginate .paginate_button,
 #SubRegistroTabla_paginate .paginate_button,
 #OportunosTabla_paginate .paginate_button,
@@ -288,7 +289,14 @@ table.dataTable thead .sorting_desc_disabled:before {
 #ReporteMpiosTabla_paginate .paginate_button {
     padding: 0 !important
 }
+*/
 
+.paginate_button {
+    padding: 0 !important
+}
+
+
+/*
 #OficinasTabla_wrapper .dt-buttons,
 #SubRegistroTabla_wrapper .dt-buttons,
 #OportunosTabla_wrapper .dt-buttons,
@@ -312,7 +320,14 @@ table.dataTable thead .sorting_desc_disabled:before {
 #ReporteMpiosTabla_wrapper .dt-buttons {
     margin-bottom: 20px !important
 }
+*/
 
+.dt-buttons {
+    margin-bottom: 20px !important
+}
+
+
+/*
 #OficinasTabla_wrapper .bs-select,
 #SubRegistroTabla_wrapper .bs-select,
 #OportunosTabla_wrapper .bs-select,
@@ -334,6 +349,11 @@ table.dataTable thead .sorting_desc_disabled:before {
 #duplicadosTabla_wrapper .bs-select,
 #sinSinacTabla_wrapper .bs-select,
 #ReporteMpiosTabla_wrapper .bs-select {
+    margin-left: 80px !important
+}
+*/
+
+.bs-select {
     margin-left: 80px !important
 }
 

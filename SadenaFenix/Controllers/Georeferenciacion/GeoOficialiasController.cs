@@ -23,8 +23,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [HttpGet]
         public ActionResult OficialiasTabla()
         {
-            ConsultaOficialiasPeticion peticion = new ConsultaOficialiasPeticion();
-            peticion.ColMunicipios = new Collection<Municipio>();
+            ConsultaOficialiasPeticion peticion = new ConsultaOficialiasPeticion
+            {
+                ColMunicipios = new Collection<Municipio>()
+            };
             ConsultaOficialiasRespuesta respuesta = new GeoServicio().ConsultarOficialias(peticion);
             if(respuesta.Cabecero.EsRespuestaExistosa())
             {
@@ -40,8 +42,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [HttpGet]
         public ActionResult CrearOficialia()
         {
-            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
-            cabeceroPeticion.SesionId = 1;
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
+            {
+                SesionId = 1
+            };
             Servicio servicio = new Servicio();
 
             Oficialia oficialia = new Oficialia();
@@ -57,8 +61,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [WebMethod]
         public ActionResult GuardarOficialia(string jsonOficialia)
         {
-            InsertarOficialiaPeticion peticion = new InsertarOficialiaPeticion();
-            peticion.Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia);
+            InsertarOficialiaPeticion peticion = new InsertarOficialiaPeticion
+            {
+                Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia)
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             InsertarOficialiaRespuesta respuesta = geoServicio.InsertarOficialia(peticion);
@@ -68,11 +74,15 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [HttpGet]
         public ActionResult ActualizarOficialia(int id)
         {
-            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
-            cabeceroPeticion.SesionId = 1;
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
+            {
+                SesionId = 1
+            };
 
-            ConsultaOficialiaPeticion peticion = new ConsultaOficialiaPeticion();
-            peticion.OId = id;
+            ConsultaOficialiaPeticion peticion = new ConsultaOficialiaPeticion
+            {
+                OId = id
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             ConsultaOficialiaRespuesta respuesta = geoServicio.ConsultarOficialia(peticion);
@@ -90,8 +100,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [WebMethod]
         public ActionResult ActualizarOficialia(string jsonOficialia)
         {
-            ActualizarOficialiaPeticion peticion = new ActualizarOficialiaPeticion();
-            peticion.Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia);
+            ActualizarOficialiaPeticion peticion = new ActualizarOficialiaPeticion
+            {
+                Oficialia = JsonConvert.DeserializeObject<Oficialia>(jsonOficialia)
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             ActualizarOficialiaRespuesta respuesta = geoServicio.ActualizarOficialia(peticion);

@@ -39,6 +39,28 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        public ConsultarUsuariosRespuesta ConsultarUsuarios(ConsultaUsuariosPeticion peticion)
+        {
+            ConsultarUsuariosRespuesta respuesta = new ConsultarUsuariosRespuesta();
+            try
+            {
+                int sesionId = peticion.Cabecero.SesionId;
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                usuarioBLL.ConsultarSesionActiva(sesionId);
+
+                respuesta = usuarioBLL.ConsultarUsuarios();
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         public ParametroRespuesta ConsultarParametroRegistroExtemporaneo(CabeceroPeticion peticion)
         {
             ParametroRespuesta respuesta = new ParametroRespuesta();           
@@ -62,6 +84,26 @@ namespace SadenaFenix.Services
             }
             return respuesta;
 
+        }
+
+        public InsertarUsuarioRespuesta InsertarUsuario(InsertarUsuarioPeticion peticion)
+        {
+            InsertarUsuarioRespuesta respuesta = new InsertarUsuarioRespuesta();
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                usuarioBLL.InsertarUsuario(peticion.Usuario);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
         }
 
         public ActualizarParametroRespuesta ActualizarDiasExtemporaneos(ActualizarParametroPeticion peticion)
@@ -368,6 +410,28 @@ namespace SadenaFenix.Services
             {
                 CatalogosBLL catalogosBLL = new CatalogosBLL();
                 respuesta = catalogosBLL.ConsultaCatLocalidadCoahuila();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public CatalogoRolesRespuesta ConsultarCatalogoRoles(CabeceroPeticion peticion)
+        {
+            CatalogoRolesRespuesta respuesta = new CatalogoRolesRespuesta();
+            try
+            {
+                CatalogosBLL catalogosBLL = new CatalogosBLL();
+                respuesta = catalogosBLL.ConsultarCatRoles();
 
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }

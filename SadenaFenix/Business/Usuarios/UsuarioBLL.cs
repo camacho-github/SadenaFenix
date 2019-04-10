@@ -1,5 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Data;
+using Newtonsoft.Json;
 using SadenaFenix.Commons.Utilerias;
+using SadenaFenix.Daos.Catalogos;
 using SadenaFenix.Daos.Usuarios;
 using SadenaFenix.Excepcions;
 using SadenaFenix.Models.Usuarios;
@@ -57,6 +61,38 @@ namespace SadenaFenix.Business.Usuarios
                 throw new BusinessException(1, "Ocurrió un error al ejecutar el servicio, favor de intentarlo nuevamente");
             }
         }
+
+        public ConsultarUsuariosRespuesta ConsultarUsuarios()
+        {
+            ConsultarUsuariosRespuesta respuesta = new ConsultarUsuariosRespuesta();
+            DataTable tbUsuarios = usuarioDAO.ConsultarUsuarios();
+            
+            respuesta.DTUsuarios = tbUsuarios;
+            
+            return respuesta;
+        }
+
+        public bool InsertarUsuario(UsuarioAlta usuario)
+        {
+            bool resultado = false;
+            try
+            {
+                resultado = usuarioDAO.InsertarUsuario(usuario);
+
+                if(!resultado)
+                {
+                    throw new Exception("El usuario no fue registrado correctamente, favor de validar los datos: ");
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException(1,"El usuario no fue registrado correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return resultado;
+        }
+
         #endregion
     }
 }

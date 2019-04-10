@@ -431,8 +431,10 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
         public ReporteSubregistroRespuesta ConsultarReporteEdadSubregistro(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
-            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta();
-            reporte.Cabeceros = new Collection<Collection<string>>();
+            ReporteSubregistroRespuesta reporte = new ReporteSubregistroRespuesta
+            {
+                Cabeceros = new Collection<Collection<string>>()
+            };
 
             try
             {
@@ -523,14 +525,18 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
             foreach (XmlNode node in nodes)
             {
-                ReporteFila fila = new ReporteFila();
-                fila.ColCeldas = new Collection<ReporteCelda>();
+                ReporteFila fila = new ReporteFila
+                {
+                    ColCeldas = new Collection<ReporteCelda>()
+                };
 
                 foreach (XmlNode childNode in node.ChildNodes)
                 {
-                    ReporteCelda celda = new ReporteCelda();
-                    celda.NombreCelda = childNode.Name.ToString().Replace("A0", " ");
-                    celda.Valor = childNode.InnerText.ToString();
+                    ReporteCelda celda = new ReporteCelda
+                    {
+                        NombreCelda = childNode.Name.ToString().Replace("A0", " "),
+                        Valor = childNode.InnerText.ToString()
+                    };
                     fila.ColCeldas.Add(celda);
                 }
                 ColFilas.Add(fila);

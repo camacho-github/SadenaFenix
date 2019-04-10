@@ -19,6 +19,8 @@ namespace SadenaFenix.Daos.Usuarios
         private const string PRN_INICIAR_SESION = "SDB.PRNIniciarSesion";
         private const string PRN_FINALIZAR_SESION = "SDB.PRNFinalizarSesion";
         private const string PRS_SESION_ACTIVA = "SDB.PRSSesionActiva";
+        private const string PRS_USUARIOS = "SDB.PRSUsuarios";
+        private const string PR_INS_USUARIO = "SDB.PRIUsuario";
 
 
         #endregion
@@ -37,7 +39,7 @@ namespace SadenaFenix.Daos.Usuarios
 
                     EjecutaProcedimiento(PRN_INICIAR_SESION, CreaParametrosIniciarSesion(identificador, contrasena, ip), dataSet);
 
-                    if (this.Codigo == 0 && validaDataSet(dataSet))
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
                     {
                         DataRow row = dataSet.Tables[0].Rows[0];
                         u = new Usuario()
@@ -73,6 +75,66 @@ namespace SadenaFenix.Daos.Usuarios
             return u;
         }
 
+        public bool InsertarUsuario(UsuarioAlta usuario)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_INS_USUARIO, CreaParametrosInsertaUsuario(usuario));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        public DataTable ConsultarUsuarios()
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosUsuarios = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosUsuarios);
+
+                    EjecutaProcedimiento(PRS_USUARIOS, parametrosUsuarios, dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        dataTable = dataSet.Tables[0];
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dataTable;
+        }
+
         public Usuario FinalizarSesion(int sesionId)
         {
 
@@ -86,7 +148,7 @@ namespace SadenaFenix.Daos.Usuarios
 
                     EjecutaProcedimiento(PRN_FINALIZAR_SESION, CreaParametrosConsultaSesion(sesionId), dataSet);
 
-                    if (this.Codigo == 0 && validaDataSet(dataSet))
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
                     {
                         DataRow row = dataSet.Tables[0].Rows[0];
                         u = new Usuario
@@ -152,7 +214,7 @@ namespace SadenaFenix.Daos.Usuarios
 
         #region Métodos Privados
 
-        private static Boolean validaDataSet(DataSet dataSet)
+        private static Boolean ValidaDataSet(DataSet dataSet)
         {
             if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
             {
@@ -200,6 +262,48 @@ namespace SadenaFenix.Daos.Usuarios
             };
             parametros.Add(parametro);
 
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosInsertaUsuario(UsuarioAlta usuario)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pc_usuario", SqlDbType.NVarChar)
+            {
+                Size = 40,
+                Value = usuario.UsuarioDesc
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_correo_e", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = usuario.CorreoE
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_rol_id", SqlDbType.Int)
+            {
+                Value = usuario.RolId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_estatus_id", SqlDbType.Int)
+            {
+                Value = 1
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_contrasena", SqlDbType.NVarChar)
+            {
+                Size = 40,
+                Value = usuario.Contrasenia
+            };
+            parametros.Add(parametro);
+            
             CreaParametrosSalida(parametros);
 
             return parametros;

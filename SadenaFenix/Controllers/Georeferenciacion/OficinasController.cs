@@ -33,11 +33,15 @@ namespace SadenaFenix.Controllers.Georeferenciacion
                 ViewBag.perfilInvalido = 1;
             }
 
-            ConsultarOficinasPeticion peticion = new ConsultarOficinasPeticion();
-            peticion.Cabecero = new CabeceroPeticion();
-            peticion.Cabecero.SesionId = usuario.SesionId;
+            ConsultarOficinasPeticion peticion = new ConsultarOficinasPeticion
+            {
+                Cabecero = new CabeceroPeticion
+                {
+                    SesionId = usuario.SesionId
+                },
 
-            peticion.ColMunicipios = new Collection<Municipio>();
+                ColMunicipios = new Collection<Municipio>()
+            };
             ConsultarOficinasRespuesta respuesta = new GeoServicio().ConsultarOficinas(peticion);
             respuesta.UserJson = userJson;
 
@@ -56,9 +60,11 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             usuario.Json = userJson;
             ViewBag.UserJson = userJson;
 
-            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
-            cabeceroPeticion.SesionId = usuario.SesionId;
-            
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
+            {
+                SesionId = usuario.SesionId
+            };
+
             Servicio servicio = new Servicio();
 
             Oficina oficina = new Oficina();
@@ -79,8 +85,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [WebMethod]
         public ActionResult GuardarOficina(string jsonOficina)
         {
-            InsertarOficinaPeticion peticion = new InsertarOficinaPeticion();
-            peticion.Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina);
+            InsertarOficinaPeticion peticion = new InsertarOficinaPeticion
+            {
+                Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina)
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             InsertarOficinaRespuesta respuesta = geoServicio.InsertarOficina(peticion);
@@ -101,11 +109,15 @@ namespace SadenaFenix.Controllers.Georeferenciacion
 
             ViewBag.UserJson = usuario.Json;
 
-            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion();
-            cabeceroPeticion.SesionId = 1;
+            CabeceroPeticion cabeceroPeticion = new CabeceroPeticion
+            {
+                SesionId = 1
+            };
 
-            ConsultarOficinaPeticion peticion = new ConsultarOficinaPeticion();
-            peticion.OId = id;
+            ConsultarOficinaPeticion peticion = new ConsultarOficinaPeticion
+            {
+                OId = id
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             ConsultarOficinaRespuesta respuesta = geoServicio.ConsultarOficina(peticion);
@@ -128,8 +140,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
         [WebMethod]
         public ActionResult ActualizarOficina(string jsonOficina)
         {
-            ActualizarOficinaPeticion peticion = new ActualizarOficinaPeticion();
-            peticion.Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina);
+            ActualizarOficinaPeticion peticion = new ActualizarOficinaPeticion
+            {
+                Oficina = JsonConvert.DeserializeObject<Oficina>(jsonOficina)
+            };
 
             GeoServicio geoServicio = new GeoServicio();
             ActualizarOficinaRespuesta respuesta = geoServicio.ActualizarOficina(peticion);

@@ -69,8 +69,10 @@ namespace SadenaFenix.Controllers.Nacimientos
             peticionReporte.ColMunicipios = new Collection<Municipio>();
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 peticionSubRegistro.ColMunicipios.Add(municipio);
                 peticionReporte.ColMunicipios.Add(municipio);

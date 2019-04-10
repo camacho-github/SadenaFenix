@@ -26,8 +26,10 @@ namespace SadenaFenix.Controllers.Configuraciones
 
             ViewBag.UserJson = userJson;
 
-            CabeceroPeticion peticion = new CabeceroPeticion();
-            peticion.SesionId = usuario.SesionId;
+            CabeceroPeticion peticion = new CabeceroPeticion
+            {
+                SesionId = usuario.SesionId
+            };
 
             if (usuario.Rol.RolId == 3)
             {
@@ -37,8 +39,10 @@ namespace SadenaFenix.Controllers.Configuraciones
             Servicio servicio = new Servicio();
             ParametroRespuesta respuesta = servicio.ConsultarParametroRegistroExtemporaneo(peticion);
 
-            Parametros parametros = new Parametros();
-            parametros.NoDiasExtemporaneos = respuesta.ParametroValor;
+            Parametros parametros = new Parametros
+            {
+                NoDiasExtemporaneos = respuesta.ParametroValor
+            };
 
             return View(parametros);
         }
@@ -46,8 +50,10 @@ namespace SadenaFenix.Controllers.Configuraciones
         [WebMethod]
         public ActionResult ActualizarDiasExtemporaneos(int valor)
         {
-            ActualizarParametroPeticion peticion = new ActualizarParametroPeticion();
-            peticion.ParametroValor = valor;
+            ActualizarParametroPeticion peticion = new ActualizarParametroPeticion
+            {
+                ParametroValor = valor
+            };
 
             Servicio servicio = new Servicio();
             ActualizarParametroRespuesta respuesta = servicio.ActualizarDiasExtemporaneos(peticion);

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\Nacimientos\SubRegistroController.cs" />
     <Compile Include="Controllers\Nacimientos\ReportesController.cs" />
     <Compile Include="Controllers\Usuarios\AccesoController.cs" />
+    <Compile Include="Controllers\Usuarios\UsuariosController.cs" />
     <Compile Include="Daos\Catalogos\CatalogosDAO.cs" />
     <Compile Include="Daos\Georeferenciacion\GeorefenciacionDAO.cs" />
     <Compile Include="Daos\Nacimientos\Archivos\CargaDAO.cs" />
@@ -198,12 +199,14 @@
     <Compile Include="Models\Nacimientos\Reportes\ReporteMunicipio.cs" />
     <Compile Include="Models\Nacimientos\Reportes\Subregistro.cs" />
     <Compile Include="Models\Usuarios\Rol.cs" />
+    <Compile Include="Models\Usuarios\UsuarioAlta.cs" />
     <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Georeferenciacion\GeoServicio.cs" />
     <Compile Include="Services\Servicio.cs" />
     <Compile Include="Transport\Catalogos\ActualizarParametroPeticion.cs" />
+    <Compile Include="Transport\Catalogos\CatalogoRolesRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoLocalidadRespuesta.cs" />
     <Compile Include="Transport\Catalogos\CatalogoMunicipioRespuesta.cs" />
     <Compile Include="Transport\Catalogos\ActualizarParametroRespuesta.cs" />
@@ -218,6 +221,7 @@
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultarOficinasPeticion.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\ConsultarUsuariosRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultarOficinasRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\InsertarOficinaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\InsertarOficinaPeticion.cs" />
@@ -254,6 +258,9 @@
     <Compile Include="Transport\Nacimientos\Reportes\TotalesSubregistroNacimientosRespuesta.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\CabeceroRespuesta.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\InsertarUsuarioRespuesta.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\InsertarUsuarioPeticion.cs" />
+    <Compile Include="Transport\Usuarios\Acceso\ConsultaUsuariosPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\SesionPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\SesionRespuesta.cs" />
     <Compile Include="Views\Nacimientos\Configuraciones\Parametros.cs" />
@@ -296,6 +303,8 @@
     <Content Include="Scripts\js\nacimientos\reportes\consultaReportes.js" />
     <Content Include="Scripts\js\nacimientos\reportes\reportes.js" />
     <Content Include="Scripts\js\sadena-general.js" />
+    <Content Include="Scripts\js\usuarios\consultaUsuarios.js" />
+    <Content Include="Scripts\js\usuarios\crearUsuario.js" />
     <Content Include="Scripts\js\utilerias\comunes.js" />
     <Content Include="Scripts\js\utilerias\mapaConsultaOficinas.js" />
     <Content Include="Scripts\js\utilerias\mapasOficina.js" />
@@ -781,6 +790,9 @@
     <Content Include="Views\Shared\_SistemasLayout.cshtml" />
     <Content Include="Views\AnalisisSIC\SeleccionarConsulta.cshtml" />
     <Content Include="Views\AnalisisSIC\AnalisisSICInformacion.cshtml" />
+    <Content Include="Views\Usuarios\UsuariosConsulta.cshtml" />
+    <Content Include="Views\Usuarios\CrearUsuario.cshtml" />
+    <Content Include="Views\Home\SuperAdministrador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\Nacimientos\Consultas\" />

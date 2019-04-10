@@ -5,6 +5,7 @@ using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Catalogos.Socieconomica;
 using SadenaFenix.Models.Catalogos.Socioeconomica;
 using SadenaFenix.Models.Catalogos.Tiempo;
+using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Persistence;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace SadenaFenix.Daos.Catalogos
         #region Variables de instancia
         private const string PRS_CT_ESTATUS_REGISTRO = "SDB.PRSCTEstatusRegistro";
         private const string PRS_CT_SEXO = "SDB.PRSCTSexo";
+        private const string PRS_CT_ROL = "SDB.PRSCTROL";
         private const string PRS_CT_ESTADO_CIVIL = "SDB.PRSCTEdoCivil";
         private const string PRS_CT_ESCOLARIDAD = "SDB.PRSCTEscolaridad";
         private const string PRS_CT_MUNICIPIO = "SDB.PRSCTMunicipio";
@@ -33,6 +35,54 @@ namespace SadenaFenix.Daos.Catalogos
         #endregion
 
         #region Métodos Públicos
+        public Collection<Rol> ConsultaCatRoles()
+        {
+
+            Collection<Rol> colRoles = null;
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosCatRoles = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosCatRoles);
+
+                    EjecutaProcedimiento(PRS_CT_ROL, parametrosCatRoles, dataSet);
+
+                    if (this.Codigo == 0 && validaDataSet(dataSet))
+                    {
+                        colRoles = new Collection<Rol>();
+                        foreach (DataRow r in dataSet.Tables[0].Rows)
+                        {
+                            Rol rol = new Rol
+                            {
+                                RolId = r.Field<int>("RolId"),
+                                RolDesc = r.Field<string>("RolDesc")
+                            };
+                            colRoles.Add(rol);
+                        }
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return colRoles;
+        }
+
         public Collection<EstatusRegistro> ConsultaCatEstatusRegistro()
         {
 

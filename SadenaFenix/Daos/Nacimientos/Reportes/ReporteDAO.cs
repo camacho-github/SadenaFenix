@@ -80,8 +80,10 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
         public SubregistroNacimientosRespuesta ConsultaDTSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
         {
-            SubregistroNacimientosRespuesta SubregistroNacimientosRespuesta = new SubregistroNacimientosRespuesta();
-            SubregistroNacimientosRespuesta.ColDataTables = new Collection<DataTable>();
+            SubregistroNacimientosRespuesta SubregistroNacimientosRespuesta = new SubregistroNacimientosRespuesta
+            {
+                ColDataTables = new Collection<DataTable>()
+            };
 
             try
             {
@@ -100,11 +102,12 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[0].Rows)
                             {
-                                SubregistroTotal sub = new SubregistroTotal();
-
-                                sub.IdGrupo = r.Field<int>("IdGrupo");
-                                sub.NombreGrupo = r.Field<string>("NombreGrupo");
-                                sub.Total = r.Field<int>("Total");
+                                SubregistroTotal sub = new SubregistroTotal
+                                {
+                                    IdGrupo = r.Field<int>("IdGrupo"),
+                                    NombreGrupo = r.Field<string>("NombreGrupo"),
+                                    Total = r.Field<int>("Total")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColTotales.Add(sub);
                             }
@@ -119,28 +122,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[1].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColSubregistros.Add(sub);
                             }
@@ -155,28 +160,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[2].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColOportunos.Add(sub);
                             }
@@ -191,28 +198,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[3].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColExtemporaneos.Add(sub);
                             }
@@ -319,28 +328,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[1].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");                                
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColSubregistros.Add(sub);
                             }
@@ -354,28 +365,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[2].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColOportunos.Add(sub);
                             }
@@ -389,28 +402,30 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
                             foreach (DataRow r in dataSet.Tables[3].Rows)
                             {
-                                Subregistro sub = new Subregistro();
-                                sub.Folio = r.Field<string>("Folio");
-                                sub.FechaNacimiento = r.Field<string>("FechaNacimiento");
-                                sub.HoraNacimiento = r.Field<string>("HoraNacimiento");
-                                sub.SexoId = r.Field<int>("SexoId");
-                                sub.SexoDesc = r.Field<string>("SexoDesc");
-                                sub.EdoId = r.Field<int>("EdoId");
-                                sub.EdoDesc = r.Field<string>("EdoDesc");
-                                sub.MpioId = r.Field<int>("MpioId");
-                                sub.MpioDesc = r.Field<string>("MpioDesc");
-                                sub.LocId = r.Field<int>("LocId");
-                                sub.LocDesc = r.Field<string>("LocDesc");
-                                sub.Calle = r.Field<string>("Calle");
-                                sub.NoExt = r.Field<string>("NoExt");
-                                sub.NoInt = r.Field<string>("NoInt");
-                                sub.Edad = r.Field<int>("Edad");
-                                sub.NumNacimiento = r.Field<int>("NumNacimiento");
-                                sub.Ocupacion = r.Field<string>("Ocupacion");
-                                sub.EdoCivilId = r.Field<int>("EdoCivilId");
-                                sub.EdoCivilDesc = r.Field<string>("EdoCivilDesc");
-                                sub.EscolId = r.Field<int>("EscolId");
-                                sub.EscolDesc = r.Field<string>("EscolDesc");
+                                Subregistro sub = new Subregistro
+                                {
+                                    Folio = r.Field<string>("Folio"),
+                                    FechaNacimiento = r.Field<string>("FechaNacimiento"),
+                                    HoraNacimiento = r.Field<string>("HoraNacimiento"),
+                                    SexoId = r.Field<int>("SexoId"),
+                                    SexoDesc = r.Field<string>("SexoDesc"),
+                                    EdoId = r.Field<int>("EdoId"),
+                                    EdoDesc = r.Field<string>("EdoDesc"),
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc"),
+                                    LocId = r.Field<int>("LocId"),
+                                    LocDesc = r.Field<string>("LocDesc"),
+                                    Calle = r.Field<string>("Calle"),
+                                    NoExt = r.Field<string>("NoExt"),
+                                    NoInt = r.Field<string>("NoInt"),
+                                    Edad = r.Field<int>("Edad"),
+                                    NumNacimiento = r.Field<int>("NumNacimiento"),
+                                    Ocupacion = r.Field<string>("Ocupacion"),
+                                    EdoCivilId = r.Field<int>("EdoCivilId"),
+                                    EdoCivilDesc = r.Field<string>("EdoCivilDesc"),
+                                    EscolId = r.Field<int>("EscolId"),
+                                    EscolDesc = r.Field<string>("EscolDesc")
+                                };
 
                                 SubregistroNacimientosRespuesta.ColExtemporaneos.Add(sub);
                             }

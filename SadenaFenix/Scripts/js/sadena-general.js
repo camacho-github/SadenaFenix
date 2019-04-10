@@ -1,6 +1,7 @@
 ﻿/* General script for: Sadena
  */
 var CONST_ROL_ANALISTA = 3;
+var CONST_ROL_SUPERADMINISTRADOR = 1;
 
 $(window).on('unload', function () {
     fnWaitForPost();
@@ -23,6 +24,11 @@ $(function () {
             $("#opcionImportarArchivos").hide();
             $("#estiloDivisionMenu").hide();
             $(".opcAdministradorOficinas").hide();
+        }
+        if (objUsuario.Rol.RolId == CONST_ROL_SUPERADMINISTRADOR) {
+            $("#opcionesNacimientos").hide();
+            $("#opcionesGeoreferenciacion").hide();
+            $("#opcionesAdministracionSistema").show();
         }
     } else {
         $("#botonCirculoSesion").hide();
@@ -77,7 +83,17 @@ $(function () {
 
     $("#callAnalisisSIC").click(function () {
         window.location.href = "/AnalisisSIC/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });    
+
+    $("#callCrearUsuario").click(function () {
+        window.location.href = "/Usuarios/CrearUsuario?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
+
+    $("#callConsultarUsuarios").click(function () {
+        window.location.href = "/Usuarios/UsuariosConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    
 
 
     

@@ -46,9 +46,10 @@ namespace SadenaFenix.Controllers.Nacimientos
             dynamic meses = JsonConvert.DeserializeObject(MesesJson);
             dynamic mpios = JsonConvert.DeserializeObject(MpiosJson);
 
-            AnalisisSICPeticion peticion = new AnalisisSICPeticion();
-
-            peticion.ColAnos = new Collection<string>();
+            AnalisisSICPeticion peticion = new AnalisisSICPeticion
+            {
+                ColAnos = new Collection<string>()
+            };
             foreach (string anio in anios)
             {
                 peticion.ColAnos.Add(anio);                
@@ -63,8 +64,10 @@ namespace SadenaFenix.Controllers.Nacimientos
             peticion.ColMunicipios = new Collection<Municipio>();            
             foreach (string mpio in mpios)
             {
-                Municipio municipio = new Municipio();
-                municipio.MpioId = Convert.ToInt32(mpio);
+                Municipio municipio = new Municipio
+                {
+                    MpioId = Convert.ToInt32(mpio)
+                };
 
                 peticion.ColMunicipios.Add(municipio);                
             }
