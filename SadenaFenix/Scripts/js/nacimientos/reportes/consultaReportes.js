@@ -28,7 +28,25 @@ window.onscroll = function (e) {
 
 $(function () {
 
-    $("#hrfooter").remove();
+    $("#hrfooter").remove();   
+    
+    $(".subregistradosPane").click(function () {
+        var table = $("#SubRegistroMapaTabla").DataTable();
+        table.columns().visible(false);
+        table.columns([0,1,2]).visible(true);
+    });
+
+    $(".registradosPane").click(function () {
+        var table = $("#SubRegistroMapaTabla").DataTable();
+        table.columns().visible(false);
+        table.columns([0, 1, 3]).visible(true);
+    });
+
+    $(".extemporaneosPane").click(function () {
+        var table = $("#SubRegistroMapaTabla").DataTable();
+        table.columns().visible(false);
+        table.columns([0, 1, 4]).visible(true);
+    });
 
     $("#consultarDatosProcesadosBtn").click(function () {        
         fnConsultarDatos();
@@ -53,7 +71,7 @@ $(function () {
         
 
     });
-   
+       
 });
 
 function fnConsultarDatos() {
@@ -120,7 +138,9 @@ function fnObtenerTotalesMapa(params) {
         if (data.JsonTotales !== null) {
             //jsonTotales = data.JsonTotales;
             var obj = $.parseJSON(data.JsonTotales);
-            var sumaSubRegistro = 0;           
+            var sumaSubRegistro = 0;
+            var sumaRegistroOportuno = 0;
+            var sumaRegistroExtemporaneo = 0; 
             var minimoSubRegistro = 999999;
             var maximoSubRegistro = 0;            
 
@@ -129,10 +149,14 @@ function fnObtenerTotalesMapa(params) {
                 var IdMunicipio = value.IdMunicipio;
                 objMpiosMapas[IdMunicipio] = value;
 
-                $("#bodySubregistroMapa").prepend('<tr class=' + IdMunicipio +'><td>' + IdMunicipio + '</td><td>' + value.MpioDesc + '</td><td>' + value.TotalSubregistro + '</td></tr>');
+                $("#bodySubregistroMapa").prepend('<tr class=' + IdMunicipio + '><td>' + IdMunicipio + '</td><td>' + value.MpioDesc + '</td><td>' + value.TotalSubregistro + '</td><td>' + value.TotalRegistroOportuno + '</td><td>' + value.TotalRegistroExtemporaneo + '</td></tr>');
                                 
                 sumaSubRegistro = sumaSubRegistro + parseInt(value.TotalSubregistro);
+                sumaRegistroOportuno = sumaRegistroOportuno + parseInt(value.TotalRegistroOportuno);
+                sumaRegistroExtemporaneo = sumaRegistroExtemporaneo + parseInt(value.TotalRegistroExtemporaneo);
                 objMpiosMapas[IdMunicipio].TotalSubregistro = parseInt(value.TotalSubregistro);
+                objMpiosMapas[IdMunicipio].TotalRegistroOportuno = parseInt(value.TotalRegistroOportuno);
+                objMpiosMapas[IdMunicipio].TotalRegistroExtemporaneo = parseInt(value.TotalRegistroExtemporaneo);
 
                 if (parseInt(value.TotalSubregistro) < minimoSubRegistro) {
                     minimoSubRegistro = parseInt(value.TotalSubregistro);
@@ -146,7 +170,7 @@ function fnObtenerTotalesMapa(params) {
             objTotales.minimoSubRegistro = minimoSubRegistro;
             objTotales.maximoSubRegistro = maximoSubRegistro; 
 
-            $("#footSubRegistroMapa").prepend('<tr><th>TOTAL</td><th></td><td>' + sumaSubRegistro + '</td></tr>');
+            $("#footSubRegistroMapa").prepend('<tr><th>TOTAL</th><th></th><th>' + sumaSubRegistro + '</th><th>' + sumaRegistroOportuno + '</th><th>' + sumaRegistroExtemporaneo + '</th></tr>');
 
             $.each(obj, function (key, value) {
                 var IdMunicipio = value.IdMunicipio;
@@ -171,8 +195,12 @@ function fnObtenerTotalesMapa(params) {
         }
     }
 
-    var hCols = [1];
+    var hCols = [];
     fnCrearTabla('SubRegistroMapaTabla', hCols, false);
+
+    var table = $("#SubRegistroMapaTabla").DataTable();
+    table.columns().visible(false);
+    table.columns([0, 1, 2]).visible(true);
 }
 
 function fnCrearTablasEdadSubregistro() {

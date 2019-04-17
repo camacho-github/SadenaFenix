@@ -292,7 +292,9 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 collectionLayout: 'three-column',
                 text: function () {
                     var totCols = $('#' + nombreTabla + ' thead th').length;
+                    
                     var hiddenCols = columnasOcultas.length;
+                    
                     var shownCols = totCols - hiddenCols;
                     return 'Columnas (' + shownCols + ' de ' + totCols + ')';
                 },
@@ -404,8 +406,12 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 $('#' + nombreTabla).on('column-visibility.dt', function (e, settings, column, state) {
                     var visCols = $('#' + nombreTabla + ' thead tr:first th').length;
                     //Below: The minus 2 because of the 2 extra buttons Show all and Restore
-                    var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').length - 2;
-                    $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                    var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').length - 3;
+                    if (tblCols < 0) {
+                        $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ')');
+                    } else {
+                        $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                    }
                     $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').blur();
                     //$("a").blur();
                     e.stopPropagation();
@@ -443,7 +449,7 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
                     var totCols = $('#' + nombreTabla + ' thead th').length;
                     var hiddenCols = columnasOcultas.length;
                     var shownCols = totCols - hiddenCols;
-                    return 'Columnas (' + shownCols + ' de ' + totCols + ')';
+                    return 'Columnas1 (' + shownCols + ' de ' + totCols + ')';
                 },
                 prefixButtons: [{
                     extend: 'colvisGroup',
@@ -553,8 +559,12 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
                 $('#' + nombreTabla).on('column-visibility.dt', function (e, settings, column, state) {
                     var visCols = $('#' + nombreTabla + ' thead tr:first th').length;
                     //Below: The minus 2 because of the 2 extra buttons Show all and Restore
-                    var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').length - 2;
-                    $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                    var tblCols = $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').length - 3;
+                    if (tblCols < 0) {
+                        $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ')');
+                    } else {
+                        $('.buttons-colvis[aria-controls=' + nombreTabla + '] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
+                    }                    
                     $('.dt-button-collection li[aria-controls=' + nombreTabla + '] a').blur();
                     //$("a").blur();
                     e.stopPropagation();

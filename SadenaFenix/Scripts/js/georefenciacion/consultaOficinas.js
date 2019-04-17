@@ -103,7 +103,7 @@ $(function () {
             $('#OficinasTabla').on('column-visibility.dt', function (e, settings, column, state) {
                 var visCols = $('#OficinasTabla thead tr:first th').length;
                 //Below: The minus 2 because of the 2 extra buttons Show all and Restore
-                var tblCols = $('.dt-button-collection li[aria-controls=OficinasTabla] a').length - 2;
+                var tblCols = $('.dt-button-collection li[aria-controls=OficinasTabla] a').length - 3;
                 $('.buttons-colvis[aria-controls=OficinasTabla] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
                 e.stopPropagation();
             });

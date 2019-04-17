@@ -42,7 +42,13 @@ $(function () {
                 extend: 'colvisGroup',
                 text: 'Mostrar todo',
                 show: ':hidden'
-            }, {
+            },
+            {
+                extend: 'colvisGroup',
+                text: 'Ocultar todo',
+                hide: ':visible'
+            },
+            {
                 extend: 'colvisRestore',
                 text: 'Restaurar'
             }]
@@ -114,7 +120,7 @@ $(function () {
             $('#OficialiasTabla').on('column-visibility.dt', function (e, settings, column, state) {
                 var visCols = $('#OficialiasTabla thead tr:first th').length;
                 //Below: The minus 2 because of the 2 extra buttons Show all and Restore
-                var tblCols = $('.dt-button-collection li[aria-controls=OficialiasTabla] a').length - 2;
+                var tblCols = $('.dt-button-collection li[aria-controls=OficialiasTabla] a').length - 3;
                 $('.buttons-colvis[aria-controls=OficialiasTabla] span').html('Columnas (' + visCols + ' de ' + tblCols + ')');
                 e.stopPropagation();
             });

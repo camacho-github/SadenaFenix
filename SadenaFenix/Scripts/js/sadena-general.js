@@ -17,6 +17,7 @@ $(function () {
     /* Session */
     if ($("#objUsuario").val() != undefined && $("#objUsuario").val().length > 0) {
         objUsuario = JSON.parse($("#objUsuario").val());
+        objUsuario.Contrasenia = "";
         $("#etiquetaSesionUsuarioDesc").text(objUsuario.UsuarioDesc);
         $("#etiquetaSesionCorreoE").text(objUsuario.CorreoE);
         /* Hide options. */

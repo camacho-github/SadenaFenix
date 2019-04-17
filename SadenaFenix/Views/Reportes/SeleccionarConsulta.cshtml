@@ -96,11 +96,11 @@
                         <!-- Tables -->
                         <div class="col-sm-7">
                             <ul class="nav nav-tabs">
-                                <li><a href="#subregistradosTabPane" data-toggle="tab">Subregistros</a></li>
-                                <li class="active">
-                                    <a href="#registradosTabPane" data-toggle="tab">Registros Oportunos</a>
+                                <li class="active"><a class ="subregistradosPane" href="#subregistradosTabPane" data-toggle="tab">Subregistros</a></li>
+                                <li>
+                                    <a class ="registradosPane" href="#registradosTabPane" data-toggle="tab">Registros Oportunos</a>
                                 </li>
-                                <li><a href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
+                                <li><a class ="extemporaneosPane" href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
                             </ul>
                             <div class="tab-content">
                                 <!-- Report period -->
@@ -251,7 +251,7 @@
                                     <div class="customised-card-header">
                                         <div class="customised-card-title customised-card-header-divider">
                                             Coahuila de Zaragoza<br />
-                                            <span class="customised-card-subtitle">Indicadores Socieconómicos por Subregistro</span>
+                                            <span class="customised-card-subtitle">Indicadores Socieconómicos</span>
                                         </div>
                                     </div>
                                     <div id="subregistradosMapaTableBottonsContainer" class="btn-group btn-group-justified">
@@ -262,6 +262,8 @@
                                                         <th>ID Municipio</th>
                                                         <th>Municipio</th>
                                                         <th>SubRegistro</th>
+                                                        <th>Registro Oportuno</th>
+                                                        <th>Registro Extemporaneo</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="bodySubregistroMapa">                                                    
