@@ -146,7 +146,7 @@ function fnEliminarOficina(oid) {
 
         if (data !== "" && data !== null) {
             if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitósamente eliminada", fnIrConsulta);
+                fnMessage("Operación correcta", "La información fue exitosamente eliminada", fnIrConsulta);
             } else {
                 fnMessage("UPS! =(", "La información no fue eliminada, favor de intentar nuevamente");
             }

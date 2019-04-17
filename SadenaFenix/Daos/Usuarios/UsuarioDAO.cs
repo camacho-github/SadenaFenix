@@ -21,6 +21,10 @@ namespace SadenaFenix.Daos.Usuarios
         private const string PRS_SESION_ACTIVA = "SDB.PRSSesionActiva";
         private const string PRS_USUARIOS = "SDB.PRSUsuarios";
         private const string PR_INS_USUARIO = "SDB.PRIUsuario";
+        private const string PRS_USUARIO = "SDB.PRSUsuario";
+        private const string PR_U_USUARIO = "SDB.PRUUsuario";
+        private const string PR_DEL_USUARIO = "SDB.PRDelUsuario";
+        private const string PRS_BIUSUARIOS_SESION = "SDB.PRSBIUsuarioSesion";
 
 
         #endregion
@@ -81,6 +85,134 @@ namespace SadenaFenix.Daos.Usuarios
             try
             {
                 EjecutaProcedimiento(PR_INS_USUARIO, CreaParametrosInsertaUsuario(usuario));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        public UsuarioAlta ConsultarUsuario(int usuarioId)
+        {
+            UsuarioAlta u;
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRS_USUARIO, CreaParametrosConsultaUsuario(usuarioId), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        DataRow r = dataSet.Tables[0].Rows[0];
+
+                        u = new UsuarioAlta
+                        {
+                            UsuarioId = r.Field<int>("UsuarioId"),
+                            UsuarioDesc = r.Field<string>("UsuarioDesc"),
+                            Contrasenia = r.Field<string>("Contrasenia"),
+                            CorreoE = r.Field<string>("CorreoE"),
+                            RolId = r.Field<int>("RolId"),
+                            RolDesc = r.Field<string>("RolDesc")
+
+                        };
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+
+            return u;
+        }
+
+        public DataTable ConsultarBitacoraUsuarios()
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosUsuarios = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosUsuarios);
+
+                    EjecutaProcedimiento(PRS_BIUSUARIOS_SESION, parametrosUsuarios, dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        dataTable = dataSet.Tables[0];
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dataTable;
+        }
+
+        public bool EliminarUsuario(int usuarioId)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_DEL_USUARIO, CreaParametrosEliminarUsuario(usuarioId));
+
+                if (this.Codigo == 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+
+                throw new DAOException(-1, e.Message);
+            }
+
+            return resultado;
+        }
+
+        public bool ActualizarUsuario(UsuarioAlta usuario)
+        {
+            bool resultado = false;
+            try
+            {
+                EjecutaProcedimiento(PR_U_USUARIO, CreaParametrosActualizarUsuario(usuario));
 
                 if (this.Codigo == 0)
                 {
@@ -267,6 +399,20 @@ namespace SadenaFenix.Daos.Usuarios
             return parametros;
         }
 
+        private static Collection<SqlParameter> CreaParametrosConsultaUsuario(int usuarioId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = new SqlParameter("@pi_usuario_id", SqlDbType.Int)
+            {
+                Value = usuarioId
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
         private static Collection<SqlParameter> CreaParametrosInsertaUsuario(UsuarioAlta usuario)
         {
             Collection<SqlParameter> parametros = new Collection<SqlParameter>();
@@ -304,6 +450,68 @@ namespace SadenaFenix.Daos.Usuarios
             };
             parametros.Add(parametro);
             
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+        private static Collection<SqlParameter> CreaParametrosEliminarUsuario(int usuarioId)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_usuario_id", SqlDbType.Int)
+            {
+                Value = usuarioId
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private static Collection<SqlParameter> CreaParametrosActualizarUsuario(UsuarioAlta usuario)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+            parametro = new SqlParameter("@pi_usuario_id", SqlDbType.Int)
+            {
+               Value = usuario.UsuarioId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_usuario", SqlDbType.NVarChar)
+            {
+                Size = 40,
+                Value = usuario.UsuarioDesc
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_correo_e", SqlDbType.NVarChar)
+            {
+                Size = 60,
+                Value = usuario.CorreoE
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_rol_id", SqlDbType.Int)
+            {
+                Value = usuario.RolId
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pi_estatus_id", SqlDbType.Int)
+            {
+                Value = 1
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_contrasena", SqlDbType.NVarChar)
+            {
+                Size = 40,
+                Value = usuario.Contrasenia
+            };
+            parametros.Add(parametro);
+
             CreaParametrosSalida(parametros);
 
             return parametros;

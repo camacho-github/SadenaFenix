@@ -1,14 +1,37 @@
 ﻿@model SadenaFenix.Models.Usuarios.UsuarioAlta
-
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/js/superAdministrador.js")"></script>
+}
 @{
     Layout = "~/Views/Shared/_GeoLayout.cshtml";
     ViewData["Root"] = "Sadena";
-    ViewData["Modulo"] = "SuperAdministrador";     
+    ViewData["Modulo"] = "SuperAdministrador";
 }
+
+<!-- Modal large -->
+<div id="DialogoModal" class="modal fade in" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text">One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button id="largeModalAcceptBtn" type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Page content -->
 <div class="page-content">
     <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+
+    <input type="hidden" id="ResultadoCarga" value="@ViewBag.ResultadoCarga" />
 
     <!-- Container -->
     <div class="container">
@@ -17,7 +40,7 @@
         <section class="pull-right">
             <ul class="breadcrumb">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
-                <li><a href="#">@ViewData["Modulo"]</a></li>                
+                <li><a href="#">@ViewData["Modulo"]</a></li>
             </ul>
         </section>
         <!-- ./breadcrumb -->

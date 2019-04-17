@@ -210,6 +210,8 @@ function fnMensajeBotonesLista(tittle, message, btnList, clase) {
     }, 100);
 }
 
+
+
 function fnSetFormatPhoneNumber(element, number) {
     try {
         if (number !== "" && number.length > 0) {

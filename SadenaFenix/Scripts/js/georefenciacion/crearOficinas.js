@@ -355,7 +355,7 @@ function fnGuardarOficina() {
         if (data !== "" && data !== null) {
             
             if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitósamente almacenada", fnIrConsulta);
+                fnMessage("Operación correcta", "La información fue exitosamente almacenada", fnIrConsulta);
             } else{
                 fnMessage("UPS! =(", "La información no fue guardada, favor de intentar nuevamente");
             }
@@ -377,7 +377,7 @@ function fnEliminarOficina () {
 
         if (data !== "" && data !== null) {
             if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitósamente eliminada", fnIrConsultaDeActualizacion);
+                fnMessage("Operación correcta", "La información fue exitosamente eliminada", fnIrConsultaDeActualizacion);
             } else {
                 fnMessage("UPS! =(", "La información no fue eliminada, favor de intentar nuevamente");
             }
@@ -400,7 +400,7 @@ function fnActualizarOficina() {
 
         if (data !== "" && data !== null) {
             if (data.respuesta !== null) {
-                fnMessage("Operación correcta", "La información fue exitósamente actualizada", fnIrConsultaDeActualizacion);
+                fnMessage("Operación correcta", "La información fue exitosamente actualizada", fnIrConsultaDeActualizacion);
             } else {
                 fnMessage("UPS! =(", "La información no fue guardada, favor de intentar nuevamente");
             }

@@ -5,13 +5,14 @@
     ViewData["Root"] = "Sadena";
     ViewData["Modulo"] = "Administración de usuarios";
     ViewData["Option"] = "Usuarios";
-    ViewData["TableName"] = "Crear nuevo usuario";
+    ViewData["TableName"] = "Actualizar usuario";
     ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
 }
 @section Scripts
 {
-    <script src="@Url.Content("~/Scripts/js/usuarios/crearUsuario.js")"></script>
-}    
+    <script src="@Url.Content("~/Scripts/js/usuarios/actualizarUsuario.js")"></script>
+}
+
 <!-- Modal large -->
 <div id="DialogoModal" class="modal fade in" role="dialog">
     <div class="modal-dialog">
@@ -30,9 +31,30 @@
     </div>
 </div>
 
+<!-- Modal large -->
+<div id="ConfirmacionModal" class="modal fade in" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 id="Titulo" class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p id="Mensaje" class="modal-text">One fine body…</p>
+            </div>
+            <div id="buttonsContainer" class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button id="ConfirmAcceptBtn" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Page content -->
 <div class="page-content">
     <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+
+    <input type="hidden" id="hidStatusId" value="@Model.StatusId" />
 
     <!-- Container -->
     <div class="container">
@@ -62,7 +84,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.UsuarioDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.UsuarioDesc,null, new { htmlAttributes = new { @class = "form-control", @maxlength = "40", @placeholder = "NuevoUsuario" , @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.UsuarioDesc, new { htmlAttributes = new { @class = "form-control", @maxlength = "40", @placeholder = "NuevoUsuario" } })
                                         @Html.ValidationMessageFor(model => model.UsuarioDesc, "", new { @class = "text-danger", @id = "valMessageUsuario" })
                                     </div>
 
@@ -77,7 +99,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RolDesc, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownListFor(model => model.RolId, new SelectList(Model.RolesLista, "RolId", "RolDesc"), new { id = "RolesLista", @class = "selectRol show-tick form-control" })
+                                        @Html.EditorFor(model => model.RolDesc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @identificador = Model.RolId, RolIdValor = Model.RolId } })
+                                        @Html.DropDownListFor(model => model.RolId, new SelectList(Model.RolesLista, "RolId", "RolDesc"), new { id = "RolesLista", @class = "selectRol show-tick form-control  hiddElement" })
                                         @Html.ValidationMessageFor(model => model.RolId, "", new { @class = "text", @id = "valMessageRol" })
                                     </div>
 
@@ -85,14 +108,13 @@
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control", @maxlength = "40", @placeholder = "NuevoUsuario123", @type = "password" } })
                                         <span toggle="#Contrasenia" class="fa fa-fw fa-eye field-icon toggle-password" title="mostrar/ocultar"></span>
-                                        
                                         @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger", @id = "valMessageContrasenia" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input id="BotonCrearUsuario" type="submit" value="Crear" class="btn btn-primary" />
+                                        <input id="BotonActualizarUsuario" UsuarioId=@Model.UsuarioId type="submit" value="Actualizar" class="btn btn-primary" />
                                     </div>
                                 </div>
 

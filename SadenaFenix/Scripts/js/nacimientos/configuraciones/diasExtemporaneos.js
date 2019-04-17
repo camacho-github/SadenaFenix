@@ -25,7 +25,7 @@ function fnActualizarDiasExtemporaneos(valor) {
         var data = fnGetJSONResponse('ActualizarDiasExtemporaneos', params);
 
         if (data !== "" && data !== null) {
-            fnShowDialogModal('Operación correcta', 'La configuración fue actualizada exitósamente.');
+            fnShowDialogModal('Operación correcta', 'La configuración fue actualizada exitosamente.');
         }
     };
 

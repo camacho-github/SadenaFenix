@@ -22,14 +22,16 @@ $(function () {
         /* Hide options. */
         if (objUsuario.Rol.RolId == CONST_ROL_ANALISTA) {
             $("#opcionImportarArchivos").hide();
-            $("#estiloDivisionMenu").hide();
+            $("#estiloDivisionMenuNac").hide();
             $(".opcAdministradorOficinas").hide();
+            $("#opcionConfigDiasExtemporaneos").hide();
+            $("#opcionesAdministracionSistema").hide();
         }
         if (objUsuario.Rol.RolId == CONST_ROL_SUPERADMINISTRADOR) {
             $("#opcionesNacimientos").hide();
             $("#opcionesGeoreferenciacion").hide();
-            $("#opcionesAdministracionSistema").show();
         }
+
     } else {
         $("#botonCirculoSesion").hide();
         $("#menuGeneral").hide();
@@ -85,6 +87,10 @@ $(function () {
         window.location.href = "/AnalisisSIC/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });    
 
+    $("#callCargarUsuarios").click(function () {
+        window.location.href = "/Acceso/CargaCatalogos?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
     $("#callCrearUsuario").click(function () {
         window.location.href = "/Usuarios/CrearUsuario?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
@@ -92,6 +98,16 @@ $(function () {
     $("#callConsultarUsuarios").click(function () {
         window.location.href = "/Usuarios/UsuariosConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });
+
+    $("#callBitacoraUsuarios").click(function () {
+        window.location.href = "/Usuarios/BitacoraUsuarios?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    $("#callSalir").click(function () {
+        window.location.href = "/Acceso/Salir?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+    });
+
+    
 
     
 

@@ -57,10 +57,10 @@ namespace SadenaFenix.Business.Nacimientos.Archivos
                 }
             }
 
-            catch (Exception e)
+            catch (DAOException e)
             {
                 Bitacora.Error(e.Message);
-                throw new BusinessException(1, "La carga no fue exitosa, favor de validar los archivos a importar: " + e.Message);
+                throw new BusinessException(e.Codigo, "La carga no fue exitosa, favor de validar los archivos a importar: " + e.Message);
             }
 
             return true;

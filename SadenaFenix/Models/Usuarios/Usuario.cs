@@ -41,5 +41,9 @@ namespace SadenaFenix.Models.Usuarios
         [DataMember(Name = "Json", IsRequired = true)]
         [XmlAttribute("Json")]
         public string Json { get; set; }
+
+        [DataMember(Name = "IP")]
+        [XmlAttribute("IP")]
+        public string IP { get; set; }
     }
 }

@@ -85,7 +85,7 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             cabeceroRespuesta = servicio.PreCargarDatos(preCargaPeticion);
             if (cabeceroRespuesta.EsRespuestaExistosa())
             {
-                cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitósamente.";
+                cabeceroRespuesta.MensajeRespuesta = "Archivos guardados exitosamente.";
             }
             else
             {
@@ -96,7 +96,7 @@ namespace SadenaFenix.Facade.Nacimientos.Archivos
             cabeceroRespuesta = servicio.ProcesarCarga(preCargaPeticion);
             if (cabeceroRespuesta.EsRespuestaExistosa())
             {
-                cabeceroRespuesta.MensajeRespuesta = "Los archivos han sido guardados y procesados exitósamente, los datos pueden ser consultados ahora.";
+                cabeceroRespuesta.MensajeRespuesta = "Los archivos han sido guardados y procesados exitosamente, los datos pueden ser consultados ahora.";
             }
             else
             {

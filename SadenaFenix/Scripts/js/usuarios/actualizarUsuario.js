@@ -1,17 +1,10 @@
 ﻿var objUsuarioAlta = {
-    RolId: 0
+    RolId: $("input#RolDesc").attr("identificador")
 };
 var errorAlta = false;
 
-$(window).on('load', function () {
-    $('#UsuarioDesc').val('');
-    $('#Contrasenia').val('');
-});
-
-
-
 $(function () {
-       
+
     var $selectRol = $('#RolesLista');
     $selectRol.attr('data-live-search', true);
     $selectRol.selectpicker(
@@ -26,14 +19,25 @@ $(function () {
     $selectRol.on('change', function () {
         var nombreTexto = $(this).find("option:selected").text();
         var selected = $('#RolesLista option:selected').val();
-        objUsuarioAlta.RolId = selected;   
+        objUsuarioAlta.RolId = selected;  
+
+        $("input#RolDesc").val(nombreTexto);
+
+        $('div.selectRol').toggleClass("hiddElement", "true");
+        $("input#RolDesc").toggleClass("hiddElement", "false");
    
     });
     
-    $('#BotonCrearUsuario').click(function () {
-        if (fnValidarGuardarUsuario() == true) {
-            $('#BotonCrearUsuario').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
-            fnGuardarUsuario();
+    $('#BotonActualizarUsuario').click(function () {
+        if (fnValidarActualizarUsuario() == true) {
+            if ($("#hidStatusId").val() == "1") {
+                $('#BotonActualizarUsuario').attr('disabled', 'disabled').attr('class', 'buttonContinueInactive');//disable the button for a while the ajax is running			
+                var UsuarioId = $(this).attr('UsuarioId');
+                fnActualizarUsuario(UsuarioId);
+            } else {
+                var UsuarioId = $(this).attr('UsuarioId');
+                fnConfirmarRestaurarUsuario(UsuarioId);               
+            }           
         }
     });
 
@@ -48,6 +52,13 @@ $(function () {
         fnIrConsulta();
     });
 
+    $("input#RolDesc").on('focus', function (event) {
+        $(this).toggleClass("hiddElement", "true");
+        $('div.selectRol').toggleClass("hiddElement", "false");
+
+        $("#RolesLista").focus();
+    });
+
     $(".toggle-password").click(function () {
 
         $(this).toggleClass("fa-eye fa-eye-slash");
@@ -59,12 +70,24 @@ $(function () {
         }
     });
 
+    $('#ConfirmAcceptBtn').click(function () {
+        var UsuarioId = $(this).attr('UsuarioId');
+        fnActualizarUsuario(UsuarioId);
+    }); 
     
-   
 });
 
+function fnConfirmarRestaurarUsuario(UsuarioId) {
+    var idDiv = $('#ConfirmacionModal');
+    $('#ConfirmAcceptBtn').attr('UsuarioId', UsuarioId);
+    idDiv.find('#Titulo').text("Confirmación");
+    idDiv.find('#Mensaje').text("El usuario seleccionado fue eliminado, para actualizarlo es necesario restaurarlo, ¿desea continuar?");
+    idDiv.modal({ backdrop: 'static' });
+    return;
+}
 
-function fnValidarGuardarUsuario() {
+
+function fnValidarActualizarUsuario() {
     var valid = true;
     
     
@@ -99,8 +122,9 @@ function fnValidarGuardarUsuario() {
     return valid;
 }
 
-function fnObtenerJsonUsuarioAlta() {
-                
+function fnObtenerJsonUsuarioAlta(UsuarioId) {
+
+    objUsuarioAlta.UsuarioId = UsuarioId;
     objUsuarioAlta.UsuarioDesc = $('#UsuarioDesc').val();
     objUsuarioAlta.CorreoE = $('#CorreoE').val();
     objUsuarioAlta.Contrasenia = $('#Contrasenia').val();    
@@ -108,30 +132,25 @@ function fnObtenerJsonUsuarioAlta() {
     return JSON.stringify(objUsuarioAlta);
 }
 
-function fnGuardarUsuario() {
+function fnActualizarUsuario(UsuarioId) {
     var objArray = {
-        "jsonUsuarioAlta": fnObtenerJsonUsuarioAlta()
+        "jsonUsuarioAlta": fnObtenerJsonUsuarioAlta(UsuarioId)
     },
         params = fnParamsString(objArray);
 
     var fnComplete = function () {
-        var data = fnGetJSONResponse('GuardarUsuario', params);
+        var data = fnGetJSONResponse('ActualizarUsuario', params);
 
         if (data !== "" && data !== null) {
 
-            if (data.Cabecero.CodigoRespuesta == "2") {
+            if (data.Cabecero.CodigoRespuesta == "1") {
                 errorAlta = true;
-                $('#BotonCrearUsuario').removeAttr('disabled').attr('class', 'btn btn-primary');
-                fnShowDialogModal('Operación incompleta', 'Los datos del usuario no pueden ser guardados.');
-            }
-            else if (data.Cabecero.CodigoRespuesta == "1") {
-                errorAlta = true;
-                $('#BotonCrearUsuario').removeAttr('disabled').attr('class','btn btn-primary');
-                fnShowDialogModal('Operación incompleta', 'El usuario ya existe o no puede ser guardado.');
+                $('#BotonActualizarUsuario').removeAttr('disabled').attr('class','btn btn-primary');
+                fnShowDialogModal('Operación incompleta', 'El usuario no pudo ser actualizado.');
 
             } else if (data.Cabecero.CodigoRespuesta == "0") {
                 errorAlta = false;
-                fnShowDialogModal('Operación correcta', 'El usuario fue guardado exitosamente.');
+                fnShowDialogModal('Operación correcta', 'El usuario fue actualizado exitósamente.');
             }           
                 
         }

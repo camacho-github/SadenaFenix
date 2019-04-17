@@ -113,7 +113,11 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             catch (Exception e)
             {
                 Bitacora.Error(e.Message);
-
+                if (e.Message.Contains("duplicate"))
+                {
+                    throw new DAOException(2, e.Message);
+                }
+                
                 throw new DAOException(-1, e.Message);
             }
 

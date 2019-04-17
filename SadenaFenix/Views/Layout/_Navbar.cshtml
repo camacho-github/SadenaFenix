@@ -14,11 +14,18 @@
         <!-- Menu-->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul id="menuGeneral" class="nav navbar-nav">
-                <li id="opcionesAdministracionSistema" class="dropdown" style="display:none;">
+                <li id="opcionesAdministracionSistema" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span>Administración del Sistema <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        <li id="opcionCargaCatalogos" style="display:block;">
+                            <a id="callCargarUsuarios" href="#">Carga inicial de catálogos</a>
+                        </li>
+                        <li id="opcionBitacora" style="display:block;">
+                            <a id="callBitacoraUsuarios" href="#">Bitácora de usuarios</a>
+                        </li>
+                        <li id="estiloDivisionMenu" class="divider" style="display:block;"></li>
                         <li id="opcionConsultarUsuarios" style="display:block;">
                             <a id="callConsultarUsuarios" href="#">Consultar usuarios</a>
                         </li>
@@ -35,9 +42,9 @@
                         <li id="opcionImportarArchivos" style="display:block;">
                             <a id="callImportarArchivo" href="#">Importar archivos</a>
                         </li>
-                        <li><a id="callConfigDiasExtemporaneos" href="#">Configuración de días extemporáneos</a></li>
+                        <li id="opcionConfigDiasExtemporaneos"><a id="callConfigDiasExtemporaneos" href="#">Configuración de días extemporáneos</a></li>                        
+                        <li id="estiloDivisionMenuNac" class="divider"></li>
                         <li><a id="callAnalisisSIC" href="#">Análisis Información SIC</a></li>
-                        <li id="estiloDivisionMenu" class="divider" style="display:block;"></li>
                         <li><a id="callConsultar" href="#">Consultar nacimientos</a></li>
                         <li><a id="callReportes" href="#">Reportes por municipios</a></li>
                     </ul>
@@ -76,7 +83,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="/Acceso/Salir">
+                            <a id="callSalir" href="#">
                                 <span><i class="fa fa-sign-out mr-3"></i>Salir</span>
                             </a>
                         </li>

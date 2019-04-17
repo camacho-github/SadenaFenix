@@ -93,6 +93,76 @@ namespace SadenaFenix.Business.Usuarios
             return resultado;
         }
 
+        public ConsultarUsuarioRespuesta ConsultarUsuario(int usuarioId)
+        {
+            ConsultarUsuarioRespuesta respuesta = new ConsultarUsuarioRespuesta();
+            try
+            {
+                UsuarioAlta usuario = usuarioDAO.ConsultarUsuario(usuarioId);
+                respuesta.Usuario = usuario;
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("El usuario no fue obtenido correctamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return respuesta;
+        }
+
+        public bool ActualizarUsuario(UsuarioAlta usuario)
+        {
+            bool resultado = false;
+            try
+            {
+                resultado = usuarioDAO.ActualizarUsuario(usuario);
+
+                if (!resultado)
+                {
+                    throw new Exception("El usuario no fue actualizado correctamente, favor de validar los datos: ");
+                }
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException(1, "El usuario no fue actualizado correctamente, favor de validar los datos: " + e.Message);
+            }
+
+            return resultado;
+        }
+
+        public bool EliminarUsuario(int usuarioId)
+        {
+            try
+            {
+                usuarioDAO.EliminarUsuario(usuarioId);
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("El usuario no fue eliminado correctamente, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return true;
+        }
+
+        public ConsultarUsuariosRespuesta ConsultarBitacoraUsuarios()
+        {
+            ConsultarUsuariosRespuesta respuesta = new ConsultarUsuariosRespuesta();
+            try
+            {
+                DataTable tbUsuarios = usuarioDAO.ConsultarBitacoraUsuarios();
+                respuesta.DTUsuarios = tbUsuarios;
+            }
+            catch (Exception e)
+            {
+                Bitacora.Error(e.Message);
+                throw new BusinessException("No pudo ser obtenida una bitácora, favor de intentar nuevamente: " + e.Message);
+            }
+
+            return respuesta;
+        }
+
         #endregion
     }
 }

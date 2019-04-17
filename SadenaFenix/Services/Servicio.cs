@@ -106,6 +106,88 @@ namespace SadenaFenix.Services
             return respuesta;
         }
 
+        public ConsultarUsuarioRespuesta ConsultarUsuario(ConsultarUsuarioPeticion peticion)
+        {
+            ConsultarUsuarioRespuesta respuesta = new ConsultarUsuarioRespuesta();
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                respuesta = usuarioBLL.ConsultarUsuario(peticion.UsuarioId);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ActualizarUsuarioRespuesta EliminarUsuario(int usuarioId)
+        {
+            ActualizarUsuarioRespuesta respuesta = new ActualizarUsuarioRespuesta();
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                bool resultado = bll.EliminarUsuario(usuarioId);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ActualizarUsuarioRespuesta ActualizarUsuario(ActualizarUsuarioPeticion peticion)
+        {
+            ActualizarUsuarioRespuesta respuesta = new ActualizarUsuarioRespuesta();
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                bool resultado = usuarioBLL.ActualizarUsuario(peticion.Usuario);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public ConsultarUsuariosRespuesta ConsultarBitacoraUsuarios(ConsultaUsuariosPeticion peticion)
+        {
+            ConsultarUsuariosRespuesta respuesta = new ConsultarUsuariosRespuesta();
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                respuesta = usuarioBLL.ConsultarBitacoraUsuarios();
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
         public ActualizarParametroRespuesta ActualizarDiasExtemporaneos(ActualizarParametroPeticion peticion)
         {
             ActualizarParametroRespuesta respuesta = new ActualizarParametroRespuesta();
