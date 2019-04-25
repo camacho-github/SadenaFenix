@@ -3,6 +3,7 @@ using SadenaFenix.Models.Catalogos.Geografia;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Catalogos;
+using SadenaFenix.Transport.Nacimientos.Archivos;
 using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
 using System.Collections.ObjectModel;
@@ -34,6 +35,9 @@ namespace Sadena.Controllers.Nacimientos
             ViewBag.Meses = catalogosCargasRespuesta.ColMeses;
             ViewBag.Municipios = catalogosCargasRespuesta.ColMunicipios;
             ViewBag.ModalTitulo = "Consulta de reportes";
+            if (catalogosCargasRespuesta.ColAnios == null)
+                return View("~/Views/Nacimientos/Archivos/Importar.cshtml", new ImportarArchivosViewModel());
+
             return View(catalogosCargasRespuesta);
         }
 

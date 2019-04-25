@@ -1,6 +1,7 @@
 ﻿/* General script for: Sadena
  */
 var CONST_ROL_ANALISTA = 3;
+var CONST_ROL_ADMINISTRADOR = 2;
 var CONST_ROL_SUPERADMINISTRADOR = 1;
 
 $(window).on('unload', function () {
@@ -25,9 +26,12 @@ $(function () {
             $("#opcionImportarArchivos").hide();
             $("#estiloDivisionMenuNac").hide();
             $(".opcAdministradorOficinas").hide();
-            $("#opcionConfigDiasExtemporaneos").hide();
+            $("#opcionConfigDiasExtemporaneos").hide();  
             $("#opcionesAdministracionSistema").hide();
         }
+        if (objUsuario.Rol.RolId == CONST_ROL_ADMINISTRADOR) {
+            $("#opcionesAdministracionSistema").hide();
+        }        
         if (objUsuario.Rol.RolId == CONST_ROL_SUPERADMINISTRADOR) {
             $("#opcionesNacimientos").hide();
             $("#opcionesGeoreferenciacion").hide();

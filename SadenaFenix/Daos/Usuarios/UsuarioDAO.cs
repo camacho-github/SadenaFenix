@@ -123,7 +123,8 @@ namespace SadenaFenix.Daos.Usuarios
                             Contrasenia = r.Field<string>("Contrasenia"),
                             CorreoE = r.Field<string>("CorreoE"),
                             RolId = r.Field<int>("RolId"),
-                            RolDesc = r.Field<string>("RolDesc")
+                            RolDesc = r.Field<string>("RolDesc"),
+                            StatusId = r.Field<int>("EstatusId")
 
                         };
                     }

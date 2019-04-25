@@ -154,10 +154,10 @@ namespace SadenaFenix.Business.Usuarios
                 DataTable tbUsuarios = usuarioDAO.ConsultarBitacoraUsuarios();
                 respuesta.DTUsuarios = tbUsuarios;
             }
-            catch (Exception e)
+            catch (DAOException e)
             {
                 Bitacora.Error(e.Message);
-                throw new BusinessException("No pudo ser obtenida una bitácora, favor de intentar nuevamente: " + e.Message);
+                throw new BusinessException(e.Codigo,"No pudo ser obtenida una bitácora, favor de intentar nuevamente: " + e.Message);
             }
 
             return respuesta;
