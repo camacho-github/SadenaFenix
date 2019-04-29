@@ -96,11 +96,11 @@
                         <!-- Tables -->
                         <div class="col-sm-7">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a class ="subregistradosPane" href="#subregistradosTabPane" data-toggle="tab">Subregistros</a></li>
+                                <li class="active"><a class="subregistradosPane" href="#subregistradosTabPane" data-toggle="tab">Subregistros</a></li>
                                 <li>
-                                    <a class ="registradosPane" href="#registradosTabPane" data-toggle="tab">Registros Oportunos</a>
+                                    <a class="registradosPane" href="#registradosTabPane" data-toggle="tab">Registros Oportunos</a>
                                 </li>
-                                <li><a class ="extemporaneosPane" href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
+                                <li><a class="extemporaneosPane" href="#registrosExtemporaneosTabPane" data-toggle="tab">Registros extemporáneos</a></li>
                             </ul>
                             <div class="tab-content">
                                 <!-- Report period -->
@@ -266,20 +266,29 @@
                                                         <th>Registro Extemporaneo</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="bodySubregistroMapa">                                                    
-                                                </tbody>
-                                                <tfoot id="footSubRegistroMapa">                                                    
+                                                <tbody id="bodySubregistroMapa"></tbody>
+                                                <tfoot id="footSubRegistroMapa">
                                                 </tfoot>
                                             </table>
                                         </div>
 
                                     </div>
+
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-primary btn-xs">Muncipios</a>
+                                        <a href="#" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a id="opcMostrarTodos" href="#">Seleccionar todos</a></li>
+                                            <li><a id="opcOcultarTodos" href="#">Ocultar todos</a></li>                                            
+                                        </ul>
+                                    </div>
+
                                     <div class="customised-card-body">
                                         <div id="coahuilaMap" class="report-map" style="width: 450px; height: 600px">
                                         </div>
                                     </div>
 
-                                </div>                                
+                                </div>
 
                             </div>
                         </div>
@@ -300,20 +309,23 @@
 <!-- ./page content -->
 
 <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
-<div id="tablaContenedorEdad">
-    <!--Respuesta por ajax-->
-</div>
-<div id="tablaContenedorECiv">
-    <!--Respuesta por ajax-->
-</div>
-<div id="tablaContenedorNumNac">
-    <!--Respuesta por ajax-->
-</div>
-<div id="tablaContenedorEscol">
-    <!--Respuesta por ajax-->
-</div>
-<div id="tablaContenedorSexo">
-    <!--Respuesta por ajax-->
+<div id="ContenedorGral">
+    <div id="tablaContenedorEdad">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="tablaContenedorECiv">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="tablaContenedorNumNac">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="tablaContenedorEscol">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="tablaContenedorSexo">
+        <!--Respuesta por ajax-->
+    </div>
+
 </div>
 
 @section Scripts

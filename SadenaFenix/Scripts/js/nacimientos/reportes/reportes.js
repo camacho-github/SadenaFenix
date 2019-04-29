@@ -126,16 +126,16 @@ $(function () {
             selected: {
                 //fill: '#586967',
                 "stroke-width": "0.5",
-                stroke: "red"
+                stroke: "#846a54"
             }        
         },
         regionLabelStyle: {
             initial: {
-                fill: '#B90E32',
+                fill: '#846a54',
                 'font-size': '10',
             },
             hover: {
-                fill: 'black',
+                fill: 'black',                
                 'font-size': '14',
             }
         },
@@ -150,33 +150,44 @@ $(function () {
             }
         },
         onRegionSelected: function (event, code) {
-            //alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);
+            //alert("has seleccionado el municipio " + code + " que corresponde a " + objMap[code].name);            
 
-
-            //if (fnSizeObject(mapMpios) == 0) {
-            //    $("tbody tr").toggleClass("hiddElement", true);
-            //    $("tr." + parseInt(code)).toggleClass("hiddElement",false);
-            //    mapMpios[parseInt(code)] = parseInt(code);
-            //} else {
-                if (mapMpios[code] == undefined) {
-                    mapMpios[code] = code;
-                    $("tr." + code).toggleClass("hiddElement", false);
-                } else {
-                    delete mapMpios[code];
-                    $("tr." + parseInt(code)).toggleClass("hiddElement", true);
-                    if (fnSizeObject(mapMpios) == 0) {
-                        $("tbody tr").toggleClass("hiddElement", true);
-                    }
+            if (mapMpios[code] == undefined) {
+                mapMpios[code] = code;
+                $("tr." + code).toggleClass("hiddElement", false);
+            } else {
+                delete mapMpios[code];
+                $("tr." + parseInt(code)).toggleClass("hiddElement", true);
+                if (fnSizeObject(mapMpios) == 0) {
+                    $("tbody tr").toggleClass("hiddElement", true);
                 }
-            //}            
+            }                       
         }, onRegionTipShow: function (e, el, code) {
 
             if (objMpiosMapas[code] != undefined) {
-                $(el).append($("<br/>"));
-                $(el).append($("<br/>"));
-                $(el).append($("<span/>", {
-                    'html': ' Subregistro:(' + objMpiosMapas[code].TotalSubregistro + ')'
-                }));
+
+                if (objMpiosMapas.seleccion == "registrados") {
+                    $(el).append($("<br/>"));
+                    $(el).append($("<br/>"));
+                    $(el).append($("<span/>", {
+                        'html': ' Registro Oportuno:(' + objMpiosMapas[code].TotalRegistroOportuno + ')'
+                    }));
+                }
+                else if (objMpiosMapas.seleccion == "registradosExt") {
+                    $(el).append($("<br/>"));
+                    $(el).append($("<br/>"));
+                    $(el).append($("<span/>", {
+                        'html': ' Registro Extemporaneo:(' + objMpiosMapas[code].TotalRegistroExtemporaneo + ')'
+                    }));
+                } else {
+                    $(el).append($("<br/>"));
+                    $(el).append($("<br/>"));
+                    $(el).append($("<span/>", {
+                        'html': ' Subregistro:(' + objMpiosMapas[code].TotalSubregistro + ')'
+                    }));
+                }
+
+               
             }
         }
 
@@ -258,6 +269,22 @@ $(function () {
             });
 
         }
+    });
+
+
+    $('#opcOcultarTodos').click(function () {
+        mapVector.clearSelectedRegions();
+        $("tbody tr").toggleClass("hiddElement", true);
+    });
+
+    $('#opcMostrarTodos').click(function () {
+        $.each(objMpiosMapas, function (cod, value) {           
+
+            mapVector.regions[cod].element.setStyle({ 'fill': '#CDD6D5' });
+            mapVector.regions[cod].element.config.style.selected.fill = objMpiosMapas[cod].color;
+            mapVector.setSelectedRegions(cod);
+           
+        });        
     });
 
 });

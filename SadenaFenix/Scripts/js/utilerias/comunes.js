@@ -420,6 +420,11 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
 
         });
         $('.dataTables_length').addClass('bs-select');
+
+        $('#' + nombreTabla).on('page.dt', function () {
+            console.log('page change');
+        });
+
     } catch (e) {
         console.log(e)
     }  

@@ -33,19 +33,53 @@ $(function () {
     $(".subregistradosPane").click(function () {
         var table = $("#SubRegistroMapaTabla").DataTable();
         table.columns().visible(false);
-        table.columns([0,1,2]).visible(true);
+        table.columns([0, 1, 2]).visible(true);
+
+        objMpiosMapas.seleccion = "subregistrados";
+
+        $.each(objMpiosMapas, function (cod, value) {            
+
+            mapVector.regions[cod].element.config.style.selected.fill = objMpiosMapas[cod].color;
+            if (mapVector.regions[cod].element.isSelected) {
+                mapVector.regions[cod].element.setStyle({ 'fill': '#CDD6D5' });
+                mapVector.setSelectedRegions(cod);
+            }
+                
+        });
     });
 
     $(".registradosPane").click(function () {
         var table = $("#SubRegistroMapaTabla").DataTable();
         table.columns().visible(false);
         table.columns([0, 1, 3]).visible(true);
+
+        objMpiosMapas.seleccion = "registrados";
+
+        $.each(objMpiosMapas, function (cod, value) {
+            mapVector.regions[cod].element.config.style.selected.fill = objMpiosMapas[cod].colorOportuno; 
+
+            if (mapVector.regions[cod].element.isSelected) {
+                mapVector.regions[cod].element.setStyle({ 'fill': '#CDD6D5' });
+                mapVector.setSelectedRegions(cod);
+            }
+        });
     });
 
     $(".extemporaneosPane").click(function () {
         var table = $("#SubRegistroMapaTabla").DataTable();
         table.columns().visible(false);
         table.columns([0, 1, 4]).visible(true);
+
+        objMpiosMapas.seleccion = "registradosExt";
+
+        $.each(objMpiosMapas, function (cod, value) {
+            mapVector.regions[cod].element.config.style.selected.fill = objMpiosMapas[cod].colorExt;
+
+            if (mapVector.regions[cod].element.isSelected) {
+                mapVector.regions[cod].element.setStyle({ 'fill': '#CDD6D5' });
+                mapVector.setSelectedRegions(cod);
+            }
+        });
     });
 
     $("#consultarDatosProcesadosBtn").click(function () {        
@@ -71,6 +105,15 @@ $(function () {
         
 
     });
+
+
+    //$("body").on("click", ".dataTables_paginate", function () {
+    //    alert($(this).text());
+    //});
+
+    //$('.reports').on("click",'.dataTables_paginate', function () {
+    //    alert('Page Clicked');
+    //});
        
 });
 
@@ -140,9 +183,13 @@ function fnObtenerTotalesMapa(params) {
             var obj = $.parseJSON(data.JsonTotales);
             var sumaSubRegistro = 0;
             var sumaRegistroOportuno = 0;
-            var sumaRegistroExtemporaneo = 0; 
+            var sumaRegistroExtemporaneo = 0;             
             var minimoSubRegistro = 999999;
-            var maximoSubRegistro = 0;            
+            var maximoSubRegistro = 0;
+            var minimoRegistro = 999999;
+            var maximoRegistro = 0;
+            var minimoRegistroExt = 999999;
+            var maximoRegistroExt = 0;
 
 
             $.each(obj, function (key, value) {
@@ -164,28 +211,69 @@ function fnObtenerTotalesMapa(params) {
                 if (parseInt(value.TotalSubregistro) > maximoSubRegistro) {
                     maximoSubRegistro = parseInt(value.TotalSubregistro);
                 }
+                if (parseInt(value.TotalRegistroOportuno) < minimoRegistro) {
+                    minimoRegistro = parseInt(value.TotalRegistroOportuno);
+                }
+                if (parseInt(value.TotalRegistroOportuno) > maximoRegistro) {
+                    maximoRegistro = parseInt(value.TotalRegistroOportuno);
+                }
+                if (parseInt(value.TotalRegistroExtemporaneo) < minimoRegistroExt) {
+                    minimoRegistroExt = parseInt(value.TotalRegistroExtemporaneo);
+                }
+                if (parseInt(value.TotalRegistroExtemporaneo) > maximoRegistroExt) {
+                    maximoRegistroExt = parseInt(value.TotalRegistroExtemporaneo);
+                }
                  
             });
-            objTotales.sumaSubRegistro = sumaSubRegistro;            
+            objTotales.sumaSubRegistro = sumaSubRegistro;
+            objTotales.sumaRegistroOportuno = sumaRegistroOportuno;  
+            objTotales.sumaRegistroExtemporaneo = sumaRegistroExtemporaneo;  
             objTotales.minimoSubRegistro = minimoSubRegistro;
-            objTotales.maximoSubRegistro = maximoSubRegistro; 
+            objTotales.maximoSubRegistro = maximoSubRegistro;
+            objTotales.minimoRegistro = minimoRegistro;
+            objTotales.maximoRegistro = maximoRegistro;
+            objTotales.minimoRegistroExt = minimoRegistroExt;
+            objTotales.maximoRegistroExt = maximoRegistroExt;
 
             $("#footSubRegistroMapa").prepend('<tr><th>TOTAL</th><th></th><th>' + sumaSubRegistro + '</th><th>' + sumaRegistroOportuno + '</th><th>' + sumaRegistroExtemporaneo + '</th></tr>');
 
             $.each(obj, function (key, value) {
                 var IdMunicipio = value.IdMunicipio;
                
-                var porcentajeSubregistro = parseFloat(parseInt(value.TotalSubregistro) * 100 / objTotales.sumaSubRegistro);
+                var porcentajeSubregistro = parseFloat(parseInt(value.TotalSubregistro) * 100 / objTotales.maximoSubRegistro);
 
-                if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.sumaSubRegistro / 5 * 2)) {
+                if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.maximoSubRegistro / 3)) {
                     objMpiosMapas[IdMunicipio].color = PorcentajeColor('#317f43', (100 - porcentajeSubregistro));
-                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.sumaSubRegistro / 5 * 3)) {
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.maximoSubRegistro / 3 * 2)) {
                     objMpiosMapas[IdMunicipio].color = PorcentajeColor('#ffff00', (100 - porcentajeSubregistro));
-                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.sumaSubRegistro)) {
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalSubregistro) <= parseFloat(objTotales.maximoSubRegistro)) {
                     objMpiosMapas[IdMunicipio].color = PorcentajeColor('#ff0000', (100 - porcentajeSubregistro));
                 } 
 
+
+                var porcentajeRegistro = parseFloat(parseInt(value.TotalRegistroOportuno) * 100 / objTotales.maximoRegistro);
+
+                if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroOportuno) <= parseFloat(objTotales.maximoRegistro / 3)) {
+                    objMpiosMapas[IdMunicipio].colorOportuno = PorcentajeColor('#ff0000', (100 - porcentajeRegistro));                    
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroOportuno) <= parseFloat(objTotales.maximoRegistro / 3 * 2)) {
+                    objMpiosMapas[IdMunicipio].colorOportuno = PorcentajeColor('#ffff00', (100 - porcentajeRegistro));
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroOportuno) <= parseFloat(objTotales.maximoRegistro)) {
+                    objMpiosMapas[IdMunicipio].colorOportuno = PorcentajeColor('#317f43', (100 - porcentajeRegistro));                    
+                } 
+
+                var porcentajeRegistroExt = parseFloat(parseInt(value.TotalRegistroExtemporaneo) * 100 / objTotales.maximoRegistroExt);
+
+                if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroExtemporaneo) <= parseFloat(objTotales.maximoRegistroExt / 3)) {
+                    objMpiosMapas[IdMunicipio].colorExt = PorcentajeColor('#317f43', (100 - porcentajeRegistroExt));
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroExtemporaneo) <= parseFloat(objTotales.maximoRegistroExt / 3 * 2)) {
+                    objMpiosMapas[IdMunicipio].colorExt = PorcentajeColor('#ffff00', (100 - porcentajeRegistroExt));
+                } else if (parseInt(objMpiosMapas[IdMunicipio].TotalRegistroExtemporaneo) <= parseFloat(objTotales.maximoRegistroExt)) {
+                    objMpiosMapas[IdMunicipio].colorExt = PorcentajeColor('#ff0000', (100 - porcentajeRegistroExt));
+                } 
+
                 objMpiosMapas[IdMunicipio].porcentajeSubregistro = porcentajeSubregistro.toFixed(2);
+                objMpiosMapas[IdMunicipio].porcentajeRegistro = porcentajeRegistro.toFixed(2);
+                objMpiosMapas[IdMunicipio].porcentajeRegistroExt = porcentajeRegistroExt.toFixed(2);
                 mapVector.regions[IdMunicipio].element.setStyle({'fill': '#CDD6D5'});
                 mapVector.regions[IdMunicipio].element.config.style.selected.fill = objMpiosMapas[IdMunicipio].color;
                 mapVector.setSelectedRegions(IdMunicipio);
@@ -205,9 +293,9 @@ function fnObtenerTotalesMapa(params) {
 
 function fnCrearTablasEdadSubregistro() {
     var hCols = [];
-    fnCrearTabla('SubRegistroTabla', hCols,false);
-    fnCrearTabla('OportunosTabla', hCols,false);
-    fnCrearTabla('ExtemporaneosTabla', hCols,false);
+    fnCrearTabla('SubRegistroTabla', hCols, false);
+    fnCrearTabla('OportunosTabla', hCols, false);
+    fnCrearTabla('ExtemporaneosTabla', hCols, false);
         
     fnShowDiv("modalConsulta", 0);
     fnShowDiv("loader", 0);
@@ -220,9 +308,9 @@ function fnCrearTablasEdadSubregistro() {
 
 function fnCrearTablasEdoCivilSubregistro() {
     var hCols = [];
-    fnCrearTabla('EdoCivSubTabla', hCols,false);
-    fnCrearTabla('EdoCivOporTabla', hCols,false);
-    fnCrearTabla('EdoCivExtTabla', hCols,false);
+    fnCrearTabla('EdoCivSubTabla', hCols, false);
+    fnCrearTabla('EdoCivOporTabla', hCols, false);
+    fnCrearTabla('EdoCivExtTabla', hCols, false);
 
     $('#ResReporteEdoCivOpor').appendTo('#estadoCivilRegistradosTableContainer');
     $('#ResReporteEdoCivSub').appendTo('#estadoCivilSubregistradosTableContainer');
@@ -234,9 +322,9 @@ function fnCrearTablasEdoCivilSubregistro() {
 
 function fnCrearTablasNumNacSubregistro() {
     var hCols = [];
-    fnCrearTabla('NumNacSubTabla', hCols,false);
-    fnCrearTabla('NumNacOporTabla', hCols,false);
-    fnCrearTabla('NumNacExtTabla', hCols,false);
+    fnCrearTabla('NumNacSubTabla', hCols, false);
+    fnCrearTabla('NumNacOporTabla', hCols, false);
+    fnCrearTabla('NumNacExtTabla', hCols, false);
 
     $('#ResReporteNumNacOpor').appendTo('#numeroNacidosVivosRegistradosTableContainer');
     $('#ResReporteNumNacSub').appendTo('#numeroNacidosVivosSubregistradosTableContainer');
@@ -250,9 +338,9 @@ function fnCrearTablasNumNacSubregistro() {
 
 function fnCrearTablasEscolSubregistro() {
     var hCols = [];
-    fnCrearTabla('EscolSubTabla', hCols,false);
-    fnCrearTabla('EscolOporTabla', hCols,false);
-    fnCrearTabla('EscolExtTabla', hCols,false);
+    fnCrearTabla('EscolSubTabla', hCols, false);
+    fnCrearTabla('EscolOporTabla', hCols, false);
+    fnCrearTabla('EscolExtTabla', hCols, false);
 
     $('#ResReporteEscolOpor').appendTo('#escolaridadMadreRegistradosTableContainer');
     $('#ResReporteEscolSub').appendTo('#escolaridadMadreSubregistradosTableContainer');
@@ -264,9 +352,9 @@ function fnCrearTablasEscolSubregistro() {
 
 function fnCrearTablasSexoSubregistro() {
     var hCols = [];
-    fnCrearTabla('SexoSubTabla', hCols,false);
-    fnCrearTabla('SexoOporTabla', hCols,false);
-    fnCrearTabla('SexoExtTabla', hCols,false);
+    fnCrearTabla('SexoSubTabla', hCols, false);
+    fnCrearTabla('SexoOporTabla', hCols, false);
+    fnCrearTabla('SexoExtTabla', hCols, false);
 
     $('#ResReporteSexoOpor').appendTo('#sexoRecienNacidoRegistradosTableContainer');
     $('#ResReporteSexoSub').appendTo('#sexoRecienNacidoSubregistradosTableContainer');
