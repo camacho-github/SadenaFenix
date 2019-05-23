@@ -92,7 +92,12 @@ namespace SadenaFenix.Controllers.Nacimientos
             model.TotalRegistroExtemporaneo = SubregistroRespuesta.TotalRegistroExtemporaneo;
             model.PorcentajeRegistroExtemporaneo = SubregistroRespuesta.PorcentajeRegistroExtemporaneo;
 
-            model.TotalGeneral = SubregistroRespuesta.TotalSubregistro + SubregistroRespuesta.TotalRegistroOportuno + SubregistroRespuesta.TotalRegistroExtemporaneo;
+            model.TotalRegistroDuplicado = SubregistroRespuesta.TotalRegistroDuplicado;
+            model.PorcentajeRegistroDuplicado = SubregistroRespuesta.PorcentajeRegistroDuplicado;
+
+            model.TotalGeneral = SubregistroRespuesta.Total;
+            model.PorcentajeGeneral = SubregistroRespuesta.TotalPorcentaje;
+
             model.ColDataTables = SubregistroRespuesta.ColDataTables;
 
             model.ColCabeceros = reporteRespuesta.ColCabeceros;

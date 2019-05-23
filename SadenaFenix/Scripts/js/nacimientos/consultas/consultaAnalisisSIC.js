@@ -25,7 +25,8 @@ function fnConsultarDatos() {
     fnWaitForPost();
     var objArray = {
         "MesesJson": JSON.stringify($("#MesLista").val()),
-        "AniosJson": JSON.stringify($("#AnioLista").val()),
+        "AniosRegistroJson": JSON.stringify($("#AnioRegistroLista").val()),
+        "AniosNacimientoJson": JSON.stringify($("#AnioNacimientoLista").val()),
         "MpiosJson": JSON.stringify($("#MpiosLista").val()),
     },
         params = fnParamsString(objArray);
@@ -43,6 +44,6 @@ function fnCrearTablasAnalisisSIC() {
 
     $("#relacionFolioLink").click();
     fnShowDiv("modalConsulta", 0);
-    fnShowDiv("loader", 0);
+    //fnShowDiv("loader", 0);
 }
 

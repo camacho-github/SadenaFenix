@@ -26,7 +26,11 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
         private const string PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdoCivilSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdadSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteNumNacSubregistroMunicipios";
-        private const string PRN_CONSULTA_ANALISIS_INFO_SIC = "SDB.PRSAnalisisInfoSIC";
+        private const string PRN_CONSULTA_ANALISIS_INFO_SIC = "SDB.PRSCoverturaSIC";
+        private const string PRN_CONSULTA_INCONSISTENCIAS_SIC = "SDB.PRSInconsistenciasSIC";
+        private const string PRN_CONSULTA_OTROS_FOLIOS_SIC = "SDB.PRSOtrosFoliosSIC";        
+        private const string PRN_CONSULTA_TOTAL_SINAC = "SDB.PRSTotalSINAC";        
+
         #endregion
 
         #region Métodos Públicos
@@ -76,6 +80,41 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             }
 
             return totalesSubregistroNacimientosRespuesta;
+        }
+
+        public int ConsultarTotalSINAC(string anosUnion, string mesesUnion, string municipiosUnion)
+        {
+            int totalSINAC;
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_TOTAL_SINAC, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && ValidaDataSet(dataSet))
+                    {
+                        DataRow row = dataSet.Tables[0].Rows[0];
+                        totalSINAC = row.Field<int>("TotalSINAC");                       
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return totalSINAC;
         }
 
         public SubregistroNacimientosRespuesta ConsultaDTSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
@@ -227,6 +266,11 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                             }
                         }
 
+                        if (dataSet != null && dataSet.Tables.Count > 0)
+                        {                            
+                            SubregistroNacimientosRespuesta.ColDataTables.Add(dataSet.Tables[4]);                            
+                        }
+
                     }
                     else
                     {
@@ -247,7 +291,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             return SubregistroNacimientosRespuesta;
         }
 
-        public Collection<DataTable> ConsultarAnalisisInformacionSIC(string anosUnion, string mesesUnion, string municipiosUnion)
+        public Collection<DataTable> ConsultarAnalisisInformacionSIC(string anosRegUnion, string anosNacUnion, string mesesUnion, string municipiosUnion)
         {
             Collection<DataTable> dts = new Collection<DataTable>();
 
@@ -257,7 +301,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                 {
                     dataSet.Locale = CultureInfo.InvariantCulture;
 
-                    EjecutaProcedimiento(PRN_CONSULTA_ANALISIS_INFO_SIC, CreaParametrosSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion), dataSet);
+                    EjecutaProcedimiento(PRN_CONSULTA_ANALISIS_INFO_SIC, CreaParametrosAnalisisSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion), dataSet);
 
                     if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
                     {
@@ -267,6 +311,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                         dts.Add(dataSet.Tables[2]);
                         dts.Add(dataSet.Tables[3]);
                         dts.Add(dataSet.Tables[4]);
+                        dts.Add(dataSet.Tables[5]);
                     }
                     else
                     {
@@ -286,6 +331,82 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
 
             return dts;
         }
+
+        public Collection<DataTable> ConsultarInconsistenciasSIC(string anosRegUnion, string anosNacUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<DataTable> dts = new Collection<DataTable>();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_INCONSISTENCIAS_SIC, CreaParametrosAnalisisSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
+                    {
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);                        
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dts;
+        }
+
+        public Collection<DataTable> ConsultarOtrosFoliosSIC(string anosRegUnion, string anosNacUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<DataTable> dts = new Collection<DataTable>();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    EjecutaProcedimiento(PRN_CONSULTA_OTROS_FOLIOS_SIC, CreaParametrosAnalisisSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion), dataSet);
+
+                    if (this.Codigo == 0 && (dataSet.Tables.Count > 0))
+                    {
+
+                        dts.Add(dataSet.Tables[0]);
+                        dts.Add(dataSet.Tables[1]);
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return dts;
+        }
+
+
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(string anosUnion, string mesesUnion, string municipiosUnion)
         {
@@ -811,6 +932,44 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
             {
                 Size = 255,
                 Value = (string.IsNullOrEmpty(anosUnion)) ? (object)DBNull.Value : anosUnion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_meses", SqlDbType.NVarChar)
+            {
+                Size = 255,
+                Value = (string.IsNullOrEmpty(mesesUnion)) ? (object)DBNull.Value : mesesUnion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_municipios", SqlDbType.NVarChar)
+            {
+                Size = 255,
+                Value = (string.IsNullOrEmpty(municipiosUnion)) ? (object)DBNull.Value : municipiosUnion
+            };
+            parametros.Add(parametro);
+
+            CreaParametrosSalida(parametros);
+
+            return parametros;
+        }
+
+        private Collection<SqlParameter> CreaParametrosAnalisisSIC(string anosRegUnion, string anosNacUnion, string mesesUnion, string municipiosUnion)
+        {
+            Collection<SqlParameter> parametros = new Collection<SqlParameter>();
+            SqlParameter parametro = null;
+
+            parametro = new SqlParameter("@pc_anos_registro", SqlDbType.NVarChar)
+            {
+                Size = 255,
+                Value = (string.IsNullOrEmpty(anosRegUnion)) ? (object)DBNull.Value : anosRegUnion
+            };
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@pc_anos_nacimiento", SqlDbType.NVarChar)
+            {
+                Size = 255,
+                Value = (string.IsNullOrEmpty(anosNacUnion)) ? (object)DBNull.Value : anosNacUnion
             };
             parametros.Add(parametro);
 

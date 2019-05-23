@@ -33,6 +33,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
         private const string PRN_PROCESAR_CARGA_SINAC = "SDB.PRNProcesarCargaSINAC";
         private const string PRN_PROCESAR_CARGA_SIC = "SDB.PRNProcesarCargaSIC";
         private const string PRS_CATALOGOS_PRE_CONSULTA = "SDB.PRSCatalogosPreConsulta";
+        private const string PRS_CATALOGOS_SIC_PRE_CONSULTA = "SDB.PRSCatalogosSICPreConsulta";
         private const string PRS_CONSULTAR_PARAMETRO = "SDB.PRSParametro";
         private const string PRS_ACTUALIZAR_PARAMETRO = "SDB.PRUParametro";
 
@@ -178,7 +179,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
                                     AnioId = Convert.ToInt32(r.Field<string>("AnoCarga")),
                                     AnioDesc = r.Field<string>("AnoCarga")
                                 };
-                                
+
                                 catalogosCargasRespuesta.ColAnios.Add(anio);
                             }
                         }
@@ -196,7 +197,7 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
                                     MesId = r.Field<int>("MesId"),
                                     MesDesc = r.Field<string>("MesDesc")
                                 };
-                               
+
                                 catalogosCargasRespuesta.ColMeses.Add(mes);
                             }
                         }
@@ -237,6 +238,117 @@ namespace SadenaFenix.Daos.Nacimientos.Archivos
             }
 
             return catalogosCargasRespuesta;
+        }
+
+        //PRS_CATALOGOS_SIC_PRE_CONSULTA
+
+        public CatalogosCargasSICRespuesta ObtenerCatalogosSICCargas()
+        {
+            CatalogosCargasSICRespuesta catalogosCargasSICRespuesta = new CatalogosCargasSICRespuesta();
+
+            try
+            {
+                using (DataSet dataSet = new DataSet())
+                {
+                    dataSet.Locale = CultureInfo.InvariantCulture;
+
+                    Collection<SqlParameter> parametrosConsultaCargas = new Collection<SqlParameter>();
+                    CreaParametrosSalida(parametrosConsultaCargas);
+
+                    EjecutaProcedimiento(PRS_CATALOGOS_SIC_PRE_CONSULTA, parametrosConsultaCargas, dataSet);
+
+                    if (this.Codigo == 0)
+                    {
+                        if (dataSet != null && dataSet.Tables.Count > 0
+                            && dataSet.Tables[0].Rows.Count > 0)
+                        {
+
+                            catalogosCargasSICRespuesta.ColAniosRegistro = new Collection<Anio>();
+
+                            foreach (DataRow r in dataSet.Tables[0].Rows)
+                            {
+                                Anio anio = new Anio
+                                {
+                                    AnioId = Convert.ToInt32(r.Field<string>("AnoRegistroSIC")),
+                                    AnioDesc = r.Field<string>("AnoRegistroSIC")
+                                };
+
+                                catalogosCargasSICRespuesta.ColAniosRegistro.Add(anio);
+                            }
+                        }
+
+                        if (dataSet != null && dataSet.Tables.Count > 0
+                            && dataSet.Tables[1].Rows.Count > 0)
+                        {
+
+                            catalogosCargasSICRespuesta.ColAniosNac = new Collection<Anio>();
+
+                            foreach (DataRow r in dataSet.Tables[1].Rows)
+                            {
+                                Anio anio = new Anio
+                                {
+                                    AnioId = r.Field<int>("AnoNacSIC"),
+                                    AnioDesc = Convert.ToString(r.Field<int>("AnoNacSIC"))
+                                };
+
+                                catalogosCargasSICRespuesta.ColAniosNac.Add(anio);
+                            }
+                        }
+
+                        if (dataSet != null && dataSet.Tables.Count > 0
+                            && dataSet.Tables[2].Rows.Count > 0)
+                        {
+
+                            catalogosCargasSICRespuesta.ColMeses = new Collection<Mes>();
+
+                            foreach (DataRow r in dataSet.Tables[2].Rows)
+                            {
+                                Mes mes = new Mes
+                                {
+                                    MesId = r.Field<int>("MesId"),
+                                    MesDesc = r.Field<string>("MesDesc")
+                                };
+
+                                catalogosCargasSICRespuesta.ColMeses.Add(mes);
+                            }
+                        }
+
+                        if (dataSet != null && dataSet.Tables.Count > 0
+                            && dataSet.Tables[3].Rows.Count > 0)
+                        {
+
+                            catalogosCargasSICRespuesta.ColMunicipios = new Collection<Municipio>();
+
+                            foreach (DataRow r in dataSet.Tables[3].Rows)
+                            {
+                                Municipio mpio = new Municipio
+                                {
+                                    MpioId = r.Field<int>("MpioId"),
+                                    MpioDesc = r.Field<string>("MpioDesc")
+                                };
+
+                                catalogosCargasSICRespuesta.ColMunicipios.Add(mpio);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        throw new EmptyDataException(this.Mensaje);
+                    }
+                }
+            }
+            catch (Exception de)
+            {
+                Bitacora.Error(de.Message);
+                if (de is EmptyDataException)
+                {
+                    throw new DAOException(1, de.Message);
+                }
+                throw new DAOException(-1, de.Message);
+            }
+
+            return catalogosCargasSICRespuesta;
         }
 
         public bool PreCargarArchivoSINAC(string nombreArchivo)

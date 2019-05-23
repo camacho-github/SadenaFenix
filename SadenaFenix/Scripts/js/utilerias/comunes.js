@@ -124,6 +124,39 @@ function fnGetAndSetTemplate(actionName, params, divName, fnName, noWait) {
                 fnName();
         }
     });
+
+}
+
+function fnGetAndSetTemplateNoAsync(actionName, params, divName, fnName, noWait) {
+    fnWaitForPost();
+    $.ajax({
+        type: 'POST',
+        async: false,
+        cache: false,
+        url: actionName,
+        data: params,
+        converters: { 'text json': true },
+        beforeSend: function () {
+           fnWaitForPost();
+        },
+        success: function (data) {
+            $("#" + divName).empty();
+            $("#" + divName).html(data);
+            fnCompleteWait();
+        },
+        error: function (xhr, textStatus) {
+            console.error('Error during the ajax call. Error: '
+                + xhr + ' ' + textStatus);
+            fnCompleteWait();
+        },
+        complete: function () {
+            if (fnName !== undefined && fnName !== null)
+                fnName();
+
+            fnCompleteWait();
+        }
+    });
+
 }
 
 
@@ -433,6 +466,8 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
 
 function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
     try {
+        fnWaitForPost();
+
         if (paginacion == undefined) {
             paginacion = true;
         }
@@ -578,6 +613,7 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
 
         });
         $('.dataTables_length').addClass('bs-select');
+        fnCompleteWait();
     } catch (e) {
         console.log(e)
     }

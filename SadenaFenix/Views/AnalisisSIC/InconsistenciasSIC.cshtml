@@ -1,0 +1,88 @@
+﻿@model dynamic
+
+<input type="hidden" name="totalCaracteresEspeciales" id="totalCaracteresEspeciales" value="@Model.CaracteresEspeciales.Rows.Count" />
+
+<div id="RCaracteresEspeciales">
+    <div id="CaracteresEspecialesContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="CaracteresEspecialesBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="CaracteresEspecialesTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.CaracteresEspeciales.Columns.Count; j++)
+                                {
+                                    <th>@Model.CaracteresEspeciales.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.CaracteresEspeciales.Rows.Count; i++)
+                            {
+                                <tr class=@Model.CaracteresEspeciales.Rows[i][0]>
+                                    @for (int j = 0; j < Model.CaracteresEspeciales.Columns.Count; j++)
+                                    {
+                                        <td>@Model.CaracteresEspeciales.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.CaracteresEspeciales.Columns.Count; j++)
+                                {
+                                    <th>@Model.CaracteresEspeciales.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" name="totalDuplicadosSIC" id="totalDuplicadosSIC" value="@Model.DuplicadosSIC.Rows.Count" />
+
+<div id="RDuplicadosSIC">
+    <div id="DuplicadosSICTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="DuplicadosSICTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="DuplicadosSICTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.DuplicadosSIC.Columns.Count; j++)
+                                {
+                                    <th>@Model.DuplicadosSIC.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.DuplicadosSIC.Rows.Count; i++)
+                            {
+                                <tr class=@Model.DuplicadosSIC.Rows[i][0]>
+                                    @for (int j = 0; j < Model.DuplicadosSIC.Columns.Count; j++)
+                                    {
+                                        <td>@Model.DuplicadosSIC.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.DuplicadosSIC.Columns.Count; j++)
+                                {
+                                    <th>@Model.DuplicadosSIC.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -65,6 +65,11 @@ namespace SadenaFenix.Controllers.Usuarios
                     IP = usuario.IP
                 };
 
+                if(peticion.IP == null)
+                {
+                    peticion.IP = "127.0.0.1";
+                }
+
                 Servicio servicio = new Servicio();
                 SesionRespuesta respuesta = servicio.IniciarSesion(peticion);
                 if(!respuesta.Cabecero.EsRespuestaExistosa())

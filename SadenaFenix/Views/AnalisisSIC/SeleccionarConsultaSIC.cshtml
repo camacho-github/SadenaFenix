@@ -1,0 +1,385 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_GeoLayout.cshtml";
+    ViewData["Root"] = "Sadena";
+    ViewData["Modulo"] = "Análisis SIC";
+    ViewData["Option"] = "Consultas";
+    ViewData["Title"] = ViewData["Modulo"] + " / " + ViewData["Option"];
+
+    /* Indicators. */
+    ViewData["RegistrosCompilados"] = "Registros compilados SINAC/SIC";
+    ViewData["RegistrosSoloSic"] = "Registros sólo SIC (Sin relación SINAC)";
+    ViewData["CoverturaRegistral"] = "Covertura registral";
+    ViewData["TotalSinac"] = "Total SINAC";
+    ViewData["FoliosInconsistentes"] = "Registros Inconsistentes";
+    ViewData["OtrosFolios"] = "Otros Folios";
+    ViewData["OportunoRelacionPorFolio"] = "Oportunos relacionados por folio  ";
+    ViewData["OportunoRelacionPorFecha"] = "Oportunos relacionados por fecha  ";
+    ViewData["ExtemporaneoRelacionPorFolio"] = "Extemporáneos relacionados por folio  ";
+    ViewData["ExtemporaneoRelacionPorFecha"] = "Extemporáneos relacionados por fecha  ";
+    ViewData["OportunoSinRelacion"] = "Oportunos";
+    ViewData["ExtemporaneoSinRelacion"] = "Extemporáneos";
+    ViewData["Totales"] = "Totales";
+
+    ViewData["CaracteresEspeciales"] = "Folios con caracteres especiales";
+    ViewData["DuplicadosSIC"] = "Duplicados SIC";
+    ViewData["OtrosEstados"] = "Registros en otros estados";
+    ViewData["OtrosAnos"] = "Registros en otros años";
+
+    
+
+}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/js/nacimientos/consultas/coverturaAnalisisSIC.js")"></script>
+}
+
+
+@Html.Partial("~/Views/Nacimientos/Modales/SeleccionarConsultaSICModal.cshtml");
+
+
+<!-- Page content -->
+<div id="contentCoverturaSIC" class="page-content hiddElement">
+
+
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <!-- Breadcrumb -->
+        <section class="pull-right">
+            <ul class="breadcrumb">
+                <li><a action="/Home/Index"><i class="fa fa-home mr-3"></i>@ViewData["Root"]</a></li>
+                <li><a href="#">@ViewData["Modulo"]</a></li>
+                <li class="active">@ViewData["Option"]</li>
+            </ul>
+        </section>
+        <!-- ./breadcrumb -->
+        <!-- Reports section -->
+        <section>
+
+            <!-- Report container -->
+            <div class="report-container">
+                <!-- Header -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="report-title">
+                            <h4>Seleccione los resultados deseados:</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="report-options">
+                            <div class="list-group">
+                                <a id="linkRegistrosCompilados" class="list-group-item" tbCont="RegistrosCompilados" href="#RegistrosCompilados">
+                                    <i class="fa fa-gg"></i>
+                                    <span class="mr-3">@ViewData["RegistrosCompilados"]</span>
+                                    <span id="spanRegistrosCompilados" class="badge badge-primary right"></span>
+                                </a>
+                                <a id="linkRegistrosSoloSic" class="list-group-item" tbCont="RegistrosSoloSic" href="#RegistrosSoloSic">
+                                    <i class="fa fa-adjust"></i>
+                                    <span class="mr-3">@ViewData["RegistrosSoloSic"]</span>
+                                    <span id="spanRegistrosSoloSic" class="badge badge-warning right"></span>
+                                </a>
+                                <a id="linkCoverturaRegistral" class="list-group-item" tbCont="CoverturaRegistral" href="#CoverturaRegistral">
+                                    <i class="fa fa-plus-square"></i>
+                                    <span class="mr-3">@ViewData["CoverturaRegistral"]</span>
+                                    <span id="spanCoverturaRegistral" class="badge badge-default right"></span>
+                                </a>
+                                <a id="linkTotalSinac" class="list-group-item" tbCont="TotalSinac" href="#TotalSinac">
+                                    <i class="fa fa-plus-square-o"></i>
+                                    <span class="mr-3">@ViewData["TotalSinac"]</span>
+                                    <span id="spanTotalSinac" class="badge badge-success right"></span>
+                                </a>
+                                <a id="linkFoliosInconsistentes" class="list-group-item" tbCont="FoliosInconsistentes" href="#FoliosInconsistentes">
+                                    <i class="fa fa-ban"></i>
+                                    <span class="mr-3">@ViewData["FoliosInconsistentes"]</span>
+                                    <span id="spanFoliosInconsistentes" class="badge badge-danger right"></span>
+                                </a>
+                                <a id="linkOtrosFoliosSIC" class="list-group-item" tbCont="OtrosFoliosSIC" href="#OtrosFoliosSIC">
+                                    <i class="fa fa-cubes"></i>
+                                    <span class="mr-3">@ViewData["OtrosFolios"]</span>
+                                    <span id="spanOtrosFoliosSIC" class="badge badge-info right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./menu -->
+                <!-- Reports -->
+                <div class="row">
+                    <div class="reports">
+                        <!-- Tables -->
+                        <div class="col-sm-12">
+                            <div id="navRegistrosCompilados" class="naveindicator">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a class="OportunoRelacionPorFolioPane" href="#OportunoRelacionPorFolioTabPane" data-toggle="tab">
+                                            @ViewData["OportunoRelacionPorFolio"]
+                                            <span id="spanOportunoRelacionPorFolio" class="badge badge-primary right badge-space"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a class="OportunoRelacionPorFechaPane" href="#OportunoRelacionPorFechaTabPane" data-toggle="tab">
+                                            @ViewData["OportunoRelacionPorFecha"]
+                                            <span id="spanOportunoRelacionPorFecha" class="badge badge-primary right badge-space"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a class="ExtemporaneoRelacionPorFolioPane" href="#ExtemporaneoRelacionPorFolioTabPane" data-toggle="tab">
+                                            @ViewData["ExtemporaneoRelacionPorFolio"]
+                                            <span id="spanExtemporaneoRelacionPorFolio" class="badge badge-primary right badge-space"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="ExtemporaneoRelacionPorFechaPane" href="#ExtemporaneoRelacionPorFechaTabPane" data-toggle="tab">
+                                            @ViewData["ExtemporaneoRelacionPorFecha"]
+                                            <span id="spanExtemporaneoRelacionPorFecha" class="badge badge-primary right badge-space"></span>
+                                        </a>
+
+                                    </li>
+                                </ul>
+                                <div class="tab-content RegistrosCompilados">
+                                    <div id="OportunoRelacionPorFolioTabPane" class="tab-pane fade in active">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="OportunoRelacionPorFolioReport" class="report-by-indicator indicadorOportunoRelacionPorFolio">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["OportunoRelacionPorFolio"]</strong></h5>
+                                                </div>
+                                                <div id="OportunoRelacionPorFolioTableGralContainer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="OportunoRelacionPorFechaTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="OportunoRelacionPorFechaReport" class="report-by-indicator indicadorOportunoRelacionPorFecha">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["OportunoRelacionPorFecha"]</strong></h5>
+                                                    </div>
+                                                    <div id="OportunoRelacionPorFechaTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ExtemporaneoRelacionPorFolioTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="ExtemporaneoRelacionPorFolioReport" class="report-by-indicator indicadorExtemporaneoRelacionPorFolio">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["ExtemporaneoRelacionPorFolio"]</strong></h5>
+                                                    </div>
+                                                    <div id="ExtemporaneoRelacionPorFolioTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ExtemporaneoRelacionPorFechaTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="ExtemporaneoRelacionPorFechaReport" class="report-by-indicator indicadorExtemporaneoRelacionPorFecha">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["ExtemporaneoRelacionPorFecha"]</strong></h5>
+                                                    </div>
+                                                    <div id="ExtemporaneoRelacionPorFechaTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div><!-- navRegistrosSoloSic -->
+                            <div id="navRegistrosSoloSic" class="naveindicator">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a class="OportunoSinRelacionPane" href="#OportunoSinRelacionTabPane" data-toggle="tab">
+                                            @ViewData["OportunoSinRelacion"]
+                                            <span id="spanOportunoSinRelacion" class="badge badge-warning right badge-space"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="ExtemporaneoSinRelacionPane" href="#ExtemporaneoSinRelacionTabPane" data-toggle="tab">
+                                            @ViewData["ExtemporaneoSinRelacion"]
+                                            <span id="spanExtemporaneoSinRelacion" class="badge badge-warning right badge-space"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content RegistrosSoloSic">
+                                    <div id="OportunoSinRelacionTabPane" class="tab-pane fade in active">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="OportunoSinRelacionReport" class="report-by-indicator indicadorOportunoSinRelacion">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["OportunoSinRelacion"]</strong></h5>
+                                                </div>
+                                                <div id="OportunoSinRelacionTableGralContainer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ExtemporaneoSinRelacionTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="ExtemporaneoSinRelacionReport" class="report-by-indicator indicadorExtemporaneoSinRelacion">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["ExtemporaneoSinRelacion"]</strong></h5>
+                                                    </div>
+                                                    <div id="ExtemporaneoSinRelacionTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- navSoloSic -->
+
+                            <div id="navInconsistenciasSIC" class="naveindicator">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a class="CaracteresEspecialesPane" href="#CaracteresEspecialesTabPane" data-toggle="tab">
+                                            @ViewData["CaracteresEspeciales"]
+                                            <span id="spanCaracteresEspeciales" class="badge badge-danger right badge-space"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="DuplicadosSICPane" href="#DuplicadosSICTabPane" data-toggle="tab">
+                                            @ViewData["DuplicadosSIC"]
+                                            <span id="spanDuplicadosSIC" class="badge badge-danger right badge-space"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content InconsistenciasSIC">
+                                    <div id="CaracteresEspecialesTabPane" class="tab-pane fade in active">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="CaracteresEspecialesReport" class="report-by-indicator indicadorCaracteresEspeciales">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["CaracteresEspeciales"]</strong></h5>
+                                                </div>
+                                                <div id="CaracteresEspecialesTableGralContainer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="DuplicadosSICTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="DuplicadosSICReport" class="report-by-indicator indicadorDuplicadosSIC">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["DuplicadosSIC"]</strong></h5>
+                                                    </div>
+                                                    <div id="DuplicadosSICTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- navInconsistenciasSIC -->
+
+                            <div id="navOtrosFoliosSIC" class="naveindicator">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a class="OtrosEstadosPane" href="#OtrosEstadosTabPane" data-toggle="tab">
+                                            @ViewData["OtrosEstados"]
+                                            <span id="spanOtrosEstados" class="badge badge-info right badge-space"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="OtrosAnosPane" href="#OtrosAnosTabPane" data-toggle="tab">
+                                            @ViewData["OtrosAnos"]
+                                            <span id="spanOtrosAnos" class="badge badge-info right badge-space"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content OtrosFoliosSIC">
+                                    <div id="OtrosEstadosTabPane" class="tab-pane fade in active">
+                                        <div class="report-tables-container col-sm-12">
+                                            <!-- Reports by indicator -->
+                                            <div id="OtrosEstadosReport" class="report-by-indicator indicadorOtrosEstados">
+                                                <div class="report-header">
+                                                    <h5><strong>@ViewData["OtrosEstados"]</strong></h5>
+                                                </div>
+                                                <div id="OtrosEstadosTableGralContainer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="OtrosAnosTabPane" class="tab-pane fade in">
+                                        <div class="report">
+                                            <div class="report-tables-container col-sm-12">
+                                                <!-- Reports by indicator -->
+                                                <div id="OtrosAnosReport" class="report-by-indicator indicadorOtrosAnos">
+                                                    <div class="report-header">
+                                                        <h5><strong>@ViewData["OtrosAnos"]</strong></h5>
+                                                    </div>
+                                                    <div id="OtrosAnosTableGralContainer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- navOtrosFoliosSIC -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ./reports -->
+            </div>
+            <!-- ./reports container -->
+
+        </section>
+        <!-- ./reports section -->
+
+    </div>
+    <!-- ./container -->
+
+</div>
+<!-- ./page content -->
+
+<input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+<div id="ContenedorGral">
+    <div id="CoverturaSICTable">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="CoverturaSICTable2">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="CoverturaSICTable3">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="CoverturaTotalSINAC">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="InconsistenciasSICTable">
+        <!--Respuesta por ajax-->
+    </div>
+    <div id="OtrosFoliosSICTable">
+        <!--Respuesta por ajax-->
+    </div>
+</div>

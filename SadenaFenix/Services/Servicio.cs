@@ -214,7 +214,7 @@ namespace SadenaFenix.Services
             try
             {
                 ReportesBLL reportesBLL = new ReportesBLL();
-                respuesta = reportesBLL.ConsultarAnalisisInformacionSIC(peticion.ColAnos, peticion.ColMeses, peticion.ColMunicipios);
+                respuesta = reportesBLL.ConsultarAnalisisInformacionSIC(peticion.ColAnosReg, peticion.ColAnosNac,  peticion.ColMeses, peticion.ColMunicipios);
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }
             catch (BusinessException e)
@@ -227,6 +227,143 @@ namespace SadenaFenix.Services
             }
             return respuesta;
         }
+
+        public AnalisisSICRespuesta ConsultarInconsistenciasSIC(AnalisisSICPeticion peticion)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarInconsistenciasSIC(peticion.ColAnosReg, peticion.ColAnosNac, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public AnalisisSICRespuesta ConsultarOtrosFolios(AnalisisSICPeticion peticion)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarOtrosFoliosSIC(peticion.ColAnosReg, peticion.ColAnosNac, peticion.ColMeses, peticion.ColMunicipios);
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+
+
+        public AnalisisSICRespuesta ConsultarAnalisisInformacionSICConTotales(AnalisisSICPeticion peticion)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta = reportesBLL.ConsultarAnalisisInformacionSIC(peticion.ColAnosReg, peticion.ColAnosNac, peticion.ColMeses, peticion.ColMunicipios);
+
+                TotalesCoverturaRegistral totales = new TotalesCoverturaRegistral();
+                totales.TotalOportunoRelacionPorFolio = respuesta.DTs[0].Rows.Count;
+                totales.TotalOportunoRelacionPorFecha = respuesta.DTs[1].Rows.Count;
+                totales.TotalExtemporaneoRelacionPorFolio = respuesta.DTs[2].Rows.Count;
+                totales.TotalExtemporaneoRelacionPorFecha = respuesta.DTs[3].Rows.Count;
+                totales.TotalRegistrosCompilados = totales.TotalOportunoRelacionPorFolio
+                    + totales.TotalOportunoRelacionPorFecha
+                    + totales.TotalExtemporaneoRelacionPorFolio
+                    + totales.TotalExtemporaneoRelacionPorFecha;
+
+                totales.TotalOportunoSinRelacion = respuesta.DTs[4].Rows.Count;
+                totales.TotalExtemporaneoSinRelacion = respuesta.DTs[5].Rows.Count;
+                totales.TotalRegistrosSinRelacion = totales.TotalOportunoSinRelacion + totales.TotalExtemporaneoSinRelacion;
+
+                totales.SumatoriaTotal = totales.TotalOportunoRelacionPorFolio
+                    + totales.TotalOportunoRelacionPorFecha
+                    + totales.TotalExtemporaneoRelacionPorFolio
+                    + totales.TotalExtemporaneoRelacionPorFecha
+                    + totales.TotalOportunoSinRelacion
+                    + totales.TotalExtemporaneoSinRelacion;
+
+                decimal d;
+                d = (decimal)totales.TotalOportunoRelacionPorFolio * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeOportunoRelacionPorFolio = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalOportunoRelacionPorFecha * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeOportunoRelacionPorFecha = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalExtemporaneoRelacionPorFolio * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeExtemporaneoRelacionPorFolio = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalExtemporaneoRelacionPorFecha * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeExtemporaneoRelacionPorFecha = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalRegistrosCompilados * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeRegistrosCompilados = Math.Round(d, 2);
+
+
+
+                d = (decimal)totales.TotalOportunoSinRelacion * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeOportunoSinRelacion = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalExtemporaneoSinRelacion * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeExtemporaneoSinRelacion = Math.Round(d, 2);
+
+                d = (decimal)totales.TotalRegistrosSinRelacion * 100 / totales.SumatoriaTotal;
+                totales.PorcentajeRegistrosSinRelacion = Math.Round(d, 2);
+
+
+                respuesta.TotalesCoverturaRegistral = totales;
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        public AnalisisSICRespuesta ConsultarTotalSINAC(AnalisisSICPeticion peticion)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+            try
+            {
+                ReportesBLL reportesBLL = new ReportesBLL();
+                respuesta.TotalSINAC = reportesBLL.ConsultarTotalSINAC(peticion.ColAnosNac, peticion.ColMeses, peticion.ColMunicipios);
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
+            }
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, respuesta.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, respuesta.Cabecero);
+            }
+            return respuesta;
+        }
+
+        
 
         public SesionRespuesta FinalizarSesion(SesionPeticion peticion)
         {
@@ -316,6 +453,28 @@ namespace SadenaFenix.Services
             {
                 CargaBLL cargaBLL = new CargaBLL();
                 response = cargaBLL.ObtenerCatalogosCargas();
+
+                AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", response.Cabecero);
+            }
+
+            catch (BusinessException e)
+            {
+                AsignarCabeceroRespuesta(e.Codigo, e.Message, response.Cabecero);
+            }
+            catch (Exception e)
+            {
+                AsignarCabeceroRespuesta(-1, "Error interno del Servicio: " + e.Message, response.Cabecero);
+            }
+            return response;
+        }        
+
+        public CatalogosCargasSICRespuesta ObtenerCatalogosSICCargas(CabeceroPeticion peticion)
+        {
+            CatalogosCargasSICRespuesta response = new CatalogosCargasSICRespuesta();
+            try
+            {
+                CargaBLL cargaBLL = new CargaBLL();
+                response = cargaBLL.ObtenerCatalogosSICCargas();
 
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", response.Cabecero);
             }

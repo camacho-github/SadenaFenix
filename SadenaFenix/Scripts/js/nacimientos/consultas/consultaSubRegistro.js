@@ -39,8 +39,10 @@ function fnCrearTablasSubregistro() {
     fnCrearTabla('SubRegistroTabla', hCols);
     fnCrearTabla('OportunosTabla', hCols)
     fnCrearTabla('ExtemporaneosTabla', hCols)
+    hCols = [2,3, 4, 6, 8, 10, 18, 20];
+    fnCrearTabla('DuplicadosTabla', hCols)
 
-    hCols = [1];
+    hCols = [0];
     fnCrearTabla('ReporteMpiosTabla', hCols)
     $("#resumenTotalesLink").click();
     fnShowDiv("modalConsulta", 0);

@@ -113,14 +113,14 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
             return totalesSubregistroNacimientosRespuesta;
         }
 
-        public AnalisisSICRespuesta ConsultarAnalisisInformacionSIC(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        public int ConsultarTotalSINAC(Collection<string> colAnosNac, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
-            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
-            
+                       
             try
             {
-                IList<string> anosLista = new List<string>(colAnos);
-                string anosUnion = string.Join(",", anosLista);
+               
+                IList<string> anosNacLista = new List<string>(colAnosNac);
+                string anosNacUnion = string.Join(",", anosNacLista);
 
                 IList<string> mesesLista = new List<string>(colMeses);
                 string mesesUnion = string.Join(",", mesesLista);
@@ -132,7 +132,47 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 }
                 string municipiosUnion = string.Join(",", municipiosLista);
 
-                respuesta.DTs = reporteDAO.ConsultarAnalisisInformacionSIC(anosUnion, mesesUnion, municipiosUnion);
+                return reporteDAO.ConsultarTotalSINAC(anosNacUnion, mesesUnion, municipiosUnion);
+                
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+        public AnalisisSICRespuesta ConsultarAnalisisInformacionSIC(Collection<string> colAnosReg, Collection<string> colAnosNac, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+
+            try
+            {
+                IList<string> anosRegLista = new List<string>(colAnosReg);
+                string anosRegUnion = string.Join(",", anosRegLista);
+
+                IList<string> anosNacLista = new List<string>(colAnosNac);
+                string anosNacUnion = string.Join(",", anosNacLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                respuesta.DTs = reporteDAO.ConsultarAnalisisInformacionSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion);
                 return respuesta;
             }
             catch (DAOException e)
@@ -149,6 +189,87 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
 
             }
         }
+
+        public AnalisisSICRespuesta ConsultarInconsistenciasSIC(Collection<string> colAnosReg, Collection<string> colAnosNac, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+
+            try
+            {
+                IList<string> anosRegLista = new List<string>(colAnosReg);
+                string anosRegUnion = string.Join(",", anosRegLista);
+
+                IList<string> anosNacLista = new List<string>(colAnosNac);
+                string anosNacUnion = string.Join(",", anosNacLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                respuesta.DTs = reporteDAO.ConsultarInconsistenciasSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion);
+                return respuesta;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
+        public AnalisisSICRespuesta ConsultarOtrosFoliosSIC(Collection<string> colAnosReg, Collection<string> colAnosNac, Collection<string> colMeses, Collection<Municipio> colMunicipios)
+        {
+            AnalisisSICRespuesta respuesta = new AnalisisSICRespuesta();
+
+            try
+            {
+                IList<string> anosRegLista = new List<string>(colAnosReg);
+                string anosRegUnion = string.Join(",", anosRegLista);
+
+                IList<string> anosNacLista = new List<string>(colAnosNac);
+                string anosNacUnion = string.Join(",", anosNacLista);
+
+                IList<string> mesesLista = new List<string>(colMeses);
+                string mesesUnion = string.Join(",", mesesLista);
+
+                IList<string> municipiosLista = new List<string>();
+                foreach (Municipio m in colMunicipios)
+                {
+                    municipiosLista.Add(m.MpioId.ToString());
+                }
+                string municipiosUnion = string.Join(",", municipiosLista);
+
+                respuesta.DTs = reporteDAO.ConsultarOtrosFoliosSIC(anosRegUnion, anosNacUnion, mesesUnion, municipiosUnion);
+                return respuesta;
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta del reporte, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
 
         public SubregistroNacimientosRespuesta ConsultaSubregistroNacimientos(Collection<string> colAnos, Collection<string> colMeses, Collection<Municipio> colMunicipios)
         {
@@ -172,21 +293,25 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                 respuesta = reporteDAO.ConsultaDTSubregistroNacimientos(anosUnion, mesesUnion, municipiosUnion);
 
                 int total = 0;
+                int totalConDuplicados = 0;
                 foreach (SubregistroTotal s in respuesta.ColTotales)
                 {
                     if (s.IdGrupo < Constantes.REGISTRO_DUPLICADO)
                     {
                         total += s.Total;
                     }
+                    totalConDuplicados += s.Total;
                 }
 
-                respuesta.Total = total;
+                respuesta.Total = totalConDuplicados;
+                decimal d = (decimal)totalConDuplicados * 100 / total;
+                respuesta.TotalPorcentaje = Math.Round(d, 2);
 
                 foreach (SubregistroTotal s in respuesta.ColTotales)
                 {
-                    if (s.IdGrupo < Constantes.REGISTRO_DUPLICADO)
-                    {
-                        decimal d = (decimal)s.Total * 100 / total;
+                    //if (s.IdGrupo < Constantes.REGISTRO_DUPLICADO)
+                    //{
+                        d = (decimal)s.Total * 100 / total;
                         s.TotalPorcentaje = Math.Round(d, 2);
 
                         int caseSwitch = s.IdGrupo;
@@ -205,11 +330,15 @@ namespace SadenaFenix.Business.Nacimientos.Reportes
                                 respuesta.TotalRegistroExtemporaneo = s.Total;
                                 respuesta.PorcentajeRegistroExtemporaneo = s.TotalPorcentaje;
                                 break;
-                            default:
-                                Console.WriteLine("Default case");
+                            case Constantes.REGISTRO_DUPLICADO:
+                                respuesta.TotalRegistroDuplicado = s.Total;
+                                respuesta.PorcentajeRegistroDuplicado = s.TotalPorcentaje;
                                 break;
+                            default:
+                                    Console.WriteLine("Default case");
+                                    break;
                         }
-                    }
+                    //}
                 }
 
                 return respuesta;

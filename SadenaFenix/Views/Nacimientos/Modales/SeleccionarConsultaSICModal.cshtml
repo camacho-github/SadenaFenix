@@ -1,0 +1,72 @@
+﻿@* Model *@
+@model SadenaFenix.Transport.Catalogos.CatalogosCargasSICRespuesta
+
+<div id="modalConsulta">
+    <div class="modalBackground"></div>
+    <div id="mightyPopUp" class="multiModal">
+        <div class="mightyPopContent generalModalSize">
+            <div class="modalTitle">
+                <div class="icon_title"><img src="~/Content/images/btnSearch.png" alt="" /></div>
+                <div id="tdTitleConsultaModal" class="tdTitle">@ViewBag.ModalTitulo</div>
+            </div>
+            <section>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div id="#inputListaSeleccionAnos" class="form-group">
+                                        <label for="AnosSeleccionados">Años de los registros</label>
+                                        @Html.DropDownListFor(model => model.Ano.AnioId,
+                                            new SelectList(Model.ColAniosRegistro,"AnioId","AnioDesc"),
+                                                new { id = "AnioRegistroLista", @class = "form-control select2", multiple = "", title = "Años registro seleccionados" })
+                                    </div>
+
+                                    <div id="#inputListaSeleccionAnosNac" class="form-group">
+                                        <label for="AnosSeleccionadosNac">Años de los nacimientos</label>
+                                        @Html.DropDownListFor(model => model.Ano.AnioId,
+                                            new SelectList(Model.ColAniosNac,"AnioId","AnioDesc"),
+                                                new { id = "AnioNacimientoLista", @class = "form-control select2", multiple = "", title = "Años nacimiento seleccionados" })
+                                    </div>
+
+
+                                    <div id="#inputListaSeleccionMeses" class="form-group">
+                                        <label for="MesesSeleccionados">Mes</label>
+                                        @Html.DropDownListFor(model => model.Mes.MesId,
+                                            new SelectList(Model.ColMeses, "MesId", "MesDesc"),
+                                                new { id = "MesLista", @class = "form-control select2", multiple = "", title = "Meses seleccionados" })
+                                    </div>
+
+                                    <div id="#inputListaSeleccionMunicipios" class="form-group">
+                                        <label for="MunicipiosSeleccionados">Municipios</label>
+                                        @Html.DropDownListFor(model => model.Municipio.MpioId,
+                                        new SelectList(Model.ColMunicipios, "MpioId", "MpioDesc"),
+                                            new { id = "MpiosLista", @class = "form-control select2", multiple = "", title = "Municipios seleccionados" })
+                                    </div>
+
+                                    <br />
+                                    <div class="form-group" style="padding-bottom:10px;">
+                                        <div class="btn-group">
+                                            <button id="consultarDatosProcesadosBtn" type="button" class="btn btn-success"
+                                                    title="Buscar información de nacimientos">
+                                                Buscar <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="note-feet"><strong>* Seleccione los periodos y  municipios (Si alguna seleccipon se deja en blanco, se realizará el cálculo general: "todos los registros de la base de datos").</strong></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.form-group -->
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿@model dynamic
+
+<div id="ROportunoRelacionPorFolio">
+    <div id="OportunoRelacionPorFolioTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="OportunoRelacionPorFolioTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="OportunoRelacionPorFolioTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.OportunoRelacionPorFolio.Columns.Count; j++)
+                                {
+                                    <th>@Model.OportunoRelacionPorFolio.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.OportunoRelacionPorFolio.Rows.Count; i++)
+                            {
+                                <tr class=@Model.OportunoRelacionPorFolio.Rows[i][0]>
+                                    @for (int j = 0; j < Model.OportunoRelacionPorFolio.Columns.Count; j++)
+                                    {
+                                        <td>@Model.OportunoRelacionPorFolio.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.OportunoRelacionPorFolio.Columns.Count; j++)
+                                {
+                                    <th>@Model.OportunoRelacionPorFolio.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ROportunoRelacionPorFecha">
+    <div id="OportunoRelacionPorFechaTableContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="OportunoRelacionPorFechaTableBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="OportunoRelacionPorFechaTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.OportunoRelacionPorFecha.Columns.Count; j++)
+                                {
+                                    <th>@Model.OportunoRelacionPorFecha.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.OportunoRelacionPorFecha.Rows.Count; i++)
+                            {
+                                <tr class=@Model.OportunoRelacionPorFecha.Rows[i][0]>
+                                    @for (int j = 0; j < Model.OportunoRelacionPorFecha.Columns.Count; j++)
+                                    {
+                                        <td>@Model.OportunoRelacionPorFecha.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.OportunoRelacionPorFecha.Columns.Count; j++)
+                                {
+                                    <th>@Model.OportunoRelacionPorFecha.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

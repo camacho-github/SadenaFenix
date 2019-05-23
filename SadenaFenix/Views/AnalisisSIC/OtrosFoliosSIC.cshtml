@@ -1,0 +1,88 @@
+﻿@model dynamic
+
+<input type="hidden" name="totalOtrosEstados" id="totalOtrosEstados" value="@Model.OtrosEstados.Rows.Count" />
+
+<div id="ROtrosEstados">
+    <div id="OtrosEstadosContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="OtrosEstadosBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="OtrosEstadosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.OtrosEstados.Columns.Count; j++)
+                                {
+                                    <th>@Model.OtrosEstados.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.OtrosEstados.Rows.Count; i++)
+                            {
+                                <tr class=@Model.OtrosEstados.Rows[i][0]>
+                                    @for (int j = 0; j < Model.OtrosEstados.Columns.Count; j++)
+                                    {
+                                        <td>@Model.OtrosEstados.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.OtrosEstados.Columns.Count; j++)
+                                {
+                                    <th>@Model.OtrosEstados.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" name="totalOtrosAnos" id="totalOtrosAnos" value="@Model.OtrosAnos.Rows.Count" />
+
+<div id="ROtrosAnos">
+    <div id="OtrosAnosContainer" class="table-container table-responsive">
+        <div class="col-sm-12">
+            <div id="OtrosAnosBottonsContainer" class="btn-group btn-group-justified">
+                <div class="table-responsive">
+                    <table id="OtrosAnosTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
+                        <thead>
+                            <tr>
+                                @for (int j = 0; j < Model.OtrosAnos.Columns.Count; j++)
+                                {
+                                    <th>@Model.OtrosAnos.Columns[j]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.OtrosAnos.Rows.Count; i++)
+                            {
+                                <tr class=@Model.OtrosAnos.Rows[i][0]>
+                                    @for (int j = 0; j < Model.OtrosAnos.Columns.Count; j++)
+                                    {
+                                        <td>@Model.OtrosAnos.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @for (int j = 0; j < Model.OtrosAnos.Columns.Count; j++)
+                                {
+                                    <th>@Model.OtrosAnos.Columns[j]</th>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

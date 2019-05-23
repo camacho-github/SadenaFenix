@@ -44,6 +44,10 @@ namespace SadenaFenix.Transport.Nacimientos.Reportes
         [XmlAttribute("Total")]
         public int Total { get; set; }
 
+        [DataMember(Name = "TotalPorcentaje", IsRequired = true)]
+        [XmlAttribute("TotalPorcentaje")]
+        public decimal TotalPorcentaje { get; set; }
+
         [DataMember(Name = "TotalSubregistro", IsRequired = true)]
         [XmlAttribute("TotalSubregistro")]
         public int TotalSubregistro { get; set; }
@@ -68,6 +72,13 @@ namespace SadenaFenix.Transport.Nacimientos.Reportes
         [XmlAttribute("PorcentajeRegistroExtemporaneo")]
         public decimal PorcentajeRegistroExtemporaneo { get; set; }
 
+        [DataMember(Name = "TotalRegistroDuplicado", IsRequired = true)]
+        [XmlAttribute("TotalRegistroDuplicado")]
+        public int TotalRegistroDuplicado { get; set; }
+
+        [DataMember(Name = "PorcentajeRegistroDuplicado", IsRequired = true)]
+        [XmlAttribute("PorcentajeRegistroDuplicado")]
+        public decimal PorcentajeRegistroDuplicado { get; set; }
 
         [DataMember(Name = "ColCabeceros", IsRequired = true)]
         [XmlAttribute("ColCabeceros")]

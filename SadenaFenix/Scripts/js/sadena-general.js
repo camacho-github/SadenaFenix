@@ -89,7 +89,7 @@ $(function () {
     });
 
     $("#callAnalisisSIC").click(function () {
-        window.location.href = "/AnalisisSIC/SeleccionarConsulta?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
+        window.location.href = "/AnalisisSIC/SeleccionarConsultaSIC?userJson=" + encodeURIComponent(JSON.stringify(objUsuario));
     });    
 
     $("#callCargarUsuarios").click(function () {
@@ -156,13 +156,24 @@ function fnWaitForPost() {
 }
 
 function fnCompleteWait() {
-    fnShowDiv("loader", 0);
+   fnShowDiv("loader", 0);
 }
 
 function fnWaitForLoading(func) {
     var loader = $("#loader");
     fnShowDiv(loader.attr('id'), 1);
     loader.fadeOut(100, function () {
+        func();
+        loader.removeAttr('style');
+        fnShowDiv(loader.attr('id'), 0);
+    });
+}
+
+function fnWaitForLoading2(func) {
+    var loader = $("#loader2");
+    fnShowDiv(loader.attr('id'), 1);
+    loader.fadeOut(500, function () {
+        fnShowDiv("loader", 0);
         func();
         loader.removeAttr('style');
         fnShowDiv(loader.attr('id'), 0);

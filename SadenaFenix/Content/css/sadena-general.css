@@ -586,12 +586,21 @@ p.note-feet {
     background-color: #9b479f;
 }
 
+.badge-warning2 {
+    color: #212529;
+    background-color: #ffc107;
+}
+
 .badge-danger {
     background-color: #d9831f;
 }
 
 .badge-info {
     background-color: #029acf;
+}
+
+.badge-space{
+    margin-left:10px;
 }
 
 .panel-default .panel-heading {

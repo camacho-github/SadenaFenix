@@ -135,6 +135,28 @@ namespace SadenaFenix.Business.Nacimientos.Archivos
             }
         }
 
+        public CatalogosCargasSICRespuesta ObtenerCatalogosSICCargas()
+        {
+
+            try
+            {
+                return cargaDAO.ObtenerCatalogosSICCargas();
+            }
+            catch (DAOException e)
+            {
+                Bitacora.Error(e.Message);
+                if (e.Codigo == 1)
+                {
+                    throw new BusinessException(e.Message);
+                }
+                else
+                {
+                    throw new BusinessException("No se completó la consulta de catálogos, favor de intentar nuevamente: " + e.Message);
+                }
+
+            }
+        }
+
 
         #endregion
 
