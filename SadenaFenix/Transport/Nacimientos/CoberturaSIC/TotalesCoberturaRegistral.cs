@@ -9,9 +9,9 @@ using System.Xml.Serialization;
 namespace SadenaFenix.Transport.Nacimientos.Reportes
 {
     [DataContract]
-    public class TotalesCoverturaRegistral
+    public class TotalesCoberturaRegistral
     {
-        public TotalesCoverturaRegistral()
+        public TotalesCoberturaRegistral()
         {
             Cabecero = new CabeceroRespuesta();
         }

@@ -20,7 +20,7 @@ $(function () {
         //fnWaitForLoading(fnConsultarDatos)
         //fnConsultarDatos();
         $("#linkRegistrosCompilados").trigger("click");
-        fnShowDiv("contentCoverturaSIC", 1);
+        fnShowDiv("contentCoberturaSIC", 1);
     });    
 
     $("#linkRegistrosCompilados").click(function () {
@@ -70,17 +70,17 @@ function fnConsultarDatos() {
         params = fnParamsString(objArray);   
 
     fnWaitForPost();
-    fnGetAndSetTemplate('/AnalisisSIC/CoverturaSIC2', params,
-        "CoverturaSICTable2", fnCrearTablasCoverturaSIC2);    
+    fnGetAndSetTemplate('/AnalisisSIC/CoberturaSIC2', params,
+        "CoberturaSICTable2", fnCrearTablasCoberturaSIC2);    
 
     fnWaitForPost();
-    fnGetAndSetTemplate('/AnalisisSIC/CoverturaSIC3', params,
-        "CoverturaSICTable3", fnCrearTablasCoverturaSIC3);
+    fnGetAndSetTemplate('/AnalisisSIC/CoberturaSIC3', params,
+        "CoberturaSICTable3", fnCrearTablasCoberturaSIC3);
 
    
 
     fnGetAndSetTemplateNoAsync('/AnalisisSIC/TotalSINAC', params,
-        "CoverturaTotalSINAC", fnObtenerTotalSINAC); 
+        "CoberturaTotalSINAC", fnObtenerTotalSINAC); 
 
     fnGetAndSetTemplate('/AnalisisSIC/InconsistenciasSIC', params,
         "InconsistenciasSICTable", fnCrearTablasInconsistenciasSIC); 
@@ -88,15 +88,15 @@ function fnConsultarDatos() {
     fnGetAndSetTemplate('/AnalisisSIC/OtrosFoliosSIC', params,
         "OtrosFoliosSICTable", fnCrearTablasOtrosFoliosSIC); 
 
-    fnGetAndSetTemplateNoAsync('/AnalisisSIC/CoverturaSIC', params,
-        "CoverturaSICTable", fnCrearTablasCoverturaSIC); 
+    fnGetAndSetTemplateNoAsync('/AnalisisSIC/CoberturaSIC', params,
+        "CoberturaSICTable", fnCrearTablasCoberturaSIC); 
 
     fnShowDiv("modalConsulta", 0);
     //fnShowDiv("loader", 0);
     //fnCompleteWait();
 }
 
-function fnCrearTablasCoverturaSIC() {
+function fnCrearTablasCoberturaSIC() {
     var hCols = [];
     fnCrearTabla('OportunoRelacionPorFolioTabla', hCols);
     fnCrearTabla('OportunoRelacionPorFechaTabla', hCols);
@@ -108,7 +108,7 @@ function fnCrearTablasCoverturaSIC() {
    
 }
 
-function fnCrearTablasCoverturaSIC2() {
+function fnCrearTablasCoberturaSIC2() {
     var hCols = [];
     fnCrearTabla('ExtemporaneoRelacionPorFolioTabla', hCols);
     fnCrearTabla('ExtemporaneoRelacionPorFechaTabla', hCols);
@@ -117,7 +117,7 @@ function fnCrearTablasCoverturaSIC2() {
     $('#RExtemporaneoRelacionPorFecha').appendTo('#ExtemporaneoRelacionPorFechaTableGralContainer');
 }
 
-function fnCrearTablasCoverturaSIC3() {
+function fnCrearTablasCoberturaSIC3() {
     var hCols = [];
    
     fnCrearTabla('OportunoSinRelacionTabla', hCols);
@@ -126,8 +126,8 @@ function fnCrearTablasCoverturaSIC3() {
     $('#ROportunoSinRelacion').appendTo('#OportunoSinRelacionTableGralContainer');
     $('#RExtemporaneoSinRelacion').appendTo('#ExtemporaneoSinRelacionTableGralContainer');
 
-    if ($("#objTotalesCovertura").val() != undefined && $("#objTotalesCovertura").val().length > 0) {
-        objTotales = JSON.parse($("#objTotalesCovertura").val());
+    if ($("#objTotalesCobertura").val() != undefined && $("#objTotalesCobertura").val().length > 0) {
+        objTotales = JSON.parse($("#objTotalesCobertura").val());
 
         $("#spanRegistrosCompilados").text(objTotales.TotalRegistrosCompilados + " / " + objTotales.PorcentajeRegistrosCompilados + " % ");
         $("#spanOportunoRelacionPorFolio").text(objTotales.TotalOportunoRelacionPorFolio + " / " + objTotales.PorcentajeOportunoRelacionPorFolio + " % ");
@@ -142,9 +142,9 @@ function fnCrearTablasCoverturaSIC3() {
 
         if (totalSinac != undefined && totalSinac > 0) {
             var porcentajeTotal = (parseFloat(objTotales.SumatoriaTotal * 100 / totalSinac)).toFixed(2);
-            $("#spanCoverturaRegistral").text(objTotales.SumatoriaTotal + " / " + porcentajeTotal + " % ");
+            $("#spanCoberturaRegistral").text(objTotales.SumatoriaTotal + " / " + porcentajeTotal + " % ");
         } else {
-            $("#spanCoverturaRegistral").text(objTotales.SumatoriaTotal);
+            $("#spanCoberturaRegistral").text(objTotales.SumatoriaTotal);
         }
 
     }
@@ -161,7 +161,7 @@ function fnObtenerTotalSINAC() {
         
         if (objTotales != undefined && objTotales.SumatoriaTotal > 0) {
             var porcentajeTotal = (parseFloat(objTotales.SumatoriaTotal * 100 / totalSinac)).toFixed(2);
-            $("#spanCoverturaRegistral").text(objTotales.SumatoriaTotal + " / " + porcentajeTotal + " % ");
+            $("#spanCoberturaRegistral").text(objTotales.SumatoriaTotal + " / " + porcentajeTotal + " % ");
         }
              
 

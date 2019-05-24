@@ -278,7 +278,7 @@ namespace SadenaFenix.Services
                 ReportesBLL reportesBLL = new ReportesBLL();
                 respuesta = reportesBLL.ConsultarAnalisisInformacionSIC(peticion.ColAnosReg, peticion.ColAnosNac, peticion.ColMeses, peticion.ColMunicipios);
 
-                TotalesCoverturaRegistral totales = new TotalesCoverturaRegistral();
+                TotalesCoberturaRegistral totales = new TotalesCoberturaRegistral();
                 totales.TotalOportunoRelacionPorFolio = respuesta.DTs[0].Rows.Count;
                 totales.TotalOportunoRelacionPorFecha = respuesta.DTs[1].Rows.Count;
                 totales.TotalExtemporaneoRelacionPorFolio = respuesta.DTs[2].Rows.Count;
@@ -327,7 +327,7 @@ namespace SadenaFenix.Services
                 totales.PorcentajeRegistrosSinRelacion = Math.Round(d, 2);
 
 
-                respuesta.TotalesCoverturaRegistral = totales;
+                respuesta.TotalesCoberturaRegistral = totales;
 
                 AsignarCabeceroRespuesta(0, "Se ejecutó correctamente", respuesta.Cabecero);
             }

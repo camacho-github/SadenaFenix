@@ -26,7 +26,7 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
         private const string PRN_CONSULTA_REPORTE_EDO_CIVIL_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdoCivilSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_EDAD_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteEdadSubregistroMunicipios";
         private const string PRN_CONSULTA_REPORTE_NUM_NAC_SUBREGISTRO_MUNICIPIOS = "SDB.PRSReporteNumNacSubregistroMunicipios";
-        private const string PRN_CONSULTA_ANALISIS_INFO_SIC = "SDB.PRSCoverturaSIC";
+        private const string PRN_CONSULTA_ANALISIS_INFO_SIC = "SDB.PRSCoberturaSIC";
         private const string PRN_CONSULTA_INCONSISTENCIAS_SIC = "SDB.PRSInconsistenciasSIC";
         private const string PRN_CONSULTA_OTROS_FOLIOS_SIC = "SDB.PRSOtrosFoliosSIC";        
         private const string PRN_CONSULTA_TOTAL_SINAC = "SDB.PRSTotalSINAC";        

@@ -222,7 +222,7 @@
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaPeticion.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultaOficialiaRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultarOficinasPeticion.cs" />
-    <Compile Include="Transport\Nacimientos\CoverturaSIC\TotalesCoverturaRegistral.cs" />
+    <Compile Include="Transport\Nacimientos\CoberturaSIC\TotalesCoberturaRegistral.cs" />
     <Compile Include="Transport\Usuarios\Acceso\ConsultarUsuarioPeticion.cs" />
     <Compile Include="Transport\Usuarios\Acceso\ConsultarUsuariosRespuesta.cs" />
     <Compile Include="Transport\Georeferenciacion\ConsultarOficinasRespuesta.cs" />
@@ -302,7 +302,7 @@
     <Content Include="Scripts\js\georefenciacion\georeferenciacion.js" />
     <Content Include="Scripts\js\maps\jqvmap\jquery.vmap.municipios_coahuila.js" />
     <Content Include="Scripts\js\nacimientos\configuraciones\diasExtemporaneos.js" />
-    <Content Include="Scripts\js\nacimientos\consultas\coverturaAnalisisSIC.js" />
+    <Content Include="Scripts\js\nacimientos\consultas\coberturaAnalisisSIC.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultaAnalisisSIC.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultaSubRegistro.js" />
     <Content Include="Scripts\js\nacimientos\consultas\consultar.js" />
@@ -808,9 +808,9 @@
     <Content Include="Views\Usuarios\BitacoraUsuarios.cshtml" />
     <Content Include="Views\Nacimientos\Modales\SeleccionarConsultaSICModal.cshtml" />
     <Content Include="Views\AnalisisSIC\SeleccionarConsultaSIC.cshtml" />
-    <Content Include="Views\AnalisisSIC\CoverturaSIC.cshtml" />
-    <Content Include="Views\AnalisisSIC\CoverturaSIC2.cshtml" />
-    <Content Include="Views\AnalisisSIC\CoverturaSIC3.cshtml" />
+    <Content Include="Views\AnalisisSIC\CoberturaSIC.cshtml" />
+    <Content Include="Views\AnalisisSIC\CoberturaSIC2.cshtml" />
+    <Content Include="Views\AnalisisSIC\CoberturaSIC3.cshtml" />
     <Content Include="Views\AnalisisSIC\TotalSINAC.cshtml" />
     <Content Include="Views\AnalisisSIC\InconsistenciasSIC.cshtml" />
     <Content Include="Views\AnalisisSIC\OtrosFoliosSIC.cshtml" />

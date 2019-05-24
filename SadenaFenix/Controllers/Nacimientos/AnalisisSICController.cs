@@ -40,7 +40,7 @@ namespace SadenaFenix.Controllers.Nacimientos
         }
        
 
-        public ActionResult CoverturaSIC(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
+        public ActionResult CoberturaSIC(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
         {
             Servicio servicio = new Servicio();
             dynamic aniosNac = JsonConvert.DeserializeObject(AniosNacimientoJson);
@@ -88,7 +88,7 @@ namespace SadenaFenix.Controllers.Nacimientos
             
         }
 
-        public ActionResult CoverturaSIC2(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
+        public ActionResult CoberturaSIC2(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
         {
             Servicio servicio = new Servicio();
             dynamic aniosNac = JsonConvert.DeserializeObject(AniosNacimientoJson);
@@ -136,7 +136,7 @@ namespace SadenaFenix.Controllers.Nacimientos
 
         }
 
-        public ActionResult CoverturaSIC3(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
+        public ActionResult CoberturaSIC3(string AniosRegistroJson, string AniosNacimientoJson, string MesesJson, string MpiosJson)
         {
             Servicio servicio = new Servicio();
             dynamic aniosNac = JsonConvert.DeserializeObject(AniosNacimientoJson);
@@ -178,7 +178,7 @@ namespace SadenaFenix.Controllers.Nacimientos
             dynamic model = new ExpandoObject();
             model.OportunoSinRelacion = AnalisisSICRespuesta.DTs[4];
             model.ExtemporaneoSinRelacion = AnalisisSICRespuesta.DTs[5];
-            model.Totales = JsonConvert.SerializeObject(AnalisisSICRespuesta.TotalesCoverturaRegistral);
+            model.Totales = JsonConvert.SerializeObject(AnalisisSICRespuesta.TotalesCoberturaRegistral);
 
             //if (Request.IsAjaxRequest())
             return PartialView(model);

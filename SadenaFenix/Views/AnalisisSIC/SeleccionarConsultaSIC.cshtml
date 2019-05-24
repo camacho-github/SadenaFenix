@@ -9,7 +9,7 @@
     /* Indicators. */
     ViewData["RegistrosCompilados"] = "Registros compilados SINAC/SIC";
     ViewData["RegistrosSoloSic"] = "Registros sólo SIC (Sin relación SINAC)";
-    ViewData["CoverturaRegistral"] = "Covertura registral";
+    ViewData["CoberturaRegistral"] = "Cobertura registral";
     ViewData["TotalSinac"] = "Total SINAC";
     ViewData["FoliosInconsistentes"] = "Registros Inconsistentes";
     ViewData["OtrosFolios"] = "Otros Folios";
@@ -32,7 +32,7 @@
 
 @section Scripts
 {
-    <script src="@Url.Content("~/Scripts/js/nacimientos/consultas/coverturaAnalisisSIC.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/nacimientos/consultas/coberturaAnalisisSIC.js")"></script>
 }
 
 
@@ -40,7 +40,7 @@
 
 
 <!-- Page content -->
-<div id="contentCoverturaSIC" class="page-content hiddElement">
+<div id="contentCoberturaSIC" class="page-content hiddElement">
 
 
 
@@ -84,10 +84,10 @@
                                     <span class="mr-3">@ViewData["RegistrosSoloSic"]</span>
                                     <span id="spanRegistrosSoloSic" class="badge badge-warning right"></span>
                                 </a>
-                                <a id="linkCoverturaRegistral" class="list-group-item" tbCont="CoverturaRegistral" href="#CoverturaRegistral">
+                                <a id="linkCoberturaRegistral" class="list-group-item" tbCont="CoberturaRegistral" href="#CoberturaRegistral">
                                     <i class="fa fa-plus-square"></i>
-                                    <span class="mr-3">@ViewData["CoverturaRegistral"]</span>
-                                    <span id="spanCoverturaRegistral" class="badge badge-default right"></span>
+                                    <span class="mr-3">@ViewData["CoberturaRegistral"]</span>
+                                    <span id="spanCoberturaRegistral" class="badge badge-default right"></span>
                                 </a>
                                 <a id="linkTotalSinac" class="list-group-item" tbCont="TotalSinac" href="#TotalSinac">
                                     <i class="fa fa-plus-square-o"></i>
@@ -364,16 +364,16 @@
 
 <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
 <div id="ContenedorGral">
-    <div id="CoverturaSICTable">
+    <div id="CoberturaSICTable">
         <!--Respuesta por ajax-->
     </div>
-    <div id="CoverturaSICTable2">
+    <div id="CoberturaSICTable2">
         <!--Respuesta por ajax-->
     </div>
-    <div id="CoverturaSICTable3">
+    <div id="CoberturaSICTable3">
         <!--Respuesta por ajax-->
     </div>
-    <div id="CoverturaTotalSINAC">
+    <div id="CoberturaTotalSINAC">
         <!--Respuesta por ajax-->
     </div>
     <div id="InconsistenciasSICTable">

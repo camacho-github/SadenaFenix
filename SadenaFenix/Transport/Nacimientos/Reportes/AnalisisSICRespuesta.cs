@@ -24,9 +24,9 @@ namespace SadenaFenix.Transport.Nacimientos.Reportes
         [XmlAttribute("DTs")]
         public Collection<DataTable> DTs { get; set; }
 
-        [DataMember(Name = "TotalesCoverturaRegistral", IsRequired = true)]
-        [XmlAttribute("TotalesCoverturaRegistral")]
-        public TotalesCoverturaRegistral TotalesCoverturaRegistral { get; set; }
+        [DataMember(Name = "TotalesCoberturaRegistral", IsRequired = true)]
+        [XmlAttribute("TotalesCoberturaRegistral")]
+        public TotalesCoberturaRegistral TotalesCoberturaRegistral { get; set; }
 
         [DataMember(Name = "TotalSINAC", IsRequired = true)]
         [XmlAttribute("TotalSINAC")]
