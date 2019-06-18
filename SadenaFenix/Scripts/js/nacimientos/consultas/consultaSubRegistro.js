@@ -37,6 +37,7 @@ function fnConsultarDatos() {
 function fnCrearTablasSubregistro() {
     var hCols = [2, 3, 5, 7, 9, 17, 19];
     fnCrearTabla('SubRegistroTabla', hCols);
+    hCols = [3, 4, 6, 8, 10, 18, 20];
     fnCrearTabla('OportunosTabla', hCols)
     fnCrearTabla('ExtemporaneosTabla', hCols)
     hCols = [2,3, 4, 6, 8, 10, 18, 20];
