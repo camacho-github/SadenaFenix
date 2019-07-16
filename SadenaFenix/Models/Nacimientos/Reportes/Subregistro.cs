@@ -53,6 +53,10 @@ namespace SadenaFenix.Models.Nacimientos.Reportes
         [XmlAttribute("LocDesc")]
         public String LocDesc { get; set; }
 
+        [DataMember(Name = "Colonia", IsRequired = true)]
+        [XmlAttribute("Colonia")]
+        public String Colonia { get; set; }
+
         [DataMember(Name = "Calle", IsRequired = true)]
         [XmlAttribute("Calle")]
         public String Calle { get; set; }
