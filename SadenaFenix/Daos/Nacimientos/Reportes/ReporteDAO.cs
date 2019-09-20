@@ -164,6 +164,9 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                                 Subregistro sub = new Subregistro
                                 {
                                     Folio = r.Field<string>("Folio"),
+                                    MaNombre = r.Field<string>("Nombre"),
+                                    MaApPaterno = r.Field<string>("Paterno"),
+                                    MaApMaterno = r.Field<string>("Materno"),
                                     FechaNacimiento = r.Field<string>("FechaNacimiento"),
                                     HoraNacimiento = r.Field<string>("HoraNacimiento"),
                                     SexoId = r.Field<int>("SexoId"),
@@ -203,6 +206,9 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                                 Subregistro sub = new Subregistro
                                 {
                                     Folio = r.Field<string>("Folio"),
+                                    MaNombre = r.Field<string>("Nombre"),
+                                    MaApPaterno = r.Field<string>("Paterno"),
+                                    MaApMaterno = r.Field<string>("Materno"),
                                     FechaNacimiento = r.Field<string>("FechaNacimiento"),
                                     HoraNacimiento = r.Field<string>("HoraNacimiento"),
                                     SexoId = r.Field<int>("SexoId"),
@@ -242,6 +248,9 @@ namespace SadenaFenix.Daos.Nacimientos.Reportes
                                 Subregistro sub = new Subregistro
                                 {
                                     Folio = r.Field<string>("Folio"),
+                                    MaNombre = r.Field<string>("Nombre"),
+                                    MaApPaterno = r.Field<string>("Paterno"),
+                                    MaApMaterno = r.Field<string>("Materno"),
                                     FechaNacimiento = r.Field<string>("FechaNacimiento"),
                                     HoraNacimiento = r.Field<string>("HoraNacimiento"),
                                     SexoId = r.Field<int>("SexoId"),

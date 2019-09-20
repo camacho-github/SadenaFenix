@@ -13,6 +13,18 @@ namespace SadenaFenix.Models.Nacimientos.Reportes
         [XmlAttribute("Folio")]
         public String Folio { get; set; }
 
+        [DataMember(Name = "MaNombre", IsRequired = true)]
+        [XmlAttribute("MaNombre")]
+        public String MaNombre { get; set; }
+
+        [DataMember(Name = "MaApPaterno", IsRequired = true)]
+        [XmlAttribute("MaApPaterno")]
+        public String MaApPaterno { get; set; }
+
+        [DataMember(Name = "MaApMaterno", IsRequired = true)]
+        [XmlAttribute("MaApMaterno")]
+        public String MaApMaterno { get; set; }
+
         [DataMember(Name = "FechaNacimiento", IsRequired = true)]
         [XmlAttribute("FechaNacimiento")]
         public String FechaNacimiento { get; set; }

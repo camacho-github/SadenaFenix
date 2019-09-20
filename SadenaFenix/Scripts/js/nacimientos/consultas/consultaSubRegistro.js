@@ -35,12 +35,12 @@ function fnConsultarDatos() {
 }
 
 function fnCrearTablasSubregistro() {
-    var hCols = [2, 3, 5, 7, 9, 17, 19];
+    var hCols = [2, 3, 8, 10, 12, 20, 22];
     fnCrearTabla('SubRegistroTabla', hCols);
-    hCols = [3, 4, 6, 8, 10, 18, 20];
+    hCols = [3, 4, 9, 11, 13, 21, 23];
     fnCrearTabla('OportunosTabla', hCols)
     fnCrearTabla('ExtemporaneosTabla', hCols)
-    hCols = [2,3, 4, 6, 8, 10, 18, 20];
+    hCols = [2,3, 4, 9, 11, 13, 21, 23];
     fnCrearTabla('DuplicadosTabla', hCols)
 
     hCols = [0];
