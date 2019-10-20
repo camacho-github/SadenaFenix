@@ -14,6 +14,12 @@ if ($('#Longitud').val() != '' && $('#Latitud').val() != '') {
 }
 
 $(function () {
+
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes();
+    var dateTime = date + ' ' + time;
+
     //Only needed for the filename of export files.
     //Normally set in the title tag of your page.document.title = 'Simple DataTable';
     //Define hidden columns
@@ -66,6 +72,7 @@ $(function () {
             buttons: [{
                 text: 'Excel',
                 extend: 'excelHtml5',
+                title: "Georeferenciación" + dateTime,
                 footer: false,
                 exportOptions: {
                     columns: ':visible'
@@ -73,6 +80,7 @@ $(function () {
             }, {
                 text: 'CSV',
                 extend: 'csvHtml5',
+                title: "Georeferenciación" + dateTime,
                 fieldSeparator: ';',
                 exportOptions: {
                     columns: ':visible'
@@ -80,6 +88,7 @@ $(function () {
             }, {
                 text: 'PDF Vertical',
                 extend: 'pdfHtml5',
+                title: "Georeferenciación" + dateTime,
                 message: '',
                 exportOptions: {
                     columns: ':visible'
@@ -87,6 +96,7 @@ $(function () {
             }, {
                 text: 'PDF Horizontal',
                 extend: 'pdfHtml5',
+                title: "Georeferenciación" + dateTime,
                 message: '',
                 orientation: 'landscape',
                 exportOptions: {

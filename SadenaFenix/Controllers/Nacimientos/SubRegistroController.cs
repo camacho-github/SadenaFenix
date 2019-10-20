@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using SadenaFenix.Models.Catalogos.Geografia;
-using SadenaFenix.Models.Catalogos.Tiempo;
 using SadenaFenix.Models.Usuarios;
 using SadenaFenix.Services;
 using SadenaFenix.Transport.Catalogos;
@@ -9,6 +8,7 @@ using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
 using System.Collections.ObjectModel;
 using System.Dynamic;
+using System.Globalization;
 using System.Web.Mvc;
 
 
@@ -39,7 +39,7 @@ namespace SadenaFenix.Controllers.Nacimientos
         }
        
 
-        public ActionResult SubRegistroInformacion(string AniosJson,string MesesJson, string MpiosJson)
+        public ActionResult SubRegistroInformacion(string AniosJson,string MesesJson, string MpiosJson, string MesesDesc, string AniosDesc,string MpiosDesc)
         {
             Servicio servicio = new Servicio();
             dynamic anios = JsonConvert.DeserializeObject(AniosJson);
@@ -102,6 +102,11 @@ namespace SadenaFenix.Controllers.Nacimientos
 
             model.ColCabeceros = reporteRespuesta.ColCabeceros;
             model.ColFilas = reporteRespuesta.ColFilas;
+
+            model.FechaReporte = DateTime.Now.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);
+            model.MesesReporte = string.IsNullOrEmpty(MesesDesc) ? "Todos": MesesDesc;
+            model.AniosReporte = string.IsNullOrEmpty(AniosDesc) ? "Todos" : AniosDesc;
+            model.MpiosReporte = string.IsNullOrEmpty(MpiosDesc) ? "Todos" : MpiosDesc;
 
             //if (Request.IsAjaxRequest())
             return PartialView(model);

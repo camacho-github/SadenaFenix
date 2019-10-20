@@ -1,5 +1,11 @@
 ﻿@model dynamic
 
+<input type="hidden" name="valFechaReporte" id="valFechaReporte" value="@Model.FechaReporte" />
+<input type="hidden" name="valMesesReporte" id="valMesesReporte" value="@Model.MesesReporte" />
+<input type="hidden" name="valAniosReporte" id="valAniosReporte" value="@Model.AniosReporte" />
+<input type="hidden" name="valMpiosReporte" id="valMpiosReporte" value="@Model.MpiosReporte" />
+
+
 <div id="REdadSub">
     <div id="subregistradosTableContainer" class="table-container table-responsive">
         <div class="col-sm-12">
@@ -40,7 +46,7 @@
         </div>
     </div>
 </div>
-                            
+
 
 <div id="REdadOpo">
     <div id="registradosTableContainer" class="table-container table-responsive">
@@ -82,7 +88,7 @@
         </div>
     </div>
 </div>
-                            
+
 
 <div id="REdadExt">
     <div id="extemporaneosTableContainer" class="table-container table-responsive">
@@ -123,4 +129,3 @@
         </div>
     </div>
 </div>
-                            

@@ -1,4 +1,9 @@
-﻿
+﻿var objMeses = {};
+var objAnios = {};
+var objMpios = {};
+var objAnioRegistro = {};
+
+
 $(function () {
     $(".ValidacionTexto").on('keypress', function (event) {
         var regExp = /^[a-zA-z0-9 ]{0,245}$/;
@@ -51,6 +56,16 @@ $(function () {
 
     $('.select2').on('select2:select', function (e) {
         var data = e.params.data;
+        var idSelect = $(this).attr('id');
+        if (idSelect == "MesLista")
+            objMeses[data.id] = data.text;
+        else if (idSelect == "AnioLista" || idSelect =="AnioNacimientoLista")
+            objAnios[data.id] = data.text;
+        else if (idSelect == "AnioRegistroLista")
+            objAnioRegistro[data.id] = data.text;
+        else if (idSelect == "MpiosLista")
+            objMpios[data.id] = data.text;
+                
         console.log(data);
         console.log($(this).val());
     });
@@ -159,7 +174,19 @@ function fnGetAndSetTemplateNoAsync(actionName, params, divName, fnName, noWait)
 
 }
 
-
+function fnConcatenaValoresObjeto(obj) {
+    var index = 0;
+    var result = "";
+    $.each(obj, function (key, value) {
+        if (index === 0) {
+            result += value;
+        } else {
+            result += ", " + value;
+        }
+        index++;
+    });
+    return result;
+}
 
 function fnParamsString(objArray) {
     var paramsArray = "";
@@ -310,6 +337,11 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
             paginacion = true;
         }
 
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var dateTime = date + ' ' + time;
+
         $('#' + nombreTabla).DataTable({
             "bFilter": false,
             "dom": 'Blfrtip',
@@ -380,6 +412,7 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 buttons: [{
                     text: 'Excel',
                     extend: 'excelHtml5',
+                    title: nombreTabla + "_" + dateTime,
                     footer: false,
                     exportOptions: {
                         columns: ':visible'
@@ -387,6 +420,7 @@ function fnCrearTabla(nombreTabla, columnasOcultas, paginacion) {
                 }, {
                     text: 'CSV',
                     extend: 'csvHtml5',
+                    title: nombreTabla + "_" + dateTime,
                     fieldSeparator: ';',
                     exportOptions: {
                         columns: ':visible'
@@ -468,6 +502,11 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
     try {
         fnWaitForPost();
 
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var dateTime = date + ' ' + time;
+
         if (paginacion == undefined) {
             paginacion = true;
         }
@@ -540,6 +579,7 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
                 buttons: [{
                     text: 'Excel',
                     extend: 'excelHtml5',
+                    title: nombreTabla + "_" + dateTime,
                     footer: false,
                     exportOptions: {
                         columns: ':visible'
@@ -547,6 +587,7 @@ function fnCrearTablaSimple(nombreTabla, columnasOcultas, paginacion) {
                 }, {
                     text: 'CSV',
                     extend: 'csvHtml5',
+                    title: nombreTabla + "_" + dateTime,
                     fieldSeparator: ';',
                     exportOptions: {
                         columns: ':visible'

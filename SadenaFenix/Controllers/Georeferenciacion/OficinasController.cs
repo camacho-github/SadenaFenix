@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,6 +50,8 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             {
                 respuesta.DTOficinas = new DataTable();                
             }
+
+            ViewBag.FechaReporte = DateTime.Now.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);
 
             return View(respuesta);
         }

@@ -9,6 +9,7 @@ using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
 using System.Collections.ObjectModel;
 using System.Dynamic;
+using System.Globalization;
 using System.Web.Mvc;
 
 
@@ -185,7 +186,7 @@ namespace SadenaFenix.Controllers.Nacimientos
 
         }
 
-        public ActionResult TotalSINAC(string AniosNacimientoJson, string MesesJson, string MpiosJson)
+        public ActionResult TotalSINAC(string AniosNacimientoJson, string MesesJson, string MpiosJson , string MesesDesc, string AniosDesc, string AniosRegDesc, string MpiosDesc)
         {
             Servicio servicio = new Servicio();
             dynamic aniosNac = JsonConvert.DeserializeObject(AniosNacimientoJson);
@@ -221,7 +222,12 @@ namespace SadenaFenix.Controllers.Nacimientos
 
             dynamic model = new ExpandoObject();
             model.TotalSINAC = AnalisisSICRespuesta.TotalSINAC;
-           
+            model.FechaReporte = DateTime.Now.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);
+            model.MesesReporte = string.IsNullOrEmpty(MesesDesc) ? "Todos" : MesesDesc;
+            model.AniosReporte = string.IsNullOrEmpty(AniosDesc) ? "Todos" : AniosDesc;
+            model.AniosRegReporte = string.IsNullOrEmpty(AniosRegDesc) ? "Todos" : AniosRegDesc;
+            model.MpiosReporte = string.IsNullOrEmpty(MpiosDesc) ? "Todos" : MpiosDesc;
+
             //if (Request.IsAjaxRequest())
             return PartialView(model);
 

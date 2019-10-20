@@ -27,9 +27,14 @@ function fnConsultarDatos() {
         "MesesJson": JSON.stringify($("#MesLista").val()),
         "AniosJson": JSON.stringify($("#AnioLista").val()),
         "MpiosJson": JSON.stringify($("#MpiosLista").val()),
+        "MesesDesc": fnConcatenaValoresObjeto(objMeses),
+        "AniosDesc": fnConcatenaValoresObjeto(objAnios),
+        "MpiosDesc": fnConcatenaValoresObjeto(objMpios),
     },
         params = fnParamsString(objArray);
+
     
+
     fnGetAndSetTemplate('/SubRegistro/SubRegistroInformacion', params,
         "tablaContenedor", fnCrearTablasSubregistro);    
 }

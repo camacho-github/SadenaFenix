@@ -8,6 +8,7 @@ using SadenaFenix.Transport.Nacimientos.Reportes;
 using System;
 using System.Collections.ObjectModel;
 using System.Dynamic;
+using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Services;
 
@@ -83,7 +84,7 @@ namespace Sadena.Controllers.Nacimientos
 
         }
 
-        public ActionResult ReportesEdad(string AniosJson, string MesesJson, string MpiosJson)
+        public ActionResult ReportesEdad(string AniosJson, string MesesJson, string MpiosJson, string MesesDesc, string AniosDesc,string MpiosDesc)
         {
             Servicio servicio = new Servicio();
             dynamic anios = JsonConvert.DeserializeObject(AniosJson);
@@ -123,6 +124,11 @@ namespace Sadena.Controllers.Nacimientos
             model.ReporteSubRegistros = respuesta.DTs[0];
             model.ReporteOportunos = respuesta.DTs[1];
             model.ReporteExtemporaneos = respuesta.DTs[2];
+            model.FechaReporte = DateTime.Now.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);            
+            model.MesesReporte = string.IsNullOrEmpty(MesesDesc) ? "Todos" : MesesDesc;
+            model.AniosReporte = string.IsNullOrEmpty(AniosDesc) ? "Todos" : AniosDesc;
+            model.MpiosReporte = string.IsNullOrEmpty(MpiosDesc) ? "Todos" : MpiosDesc;
+
 
             //if (Request.IsAjaxRequest())
             return PartialView(model);

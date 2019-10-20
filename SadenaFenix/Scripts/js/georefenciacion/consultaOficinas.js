@@ -1,6 +1,12 @@
 ﻿var objMapaConfiguracion = undefined;
 
 $(function () {
+
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes();
+    var dateTime = date + ' ' + time;
+
     var hCols = [1, 3, 5, 6, 7, 8, 9, 15, 16, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39];
     $('#OficinasTabla').DataTable({
         "bFilter": false,
@@ -49,6 +55,7 @@ $(function () {
             buttons: [{
                 text: 'Excel',
                 extend: 'excelHtml5',
+                title: "Georeferenciación_" + dateTime,
                 footer: false,
                 exportOptions: {
                     columns: ':visible'
@@ -56,6 +63,7 @@ $(function () {
             }, {
                 text: 'CSV',
                 extend: 'csvHtml5',
+                title: "Georeferenciación_" + dateTime,
                 fieldSeparator: ';',
                 exportOptions: {
                     columns: ':visible'
@@ -63,6 +71,7 @@ $(function () {
             }, {
                 text: 'PDF Vertical',
                 extend: 'pdfHtml5',
+                title: "Georeferenciación_" + dateTime,
                 message: '',
                 exportOptions: {
                     columns: ':visible'
@@ -70,6 +79,7 @@ $(function () {
             }, {
                 text: 'PDF Horizontal',
                 extend: 'pdfHtml5',
+                title: "Georeferenciación_" + dateTime,
                 message: '',
                 orientation: 'landscape',
                 exportOptions: {

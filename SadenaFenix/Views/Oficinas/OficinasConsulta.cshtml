@@ -41,8 +41,13 @@
                         <div class="well loading-well">
                             <!-- Form -->
                             <form class="form-horizontal">
-                                <fieldset>
-                                    <legend>@ViewData["TableName"]</legend>
+                                
+                                <div class="panel-heading">
+                                    <span class="panel-title" style="color:#444444;margin-left:5px">@ViewData["TableName"]</span>
+                                    <span id="spanFechaReporte" style="float:right;color:#444444">@ViewBag.FechaReporte</span>                                    
+                                </div>
+
+                                <fieldset>                                    
                                     <div class="table-responsive">
                                         <table id="OficinasTabla" class="table table-condensed table-striped table-bordered" style="position:relative">
                                             <thead>
@@ -87,7 +92,7 @@
                                                     <th>Conexión con DRC</th>
                                                     <th>Expide CURP</th>
                                                     <th>Expide actas de otros estados</th>
-                                                    
+
                                                     @if (ViewBag.perfilInvalido != 1)
                                                     {
                                                         <th></th>
@@ -99,64 +104,64 @@
                                             <tbody>
                                                 @for (int i = 0; i < Model.DTOficinas.Rows.Count; i++)
                                                 {
-                                                <tr class="regOficina"
-                                                    oid="@Model.DTOficinas.Rows[i][0]"
-                                                    id="@Model.DTOficinas.Rows[i][1]"
-                                                    mpio="@Model.DTOficinas.Rows[i][3]"
-                                                    tipo="@Model.DTOficinas.Rows[i][6]"
-                                                    lat="@Model.DTOficinas.Rows[i][9]"
-                                                    lng="@Model.DTOficinas.Rows[i][10]">
-                                                    <td>@Model.DTOficinas.Rows[i][1]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][2]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][3]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][4]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][5]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][6]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][7]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][8]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][9]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][10]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][11]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][12]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][13]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][14]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][15]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][16]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][17]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][18]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][19]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][20]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][21]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][22]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][23]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][24]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][25]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][26]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][27]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][28]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][29]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][30]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][31]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][32]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][33]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][34]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][35]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][36]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][37]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][38]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][39]</td>
-                                                    <td>@Model.DTOficinas.Rows[i][40]</td>
+                                                    <tr class="regOficina"
+                                                        oid="@Model.DTOficinas.Rows[i][0]"
+                                                        id="@Model.DTOficinas.Rows[i][1]"
+                                                        mpio="@Model.DTOficinas.Rows[i][3]"
+                                                        tipo="@Model.DTOficinas.Rows[i][6]"
+                                                        lat="@Model.DTOficinas.Rows[i][9]"
+                                                        lng="@Model.DTOficinas.Rows[i][10]">
+                                                        <td>@Model.DTOficinas.Rows[i][1]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][2]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][3]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][4]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][5]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][6]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][7]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][8]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][9]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][10]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][11]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][12]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][13]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][14]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][15]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][16]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][17]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][18]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][19]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][20]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][21]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][22]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][23]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][24]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][25]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][26]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][27]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][28]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][29]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][30]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][31]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][32]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][33]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][34]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][35]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][36]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][37]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][38]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][39]</td>
+                                                        <td>@Model.DTOficinas.Rows[i][40]</td>
 
-                                                    @if (ViewBag.perfilInvalido != 1)
-                                                    {
-                                                        <td>
-                                                            <a href="@Url.Action("ActualizarOficina","Oficinas",new {@id=@Model.DTOficinas.Rows[i][0]})">Actualizar</a>
-                                                        </td>
-                                                        <td>
-                                                            <a class="eliminarAction" oid="@Model.DTOficinas.Rows[i][0]" href="#">Eliminar</a>
-                                                        </td>
-                                                    }
-                                                </tr>
+                                                        @if (ViewBag.perfilInvalido != 1)
+                                                        {
+                                                            <td>
+                                                                <a href="@Url.Action("ActualizarOficina","Oficinas",new {@id=@Model.DTOficinas.Rows[i][0]})">Actualizar</a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="eliminarAction" oid="@Model.DTOficinas.Rows[i][0]" href="#">Eliminar</a>
+                                                            </td>
+                                                        }
+                                                    </tr>
                                                 }
                                             </tbody>
                                             <tfoot>

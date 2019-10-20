@@ -123,6 +123,9 @@ function fnConsultarDatos() {
         "MesesJson": JSON.stringify($("#MesLista").val()),
         "AniosJson": JSON.stringify($("#AnioLista").val()),
         "MpiosJson": JSON.stringify($("#MpiosLista").val()),
+        "MesesDesc": fnConcatenaValoresObjeto(objMeses),
+        "AniosDesc": fnConcatenaValoresObjeto(objAnios),        
+        "MpiosDesc": fnConcatenaValoresObjeto(objMpios),
     },
         params = fnParamsString(objArray); 
     
@@ -302,7 +305,14 @@ function fnCrearTablasEdadSubregistro() {
 
     $('#REdadOpo').appendTo('#edadMadreOpoContainer');
     $('#REdadSub').appendTo('#edadMadreSubContainer');
-    $('#REdadExt').appendTo('#edadMadreExtContainer');   
+    $('#REdadExt').appendTo('#edadMadreExtContainer');
+
+    $("#divFechaReporte").text($("#valFechaReporte").val());
+    $("#divMesesReporte").text("Meses: " + $("#valMesesReporte").val());
+    $("#divAniosReporte").text("Años: " + $("#valAniosReporte").val());
+    $("#divMpiosReporte").text("Municipios: " + $("#valMpiosReporte").val());
+
+
  
 }
 

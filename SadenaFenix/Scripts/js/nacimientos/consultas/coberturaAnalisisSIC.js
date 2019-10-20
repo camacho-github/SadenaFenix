@@ -66,6 +66,10 @@ function fnConsultarDatos() {
         "AniosRegistroJson": JSON.stringify($("#AnioRegistroLista").val()),
         "AniosNacimientoJson": JSON.stringify($("#AnioNacimientoLista").val()),
         "MpiosJson": JSON.stringify($("#MpiosLista").val()),
+        "MesesDesc": fnConcatenaValoresObjeto(objMeses),
+        "AniosDesc": fnConcatenaValoresObjeto(objAnios),
+        "AniosRegDesc": fnConcatenaValoresObjeto(objAnioRegistro),
+        "MpiosDesc": fnConcatenaValoresObjeto(objMpios),
     },
         params = fnParamsString(objArray);   
 
@@ -152,7 +156,12 @@ function fnCrearTablasCoberturaSIC3() {
 }
 
 function fnObtenerTotalSINAC() {
-    
+
+    $("#divFechaReporte").text($("#valFechaReporte").val());
+    $("#divMesesReporte").text("Meses: " + $("#valMesesReporte").val());
+    $("#divAniosReporte").text("Años de nacimiento: " + $("#valAniosReporte").val());
+    $("#divAniosRegReporte").text("Años de registro: " + $("#valAniosRegReporte").val());
+    $("#divMpiosReporte").text("Municipios: " + $("#valMpiosReporte").val());
 
     if ($("#valTotalSINAC").val() != undefined && $("#valTotalSINAC").val().length > 0) {
         totalSinac = parseInt($("#valTotalSINAC").val());

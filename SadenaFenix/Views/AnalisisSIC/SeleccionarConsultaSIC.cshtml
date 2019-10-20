@@ -65,7 +65,12 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="report-title">
-                            <h4>Seleccione los resultados deseados:</h4>
+                            <div class="h4">Seleccione los resultados deseados:</div>
+                            <div class="h4" id="divFechaReporte" style="font-size: small;text-align: -webkit-right;text-align: right;"></div>
+                            <div class="h4" id="divAniosRegReporte" style="font-size:small;text-align: -webkit-right;text-align: right"></div>
+                            <div class="h4" id="divAniosReporte" style="font-size: small;text-align: -webkit-right;text-align: right"></div>
+                            <div class="h4" id="divMesesReporte" style="font-size: small;text-align: -webkit-right;text-align: right"></div>
+                            <div class="h4" id="divMpiosReporte" style="font-size: small;text-align: -webkit-right;text-align: right"></div>
                         </div>
                     </div>
                 </div>
@@ -363,6 +368,7 @@
 <!-- ./page content -->
 
 <input type="hidden" name="objUsuario" id="objUsuario" value="@ViewBag.UserJson" />
+<input type="hidden" name="hidFechaReporte" id="hidFechaReporte" value="@ViewBag.FechaReporte" />
 <div id="ContenedorGral">
     <div id="CoberturaSICTable">
         <!--Respuesta por ajax-->
