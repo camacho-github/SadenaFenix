@@ -13,8 +13,7 @@
     <script src="@Url.Content("~/Scripts/js/georefenciacion/crearOficinas.js")"></script>
     <script src="@Url.Content("~/Scripts/js/utilerias/mapasOficina.js")"></script>
     <!-- Replace the value of the key parameter with your own API key. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap"
-            async defer></script>
+    <script src="@Url.Content("https://maps.googleapis.com/maps/api/js?key=" + ViewBag.ApiKey + "&libraries=places&callback=initMap")" async defer></script>
 
 }
 

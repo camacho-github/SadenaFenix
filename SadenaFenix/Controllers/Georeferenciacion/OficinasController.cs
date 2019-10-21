@@ -52,6 +52,9 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             }
 
             ViewBag.FechaReporte = DateTime.Now.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);
+            string s = "@IzaSy@2q7-n¡6n79RnZ5Yf7bRPU9tFjz¡cuCn@";            
+            s = s.Replace('@', 'A').Replace('¡', 'l');
+            ViewBag.ApiKey = s;
 
             return View(respuesta);
         }
@@ -80,7 +83,11 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             oficina.TipoLista = new List<TipoOficina>();
             oficina.TipoLista.Add(new TipoOficina(1, "Oficialia"));
             oficina.TipoLista.Add(new TipoOficina(2, "Módulo Hospitalario"));
-                        
+
+            string s = "@IzaSy@2q7-n¡6n79RnZ5Yf7bRPU9tFjz¡cuCn@";
+            s = s.Replace('@', 'A').Replace('¡', 'l');
+            ViewBag.ApiKey = s;
+
             return View(oficina);
         }
 
@@ -136,6 +143,10 @@ namespace SadenaFenix.Controllers.Georeferenciacion
             oficina.TipoLista = new List<TipoOficina>();
             oficina.TipoLista.Add(new TipoOficina(1, "Oficialia"));
             oficina.TipoLista.Add(new TipoOficina(2, "Módulo Hospitalario"));
+
+            string s = "@IzaSy@2q7-n¡6n79RnZ5Yf7bRPU9tFjz¡cuCn@";
+            s = s.Replace('@', 'A').Replace('¡', 'l');
+            ViewBag.ApiKey = s;
 
             return View(oficina);
         }
